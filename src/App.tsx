@@ -5,30 +5,17 @@ import CardHeader from '@material-ui/core/CardHeader';
 import './App.css';
 import RepsonsiveContainerGrid from './components/common/wrapper/grid-container';
 import ResponsiveCard from './components/common/wrapper/card';
-import { CardContent, TextField } from '@material-ui/core';
+import { CardContent, TextField, Card } from '@material-ui/core';
+import { url } from 'inspector';
+
+import CardWithImage from './components/common/wrapper/card-with-image';
 
 function App() {
   return (
     <div className='App'>
-      <RepsonsiveContainerGrid>
-        <Grid>
-          <ResponsiveCard>
-            <CardHeader>
-              <CardContent>
-                <TextField
-                  label='Enter your email'
-                  fullWidth
-                  autoFocus
-                  required
-                  inputRef={(input) => console.log('input')}
-                  error={false}
-                  helperText={''}
-                />
-              </CardContent>
-            </CardHeader>
-          </ResponsiveCard>
-        </Grid>
-      </RepsonsiveContainerGrid>
+      <CardWithImage>
+        <h1>Log in contents here</h1>
+      </CardWithImage>
     </div>
   );
 }
