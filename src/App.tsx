@@ -8,22 +8,24 @@ import ResponsiveCard from './components/common/wrapper/card';
 import { CardContent, TextField, Card } from '@material-ui/core';
 import { url } from 'inspector';
 
-import CardWithImage from './components/common/wrapper/card-with-image';
-import CustomInput from './components/common/forms/custom-input/custom-input'
+import Login from './views/authenthication/login/login';
 import spacer from './components/common/spacer/spacer';
+import CardWithImage from './components/common/wrapper/card-with-image';
+import CustomInput from './components/common/forms/custom-input/custom-input';
 
 function App() {
   return (
-    <div className='App'>
-      <CardWithImage>
+    <div className="App">
+      {/* <CardWithImage>
         <CustomInput name='email' 
           placeholder='Email'
         />
-        {spacer('27px')}
+        { spacer('27px')}
          <CustomInput name='email' 
-          placeholder='Email'
+          placeholder='Password'
         />
-      </CardWithImage>
+      </CardWithImage> */}
+      <Login />
     </div>
   );
 }
