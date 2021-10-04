@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 
 import { breakpoint } from '../../../utilities/break-points';
 
+
 type Theme = {
   [key: string]: any;
 };
@@ -11,20 +12,21 @@ type Theme = {
 type RepsonsiveGridProps = {
   classes: Theme;
   children: any;
+  className?: string;
 };
 
 const stylesheet = (theme: Theme) => ({
   root: {
     [theme?.breakpoints?.up(breakpoint.mobileBreakpoint)]: {
-      'min-height': 600,
+      'min-heigvht': 600,
     },
   },
 });
 
-function RepsonsiveContainerGrid({ classes, children }: any) {
+function RepsonsiveContainerGrid({ classes, children, className }: RepsonsiveGridProps):ReactElement {
   return (
     <Grid
-      className={classes.root}
+      className={`${classes.root} ${className ?? ''}`}
       container
       direction='row'
       justifyContent='center'
