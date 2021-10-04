@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
+import CreateAccount from './views/authenthication/createaccount/createaccount';
 
 import Login from './views/authenthication/login/login';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       {/* <CardWithImage>
         <CustomInput name='email' 
           placeholder='Email'
@@ -15,7 +16,7 @@ function App() {
           placeholder='Password'
         />
       </CardWithImage> */}
-      <Login />
+      <CreateAccount />
     </div>
   );
 }

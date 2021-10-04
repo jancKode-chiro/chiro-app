@@ -1,4 +1,4 @@
-@import "../../../styles//variables.scss";
+@import '../../../styles//variables.scss';
 
 .login {
   width: 45px;
@@ -9,4 +9,40 @@
 
   font-family: $font-family-poppins;
   font-size: 16px;
+}
+
+.account {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 17px;
+  font-family: $font-family-poppins;
+  font-size: 11px;
+  color: #aca6a6;
+  font-style: normal;
+  font-weight: normal;
+  padding-left: 16px;
+}
+
+.create {
+  width: 62px;
+  height: 17px;
+  font-family: $font-family-poppins;
+  font-size: 11px;
+  color: #2dcc5a;
+  font-weight: 16px;
+  font-style: normal;
+  margin-left: 6px;
+}
+
+.forgot {
+  width: 97px;
+  height: 17px;
+  font-family: $font-poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+
+  color: #aca6a6;
+  margin-right: 32px;
 }
