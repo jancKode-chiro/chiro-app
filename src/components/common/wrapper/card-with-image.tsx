@@ -7,7 +7,7 @@ import bg from '../../../assets/images/bg-half.png';
 
 const CardWithImage = ({children}:any) => {
   return (
-   <RepsonsiveContainerGrid>
+   <RepsonsiveContainerGrid className='grid-container'>
         <Grid
           style={{
             flexDirection: 'row',

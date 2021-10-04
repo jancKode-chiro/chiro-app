@@ -1,13 +1,17 @@
-import React from 'react';
-
-import login from '../../../views/authenthication/login/login';
+import React, {ReactElement} from 'react';
+import {Button as AntdButton} from 'antd'
 import './button.style.scss';
 
-const CustomButton = (props: any) => {
+type ButtonProps = {
+  className?: string;
+  children: string | ReactElement
+}
+
+const CustomButton = ({children, className}:ButtonProps):ReactElement => {
   return (
-    <div>
-      <button className="button">{props.title}</button>
-    </div>
+      <AntdButton className={`button ${className ?? ''}`}>
+       {children}
+        </AntdButton>
   );
 };
 

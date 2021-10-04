@@ -1,16 +1,21 @@
 import React from 'react';
 import './login.style.scss';
 import CardWithImage from '../../../components/common/wrapper/card-with-image';
-import spacer from '../../../components/common/spacer/spacer';
+import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
 import CustomInput from '../../../components/common/forms/custom-input/custom-input';
-import button from '../../../components/common/button/button';
+import Button from '../../../components/common/button/button'
 
 const login = () => {
   return (
     <CardWithImage>
+       {verticalSpacer('124px')}
+      <h1>Signin to get started</h1>
+       {verticalSpacer('80px')}
       <CustomInput name="email" placeholder="Email" />
-      {spacer('27px')}
+      {verticalSpacer('27px')}
       <CustomInput name="email" placeholder="Password" />
+       {verticalSpacer('70px')}
+      <Button className='bg-green text-white'>Login</Button>
     </CardWithImage>
   );
 };
