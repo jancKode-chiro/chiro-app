@@ -7,7 +7,11 @@ import Button from '../../../components/common/button/button';
 
 const login = () => {
   return (
-    <CardWithImage>
+    <CardWithImage
+      text='Welcome'
+      footerText1='About us'
+      footerText2='Contact us'
+    >
       <div>
         {verticalSpacer('124px')}
         <h1>Signin to get started</h1>
