@@ -16,7 +16,11 @@ function App() {
           placeholder='Password'
         />
       </CardWithImage> */}
+<<<<<<< HEAD
       <AboutUsPage />
+=======
+      <Login />
+>>>>>>> refactor card component
     </div>
   );
 }
