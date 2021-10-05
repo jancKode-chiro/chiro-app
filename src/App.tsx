@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import CreateAccount from './views/authenthication/createaccount/createaccount';
-
+import AboutUsPage from './views/about/about';
 import Login from './views/authenthication/login/login';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
           placeholder='Password'
         />
       </CardWithImage> */}
-      <CreateAccount />
+      <AboutUsPage />
     </div>
   );
 }

@@ -4,7 +4,6 @@ import CardWithImage from '../../../components/common/wrapper/card-with-image';
 import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
 import CustomInput from '../../../components/common/forms/custom-input/custom-input';
 import Button from '../../../components/common/button/button';
-import horizontalSpacer from '../../../components/common/spacer/horizontal-spacer';
 
 const login = () => {
   return (
