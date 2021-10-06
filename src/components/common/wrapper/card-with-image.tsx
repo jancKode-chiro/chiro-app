@@ -1,5 +1,6 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import Grid from '@material-ui/core/Grid';
+import { Link } from 'react-router-dom';
 
 import RepsonsiveContainerGrid from './grid-container';
 import ResponsiveCard from './card';
@@ -8,10 +9,12 @@ import bg from '../../../assets/images/bg-half.png';
 import './grid-container.styles.scss';
 
 type CardWithImageProps = {
-  children: ReactNode;
+  children?: ReactNode;
   text?: string;
   footerText1?: string;
   footerText2?: string;
+  footerLink1?: string;
+  footerLink2?: string;
 };
 
 const CardWithImage = ({
@@ -19,6 +22,8 @@ const CardWithImage = ({
   text,
   footerText1,
   footerText2,
+  footerLink1,
+  footerLink2,
 }: CardWithImageProps) => {
   return (
     <RepsonsiveContainerGrid className='container'>
@@ -42,7 +47,9 @@ const CardWithImage = ({
             </div> */}
             </div>
             <div className='footer'>
-              <span className='footerText1'>{footerText1}</span>
+              <Link to={footerLink1 as string} className='footerText1'>
+                {footerText1}
+              </Link>
               <span className='footerText2'>{footerText2}</span>
             </div>
           </div>

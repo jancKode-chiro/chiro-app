@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { withRouter } from 'react-router';
 import CustomInput from '../../../components/common/forms/custom-input/custom-input';
 import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
 import Button from '../../../components/common/button/button';
@@ -40,4 +40,4 @@ const CreateAccount = () => {
   );
 };
 
-export default CreateAccount;
+export default withRouter(CreateAccount);
