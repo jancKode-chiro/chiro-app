@@ -3,6 +3,7 @@ import './App.css';
 import CreateAccount from './views/authenthication/createaccount/createaccount';
 import AboutUsPage from './views/about/about';
 import Login from './views/authenthication/login/login';
+import LetsTalk from './views/letstalk/letstalk';
 
 function App() {
   return (
@@ -16,11 +17,10 @@ function App() {
           placeholder='Password'
         />
       </CardWithImage> */}
-<<<<<<< HEAD
-      <AboutUsPage />
-=======
-      <Login />
->>>>>>> refactor card component
+      {/* <Login/> */}
+      {/* <CreateAccount /> */}
+      {/* <AboutUsPage /> */}
+      <LetsTalk />
     </div>
   );
 }

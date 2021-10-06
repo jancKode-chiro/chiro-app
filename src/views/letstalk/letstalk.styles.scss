@@ -1,0 +1,67 @@
+@import '../../styles/variables.scss';
+
+.icon {
+  display: flex;
+  flex-direction: row;
+
+  padding-right: 12px;
+  width: 33px;
+  height: 33px;
+  left: 58px;
+  top: 72px;
+  font-size: 24px;
+}
+
+.phone {
+  width: 177px;
+  height: 36px;
+  left: 103px;
+  top: 280px;
+  color: #000000;
+
+  font-family: $font-family-poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+.envelope {
+  width: 197px;
+  height: 36px;
+  left: 103px;
+  top: 485px;
+  padding-left: 12px;
+  color: #000000;
+  color: #2dcc5a;
+
+  font-family: $font-family-poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 36px;
+}
+
+.list-style {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
+
+.description-container {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.lets-talk-style {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
