@@ -2,19 +2,17 @@ import React from 'react';
 import { withRouter } from 'react-router';
 
 import CardWithImage from '../../components/common/wrapper/card-with-image';
-import verticalSpacer from '../../components/common/spacer/vertical-spacer';
 import './about.styles.scss';
 
 //import card with image
 const AboutUsPage = () => {
   return (
-    <CardWithImage>
+    <CardWithImage text='About Us' className='welcome'>
       <div className='about'>
         <div>
-          {verticalSpacer('36px')}
           <span className='title'>Lorem Ipsum</span>
-          {verticalSpacer('56px')}
-          <div>
+
+          <div className='description-wrapper'>
             <span className='description'>
               Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut

@@ -17,18 +17,17 @@ const CreateAccount = () => {
             <span className='title'>Create Account</span>
             <div className='form'>
               <div>
-                <div className='inputwrapper'>
+                <div className='text-wrapper'>
                   <Input
                     placeholder='First Name'
                     name='firstName'
                     width={'25vw'}
-                    marginBottom='37px'
                   />
 
                   <Input placeholder='Last Name' name='lastName' width='25vw' />
                 </div>
 
-                <div className='inputwrapper'>
+                <div className='text-wrapper'>
                   <Input
                     placeholder='Email'
                     name='email'
@@ -44,14 +43,14 @@ const CreateAccount = () => {
                   />
                 </div>
               </div>
-              <div className='inputwrapper1'>
+              <div className='text-wrapper'>
                 <Input
                   placeholder='Phone Number'
                   name='phoneNumber'
                   width='25vw'
                 />
               </div>
-              <div className='inputwrapper'>
+              <div className='text-wrapper'>
                 <Input placeholder='Country' name='country' width='25vw' />
 
                 <Input
