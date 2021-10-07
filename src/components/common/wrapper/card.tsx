@@ -18,7 +18,7 @@ const stylesheet = (theme: any) => ({
       boxShadow: theme.shadows[0],
     },
     [theme.breakpoints.up(breakpoint.mobileBreakpoint)]: {
-      width: 500,
+      width: '25vw',
       boxShadow: theme.shadows[2],
     },
     // height: '100%',
