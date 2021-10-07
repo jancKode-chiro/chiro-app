@@ -4,6 +4,7 @@ import CreateAccount from './views/authenthication/createaccount/createaccount';
 import AboutUsPage from './views/about/about';
 import Login from './views/authenthication/login/login';
 import LetsTalk from './views/letstalk/letstalk';
+import ActivationCode from './views/activationcode/activationcode';
 
 function App() {
   return (
@@ -17,10 +18,11 @@ function App() {
           placeholder='Password'
         />
       </CardWithImage> */}
-      {/* <Login/> */}
+      {/* <Login /> */}
       {/* <CreateAccount /> */}
       {/* <AboutUsPage /> */}
-      <LetsTalk />
+      {/* <LetsTalk /> */}
+      <ActivationCode />
     </div>
   );
 }

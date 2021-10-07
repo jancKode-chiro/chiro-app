@@ -65,3 +65,13 @@
   justify-content: center;
   align-items: center;
 }
+
+.image {
+  background-image: url('../../assets/images/bg-half.png');
+  min-height: 380px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  padding-bottom: 32px;
+}

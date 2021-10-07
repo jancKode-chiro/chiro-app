@@ -1,6 +1,8 @@
 import React from 'react';
+
 import CardWithImage from '../../components/common/wrapper/card-with-image';
 import verticalSpacer from '../../components/common/spacer/vertical-spacer';
+
 import './about.styles.scss';
 
 //import card with image

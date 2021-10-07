@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactElement } from 'react';
 import Grid from '@material-ui/core/Grid';
 
 import RepsonsiveContainerGrid from './grid-container';
@@ -8,7 +8,7 @@ import bg from '../../../assets/images/bg-half.png';
 import './grid-container.styles.scss';
 
 type CardWithImageProps = {
-  children: ReactNode;
+  children: ReactElement;
   text?: string;
   footerText1?: string;
   footerText2?: string;
@@ -29,9 +29,7 @@ const CardWithImage = ({
         }}
       >
         <ResponsiveCard>
-          <div>
-            <img src={bg} alt='bg' width='100%' />
-
+          <div className='image'>
             <div className='greetingsContainer'>
               <div>
                 <span className='text'>{text}</span>

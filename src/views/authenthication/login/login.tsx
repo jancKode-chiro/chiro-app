@@ -1,9 +1,11 @@
 import React from 'react';
-import './login.style.scss';
+
 import CardWithImage from '../../../components/common/wrapper/card-with-image';
 import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
 import CustomInput from '../../../components/common/forms/custom-input/custom-input';
 import Button from '../../../components/common/button/button';
+
+import './login.style.scss';
 
 const login = () => {
   return (

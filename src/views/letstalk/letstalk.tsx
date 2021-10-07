@@ -1,13 +1,12 @@
 import React from 'react';
-import CardWithImage from '../../components/common/wrapper/card-with-image';
 import { SmileOutlined } from '@ant-design/icons';
 import { PhoneFilled } from '@ant-design/icons';
 import { MailFilled } from '@ant-design/icons';
+
 import verticalSpacer from '../../components/common/spacer/vertical-spacer';
+import CardWithImage from '../../components/common/wrapper/card-with-image';
 
 import './letstalk.styles.scss';
-
-import Icon from '@ant-design/icons/lib/components/Icon';
 
 type LetsTalkProps = {
   icon?: any;
@@ -36,7 +35,7 @@ const LetsTalk = (): any => {
   ];
 
   return (
-    <CardWithImage text="Let's Talk" footerText1='Book an appooinentment now'>
+    <CardWithImage text="Let's Talk" footerText1='Book an appointment now'>
       <div className='lets-talk-style'>
         {listitems.map((item) => {
           return (
