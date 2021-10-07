@@ -12,6 +12,7 @@ import {
   ABOUT_PATH,
   CONTACT_PATH,
   LETS_TALK_PATH,
+  CARD_PATH,
 } from '../../../constants/paths';
 import {
   Input,
@@ -63,7 +64,7 @@ const login = () => {
             </div>
             <div>
               {/* <span className='forgot'>Forgot Password?</span> */}
-              <Link className='forgot' to={FORGOT_PASSWORD}>
+              <Link className='card' to={CARD_PATH}>
                 Forgot Password
               </Link>
             </div>
