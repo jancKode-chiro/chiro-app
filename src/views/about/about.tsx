@@ -1,4 +1,6 @@
 import React from 'react';
+import { withRouter } from 'react-router';
+
 import CardWithImage from '../../components/common/wrapper/card-with-image';
 import verticalSpacer from '../../components/common/spacer/vertical-spacer';
 import './about.styles.scss';
@@ -26,4 +28,4 @@ const AboutUsPage = () => {
   );
 };
 
-export default AboutUsPage;
+export default withRouter(AboutUsPage);

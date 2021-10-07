@@ -21,7 +21,7 @@ const stylesheet = (theme: any) => ({
       width: 500,
       boxShadow: theme.shadows[2],
     },
-    height: '100%',
+    // height: '100%',
   },
 });
 

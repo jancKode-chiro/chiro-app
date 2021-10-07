@@ -1,17 +1,21 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import Grid from '@material-ui/core/Grid';
+import { Link } from 'react-router-dom';
 
 import RepsonsiveContainerGrid from './grid-container';
 import ResponsiveCard from './card';
-import bg from '../../../assets/images/bg-half.png';
 
 import './grid-container.styles.scss';
+import { StyledLink } from '../../link/link';
 
 type CardWithImageProps = {
-  children: ReactNode;
+  children?: ReactNode;
   text?: string;
   footerText1?: string;
   footerText2?: string;
+  footerLink1?: string;
+  footerLink2?: string;
+  subTitle?: string;
 };
 
 const CardWithImage = ({
@@ -19,9 +23,12 @@ const CardWithImage = ({
   text,
   footerText1,
   footerText2,
+  footerLink1,
+  footerLink2,
+  subTitle,
 }: CardWithImageProps) => {
   return (
-    <RepsonsiveContainerGrid className='container'>
+    <RepsonsiveContainerGrid className='grid-container'>
       <Grid
         style={{
           flexDirection: 'row',
@@ -29,21 +36,20 @@ const CardWithImage = ({
         }}
       >
         <ResponsiveCard>
-          <div>
-            <img src={bg} alt='bg' width='100%' />
-
+          <div className='card-with-image'>
             <div className='greetingsContainer'>
-              <div>
-                <span className='text'>{text}</span>
+              <div className='banner'>
+                <span className='banner-title'>{text}</span>
+                <span className='banner-sub'>{subTitle}</span>
               </div>
-              {/* <div className='footer'>
-            <span  className='footerText1'>{footerText1}</span>
-             <span  className='footerText2'>{footerText2}</span>
-            </div> */}
             </div>
             <div className='footer'>
-              <span className='footerText1'>{footerText1}</span>
-              <span className='footerText2'>{footerText2}</span>
+              <StyledLink to={footerLink1 as string} className='footerText1'>
+                {footerText1}
+              </StyledLink>
+              <StyledLink to={footerLink2 as string} className='footerText2'>
+                {footerText2}
+              </StyledLink>
             </div>
           </div>
         </ResponsiveCard>

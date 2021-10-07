@@ -1,43 +1,64 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 
 import CustomInput from '../../../components/common/forms/custom-input/custom-input';
 import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
 import Button from '../../../components/common/button/button';
+import RepsonsiveContainerGrid from '../../../components/common/wrapper/grid-container';
 
 import './createaccount.styles.scss';
+import { Input } from '../../../components/common/forms/custom-input/input';
 
 const CreateAccount = () => {
   return (
-    <div className='container'>
-      <div className='image'>
+    <RepsonsiveContainerGrid className='image'>
+      <div className='create-account-form'>
         <h1 className='title'>Create Account</h1>
-        <div>
+        <div className='form'>
+          <div>
+            <div className='inputwrapper'>
+              <Input
+                placeholder='First Name'
+                name='firstName'
+                width={'25vw'}
+                marginBottom='37px'
+              />
+
+              <Input placeholder='Last Name' name='lastName' width='25vw' />
+            </div>
+
+            <div className='inputwrapper'>
+              <Input
+                placeholder='Email'
+                name='email'
+                type='email'
+                width='25vw'
+              />
+
+              <Input
+                placeholder='Password'
+                name='password'
+                type='password'
+                width='25vw'
+              />
+            </div>
+          </div>
+          <div className='inputwrapper1'>
+            <Input placeholder='Phone Number' name='phoneNumber' width='25vw' />
+          </div>
           <div className='inputwrapper'>
-            <CustomInput name='First Name' placeholder='First Name' />
-            {verticalSpacer('37px')}
-            <CustomInput name='Last Name' placeholder='Last Name' />
+            <Input placeholder='Country' name='country' width='25vw' />
+
+            <Input placeholder='Country Code' name='countryCode' width='25vw' />
           </div>
 
-          <div className='inputwrapper'>
-            <CustomInput name='Email' placeholder='Email' />
-            <CustomInput name='Password' placeholder='Password' />
+          <div className='create-button'>
+            <Button className='bg-green text-white '>Create Account</Button>
           </div>
-        </div>
-        <div className='inputwrapper1'>
-          <CustomInput name='Phone Number' placeholder='Phone Number' />
-        </div>
-        <div className='inputwrapper'>
-          <CustomInput name='Country' placeholder='Country' />
-          {verticalSpacer('22px')}
-          <CustomInput name='Country Code' placeholder=' Country Code' />
-        </div>
-
-        <div className='button'>
-          <Button className='bg-green text-white'>Create Account</Button>
         </div>
       </div>
-    </div>
+    </RepsonsiveContainerGrid>
   );
 };
 
-export default CreateAccount;
+export default withRouter(CreateAccount);
