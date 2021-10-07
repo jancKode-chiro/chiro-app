@@ -2,10 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.css';
+
 import CreateAccount from './views/authenthication/createaccount/createaccount';
 import AboutUsPage from './views/about/about';
 import Login from './views/authenthication/login/login';
 import LetsTalk from './views/letstalk/letstalk';
+import Card from './views/card/card';
 
 import {
   HOMEPAGE_PATH,
@@ -13,6 +15,7 @@ import {
   CREATE_ACCOUNT_PATH,
   ABOUT_PATH,
   LETS_TALK_PATH,
+  CARD_PATH,
 } from './constants/paths';
 
 function App() {
@@ -23,6 +26,7 @@ function App() {
           <Route exact path={ABOUT_PATH} component={AboutUsPage} />
           <Route exact path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
           <Route exact path={LETS_TALK_PATH} component={LetsTalk} />
+          <Route path={CARD_PATH} component={Card} />
           <Route path={LOGIN_PATH} component={Login} />
           <Route path={HOMEPAGE_PATH} component={Login} />
         </Switch>
