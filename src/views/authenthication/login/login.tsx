@@ -27,6 +27,7 @@ const login = () => {
       footerText2='Contact us'
       footerLink1={ABOUT_PATH}
       footerLink2={LETS_TALK_PATH}
+      className='welcome'
     >
       <div className='login'>
         <span className='signin'>Signin to get started</span>

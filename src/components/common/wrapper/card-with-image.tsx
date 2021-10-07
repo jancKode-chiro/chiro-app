@@ -16,6 +16,7 @@ type CardWithImageProps = {
   footerLink1?: string;
   footerLink2?: string;
   subTitle?: string;
+  className?: string;
 };
 
 const CardWithImage = ({
@@ -26,6 +27,7 @@ const CardWithImage = ({
   footerLink1,
   footerLink2,
   subTitle,
+  className,
 }: CardWithImageProps) => {
   return (
     <RepsonsiveContainerGrid className='grid-container'>
@@ -38,7 +40,7 @@ const CardWithImage = ({
         <ResponsiveCard>
           <div className='card-with-image'>
             <div className='greetingsContainer'>
-              <div className='banner'>
+              <div className={`banner ${className ?? className}`}>
                 <span className='banner-title'>{text}</span>
                 <span className='banner-sub'>{subTitle}</span>
               </div>
@@ -53,7 +55,6 @@ const CardWithImage = ({
             </div>
           </div>
         </ResponsiveCard>
-
         <ResponsiveCard>{children}</ResponsiveCard>
       </Grid>
     </RepsonsiveContainerGrid>

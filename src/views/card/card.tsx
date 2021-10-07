@@ -3,17 +3,19 @@ import React from 'react';
 import CustomInput from '../../components/common/forms/custom-input/custom-input';
 import verticalSpacer from '../../components/common/spacer/vertical-spacer';
 import Button from '../../components/common/button/button';
+import ResponsiveGridContainer from '../../components/common/wrapper/grid-container';
 
 import CheckIcons from '../../assets/images/icons/Card.png';
 
 import './card.style.scss';
+import WrapperWithImage from '../../components/common/wrapper/wrapper-with-image/wrapper-with-image';
 
 const Card = () => {
   return (
-    <div className='container'>
-      <div className='image'>
+    <ResponsiveGridContainer>
+      <WrapperWithImage>
         <div>
-          <img src={CheckIcons} />
+          <img src={CheckIcons} alt='check-icon' />
           {verticalSpacer('46.52px')}
           <div className='bank'>
             <CustomInput name='Bank Name' placeholder='Bank Name' />
@@ -31,8 +33,8 @@ const Card = () => {
             <Button className='bg-green text-white'>Save</Button>
           </div>
         </div>
-      </div>
-    </div>
+      </WrapperWithImage>
+    </ResponsiveGridContainer>
   );
 };
 

@@ -9,7 +9,7 @@ import './about.styles.scss';
 const AboutUsPage = () => {
   return (
     <CardWithImage>
-      <div>
+      <div className='about'>
         <div>
           {verticalSpacer('36px')}
           <span className='title'>Lorem Ipsum</span>
