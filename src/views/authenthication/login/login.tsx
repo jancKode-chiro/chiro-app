@@ -18,6 +18,7 @@ import {
   Input,
   PasswordInput,
 } from '../../../components/common/forms/custom-input/input';
+import { StyledLink } from '../../../components/link/link';
 
 const login = () => {
   return (
@@ -27,6 +28,7 @@ const login = () => {
       footerText2='Contact us'
       footerLink1={ABOUT_PATH}
       footerLink2={LETS_TALK_PATH}
+      className='welcome'
     >
       <div className='login'>
         <span className='signin'>Signin to get started</span>
@@ -58,15 +60,16 @@ const login = () => {
           <div className='account'>
             <div>
               <span>Don't have an Account?</span>
-              <Link className='create' to={CREATE_ACCOUNT_PATH}>
+
+              <StyledLink className='create' to={CREATE_ACCOUNT_PATH}>
                 Create one
-              </Link>
+              </StyledLink>
             </div>
             <div>
               {/* <span className='forgot'>Forgot Password?</span> */}
-              <Link className='card' to={CARD_PATH}>
+              <StyledLink className='forgot' to={FORGOT_PASSWORD}>
                 Forgot Password
-              </Link>
+              </StyledLink>
             </div>
           </div>
         </div>

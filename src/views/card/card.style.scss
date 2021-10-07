@@ -1,19 +1,15 @@
-@import '../../styles//variables.scss';
-
-.image {
-  background-image: url('../../assets/images/bg-full-x2.png');
-  min-height: 500px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
-  padding-bottom: 32px;
-  // background-size: cover;
-  // position: relative;
-}
-
 .container {
-  width: 75vw;
+  width: 100%;
   margin: auto;
-  height: 100%;
+  height: 100vh;
+
+  .image {
+    padding-top: 64px;
+    background-image: url("../../assets/images/bg-full.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    padding-bottom: 32px;
+  }
 }

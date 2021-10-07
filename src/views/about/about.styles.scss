@@ -1,35 +1,37 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
-.title {
-  width: 156px;
-  height: 36px;
-  left: 27px;
-  top: 36px;
-  display: flex;
-  margin-left: 27px;
+.about {
+  text-align: start;
 
-  font-family: $font-family-poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 36px;
-  color: #000000;
-}
+  .title {
+    display: inline-block;
+    left: 27px;
+    top: 36px;
+    padding: 37px;
+    font-family: $font-family-poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 36px;
+  }
 
-.description {
-  width: 303px;
-  height: 453px;
-  left: 74px;
-  top: 128px;
-  padding-right: 46px;
-  padding-left: 74px;
-  display: flex;
-  text-align: initial;
+  .description-wrapper {
+    .description {
+      width: 25vw;
+      height: 453px;
+      left: 74px;
+      top: 128px;
+      padding-right: 46px;
+      padding-left: 74px;
+      display: flex;
+      text-align: initial;
 
-  font-family: $font-family-poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 22px;
-  line-height: 36px;
-  color: #000000;
+      font-family: $font-family-poppins;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 22px;
+      line-height: 36px;
+      color: #000000;
+    }
+  }
 }
