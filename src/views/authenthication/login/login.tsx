@@ -11,7 +11,12 @@ import {
   FORGOT_PASSWORD,
   ABOUT_PATH,
   CONTACT_PATH,
+  LETS_TALK_PATH,
 } from '../../../constants/paths';
+import {
+  Input,
+  PasswordInput,
+} from '../../../components/common/forms/custom-input/input';
 
 const login = () => {
   return (
@@ -20,17 +25,33 @@ const login = () => {
       footerText1='About us'
       footerText2='Contact us'
       footerLink1={ABOUT_PATH}
-      footerLink2={CONTACT_PATH}
+      footerLink2={LETS_TALK_PATH}
     >
-      <div>
-        {verticalSpacer('124px')}
-        <h1>Signin to get started</h1>
-        {verticalSpacer('80px')}
-        <CustomInput name='email' placeholder='Email' />
-        {verticalSpacer('27px')}
-        <CustomInput name='email' placeholder='Password' />
+      <div className='login'>
+        <span className='signin'>Signin to get started</span>
+
+        <Input
+          marginTop='80px'
+          width={'85%'}
+          placeholder='Email'
+          name='email'
+          type='email'
+          required
+        />
+
+        <PasswordInput
+          marginTop='27px'
+          width={'85%'}
+          type='password'
+          placeholder='Password'
+          name=''
+          required
+        />
         {verticalSpacer('70px')}
-        <Button className='bg-green text-white'>Login</Button>
+        <div>
+          <Button className='bg-green text-white'>Login</Button>
+        </div>
+
         <div className='buttomWrapper'>
           {verticalSpacer('80px')}
           <div className='account'>

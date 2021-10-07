@@ -6,3 +6,4 @@ export const CREATE_ACCOUNT_PATH = '/create-account';
 export const UPDATE_INFO_PATH = '/update-info';
 export const SIGNOUT_PATH = '/signou87t';
 export const FORGOT_PASSWORD = '/forgot-password';
+export const LETS_TALK_PATH = '/lets-talk';

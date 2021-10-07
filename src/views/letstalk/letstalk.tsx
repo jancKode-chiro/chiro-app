@@ -1,22 +1,22 @@
 import React from 'react';
-import CardWithImage from '../../components/common/wrapper/card-with-image';
+import { withRouter } from 'react-router';
 import { SmileOutlined } from '@ant-design/icons';
 import { PhoneFilled } from '@ant-design/icons';
 import { MailFilled } from '@ant-design/icons';
+
+import CardWithImage from '../../components/common/wrapper/card-with-image';
 import verticalSpacer from '../../components/common/spacer/vertical-spacer';
 
 import './letstalk.styles.scss';
 
-import Icon from '@ant-design/icons/lib/components/Icon';
-
 type LetsTalkProps = {
-  icon?: any;
-  description: string;
-  subDescription: string;
+  icon: () => JSX.Element;
+  description?: string;
+  subDescription?: string;
 };
 
-const LetsTalk = (): any => {
-  const listitems = [
+const LetsTalk = () => {
+  const listitems: LetsTalkProps[] = [
     {
       icon: () => <SmileOutlined />,
       description: 'Address',
@@ -36,7 +36,7 @@ const LetsTalk = (): any => {
   ];
 
   return (
-    <CardWithImage text="Let's Talk" footerText1='Book an appooinentment now'>
+    <CardWithImage text="Let's Talk" subTitle='Book an appooinentment now'>
       <div className='lets-talk-style'>
         {listitems.map((item) => {
           return (
@@ -57,4 +57,4 @@ const LetsTalk = (): any => {
   );
 };
 
-export default LetsTalk;
+export default withRouter(LetsTalk);
