@@ -2,10 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.css';
+
 import CreateAccount from './views/authenthication/createaccount/createaccount';
 import AboutUsPage from './views/about/about';
 import Login from './views/authenthication/login/login';
 import LetsTalk from './views/letstalk/letstalk';
+import Card from './views/card/card';
 
 import {
   HOMEPAGE_PATH,
