@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 
 import CustomInput from '../../components/common/forms/custom-input/custom-input';
 import verticalSpacer from '../../components/common/spacer/vertical-spacer';
@@ -38,4 +39,4 @@ const Card = () => {
   );
 };
 
-export default Card;
+export default withRouter(Card);
