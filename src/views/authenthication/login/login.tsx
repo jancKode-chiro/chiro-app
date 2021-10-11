@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './login.style.scss';
 import CardWithImage from '../../../components/common/wrapper/card-with-image';
 import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
 import CustomInput from '../../../components/common/forms/custom-input/custom-input';
 import Button from '../../../components/common/button/button';
-import { Link } from 'react-router-dom';
+import { useHistory, RouteComponentProps } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 import {
   CREATE_ACCOUNT_PATH,
@@ -12,13 +13,29 @@ import {
   ABOUT_PATH,
   CONTACT_PATH,
   LETS_TALK_PATH,
+  CARD_PATH,
 } from '../../../constants/paths';
 import {
   Input,
   PasswordInput,
 } from '../../../components/common/forms/custom-input/input';
+import { StyledLink } from '../../../components/link/link';
+import { useAuth } from '../../../context/auth-context';
 
-const login = () => {
+type LoginProps = {
+  setAuth: () => boolean;
+};
+
+const Login = ({ setAuth }: any) => {
+  const { isAuth, setIsAuth } = useAuth();
+  let history = useHistory();
+
+  const handleSubmit = () => {
+    setIsAuth(true);
+    history.push('/dashboard');
+    // setIsAuth(true);
+  };
+
   return (
     <CardWithImage
       text='Welcome'
@@ -26,7 +43,9 @@ const login = () => {
       footerText2='Contact us'
       footerLink1={ABOUT_PATH}
       footerLink2={LETS_TALK_PATH}
+      className='welcome'
     >
+      {console.log('isAuth', isAuth)}
       <div className='login'>
         <span className='signin'>Signin to get started</span>
 
@@ -49,7 +68,12 @@ const login = () => {
         />
         {verticalSpacer('70px')}
         <div>
-          <Button className='bg-green text-white'>Login</Button>
+          <Button
+            className='bg-green text-white'
+            onClick={() => handleSubmit()}
+          >
+            Login
+          </Button>
         </div>
 
         <div className='buttomWrapper'>
@@ -57,15 +81,16 @@ const login = () => {
           <div className='account'>
             <div>
               <span>Don't have an Account?</span>
-              <Link className='create' to={CREATE_ACCOUNT_PATH}>
+
+              <StyledLink className='create' to={CREATE_ACCOUNT_PATH}>
                 Create one
-              </Link>
+              </StyledLink>
             </div>
             <div>
               {/* <span className='forgot'>Forgot Password?</span> */}
-              <Link className='forgot' to={FORGOT_PASSWORD}>
+              <StyledLink className='forgot' to={FORGOT_PASSWORD}>
                 Forgot Password
-              </Link>
+              </StyledLink>
             </div>
           </div>
         </div>
@@ -74,4 +99,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default withRouter(Login);

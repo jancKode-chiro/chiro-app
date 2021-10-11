@@ -31,6 +31,10 @@
         display: flex;
         flex-direction: column;
         width: 100%;
+
+        &.welcome {
+          align-items: center;
+        }
         // align-items: center;
         .banner-title {
           display: flex;
