@@ -1,13 +1,13 @@
 @import "../../../styles//variables.scss";
 
 .button {
-  min-height: 53px;
+  min-height: 3.3125em;
   border-radius: 8px;
-  width: 240px;
+  width: 15em;
   border: 1px solid $primary-green;
   font-family: $font-family-poppins;
   font-weight: $font-weight-bold;
-  font-size: 18px;
+  font-size: 1.125em;
   color: $primary-green;
   background-color: transparent;
   cursor: pointer;
@@ -18,15 +18,15 @@
   }
 
   &.mini-button {
-    min-height: 42px;
-    width: 84px;
+    min-height: 2.625em;
+    width: 5.25em;
     border-radius: 3px;
     font-family: $font-family-poppins;
-    font-size: 12px;
+    font-size: 0.75em;
   }
 
   &:hover:not(:disabled):not(.disabled) {
-    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 6.25em 6.25em rgba(255, 255, 255, 0.1);
   }
 
   &.bg-green {
@@ -49,7 +49,7 @@
 
   &.with-next-icon {
     position: relative;
-    padding: 15px 40px;
+    padding: 0.9375em 2.5em;
 
     // &:after {
     //   content: "";
@@ -67,11 +67,11 @@
   }
 
   &.tiny-button {
-    min-height: 28px;
-    width: 84px;
+    min-height: 1.75em;
+    width: 5.25em;
     border-radius: 2px;
     font-family: $font-family-poppins;
-    font-size: 12px;
+    font-size: 0.75em;
   }
 
   &.text-green {

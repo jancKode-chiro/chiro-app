@@ -12,14 +12,14 @@
       display: flex;
 
       font-family: $font-family-poppins;
-      font-size: 25px;
+      font-size: 1.5625em;
       font-weight: 600;
       // line-height: 37px;
       font-style: normal;
       color: #fefcfc;
       width: 100%;
       justify-content: center;
-      padding-bottom: 64px;
+      padding-bottom: 4em;
     }
 
     .form {
@@ -37,14 +37,14 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        padding-bottom: 32px;
+        padding-bottom: 2em;
       }
 
       .email-wrapper {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        padding-bottom: 32px;
+        padding-bottom: 2em;
         // margin-bottom: 37px;
         // margin-top: 22px;
         // margin-left: 37px;
@@ -54,15 +54,15 @@
       .inputwrapper1 {
         align-self: flex-start;
         display: flex;
-        margin-left: 37px;
+        margin-left: 2.3125em;
       }
     }
 
     .createaccount {
-      width: 855px;
-      height: 627px;
-      top: 43px;
-      left: 58px;
+      width: 53.4375em;
+      height: 39.1875em;
+      top: 2.6875em;
+      left: 3.625em;
       color: #fefcfc;
       background-color: #fefcfc;
     }
