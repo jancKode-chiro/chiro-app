@@ -1,71 +1,71 @@
 @import "../../../styles/variables.scss";
 
 .create-account {
-  .image {
-    .create-account-form {
+  // .image {
+  .create-account-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    // padding-top: 64px;
+    .title {
+      display: flex;
+
+      font-family: $font-family-poppins;
+      font-size: 25px;
+      font-weight: 600;
+      // line-height: 37px;
+      font-style: normal;
+      color: #fefcfc;
+      width: 100%;
+      justify-content: center;
+      padding-bottom: 64px;
+    }
+
+    .form {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      // padding-top: 64px;
-      .title {
-        display: flex;
+      width: 60%;
 
-        font-family: $font-family-poppins;
-        font-size: 25px;
-        font-weight: 600;
-        // line-height: 37px;
-        font-style: normal;
-        color: #fefcfc;
-        width: 100%;
-        justify-content: center;
-        padding-bottom: 64px;
+      .create-button {
+        display: flex;
+        align-self: flex-end;
+        margin: 0;
       }
 
-      .form {
+      .text-wrapper {
         display: flex;
-        flex-direction: column;
-        width: 60%;
-
-        .create-button {
-          display: flex;
-          align-self: flex-end;
-          margin: 0;
-        }
-
-        .text-wrapper {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          padding-bottom: 32px;
-        }
-
-        .email-wrapper {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          padding-bottom: 32px;
-          // margin-bottom: 37px;
-          // margin-top: 22px;
-          // margin-left: 37px;
-          // margin-right: 80px;
-        }
-
-        .inputwrapper1 {
-          align-self: flex-start;
-          display: flex;
-          margin-left: 37px;
-        }
+        flex-direction: row;
+        justify-content: space-between;
+        padding-bottom: 32px;
       }
 
-      .createaccount {
-        width: 855px;
-        height: 627px;
-        top: 43px;
-        left: 58px;
-        color: #fefcfc;
-        background-color: #fefcfc;
+      .email-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-bottom: 32px;
+        // margin-bottom: 37px;
+        // margin-top: 22px;
+        // margin-left: 37px;
+        // margin-right: 80px;
+      }
+
+      .inputwrapper1 {
+        align-self: flex-start;
+        display: flex;
+        margin-left: 37px;
       }
     }
+
+    .createaccount {
+      width: 855px;
+      height: 627px;
+      top: 43px;
+      left: 58px;
+      color: #fefcfc;
+      background-color: #fefcfc;
+    }
+    // }
   }
 }

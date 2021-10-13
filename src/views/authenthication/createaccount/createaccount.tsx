@@ -6,13 +6,13 @@ import RepsonsiveContainerGrid from '../../../components/common/wrapper/grid-con
 
 import './createaccount.styles.scss';
 import { Input } from '../../../components/common/forms/custom-input/input';
-import WrapperWithImage from '../../../components/common/wrapper/wrapper-with-image/wrapper-with-image';
+import { ContainerWithImage } from '../../../components/common/wrapper/wrapper-with-image/wrapper-with-bg-image';
 
 const CreateAccount = () => {
   return (
     <div className='create-account'>
       <RepsonsiveContainerGrid>
-        <WrapperWithImage>
+        <ContainerWithImage>
           <div className='create-account-form'>
             <span className='title'>Create Account</span>
             <div className='form'>
@@ -59,13 +59,12 @@ const CreateAccount = () => {
                   width='25vw'
                 />
               </div>
-
               <div className='create-button'>
                 <Button className='bg-green text-white '>Create Account</Button>
               </div>
             </div>
           </div>
-        </WrapperWithImage>
+        </ContainerWithImage>
       </RepsonsiveContainerGrid>
     </div>
   );

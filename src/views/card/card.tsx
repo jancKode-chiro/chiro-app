@@ -9,12 +9,12 @@ import ResponsiveGridContainer from '../../components/common/wrapper/grid-contai
 import CheckIcons from '../../assets/images/icons/Card.png';
 
 import './card.style.scss';
-import WrapperWithImage from '../../components/common/wrapper/wrapper-with-image/wrapper-with-image';
+import { ContainerWithImage } from '../../components/common/wrapper/wrapper-with-image/wrapper-with-bg-image';
 
 const Card = () => {
   return (
     <ResponsiveGridContainer>
-      <WrapperWithImage>
+      <ContainerWithImage>
         <div>
           <img src={CheckIcons} alt='check-icon' />
           {verticalSpacer('46.52px')}
@@ -34,7 +34,7 @@ const Card = () => {
             <Button className='bg-green text-white'>Save</Button>
           </div>
         </div>
-      </WrapperWithImage>
+      </ContainerWithImage>
     </ResponsiveGridContainer>
   );
 };

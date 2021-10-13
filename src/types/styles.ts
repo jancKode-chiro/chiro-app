@@ -1,0 +1,35 @@
+import React from 'react';
+
+export enum TypographyStyles {
+  FontFamilyPoppins = 'Poppins',
+  FontFamilySans = 'sans-serif',
+  FontWeightBlack = 900,
+  FontWeightExtraBold = 800,
+  FontWeightBold = 700,
+  FontWeightSemiBold = 600,
+  FotnWeightRegular = 400,
+  FontWeightLight = 300,
+  FontWeightExtraLight = 200,
+  FontWeightThin = 100,
+}
+
+export enum UIColors {
+  primaryBlue = '#004884',
+  primaryGreen = '#52ae32',
+  primaryYellow = '#fce54d',
+  secondaryBlue = '#bcd0da',
+  secondaryGreen = '#bfd996',
+  secondaryYellow = '#fcf1a4',
+  gray = '8f8f8f',
+  lightgray = '#efefef',
+  white = '#fffff',
+  black = '#00000',
+  charcoal = '#3c3c3b',
+  red = '#f5574b',
+  darkgreen = '#075156',
+  dirtywhite = '#d9d8d8',
+  bordercolor = '#cccccc',
+  greyish = '#cccccc',
+  lightgrey = '#eeeeee',
+  orange = '#ffa016',
+}
