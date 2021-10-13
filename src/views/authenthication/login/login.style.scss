@@ -11,6 +11,18 @@
     font-weight: $font-weight-bold;
   }
 
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .button {
+    margin-top: 4.375em;
+  }
+
   .buttomWrapper {
     width: 100%;
     .account {

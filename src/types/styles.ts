@@ -20,9 +20,9 @@ export enum UIColors {
   secondaryBlue = '#bcd0da',
   secondaryGreen = '#bfd996',
   secondaryYellow = '#fcf1a4',
-  gray = '8f8f8f',
+  gray = '#8F8F8F',
   lightgray = '#efefef',
-  white = '#fffff',
+  white = '#FFFFFF',
   black = '#00000',
   charcoal = '#3c3c3b',
   red = '#f5574b',
@@ -32,4 +32,10 @@ export enum UIColors {
   greyish = '#cccccc',
   lightgrey = '#eeeeee',
   orange = '#ffa016',
+}
+
+export enum Space {
+  small = '1em',
+  medium = '1.5em',
+  large = '2em',
 }

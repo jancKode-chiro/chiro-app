@@ -9,6 +9,7 @@ import {
   width,
 } from 'styled-system';
 
+import { TypographyStyles, UIColors } from '../../../../types/styles';
 type InputProps = SpaceProps &
   TypographyProps & {
     error?: boolean;
@@ -46,17 +47,18 @@ export const Input = styled(AntInput)<InputProps>`
 
 export const InputButton = styled(AntInput)<InputProps>`
   ${inputStyle}
+  display: flex;
+  justify-content: center;
   min-height: 53px;
   border-radius: 8px;
   width: 240px;
-  border: 1px solid #52ae32;
-  font-family: $font-family-poppins;
-  font-weight: $font-weight-bold;
+  border: 1px solid ${UIColors.primaryGreen};
+  font-weight: ${TypographyStyles.FontWeightBold};
   font-size: 18px;
-  color: #52ae32;
+  color: ${UIColors.primaryGreen};
   background-color: transparent;
   cursor: pointer;
-
+  text-align: 'center';
   &.button:disabled {
     opacity: 0.3;
   }
@@ -65,8 +67,8 @@ export const InputButton = styled(AntInput)<InputProps>`
     min-height: 42px;
     width: 84px;
     border-radius: 3px;
-    font-family: $font-family-poppins;
-    font-size: 12px;
+    font-family: ${TypographyStyles.FontFamilyPoppins};
+    font-size: 0.75em;
   }
 
   &:hover:not(:disabled):not(.disabled) {
@@ -74,21 +76,21 @@ export const InputButton = styled(AntInput)<InputProps>`
   }
 
   &.bg-green {
-    background-color: #52ae32;
+    background-color: ${UIColors.primaryGreen};
     border: none;
   }
 
   &.bg-blue {
-    background-color: $primary-blue;
+    background-color: ${UIColors.primaryBlue};
     border: none;
   }
 
   &.text-white {
-    color: white;
+    color: ${UIColors.white};
   }
 
   &.text-blue {
-    color: $primary-blue;
+    color: ${UIColors.primaryBlue};
   }
 
   &.with-next-icon {
@@ -100,12 +102,12 @@ export const InputButton = styled(AntInput)<InputProps>`
     min-height: 28px;
     width: 84px;
     border-radius: 2px;
-    font-family: $font-family-poppins;
+    font-family: ${TypographyStyles.FontFamilyPoppins};
     font-size: 12px;
   }
 
   &.text-green {
-    color: $primary-green;
+    color: ${UIColors.primaryGreen};
   }
 
   &.right {
@@ -121,3 +123,11 @@ export const InputButton = styled(AntInput)<InputProps>`
 export const PasswordInput = styled(AntInput)<StyledPasswordProps>`
   ${inputStyle}
 `;
+
+Input.defaultProps = {
+  width: '85%',
+};
+
+PasswordInput.defaultProps = {
+  width: '85%',
+};

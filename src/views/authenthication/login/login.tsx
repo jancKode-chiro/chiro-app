@@ -47,13 +47,11 @@ const Login = ({ setAuth }: any) => {
       footerLink2={LETS_TALK_PATH}
       className='welcome'
     >
-      {console.log('isAuth', isAuth)}
       <div className='login'>
         <span className='signin'>Signin to get started</span>
-        <form>
+        <form className='form'>
           <Input
             marginTop='80px'
-            width={'85%'}
             placeholder='Email'
             name='email'
             type='email'
@@ -62,26 +60,17 @@ const Login = ({ setAuth }: any) => {
 
           <PasswordInput
             marginTop='27px'
-            width={'85%'}
             type='password'
             placeholder='Password'
             name=''
             required
           />
-          {verticalSpacer('70px')}
-          <div>
+          <div className='button'>
             <InputButton
               type='submit'
               value='Login'
               className='bg-green text-white'
             />
-
-            <Button
-              className='bg-green text-white'
-              onClick={() => submitHandler()}
-            >
-              Login
-            </Button>
           </div>
         </form>
         <div className='buttomWrapper'>
@@ -95,7 +84,6 @@ const Login = ({ setAuth }: any) => {
               </StyledLink>
             </div>
             <div>
-              {/* <span className='forgot'>Forgot Password?</span> */}
               <StyledLink className='forgot' to={FORGOT_PASSWORD}>
                 Forgot Password
               </StyledLink>
