@@ -46,7 +46,7 @@ const Login = ({ setAuth }: any) => {
       className='welcome'
     >
       <div className='login'>
-        <span className='signin'>Signin to get started</span>
+        <span className='signin'>Sign to get started</span>
         <form className='form' onSubmit={handleSubmit(submitHandler)}>
           <Input
             marginTop='80px'

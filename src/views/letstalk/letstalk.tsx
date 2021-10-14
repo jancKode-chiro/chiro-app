@@ -36,7 +36,7 @@ const LetsTalk = () => {
   ];
 
   return (
-    <CardWithImage text="Let's Talk" subTitle='Book an appooinentment now'>
+    <CardWithImage text="Let's Talk" subTitle='Book an appointment now.'>
       <div className='lets-talk-style'>
         {listitems.map((item) => {
           return (

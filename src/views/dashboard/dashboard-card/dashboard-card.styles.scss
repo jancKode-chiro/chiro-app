@@ -3,12 +3,12 @@
 .dashboardcard {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 100%;
 
   .card {
-    width: 314px;
-    height: 173px;
+    width: 25%;
+    height: 15em;
     top: 139px;
     left: 30px;
 
