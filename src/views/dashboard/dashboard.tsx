@@ -13,6 +13,7 @@ import chart from '../../assets/images/icons/chart.png';
 import message from '../../assets/images/icons/message.png';
 import cog from '../../assets/images/icons/cog.png';
 import './dashboard.styles.scss';
+import DashBoardCard from './dashboardcard/dashboard-card';
 
 const listCards = [
   {
@@ -85,7 +86,8 @@ const Dashboard = ({ children }: DashboardProps) => {
           })}
         </div>
         <div className='cards'>
-          {listCards.map((card) => {
+          <DashBoardCard />
+          {/* {listCards.map((card) => {
             return (
               <div key={card.id} className='card'>
                 <img
@@ -96,10 +98,10 @@ const Dashboard = ({ children }: DashboardProps) => {
                 />
               </div>
             );
-          })}
+          })} */}
         </div>
         <div className='graph'>
-          <img src={graph} alt='graph-img' height='650' />
+          <img src={graph} alt='graph-img' width='95%' height='100%' />
         </div>
       </div>
 
