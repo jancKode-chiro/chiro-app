@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 64px;
+  padding-top: 1em;
 
   .card-with-image {
     background-image: url("../../../assets//images/bg-half.png");
@@ -39,14 +39,14 @@
         .banner-title {
           display: flex;
           color: #ffffff;
-          font-size: 64px;
+          font-size: 4em;
           font-family: $font-family-poppins;
           font-weight: $font-weight-regular;
-          padding-left: 16px;
+          padding-left: 1em;
         }
         .banner-sub {
           color: #ffffff;
-          font-size: 24px;
+          font-size: 1.5em;
           font-family: $font-family-poppins;
           font-weight: $font-weight-regular;
         }
@@ -63,14 +63,14 @@
       flex-direction: row;
       // width: 500px;
       justify-content: space-between;
-      padding-bottom: 44px;
+      padding-bottom: 2.75em;
       .footerText1,
       .footerText2 {
         display: flex;
         color: #ffffff;
         width: 100%;
         justify-content: center;
-        font-size: 16px;
+        font-size: 1em;
         font-family: $font-family-poppins;
       }
     }

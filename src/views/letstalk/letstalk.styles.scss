@@ -1,45 +1,45 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .icon {
   display: flex;
   flex-direction: row;
 
-  padding-right: 12px;
-  width: 33px;
-  height: 33px;
-  left: 58px;
-  top: 72px;
-  font-size: 24px;
+  padding-right: 0.75em;
+  width: 2.0625em;
+  height: 2.0625em;
+  left: 3.625em;
+  top: 4.5em;
+  font-size: 1.5em;
 }
 
 .phone {
-  width: 177px;
-  height: 36px;
-  left: 103px;
-  top: 280px;
+  width: 11.0625em;
+  height: 2.25em;
+  left: 6.4375em;
+  top: 17.5em;
   color: #000000;
 
   font-family: $font-family-poppins;
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
-  line-height: 36px;
+  font-size: 1.5em;
+  line-height: 2.25em;
 }
 
 .envelope {
-  width: 197px;
-  height: 36px;
-  left: 103px;
-  top: 485px;
-  padding-left: 12px;
+  width: 12.3125em;
+  height: 2.25em;
+  left: 6.4375em;
+  top: 30.3125em;
+  padding-left: 0.75em;
   color: #000000;
   color: #2dcc5a;
 
   font-family: $font-family-poppins;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
-  line-height: 36px;
+  font-size: 1em;
+  line-height: 2.25em;
 }
 
 .list-style {
