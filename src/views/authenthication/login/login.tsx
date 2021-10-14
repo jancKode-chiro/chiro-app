@@ -12,6 +12,7 @@ import {
   FORGOT_PASSWORD,
   ABOUT_PATH,
   LETS_TALK_PATH,
+  WALLET_PATH,
 } from '../../../constants/paths';
 import {
   Input,
