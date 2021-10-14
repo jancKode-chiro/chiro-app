@@ -41,11 +41,11 @@ const inputStyle = css`
   }
 `;
 
-export const Input = styled(AntInput)<InputProps>`
+export const Input = styled.input<InputProps>`
   ${inputStyle};
 `;
 
-export const InputButton = styled(AntInput)<InputProps>`
+export const InputButton = styled.input<InputProps>`
   /* ${inputStyle} */
   display: flex;
   justify-content: center;
@@ -120,7 +120,7 @@ export const InputButton = styled(AntInput)<InputProps>`
   }
 `;
 
-export const PasswordInput = styled(AntInput)<StyledPasswordProps>`
+export const PasswordInput = styled.input<StyledPasswordProps>`
   ${inputStyle}
 `;
 

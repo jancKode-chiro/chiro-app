@@ -5,7 +5,7 @@ import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
 
 import { useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 import {
   CREATE_ACCOUNT_PATH,
@@ -25,12 +25,21 @@ type LoginProps = {
   setAuth: () => boolean;
 };
 
+type InputProps = {
+  email: string;
+  password: string;
+};
+
 const Login = ({ setAuth }: any) => {
   const { isAuth, setIsAuth } = useAuth();
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   let history = useHistory();
 
-  const submitHandler = () => {
+  const submitHandler: SubmitHandler<InputProps> = (data): void => {
     setIsAuth(true);
     history.push('/dashboard');
     // setIsAuth(true);
@@ -51,18 +60,19 @@ const Login = ({ setAuth }: any) => {
           <Input
             marginTop='80px'
             placeholder='Email'
-            name='email'
             type='email'
             required
+            {...register('email', { required: true })}
           />
 
           <PasswordInput
             marginTop='27px'
             type='password'
             placeholder='Password'
-            name=''
+            {...register('password', { required: true, minLength: 8 })}
             required
           />
+          {errors.password && 'The required minimum lengt is 8'}
           <div className='button'>
             <InputButton
               type='submit'

@@ -3,15 +3,17 @@ import React from 'react';
 import ResponsiveContainerGrid from '../../components/common/wrapper/grid-container';
 import Button from '../../components/common/button/button';
 import verticalSpacer from '../../components/common/spacer/vertical-spacer';
-import WrapperWithImage from '../../components/common/wrapper/wrapper-with-image/wrapper-with-image';
+import { withRouter } from 'react-router';
+
 import { Input as AntInput } from 'antd';
 
 import './bulk.scss';
+import { ContainerWithImage } from '../../components/common/wrapper/wrapper-with-image/wrapper-with-bg-image';
 
 const Bulk = () => {
   return (
     <ResponsiveContainerGrid>
-      <WrapperWithImage>
+      <ContainerWithImage>
         <div className='sms'>
           <div>
             <span className='bulk'>Bulk SMS</span>
@@ -34,9 +36,9 @@ const Bulk = () => {
             </div>
           </div>
         </div>
-      </WrapperWithImage>
+      </ContainerWithImage>
     </ResponsiveContainerGrid>
   );
 };
 
-export default Bulk;
+export default withRouter(Bulk);
