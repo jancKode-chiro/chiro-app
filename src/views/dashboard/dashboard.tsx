@@ -15,21 +15,6 @@ import cog from '../../assets/images/icons/cog.png';
 import './dashboard.styles.scss';
 import DashBoardCard from './dashboard-card/dashboard-card';
 
-const listCards = [
-  {
-    image: smsSent,
-    id: 1,
-  },
-  {
-    image: smsDelivered,
-    id: 2,
-  },
-  {
-    image: smsCurrentBal,
-    id: 3,
-  },
-];
-
 const listNavOptions = [
   {
     icon: home,
