@@ -14,7 +14,10 @@ const CustomButton = ({
   onClick,
 }: ButtonProps): ReactElement => {
   return (
-    <AntdButton className={`button ${className ?? ''}`} onClick={onClick}>
+    <AntdButton
+      className={`custom-button ${className ?? ''}`}
+      onClick={onClick}
+    >
       {children}
     </AntdButton>
   );

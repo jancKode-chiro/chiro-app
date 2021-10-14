@@ -2,21 +2,20 @@ import React, { FC } from 'react';
 import './login.style.scss';
 import CardWithImage from '../../../components/common/wrapper/card-with-image';
 import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
-import CustomInput from '../../../components/common/forms/custom-input/custom-input';
-import Button from '../../../components/common/button/button';
-import { useHistory, RouteComponentProps } from 'react-router-dom';
+
+import { useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 import {
   CREATE_ACCOUNT_PATH,
   FORGOT_PASSWORD,
   ABOUT_PATH,
-  CONTACT_PATH,
   LETS_TALK_PATH,
-  CARD_PATH,
 } from '../../../constants/paths';
 import {
   Input,
+  InputButton,
   PasswordInput,
 } from '../../../components/common/forms/custom-input/input';
 import { StyledLink } from '../../../components/link/link';
@@ -26,11 +25,21 @@ type LoginProps = {
   setAuth: () => boolean;
 };
 
+type InputProps = {
+  email: string;
+  password: string;
+};
+
 const Login = ({ setAuth }: any) => {
   const { isAuth, setIsAuth } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   let history = useHistory();
 
-  const handleSubmit = () => {
+  const submitHandler: SubmitHandler<InputProps> = (data): void => {
     setIsAuth(true);
     history.push('/dashboard');
     // setIsAuth(true);
@@ -45,37 +54,33 @@ const Login = ({ setAuth }: any) => {
       footerLink2={LETS_TALK_PATH}
       className='welcome'
     >
-      {console.log('isAuth', isAuth)}
       <div className='login'>
-        <span className='signin'>Signin to get started</span>
+        <span className='signin'>Sign to get started</span>
+        <form className='form' onSubmit={handleSubmit(submitHandler)}>
+          <Input
+            marginTop='80px'
+            placeholder='Email'
+            type='email'
+            required
+            {...register('email', { required: true })}
+          />
 
-        <Input
-          marginTop='80px'
-          width={'85%'}
-          placeholder='Email'
-          name='email'
-          type='email'
-          required
-        />
-
-        <PasswordInput
-          marginTop='27px'
-          width={'85%'}
-          type='password'
-          placeholder='Password'
-          name=''
-          required
-        />
-        {verticalSpacer('70px')}
-        <div>
-          <Button
-            className='bg-green text-white'
-            onClick={() => handleSubmit()}
-          >
-            Login
-          </Button>
-        </div>
-
+          <PasswordInput
+            marginTop='27px'
+            type='password'
+            placeholder='Password'
+            {...register('password', { required: true, minLength: 8 })}
+            required
+          />
+          {errors.password && 'The required minimum lengt is 8'}
+          <div className='button'>
+            <InputButton
+              type='submit'
+              value='Login'
+              className='bg-green text-white'
+            />
+          </div>
+        </form>
         <div className='buttomWrapper'>
           {verticalSpacer('80px')}
           <div className='account'>
@@ -87,7 +92,6 @@ const Login = ({ setAuth }: any) => {
               </StyledLink>
             </div>
             <div>
-              {/* <span className='forgot'>Forgot Password?</span> */}
               <StyledLink className='forgot' to={FORGOT_PASSWORD}>
                 Forgot Password
               </StyledLink>

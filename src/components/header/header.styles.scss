@@ -2,9 +2,9 @@
 
 .header {
   background-color: #2dcc5a;
-  padding: 10px 48px;
+  padding: 0.625em 3em;
   box-shadow: 1px 0 5px rgba($black, 0.1);
-  height: 60px;
+  height: 3.75em;
   box-sizing: border-box;
   display: flex;
   flex-flow: row nowrap;
@@ -22,24 +22,24 @@
     align-items: center;
 
     .search-input {
-      padding-right: 30px;
+      padding-right: 1.875em;
     }
 
     .settings-content {
       right: 0;
       left: auto;
-      margin-top: 16px;
+      margin-top: 1em;
 
       .inline-modal-wrapper {
-        padding: 18px;
+        padding: 1.125em;
       }
 
       .select {
         margin: 5px 0 10px;
-        width: 200px;
+        width: 12.5em;
 
         select {
-          font-size: 16px;
+          font-size: 1em;
         }
       }
 
@@ -52,8 +52,8 @@
     .btn-add {
       color: white;
       font-weight: bold;
-      font-size: 20px;
-      width: 28px;
+      font-size: 1.25em;
+      width: 1.75em;
       margin-left: 5px;
     }
   }

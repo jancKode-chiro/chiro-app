@@ -1,0 +1,69 @@
+@import '../../styles/variables.scss';
+
+.sms {
+  .group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bar {
+    padding-left: 4px;
+    padding-top: 8px;
+    display: flex;
+    border: #ffffff;
+    width: 384px;
+    height: 52px;
+    top: 294px;
+    left: 260px;
+    border: 1px solid #ffffff;
+
+    color: #ffffff;
+    font-size: 16px;
+    font-family: $font-family-poppins;
+  }
+
+  .search {
+    padding-left: 8px;
+    padding-top: 13px;
+    display: inline-flex;
+    border: #ffffff;
+    width: 380px;
+    height: 52px;
+    top: 294px;
+    left: 260px;
+    border: 1px solid #ffffff;
+
+    color: #ffffff;
+    font-size: 16px;
+    font-family: $font-family-poppins;
+  }
+
+  .choosefile {
+    padding-left: 8px;
+    padding-top: 11px;
+    display: flex;
+    width: 380px;
+    height: 43px;
+    top: 223px;
+    left: 261px;
+    border: 1px solid #ffffff;
+
+    background: rgba(255, 255, 255, 0.75);
+    color: #ffffff;
+    font-size: 11px;
+    font-family: $font-family-poppins;
+  }
+
+  .bulk {
+    width: 114px;
+    height: 38px;
+    top: 107px;
+    left: 385px;
+
+    font-family: $font-family-poppins;
+    font-size: 25px;
+    line-height: 37.5px;
+    color: #ffffff;
+  }
+}
