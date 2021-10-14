@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import './login.style.scss';
 import CardWithImage from '../../../components/common/wrapper/card-with-image';
 import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
-import Button from '../../../components/common/button/button';
+
 import { useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { useForm } from 'react-hook-form';
@@ -11,9 +11,7 @@ import {
   CREATE_ACCOUNT_PATH,
   FORGOT_PASSWORD,
   ABOUT_PATH,
-  CONTACT_PATH,
   LETS_TALK_PATH,
-  CARD_PATH,
 } from '../../../constants/paths';
 import {
   Input,
@@ -49,7 +47,7 @@ const Login = ({ setAuth }: any) => {
     >
       <div className='login'>
         <span className='signin'>Signin to get started</span>
-        <form className='form'>
+        <form className='form' onSubmit={handleSubmit(submitHandler)}>
           <Input
             marginTop='80px'
             placeholder='Email'

@@ -46,7 +46,7 @@ export const Input = styled(AntInput)<InputProps>`
 `;
 
 export const InputButton = styled(AntInput)<InputProps>`
-  ${inputStyle}
+  /* ${inputStyle} */
   display: flex;
   justify-content: center;
   min-height: 53px;

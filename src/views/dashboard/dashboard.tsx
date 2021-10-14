@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode } from 'react';
 import CustomHeader from '../../components/header/header';
 import { withRouter } from 'react-router';
 
