@@ -13,21 +13,7 @@ import chart from '../../assets/images/icons/chart.png';
 import message from '../../assets/images/icons/message.png';
 import cog from '../../assets/images/icons/cog.png';
 import './dashboard.styles.scss';
-
-const listCards = [
-  {
-    image: smsSent,
-    id: 1,
-  },
-  {
-    image: smsDelivered,
-    id: 2,
-  },
-  {
-    image: smsCurrentBal,
-    id: 3,
-  },
-];
+import DashBoardCard from './dashboard-card/dashboard-card';
 
 const listNavOptions = [
   {
@@ -84,22 +70,11 @@ const Dashboard = ({ children }: DashboardProps) => {
             );
           })}
         </div>
-        <div className='cards'>
-          {listCards.map((card) => {
-            return (
-              <div key={card.id} className='card'>
-                <img
-                  src={card.image}
-                  alt={`img-${card.id}`}
-                  height='100%'
-                  width='65%'
-                />
-              </div>
-            );
-          })}
+        <div className='dashboard-cards-wrapper'>
+          <DashBoardCard />
         </div>
         <div className='graph'>
-          <img src={graph} alt='graph-img' height='650' />
+          <img src={graph} alt='graph-img' width='95%' height='100%' />
         </div>
       </div>
 

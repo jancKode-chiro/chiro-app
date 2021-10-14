@@ -5,33 +5,31 @@
 
   .title {
     display: inline-block;
-    left: 1.6875em;
-    top: 2.25em;
-    padding: 2.3125em;
+    padding: 2.3125rem;
     font-family: $font-family-poppins;
     font-style: normal;
     font-weight: normal;
     font-size: 1.5em;
-    line-height: 2.25em;
   }
 
   .description-wrapper {
     .description {
       width: 25vw;
-      height: 28.3125em;
+      height: 30rem;
       left: 4.625em;
       top: 8em;
-      padding-right: 2.875em;
-      padding-left: 4.625em;
+      padding-right: 2.875rem;
+      padding-left: 4.625rem;
       display: flex;
       text-align: initial;
 
       font-family: $font-family-poppins;
       font-style: normal;
       font-weight: normal;
-      font-size: 1.375em;
-      line-height: 2.25em;
+      font-size: 1.375rem;
+      line-height: 2.25rem;
       color: #000000;
+      padding-bottom: 3rem;
     }
   }
 }

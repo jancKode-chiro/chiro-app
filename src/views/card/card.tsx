@@ -17,19 +17,19 @@ const Card = () => {
       <ContainerWithImage>
         <div>
           <img src={CheckIcons} alt='check-icon' />
-          {verticalSpacer('46.52px')}
+          {verticalSpacer('1.25em')}
           <div className='bank'>
             <CustomInput name='Bank Name' placeholder='Bank Name' />
           </div>
-          {verticalSpacer('20px')}
+          {verticalSpacer('1.25em')}
           <div>
             <CustomInput name='Name' placeholder='Name ' />
           </div>
-          {verticalSpacer('26px')}
+          {verticalSpacer('1.625em')}
           <div>
             <CustomInput name='Card Number' placeholder='Card Number' />
           </div>
-          {verticalSpacer('25px')}
+          {verticalSpacer('1.5625em')}
           <div>
             <Button className='bg-green text-white'>Save</Button>
           </div>
