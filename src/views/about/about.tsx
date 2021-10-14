@@ -7,7 +7,7 @@ import './about.styles.scss';
 //import card with image
 const AboutUsPage = () => {
   return (
-    <CardWithImage text='About Us' className='welcome'>
+    <CardWithImage text='About us' className='welcome'>
       <div className='about'>
         <div>
           <span className='title'>Lorem Ipsum</span>
