@@ -19,7 +19,6 @@ import {
   PasswordInput,
 } from '../../../components/common/forms/custom-input/input';
 import { StyledLink } from '../../../components/link/link';
-
 type InputProps = {
   email: string;
   password: string;
@@ -36,6 +35,7 @@ const Login = (): JSX.Element => {
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
     history.push('/dashboard');
     // setIsAuth(true);
+    console.log(data);
   };
 
   return (
