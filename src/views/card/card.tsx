@@ -6,6 +6,7 @@ import ResponsiveGridContainer from '../../components/common/wrapper/grid-contai
 import CheckIcons from '../../assets/images/icons/Card.png';
 
 import './card.style.scss';
+
 import { ContainerWithImage } from '../../components/common/wrapper/wrapper-with-image/wrapper-with-bg-image';
 import {
   Input,
@@ -51,48 +52,49 @@ const Card = () => {
   return (
     <ResponsiveGridContainer>
       <ContainerWithImage>
-        {console.log(bankName)}
         <div>
           <img src={CheckIcons} alt='check-icon' />
           {verticalSpacer('1.25em')}
-          <form onSubmit={handleSubmit(submitHandler)}>
-            <div className='bank'>
+          <div>
+            <form className='container' onSubmit={handleSubmit(submitHandler)}>
               <Input
                 placeholder='Bank Name'
-                value={bankName}
+                // value={bankName}
+                width='25vw'
                 required
                 {...register('bankName', { required: true })}
               />
-            </div>
-            {verticalSpacer('1.25em')}
-            <div>
+
+              {verticalSpacer('1.25em')}
+
               <Input
                 placeholder='Name '
-                value={name}
+                // value={name}
+                width='25vw'
                 required
                 {...register('Name', { required: true })}
               />
-            </div>
-            {verticalSpacer('1.625em')}
-            <div>
+
+              {verticalSpacer('1.625em')}
+
               <Input
                 placeholder='Card Number'
-                value={cardNumber}
+                // value={cardNumber}
+                width='25vw'
                 required
                 {...register('cardNumber', { required: true })}
               />
-            </div>
-            {verticalSpacer('1.5625em')}
 
-            <div>
+              {verticalSpacer('1.5625em')}
+
               <InputButton
                 type='submit'
                 value='Save'
                 onClick={() => alert('Saved')}
                 className='bg-green text-white'
               />
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </ContainerWithImage>
     </ResponsiveGridContainer>
