@@ -24,11 +24,9 @@ import {
   WALLET_PATH,
 } from './constants/paths';
 
-import { AuthProvider, useAuth } from './context/auth-context';
+import { AuthProvider } from './context/auth-context';
 
 function App() {
-  const { isAuth } = useAuth();
-
   return (
     <div className='App'>
       <AuthProvider>

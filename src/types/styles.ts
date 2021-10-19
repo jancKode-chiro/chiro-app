@@ -1,5 +1,3 @@
-import React from 'react';
-
 export enum TypographyStyles {
   FontFamilyPoppins = 'Poppins',
   FontFamilySans = 'sans-serif',

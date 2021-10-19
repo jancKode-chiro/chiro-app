@@ -1,6 +1,3 @@
-import { ListItemSecondaryAction } from '@material-ui/core';
-import { green } from '@material-ui/core/colors';
-import { icons } from 'antd/lib/image/PreviewGroup';
 import React from 'react';
 
 import email from '../../../assets/images/icons/email.png';

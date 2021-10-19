@@ -3,10 +3,8 @@ import React, {
   useState,
   useContext,
   createContext,
-  useEffect,
   Dispatch,
   SetStateAction,
-  ReactNode,
 } from 'react';
 
 type AuthContextProps = {
