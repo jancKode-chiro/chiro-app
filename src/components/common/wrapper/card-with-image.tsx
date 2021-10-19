@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Link } from 'react-router-dom';
 
 import RepsonsiveContainerGrid from './grid-container';
 import ResponsiveCard from './card';
@@ -29,6 +28,20 @@ const CardWithImage = ({
   subTitle,
   className,
 }: CardWithImageProps) => {
+  const renderFooter = () => {
+    if (footerLink1 || footerLink2) {
+      return (
+        <div className='footer'>
+          <StyledLink to={footerLink1 as string} className='footerText1'>
+            {footerText1}
+          </StyledLink>
+          <StyledLink to={footerLink2 as string} className='footerText2'>
+            {footerText2}
+          </StyledLink>
+        </div>
+      );
+    }
+  };
   return (
     <RepsonsiveContainerGrid className='grid-container'>
       <Grid
@@ -45,14 +58,7 @@ const CardWithImage = ({
                 <span className='banner-sub'>{subTitle}</span>
               </div>
             </div>
-            <div className='footer'>
-              <StyledLink to={footerLink1 as string} className='footerText1'>
-                {footerText1}
-              </StyledLink>
-              <StyledLink to={footerLink2 as string} className='footerText2'>
-                {footerText2}
-              </StyledLink>
-            </div>
+            {renderFooter()}
           </div>
         </ResponsiveCard>
         <ResponsiveCard>{children}</ResponsiveCard>

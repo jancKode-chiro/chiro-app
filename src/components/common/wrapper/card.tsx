@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import Card from '@material-ui/core/Card';
 import { withStyles } from '@material-ui/core';
 import { breakpoint } from '../../../utilities/break-points';
@@ -7,12 +7,7 @@ type Theme = {
   [key: string]: any;
 };
 
-type RepsonsiveGridProps = {
-  classes: Theme;
-  children: any;
-};
-
-const stylesheet = (theme: any) => ({
+const stylesheet = (theme: Theme) => ({
   root: {
     [theme.breakpoints.down(breakpoint.mobileBreakpoint)]: {
       boxShadow: theme.shadows[0],

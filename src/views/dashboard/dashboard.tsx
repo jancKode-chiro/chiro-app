@@ -2,10 +2,6 @@ import React, { ReactNode } from 'react';
 import CustomHeader from '../../components/header/header';
 import { withRouter } from 'react-router';
 
-import { useAuth } from '../../context/auth-context';
-import smsSent from '../../assets/images/sms/SMS-Sentcards.png';
-import smsDelivered from '../../assets/images/sms/SMS-delivered.png';
-import smsCurrentBal from '../../assets/images/sms/SMS-current-bal.png';
 import graph from '../../assets/images/sms/graph.png';
 import home from '../../assets/images/icons/home.png';
 import contacts from '../../assets/images/icons/contacts.png';
@@ -48,8 +44,6 @@ type DashboardProps = {
 };
 
 const Dashboard = ({ children }: DashboardProps) => {
-  const { isAuth } = useAuth();
-
   return (
     <div>
       <CustomHeader title='Logo here' />

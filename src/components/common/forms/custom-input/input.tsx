@@ -1,4 +1,3 @@
-import { Input as AntInput, InputNumber } from 'antd';
 import styled, { css } from 'styled-components';
 import { PasswordProps } from 'antd/lib/input';
 import {
@@ -46,7 +45,6 @@ export const Input = styled.input<InputProps>`
 `;
 
 export const InputButton = styled.input<InputProps>`
-  /* ${inputStyle} */
   display: flex;
   justify-content: center;
   min-height: 53px;
