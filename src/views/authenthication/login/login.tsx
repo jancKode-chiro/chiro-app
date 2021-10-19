@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import './login.style.scss';
 import CardWithImage from '../../../components/common/wrapper/card-with-image';
 import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
@@ -19,19 +19,13 @@ import {
   PasswordInput,
 } from '../../../components/common/forms/custom-input/input';
 import { StyledLink } from '../../../components/link/link';
-import { useAuth } from '../../../context/auth-context';
-
-type LoginProps = {
-  setAuth: () => boolean;
-};
 
 type InputProps = {
   email: string;
   password: string;
 };
 
-const Login = ({ setAuth }: any) => {
-  const { isAuth, setIsAuth } = useAuth();
+const Login = (): JSX.Element => {
   const {
     register,
     handleSubmit,
@@ -40,7 +34,6 @@ const Login = ({ setAuth }: any) => {
   let history = useHistory();
 
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
-    setIsAuth(true);
     history.push('/dashboard');
     // setIsAuth(true);
   };

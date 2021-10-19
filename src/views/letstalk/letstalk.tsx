@@ -5,7 +5,6 @@ import { PhoneFilled } from '@ant-design/icons';
 import { MailFilled } from '@ant-design/icons';
 
 import CardWithImage from '../../components/common/wrapper/card-with-image';
-import verticalSpacer from '../../components/common/spacer/vertical-spacer';
 
 import './letstalk.styles.scss';
 
@@ -40,11 +39,10 @@ const LetsTalk = () => {
       <div className='lets-talk-style'>
         {listitems.map((item) => {
           return (
-            <div className='list-style'>
+            <div className='list-style' key={item.description}>
               <div>
                 <span className='icon'>{item.icon()}</span>
               </div>
-              {verticalSpacer('200px')}
               <div className='description-container'>
                 <span className='phone'>{item.description}</span>
                 <span className='envelope'>{item.subDescription}</span>

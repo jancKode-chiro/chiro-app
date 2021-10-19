@@ -10,6 +10,7 @@ import LetsTalk from './views/letstalk/letstalk';
 import Card from './views/card/card';
 import Dashboard from './views/dashboard/dashboard';
 import Bulk from './views/bulk/bulk';
+import Wallet from './views/wallet/wallet';
 
 import {
   HOMEPAGE_PATH,
@@ -20,13 +21,12 @@ import {
   DASHBOARD_PATH,
   LOGIN_PATH,
   SMS_PATH,
+  WALLET_PATH,
 } from './constants/paths';
 
-import { AuthProvider, useAuth } from './context/auth-context';
+import { AuthProvider } from './context/auth-context';
 
 function App() {
-  const { isAuth } = useAuth();
-
   return (
     <div className='App'>
       <AuthProvider>
@@ -38,6 +38,7 @@ function App() {
             <Route exact path={ABOUT_PATH} component={AboutUsPage} />
             <Route exact path={LETS_TALK_PATH} component={LetsTalk} />
             <Route exact path={LOGIN_PATH} component={Login} />
+            <Route exact path={WALLET_PATH} component={Wallet} />
             <Route exact path={SMS_PATH} component={Bulk} />
             <Route exact path={HOMEPAGE_PATH} component={Login} />
           </Switch>
