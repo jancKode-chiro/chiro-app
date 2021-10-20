@@ -1,76 +1,65 @@
+import { useState } from 'react';
 import { withRouter } from 'react-router';
-
+import { useForm, SubmitHandler } from 'react-hook-form';
 import RepsonsiveContainerGrid from '../../components/common/wrapper/grid-container';
-import verticalSpacer from '../../components/common/spacer/vertical-spacer';
 
 import { ContainerWithImage } from '../../components/common/wrapper/wrapper-with-image/wrapper-with-bg-image';
 import {
   Input,
   InputButton,
 } from '../../components/common/forms/custom-input/input';
-import { Input as AntInput } from 'antd';
 
 import './wallet.style.scss';
 
-import { useHistory } from 'react-router-dom';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { useAuth } from '../../context/auth-context';
-
-type WalletProps = {
-  setAuth: () => Boolean;
-};
-
 type InputProps = {
+  availableBalance: string;
   cardDetails: string;
-  amountInUSD: string;
+  amountInUSD: number;
 };
 
 const Wallet = () => {
-  const { isAuth, setIsAuth } = useAuth();
+  const [availableBalance, setAvailabsleBalance] = useState<number>(0);
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
-  let history = useHistory();
 
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
-    history.push('/dashboard');
+    // history.push('/dashboard');
     // setIsAuth(true);
     console.log(data);
+    setAvailabsleBalance(data.amountInUSD);
   };
 
   return (
     <RepsonsiveContainerGrid className='image'>
       <ContainerWithImage>
-        <div>
+        <div className='wallet'>
           <form className='container' onSubmit={handleSubmit(submitHandler)}>
-            <AntInput.TextArea
-              rows={12}
-              cols={41}
-              placeholder='Available Balance'
-              className='balance'
-              required
-              {...register('cardDetails', { required: true })}
-            />
-
-            {verticalSpacer('60px')}
+            <div className='balance-container'>
+              <span className='balance-label'>Available Balance</span>
+              <div className='balance-details'>
+                <span className='balance-text'>${availableBalance}</span>
+              </div>
+            </div>
 
             <Input
               placeholder='Card Details'
               width='25vw'
               required
+              marginBottom='2rem'
               {...register('cardDetails', { required: true })}
             />
-            {verticalSpacer('40px')}
+
             <Input
               placeholder='Amount in USD'
               width='25vw'
+              marginBottom='2rem'
               required
+              type='number'
               {...register('amountInUSD', { required: true })}
             />
-
-            {verticalSpacer('50px')}
 
             <InputButton
               type='submit'

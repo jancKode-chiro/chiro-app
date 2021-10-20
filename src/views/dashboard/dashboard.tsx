@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import CustomHeader from '../../components/header/header';
 import { withRouter } from 'react-router';
 import { StyledLink } from '../../components/link/link';
-import { SMS_PATH, LETS_TALK_PATH } from '../../constants/paths';
+import { SMS_PATH } from '../../constants/paths';
 
 import graph from '../../assets/images/sms/graph.png';
 import home from '../../assets/images/icons/home.png';
@@ -48,10 +48,6 @@ const listNavOptions = [
 
 type DashboardProps = {
   children?: ReactNode;
-};
-
-type InputProps = {
-  campaigns: string;
 };
 
 const Dashboard = ({ children }: DashboardProps) => {

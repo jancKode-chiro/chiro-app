@@ -13,11 +13,6 @@ import { ContainerWithImage } from '../../../components/common/wrapper/wrapper-w
 
 import { useHistory } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useAuth } from '../../../context/auth-context';
-
-type CreateAccountProps = {
-  setAuth: () => Boolean;
-};
 
 type InputProps = {
   firstName: string;
@@ -30,7 +25,6 @@ type InputProps = {
 };
 
 const CreateAccount = ({ setAuth }: any) => {
-  const { isAuth, setIsAuth } = useAuth();
   const {
     register,
     handleSubmit,
@@ -39,9 +33,8 @@ const CreateAccount = ({ setAuth }: any) => {
   let history = useHistory();
 
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
-    setIsAuth(true);
     history.push('/dashboard');
-    // setIsAuth(true);
+
     console.log(data);
   };
 
