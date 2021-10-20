@@ -1,0 +1,60 @@
+@import "../../styles//variables.scss";
+
+.header {
+  background-color: #2dcc5a;
+  padding: 0.625em 3em;
+  box-shadow: 1px 0 5px rgba($black, 0.1);
+  height: 3.75em;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+
+  .page-title {
+    margin: 0;
+    color: #ffffff;
+  }
+
+  .settings {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .search-input {
+      padding-right: 1.875em;
+    }
+
+    .settings-content {
+      right: 0;
+      left: auto;
+      margin-top: 1em;
+
+      .inline-modal-wrapper {
+        padding: 1.125em;
+      }
+
+      .select {
+        margin: 5px 0 10px;
+        width: 12.5em;
+
+        select {
+          font-size: 1em;
+        }
+      }
+
+      .apply-button {
+        display: block;
+        margin: 0 0 0 auto;
+      }
+    }
+
+    .btn-add {
+      color: white;
+      font-weight: bold;
+      font-size: 1.25em;
+      width: 1.75em;
+      margin-left: 5px;
+    }
+  }
+}

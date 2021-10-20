@@ -1,0 +1,65 @@
+@import "../../../styles/variables.scss";
+
+.login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .signin {
+    padding-top: 7.75em;
+    font-size: 1.5625em;
+    font-weight: $font-weight-bold;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .button {
+    margin-top: 4.375em;
+  }
+
+  .buttomWrapper {
+    width: 100%;
+    .account {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 1.0625em;
+      font-family: $font-family-poppins;
+      font-size: 0.6875em;
+      color: #aca6a6;
+      font-style: normal;
+      font-weight: normal;
+      padding-left: 1em;
+      padding-bottom: 2.25em;
+    }
+
+    .create {
+      width: 3.875em;
+      height: 1.0625em;
+      font-family: $font-family-poppins;
+      font-size: 1.2em;
+      color: #2dcc5a;
+      font-weight: 1em;
+      font-style: normal;
+      margin-left: 6px;
+    }
+
+    .forgot {
+      width: 6.0625em;
+      height: 1.0625em;
+      font-family: $font-poppins;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 1.2em;
+
+      color: #aca6a6;
+      margin-right: 2em;
+    }
+  }
+}
