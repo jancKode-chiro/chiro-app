@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react';
 import CustomHeader from '../../components/header/header';
 import { withRouter } from 'react-router';
+import { StyledLink } from '../../components/link/link';
+import { SMS_PATH } from '../../constants/paths';
 
 import graph from '../../assets/images/sms/graph.png';
 import home from '../../assets/images/icons/home.png';
@@ -16,26 +18,31 @@ const listNavOptions = [
     icon: home,
     label: 'Home',
     id: 1,
+    path: '/dashboard',
   },
   {
     icon: contacts,
     label: 'Contacts',
     id: 2,
+    path: '/',
   },
   {
     icon: chart,
     label: 'Campaigns',
     id: 3,
+    path: SMS_PATH,
   },
   {
     icon: message,
     label: 'Messages',
     id: 4,
+    path: '/',
   },
   {
     icon: cog,
     label: 'Settings',
     id: 5,
+    path: '/',
   },
 ];
 
@@ -58,7 +65,9 @@ const Dashboard = ({ children }: DashboardProps) => {
                     alt={`icon-${nav.label}`}
                     className='nav-icon'
                   />
-                  <span className='label'>{nav.label}</span>
+                  <StyledLink to={nav.path as string} className='label'>
+                    {nav.label}
+                  </StyledLink>
                 </div>
               </div>
             );
