@@ -1,31 +1,41 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
+.wallet {
+  .container {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.box {
-  border: 0 solid #2dcc5a;
-}
+  .balance {
+    border: 1px solid #2dcc5a;
 
-.image {
-  background-image: url('../../assets/images/bg-full-x2.png');
+    font-family: $font-family-poppins;
+    font-style: normal;
+    font-weight: normal;
+  }
 
-  width: 80%;
+  .box {
+    border: 0 solid #2dcc5a;
+  }
 
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-}
+  .image {
+    background-image: url("../../assets/images/bg-full-x2.png");
 
-.text {
-  font-family: $font-family-poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 24px;
-}
+    width: 80%;
 
-.available {
-  display: flex;
-  font-size: 16px;
-  color: #ffffff;
-  font-family: $font-family-poppins;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+
+  .text {
+    font-family: $font-family-poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
