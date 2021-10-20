@@ -1,6 +1,3 @@
-import { ListItemSecondaryAction } from '@material-ui/core';
-import { green } from '@material-ui/core/colors';
-import { icons } from 'antd/lib/image/PreviewGroup';
 import React from 'react';
 
 import email from '../../../assets/images/icons/email.png';
@@ -10,31 +7,31 @@ import money from '../../../assets/images/icons/money.png';
 import './dashboard-card.styles.scss';
 
 type DashBoardCardProps = {
-  icon: string;
+  icon?: string;
   title?: string;
   amount?: string;
   class?: string;
 };
 
-const DashBoardCard = () => {
+const DashBoardCard = ({ amount, title }: DashBoardCardProps) => {
   const listItems: DashBoardCardProps[] = [
     {
       icon: email,
-      title: 'SMS Sent',
-      amount: '426',
+      title: title,
+      amount: amount,
       class: 'blue-card',
     },
     {
       icon: globe,
-      title: 'SMS Deilvered',
-      amount: '0',
+      title: title,
+      amount: amount,
       class: 'green-card',
     },
 
     {
       icon: money,
-      title: 'Current Blast Balance',
-      amount: '$123',
+      title: title,
+      amount: amount,
       class: 'dark-blue-card',
     },
   ];

@@ -19,7 +19,6 @@ import {
   PasswordInput,
 } from '../../../components/common/forms/custom-input/input';
 import { StyledLink } from '../../../components/link/link';
-
 type InputProps = {
   email: string;
   password: string;
@@ -36,6 +35,7 @@ const Login = (): JSX.Element => {
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
     history.push('/dashboard');
     // setIsAuth(true);
+    console.log(data);
   };
 
   return (
@@ -48,7 +48,7 @@ const Login = (): JSX.Element => {
       className='welcome'
     >
       <div className='login'>
-        <span className='signin'>Sign to get started</span>
+        <span className='signin'>Sign in to get started</span>
         <form className='form' onSubmit={handleSubmit(submitHandler)}>
           <Input
             marginTop='80px'
