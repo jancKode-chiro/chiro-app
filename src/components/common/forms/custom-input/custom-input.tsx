@@ -1,28 +1,28 @@
-import React, {ReactElement} from 'react';
+import React, { ReactElement } from 'react';
 
-import './custom-input.styles.scss'
-
+import './custom-input.styles.scss';
 
 type CustomInputProps = {
-  id? : string;
+  id?: string;
   className?: string;
   name: string;
   label?: string;
-  info? : string;
+  info?: string;
   placeholder?: string;
   type?: string | 'text';
   error?: boolean;
   disabled?: boolean;
   setRef?: (arg: string | number | boolean) => void;
-  value?: string | number | boolean;
+  value: any;
   defaultValue?: string | number | boolean;
-  onChange?: (arg: string | number | boolean) => void;
+  onChange: any;
   onClick?: (arg: string | number | boolean) => void;
   dataId?: string;
   maxLength?: number;
-}
+};
 
-const CustomInput = ({id,
+const CustomInput = ({
+  id,
   className,
   label,
   info,
@@ -37,15 +37,18 @@ const CustomInput = ({id,
   onChange,
   onClick,
   dataId,
-  maxLength}: CustomInputProps):ReactElement => {
-  
-
+  maxLength,
+}: CustomInputProps): ReactElement => {
   return (
     <div>
-      <input className={className ? className : 'input'} 
-      placeholder={placeholder}/>
+      <input
+        className={className ? className : 'input'}
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default CustomInput
+export default CustomInput;

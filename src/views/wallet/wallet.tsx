@@ -1,39 +1,75 @@
-import React from 'react';
-
-import CardWithImage from '../../components/common/wrapper/card-with-image';
-import CustomInput from '../../components/common/forms/custom-input/custom-input';
-import Button from '../../components/common/button/button';
+import { useState } from 'react';
+import { withRouter } from 'react-router';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import RepsonsiveContainerGrid from '../../components/common/wrapper/grid-container';
-import verticalSpacer from '../../components/common/spacer/vertical-spacer';
-import { Input } from '../../components/common/forms/custom-input/input';
-import { Input as AntInput } from 'antd';
+
+import { ContainerWithImage } from '../../components/common/wrapper/wrapper-with-image/wrapper-with-bg-image';
+import {
+  Input,
+  InputButton,
+} from '../../components/common/forms/custom-input/input';
 
 import './wallet.style.scss';
 
+type InputProps = {
+  availableBalance: string;
+  cardDetails: string;
+  amountInUSD: number;
+};
+
 const Wallet = () => {
+  const [availableBalance, setAvailabsleBalance] = useState<number>(0);
+  const {
+    register,
+    handleSubmit,
+    // formState: { errors },
+  } = useForm();
+
+  const submitHandler: SubmitHandler<InputProps> = (data): void => {
+    // history.push('/dashboard');
+    // setIsAuth(true);
+    console.log(data);
+    setAvailabsleBalance(data.amountInUSD);
+  };
+
   return (
     <RepsonsiveContainerGrid className='image'>
-      <div>
-        <div className='box'>
-          <div>
-            <span className='available'>Available Balance</span>
-            <AntInput.TextArea rows={10} cols={50} />
-          </div>
-        </div>
-        {verticalSpacer('60px')}
+      <ContainerWithImage>
+        <div className='wallet'>
+          <form className='container' onSubmit={handleSubmit(submitHandler)}>
+            <div className='balance-container'>
+              <span className='balance-label'>Available Balance</span>
+              <div className='balance-details'>
+                <span className='balance-text'>${availableBalance}</span>
+              </div>
+            </div>
 
-        <div className='text'>
-          <CustomInput name=' Card Details' placeholder='Card Details' />
-          {verticalSpacer('60px')}
-          <CustomInput name=' Topup amount' placeholder='Amount in USD' />
+            <Input
+              placeholder='Card Details'
+              width='25vw'
+              required
+              marginBottom='2rem'
+              {...register('cardDetails', { required: true })}
+            />
+
+            <Input
+              placeholder='Amount in USD'
+              width='25vw'
+              marginBottom='2rem'
+              required
+              type='number'
+              {...register('amountInUSD', { required: true })}
+            />
+
+            <InputButton
+              type='submit'
+              value='Save'
+              className='bg-green text-white'
+            />
+          </form>
         </div>
-        {verticalSpacer('90px')}
-        <div>
-          <Button className='bg-green text-white'>Save</Button>
-        </div>
-      </div>
+      </ContainerWithImage>
     </RepsonsiveContainerGrid>
   );
 };
-
-export default Wallet;
+export default withRouter(Wallet);
