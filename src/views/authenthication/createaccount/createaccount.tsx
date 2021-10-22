@@ -1,18 +1,18 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import { useHistory } from 'react-router-dom';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { Auth } from 'aws-amplify';
 
 import RepsonsiveContainerGrid from '../../../components/common/wrapper/grid-container';
-
-import './createaccount.styles.scss';
 import {
   Input,
   InputButton,
   PasswordInput,
 } from '../../../components/common/forms/custom-input/input';
 import { ContainerWithImage } from '../../../components/common/wrapper/wrapper-with-image/wrapper-with-bg-image';
-
-import { useHistory } from 'react-router-dom';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import './createaccount.styles.scss';
+import { ACTIVATE_ACCOUNT_PATH } from '../../../constants/paths';
 
 type InputProps = {
   firstName: string;
@@ -33,9 +33,41 @@ const CreateAccount = ({ setAuth }: any) => {
   let history = useHistory();
 
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
-    history.push('/dashboard');
+    // history.push('/dashboard');
 
     console.log(data);
+    Auth.signUp({
+      username: data.email,
+      password: data.password,
+      attributes: {
+        email: data.email,
+        name: `${data.firstName} ${data.lastName}`,
+        phone_number: data.phoneNumber,
+      },
+    })
+      .then(() => {
+        alert('Success, please check your email for the confirmation code');
+        history.push(ACTIVATE_ACCOUNT_PATH);
+        // notification.success({
+        //   message: 'Succesfully signed up user!',
+        //   description:
+        //     'Account created successfully, Redirecting you in a few!',
+        //   placement: 'topRight',
+        //   duration: 1.5,
+        //   onClose: () => {
+        //     console.log('Success');
+        //   },
+        // });
+      })
+      .catch((err) => {
+        alert(err.message);
+        // notification.error({
+        //   message: 'Error',
+        //   description: 'Error signing up user',
+        //   placement: 'topRight',
+        //   duration: 1.5,
+        // });
+      });
   };
 
   return (
@@ -72,7 +104,7 @@ const CreateAccount = ({ setAuth }: any) => {
                   />
 
                   <PasswordInput
-                    placeholder='Password'
+                    placeholder='Password (minimum of 8, alphanumeric and symbols)'
                     type='password'
                     width='25vw'
                     {...register('password', { required: true })}
@@ -86,7 +118,6 @@ const CreateAccount = ({ setAuth }: any) => {
                     width='25vw'
                     {...register('phoneNumber', {
                       required: true,
-                      minLength: 15,
                     })}
                     required
                   />
@@ -103,7 +134,6 @@ const CreateAccount = ({ setAuth }: any) => {
                     width='25vw'
                     {...register('countryCode', {
                       required: true,
-                      minLength: 15,
                     })}
                     required
                   />
