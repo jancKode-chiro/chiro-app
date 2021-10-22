@@ -1,11 +1,12 @@
 import React from 'react';
-import './login.style.scss';
-import CardWithImage from '../../../components/common/wrapper/card-with-image';
-import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
-
 import { useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { Auth } from 'aws-amplify';
+
+import CardWithImage from '../../../components/common/wrapper/card-with-image';
+import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
+import './login.style.scss';
 
 import {
   CREATE_ACCOUNT_PATH,
@@ -33,7 +34,15 @@ const Login = (): JSX.Element => {
   let history = useHistory();
 
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
-    history.push('/dashboard');
+    Auth.signIn(data.email, data.password)
+      .then(() => {
+        console.log('Login Success');
+        history.push('/dashboard');
+      })
+      .catch((err) => {
+        console.log('err duing login', err);
+      });
+
     // setIsAuth(true);
     console.log(data);
   };

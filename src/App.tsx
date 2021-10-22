@@ -26,7 +26,15 @@ import {
 
 import { AuthProvider } from './context/auth-context';
 
+import { Auth, Amplify } from 'aws-amplify';
+import awsmobile from './aws-exports';
+
 function App() {
+  Amplify.configure(awsmobile);
+
+  // >>New - Configuring Auth Module
+  Auth.configure(awsmobile);
+
   return (
     <div className='App'>
       <AuthProvider>
