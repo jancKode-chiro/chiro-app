@@ -13,6 +13,7 @@ import {
   FORGOT_PASSWORD,
   ABOUT_PATH,
   LETS_TALK_PATH,
+  DASHBOARD_PATH,
 } from '../../../constants/paths';
 import {
   Input,
@@ -37,7 +38,7 @@ const Login = (): JSX.Element => {
     Auth.signIn(data.email, data.password)
       .then(() => {
         console.log('Login Success');
-        history.push('/dashboard');
+        history.push(DASHBOARD_PATH);
       })
       .catch((err) => {
         console.log('err duing login', err);
@@ -70,11 +71,12 @@ const Login = (): JSX.Element => {
           <PasswordInput
             marginTop='27px'
             type='password'
-            placeholder='Password'
+            placeholder='Password (minimum of 8, alphanumeric and symbols)'
             {...register('password', { required: true, minLength: 8 })}
             required
           />
-          {errors.password && 'The required minimum lengt is 8'}
+          {errors.password &&
+            'The required minimum length is 8 with alphanumeric and symbols'}
           <div className='button'>
             <InputButton
               type='submit'

@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import passworValidator from 'password-validator';
 import { Auth } from 'aws-amplify';
 
 import RepsonsiveContainerGrid from '../../../components/common/wrapper/grid-container';
@@ -13,7 +12,7 @@ import {
 } from '../../../components/common/forms/custom-input/input';
 import { ContainerWithImage } from '../../../components/common/wrapper/wrapper-with-image/wrapper-with-bg-image';
 import './createaccount.styles.scss';
-import { notification } from 'antd';
+import { ACTIVATE_ACCOUNT_PATH } from '../../../constants/paths';
 
 type InputProps = {
   firstName: string;
@@ -47,25 +46,27 @@ const CreateAccount = ({ setAuth }: any) => {
       },
     })
       .then(() => {
-        notification.success({
-          message: 'Succesfully signed up user!',
-          description:
-            'Account created successfully, Redirecting you in a few!',
-          placement: 'topRight',
-          duration: 1.5,
-          onClose: () => {
-            console.log('Success');
-          },
-        });
+        alert('Success, please check your email for the confirmation code');
+        history.push(ACTIVATE_ACCOUNT_PATH);
+        // notification.success({
+        //   message: 'Succesfully signed up user!',
+        //   description:
+        //     'Account created successfully, Redirecting you in a few!',
+        //   placement: 'topRight',
+        //   duration: 1.5,
+        //   onClose: () => {
+        //     console.log('Success');
+        //   },
+        // });
       })
       .catch((err) => {
-        console.log('Error', err);
-        notification.error({
-          message: 'Error',
-          description: 'Error signing up user',
-          placement: 'topRight',
-          duration: 1.5,
-        });
+        alert(err.message);
+        // notification.error({
+        //   message: 'Error',
+        //   description: 'Error signing up user',
+        //   placement: 'topRight',
+        //   duration: 1.5,
+        // });
       });
   };
 
@@ -103,7 +104,7 @@ const CreateAccount = ({ setAuth }: any) => {
                   />
 
                   <PasswordInput
-                    placeholder='Password'
+                    placeholder='Password (minimum of 8, alphanumeric and symbols)'
                     type='password'
                     width='25vw'
                     {...register('password', { required: true })}
