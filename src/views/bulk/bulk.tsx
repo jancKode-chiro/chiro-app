@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import React from 'react';
 
 import ResponsiveContainerGrid from '../../components/common/wrapper/grid-container';
 import Button from '../../components/common/button/button';
 import verticalSpacer from '../../components/common/spacer/vertical-spacer';
+import FilePicker from '../../utilities/filepicker/filepicker';
 import { withRouter } from 'react-router';
 
 import { Input as AntInput } from 'antd';
@@ -22,8 +24,9 @@ const Bulk = () => {
           <div>
             <div className='group'>
               <span className='search'>Search</span>
-              <button className='choosefile'>Choose File</button>
-
+              <div className='picker'>
+                <FilePicker />
+              </div>
               {verticalSpacer('28px')}
 
               <span className='bar'>MESSAGE</span>
