@@ -11,6 +11,7 @@ import Card from './views/card/card';
 import Dashboard from './views/dashboard/dashboard';
 import Bulk from './views/bulk/bulk';
 import Wallet from './views/wallet/wallet';
+import CustomBox from './components/common/box/custom-box';
 
 import {
   HOMEPAGE_PATH,
@@ -32,6 +33,7 @@ function App() {
       <AuthProvider>
         <Router>
           <Switch>
+            <Route exact path={'/box'} component={CustomBox} />
             <Route exact path={CARD_PATH} component={Card} />
             <Route exact path={DASHBOARD_PATH} component={Dashboard} />
             <Route exact path={CREATE_ACCOUNT_PATH} component={CreateAccount} />

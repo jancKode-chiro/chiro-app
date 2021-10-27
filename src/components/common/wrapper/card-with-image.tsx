@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import Grid from '@material-ui/core/Grid';
 
 import RepsonsiveContainerGrid from './grid-container';
-import ResponsiveCard from './card';
+import ResponsiveCard from './card/card';
 
 import './grid-container.styles.scss';
 import { StyledLink } from '../../link/link';
@@ -50,7 +50,7 @@ const CardWithImage = ({
           display: 'flex',
         }}
       >
-        <ResponsiveCard>
+        <ResponsiveCard xsSize='12' smSize='6' mdSize='8'>
           <div className='card-with-image'>
             <div className='greetingsContainer'>
               <div className={`banner ${className ?? className}`}>
@@ -58,10 +58,14 @@ const CardWithImage = ({
                 <span className='banner-sub'>{subTitle}</span>
               </div>
             </div>
+
             {renderFooter()}
           </div>
         </ResponsiveCard>
-        <ResponsiveCard>{children}</ResponsiveCard>
+        <ResponsiveCard xsSize='12' smSize='6' mdSize='8'>
+          {children}
+            { @media only screen and (min-device-width: 320px) and (max-device-width: 480px)} 
+        </ResponsiveCard>
       </Grid>
     </RepsonsiveContainerGrid>
   );
