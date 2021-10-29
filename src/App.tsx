@@ -56,6 +56,7 @@ function App() {
             <Route exact path={WALLET_PATH} component={Wallet} />
             <Route exact path={SMS_PATH} component={Bulk} />
             <Route exact path={LOGIN_PATH} component={Login} />
+            <Route exact path={HOMEPAGE_PATH} component={Login} />
           </Switch>
         </Router>
       </AuthProvider>
