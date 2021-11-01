@@ -1,17 +1,19 @@
 import React from 'react';
-import './login.style.scss';
-import CardWithImage from '../../../components/common/wrapper/card-with-image';
-import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
-
 import { useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { Auth } from 'aws-amplify';
+
+import CardWithImage from '../../../components/common/wrapper/card-with-image';
+import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
+import './login.style.scss';
 
 import {
   CREATE_ACCOUNT_PATH,
   FORGOT_PASSWORD,
   ABOUT_PATH,
   LETS_TALK_PATH,
+  DASHBOARD_PATH,
 } from '../../../constants/paths';
 import {
   Input,
@@ -33,7 +35,14 @@ const Login = (): JSX.Element => {
   let history = useHistory();
 
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
-    history.push('/dashboard');
+    Auth.signIn(data.email, data.password)
+      .then(() => {
+        history.push(DASHBOARD_PATH);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+
     // setIsAuth(true);
     console.log(data);
   };
@@ -61,11 +70,12 @@ const Login = (): JSX.Element => {
           <PasswordInput
             marginTop='27px'
             type='password'
-            placeholder='Password'
+            placeholder='Password (minimum of 8, alphanumeric and symbols)'
             {...register('password', { required: true, minLength: 8 })}
             required
           />
-          {errors.password && 'The required minimum lengt is 8'}
+          {errors.password &&
+            'The required minimum length is 8 with alphanumeric and symbols'}
           <div className='button'>
             <InputButton
               type='submit'

@@ -22,16 +22,31 @@ import {
   LOGIN_PATH,
   SMS_PATH,
   WALLET_PATH,
+  ACTIVATE_ACCOUNT_PATH,
 } from './constants/paths';
 
 import { AuthProvider } from './context/auth-context';
 
+import { Auth, Amplify } from 'aws-amplify';
+import awsmobile from './aws-exports';
+import ActivateCode from './views/activation-code-page/activation-code-page';
+
 function App() {
+  Amplify.configure(awsmobile);
+
+  // >>New - Configuring Auth Module
+  Auth.configure(awsmobile);
+
   return (
     <div className='App'>
       <AuthProvider>
         <Router>
           <Switch>
+            <Route
+              exact
+              path={ACTIVATE_ACCOUNT_PATH}
+              component={ActivateCode}
+            />
             <Route exact path={CARD_PATH} component={Card} />
             <Route exact path={DASHBOARD_PATH} component={Dashboard} />
             <Route exact path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
@@ -40,6 +55,7 @@ function App() {
             <Route exact path={LOGIN_PATH} component={Login} />
             <Route exact path={WALLET_PATH} component={Wallet} />
             <Route exact path={SMS_PATH} component={Bulk} />
+            <Route exact path={LOGIN_PATH} component={Login} />
             <Route exact path={HOMEPAGE_PATH} component={Login} />
           </Switch>
         </Router>

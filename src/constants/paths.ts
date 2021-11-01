@@ -11,3 +11,4 @@ export const CARD_PATH = '/card';
 export const DASHBOARD_PATH = '/dashboard';
 export const SMS_PATH = '/sms';
 export const WALLET_PATH = '/wallet';
+export const ACTIVATE_ACCOUNT_PATH = '/activate-account';
