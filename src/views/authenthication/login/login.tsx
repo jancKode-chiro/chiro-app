@@ -37,11 +37,10 @@ const Login = (): JSX.Element => {
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
     Auth.signIn(data.email, data.password)
       .then(() => {
-        console.log('Login Success');
         history.push(DASHBOARD_PATH);
       })
       .catch((err) => {
-        console.log('err duing login', err);
+        alert(err.message);
       });
 
     // setIsAuth(true);
