@@ -64,7 +64,6 @@ const CardWithImage = ({
         </ResponsiveCard>
         <ResponsiveCard xsSize='12' smSize='6' mdSize='8'>
           {children}
-            { @media only screen and (min-device-width: 320px) and (max-device-width: 480px)} 
         </ResponsiveCard>
       </Grid>
     </RepsonsiveContainerGrid>
