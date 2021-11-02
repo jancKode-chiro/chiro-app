@@ -1,0 +1,17 @@
+@import "../../styles/variables.scss";
+
+.search-a {
+  align-items: center;
+  display: flex;
+  margin-left: 8.5em;
+  margin-top: 1.25em;
+  margin-bottom: 1.125em;
+  min-height: 3.3125em;
+  border-radius: 0.5em;
+  width: 38em;
+  font-family: $font-family-poppins;
+  font-weight: $font-weight-bold;
+  font-size: 1.125em;
+
+  cursor: pointer;
+}

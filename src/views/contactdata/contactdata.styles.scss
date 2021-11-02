@@ -1,0 +1,57 @@
+@import "../../styles/variables.scss";
+
+// .searchport {
+//   align-items: center;
+//   display: flex;
+//   margin-left: 7.5em;
+//   margin-top: 1.25em;
+//   margin-bottom: 1.125em;
+//   min-height: 3.3125em;
+//   border-radius: 0.5em;
+//   width: 38em;
+//   border: 1px solid #e5e5e5;
+//   font-family: $font-family-poppins;
+//   font-weight: $font-weight-bold;
+//   font-size: 1.125em;
+//   color: white;
+//   background: #e5e5e5;
+//   cursor: pointer;
+// }
+
+// .searchword {
+//   margin-left: 14px;
+// }
+
+.addcontact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 13px 11px 10px 6px;
+  position: absolute;
+  margin-bottom: 1.125em;
+  top: 20%;
+  right: 10%;
+  min-height: 3.3125em;
+  border-radius: 0.5em;
+  width: 8.375em;
+  border: 1px solid $primary-green;
+  font-family: $font-family-poppins;
+  font-weight: normal;
+  font-size: 1em;
+  color: white;
+  background-color: #2dcc5a;
+  cursor: pointer;
+}
+
+// .addbar {
+//   min-height: 3.3125em;
+//   border-radius: 8px;
+//   width: 15em;
+//   border: 1px solid $primary-green;
+//   font-family: $font-family-poppins;
+//   font-weight: $font-weight-bold;
+//   font-size: 1.125em;
+//   color: $primary-green;
+//   background-color: transparent;
+//   cursor: pointer;
+// }
