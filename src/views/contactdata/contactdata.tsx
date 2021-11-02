@@ -14,6 +14,7 @@ import chart from '../../assets/images/icons/chart.png';
 import message from '../../assets/images/icons/message.png';
 import cog from '../../assets/images/icons/cog.png';
 import contactdata from '../../assets/images/contactdata.png';
+import { InputButton } from '../../components/common/forms/custom-input/input';
 
 const listNavOptions = [
   {
@@ -70,11 +71,16 @@ const ContactData = ({ children }: DashboardProps) => {
         </div>
         <div>
           <SearchBar />
+          <InputButton
+            value='ADD CONTACT'
+            type='submit'
+            className='bg-green text-white'
+          />
         </div>
-
+        {/* 
         <div>
           <span className='addcontact'>ADD CONTACT</span>
-        </div>
+        </div> */}
 
         <div className='contactdata'>
           <img src={contactdata} alt='graph-img' width='80%' height='80%' />
