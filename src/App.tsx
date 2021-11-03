@@ -54,13 +54,9 @@ function App() {
                 component={ActivateCode}
               />
               <PrivateRoute path={CARD_PATH} component={Card} />
-              <PrivateRoute
-                path={CREATE_ACCOUNT_PATH}
-                component={CreateAccount}
-              />
-              <PrivateRoute path={ABOUT_PATH} component={AboutUs} />
-              <PrivateRoute path={LETS_TALK_PATH} component={LetsTalk} />
-              <PrivateRoute path={LOGIN_PATH} component={Login} />
+              <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
+              <Route path={ABOUT_PATH} component={AboutUs} />
+              <Route path={LETS_TALK_PATH} component={LetsTalk} />
               <PrivateRoute path={WALLET_PATH} component={Wallet} />
               <PrivateRoute path={SMS_PATH} component={Bulk} />
             </Switch>
