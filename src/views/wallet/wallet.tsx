@@ -28,7 +28,6 @@ const Wallet = () => {
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
     // history.push('/dashboard');
     // setIsAuth(true);
-    console.log(data);
     setAvailabsleBalance(data.amountInUSD);
   };
 

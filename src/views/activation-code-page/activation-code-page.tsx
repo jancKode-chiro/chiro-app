@@ -20,7 +20,7 @@ const ActivateCode = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
   let history = useHistory();
 

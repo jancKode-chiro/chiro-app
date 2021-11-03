@@ -40,7 +40,7 @@ const DashBoardCard = () => {
     <div className='dashboardcard'>
       {listItems.map((item) => {
         return (
-          <div className={`card ${item.class}`}>
+          <div className={`card ${item.class}`} key={item.title}>
             <img src={item.icon} alt={item.title} className='icon' />
             <div className='text-wrapper'>
               <span className='title'>{item.title}</span>
