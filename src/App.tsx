@@ -20,6 +20,7 @@ import {
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
+import DashboardData from './views/dashboard/dashboard-data/dashboard-data';
 
 const CreateAccount = lazy(
   () => import('./views/authenthication/createaccount/createaccount')
@@ -48,8 +49,16 @@ function App() {
         <Router>
           <Suspense fallback={<Loader />}>
             <Switch>
-              <PrivateRoute exact path={HOMEPAGE_PATH} component={Dashboard} />
-              <PrivateRoute exact path={DASHBOARD_PATH} component={Dashboard} />
+              <PrivateRoute
+                exact
+                path={HOMEPAGE_PATH}
+                component={DashboardData}
+              />
+              <PrivateRoute
+                exact
+                path={DASHBOARD_PATH}
+                component={DashboardData}
+              />
               <Route path={LOGIN_PATH} component={Login} />
               <PrivateRoute
                 path={ACTIVATE_ACCOUNT_PATH}
