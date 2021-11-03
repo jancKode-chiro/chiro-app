@@ -1,45 +1,30 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import { Input as AntInput } from 'antd';
 
 import ResponsiveContainerGrid from '../../components/common/wrapper/grid-container';
-import Button from '../../components/common/button/button';
 import verticalSpacer from '../../components/common/spacer/vertical-spacer';
-
-import {
-  Input,
-  InputButton,
-} from '../../components/common/forms/custom-input/input';
-import { Input as AntInput } from 'antd';
+import { InputButton } from '../../components/common/forms/custom-input/input';
 import { ContainerWithImage } from '../../components/common/wrapper/wrapper-with-image/wrapper-with-bg-image';
 
 import { useHistory } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useAuth } from '../../context/auth-context';
 
 import './bulk.scss';
-
-type BulkProps = {
-  setAuth: () => Boolean;
-};
 
 type InputProps = {
   message: string;
 };
 
 const Bulk = ({ setAuth }: any) => {
-  const { isAuth, setIsAuth } = useAuth();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  // const { isAuth, setIsAuth } = useAuth();
+  const { handleSubmit } = useForm();
   let history = useHistory();
 
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
-    setIsAuth(true);
+    // setIsAuth(true);
     history.push('/dashboard');
     // setIsAuth(true);
-    console.log(data);
   };
 
   return (
