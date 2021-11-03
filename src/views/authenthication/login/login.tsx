@@ -43,9 +43,9 @@ const Login = (): JSX.Element => {
   // const { goTo } = useNav();
   const backToHome = (): void => history.push(LOGIN_PATH);
 
-  useEffect(() => {
-    if (!isEmpty(authState)) backToHome();
-  }, []);
+  // useEffect(() => {
+  //   if (isEmpty(authState)) backToHome();
+  // }, []);
 
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
     Auth.signIn(data.email, data.password)

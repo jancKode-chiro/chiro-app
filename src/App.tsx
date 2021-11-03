@@ -46,9 +46,9 @@ function App() {
         <Router>
           <Suspense fallback={<Loader />}>
             <Switch>
+              <PrivateRoute exact path={HOMEPAGE_PATH} component={Dashboard} />
               <PrivateRoute exact path={DASHBOARD_PATH} component={Dashboard} />
               <Route path={LOGIN_PATH} component={Login} />
-              <Route path={HOMEPAGE_PATH} component={Login} />
               <PrivateRoute
                 path={ACTIVATE_ACCOUNT_PATH}
                 component={ActivateCode}

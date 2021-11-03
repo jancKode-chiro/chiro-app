@@ -14,6 +14,7 @@ type PrivateRouteProps = {
 const PrivateRoute = ({ path, exact, component }: PrivateRouteProps) => {
   const { authState, isLoading } = useAuth();
 
+  console.log('!isEmpty(authState)', !isEmpty(authState));
   if (isLoading) {
     return <Loader />;
   } else {
