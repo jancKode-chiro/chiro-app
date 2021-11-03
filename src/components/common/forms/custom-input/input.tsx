@@ -46,11 +46,12 @@ export const Input = styled.input<InputProps>`
 `;
 
 export const InputButton = styled.input<InputProps>`
+  ${width}
   display: flex;
   justify-content: center;
   min-height: 53px;
   border-radius: 8px;
-  width: 240px;
+  /* width: 240px; */
   border: 1px solid ${UIColors.primaryGreen};
   font-weight: ${TypographyStyles.FontWeightBold};
   font-size: 18px;
@@ -129,4 +130,8 @@ Input.defaultProps = {
 
 PasswordInput.defaultProps = {
   width: '85%',
+};
+
+InputButton.defaultProps = {
+  width: '15rem',
 };

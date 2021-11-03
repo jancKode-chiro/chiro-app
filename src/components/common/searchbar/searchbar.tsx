@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Input } from '../../components/common/forms/custom-input/input';
+import { Input } from '../forms/custom-input/input';
 
 import './searchbar.styles.scss';
 

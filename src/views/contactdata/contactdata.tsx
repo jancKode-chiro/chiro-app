@@ -4,17 +4,16 @@ import CustomHeader from '../../components/header/header';
 
 import './contactdata.styles.scss';
 
-import Button from '../../components/common/button/button';
-import SearchBar from '../../utilities/searchbar/searchbar';
-
-import graph from '../../assets/images/sms/graph.png';
 import home from '../../assets/images/icons/home.png';
 import contacts from '../../assets/images/icons/contacts.png';
 import chart from '../../assets/images/icons/chart.png';
 import message from '../../assets/images/icons/message.png';
 import cog from '../../assets/images/icons/cog.png';
 import contactdata from '../../assets/images/contactdata.png';
-import { InputButton } from '../../components/common/forms/custom-input/input';
+import {
+  Input,
+  InputButton,
+} from '../../components/common/forms/custom-input/input';
 
 const listNavOptions = [
   {
@@ -69,20 +68,19 @@ const ContactData = ({ children }: DashboardProps) => {
             );
           })}
         </div>
-        <div>
-          <SearchBar />
+        <div className='searchbar'>
+          <form>
+            <Input placeholder='Search' width='20rem' />
+          </form>
           <InputButton
             value='ADD CONTACT'
             type='submit'
             className='bg-green text-white'
+            width='12rem'
           />
         </div>
-        {/* 
-        <div>
-          <span className='addcontact'>ADD CONTACT</span>
-        </div> */}
 
-        <div className='contactdata'>
+        <div className='contact-data-image'>
           <img src={contactdata} alt='graph-img' width='80%' height='80%' />
         </div>
       </div>

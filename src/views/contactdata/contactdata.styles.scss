@@ -1,26 +1,10 @@
 @import "../../styles/variables.scss";
 
-// .searchport {
-//   align-items: center;
-//   display: flex;
-//   margin-left: 7.5em;
-//   margin-top: 1.25em;
-//   margin-bottom: 1.125em;
-//   min-height: 3.3125em;
-//   border-radius: 0.5em;
-//   width: 38em;
-//   border: 1px solid #e5e5e5;
-//   font-family: $font-family-poppins;
-//   font-weight: $font-weight-bold;
-//   font-size: 1.125em;
-//   color: white;
-//   background: #e5e5e5;
-//   cursor: pointer;
-// }
-
-// .searchword {
-//   margin-left: 14px;
-// }
+.searchbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.2rem 12rem 1.2rem 12rem;
+}
 
 .addcontact {
   display: flex;
