@@ -16,9 +16,11 @@ import {
   SMS_PATH,
   WALLET_PATH,
   ACTIVATE_ACCOUNT_PATH,
+  CONTACTDATA_PATH,
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
+import DashboardData from './views/dashboard/dashboard-data/dashboard-data';
 
 const CreateAccount = lazy(
   () => import('./views/authenthication/createaccount/createaccount')
@@ -33,6 +35,7 @@ const Card = lazy(() => import('./views/card/card'));
 const Dashboard = lazy(() => import('./views/dashboard/dashboard'));
 const Bulk = lazy(() => import('./views/bulk/bulk'));
 const Wallet = lazy(() => import('./views/wallet/wallet'));
+const ContactData = lazy(() => import('./views/contactdata/contactdata'));
 
 function App() {
   Amplify.configure(awsmobile);
@@ -46,8 +49,16 @@ function App() {
         <Router>
           <Suspense fallback={<Loader />}>
             <Switch>
-              <PrivateRoute exact path={HOMEPAGE_PATH} component={Dashboard} />
-              <PrivateRoute exact path={DASHBOARD_PATH} component={Dashboard} />
+              <PrivateRoute
+                exact
+                path={HOMEPAGE_PATH}
+                component={DashboardData}
+              />
+              <PrivateRoute
+                exact
+                path={DASHBOARD_PATH}
+                component={DashboardData}
+              />
               <Route path={LOGIN_PATH} component={Login} />
               <PrivateRoute
                 path={ACTIVATE_ACCOUNT_PATH}
@@ -59,6 +70,7 @@ function App() {
               <Route path={LETS_TALK_PATH} component={LetsTalk} />
               <PrivateRoute path={WALLET_PATH} component={Wallet} />
               <PrivateRoute path={SMS_PATH} component={Bulk} />
+              <PrivateRoute path={CONTACTDATA_PATH} component={ContactData} />
             </Switch>
           </Suspense>
         </Router>
