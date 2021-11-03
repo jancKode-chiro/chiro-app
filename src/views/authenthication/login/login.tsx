@@ -45,7 +45,7 @@ const Login = (): JSX.Element => {
 
   useEffect(() => {
     if (!isEmpty(authState)) backToHome();
-  }, [authState]);
+  }, []);
 
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
     Auth.signIn(data.email, data.password)
