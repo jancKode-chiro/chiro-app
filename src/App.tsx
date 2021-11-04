@@ -17,12 +17,17 @@ import {
   SMS_PATH,
   WALLET_PATH,
   ACTIVATE_ACCOUNT_PATH,
+<<<<<<< HEAD
   CONTACTDATA_PATH,
   PASSWORDFORGOT_PATH,
+=======
+  MESSAGEDATA_PATH,
+>>>>>>> added message data
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
 
+<<<<<<< HEAD
 const CreateAccount = lazy(
   () => import('./views/authenthication/createaccount/createaccount')
 );
@@ -42,6 +47,14 @@ const ContactData = lazy(() => import('./views/contacts/contacts'));
 const PasswordForgot = lazy(
   () => import('./views/forgot-password/forgot-password')
 );
+=======
+import { AuthProvider } from './context/auth-context';
+
+import { Auth, Amplify } from 'aws-amplify';
+import awsmobile from './aws-exports';
+import ActivateCode from './views/activation-code-page/activation-code-page';
+import MessageData from './views/messagedata/messagedata';
+>>>>>>> added message data
 
 function App() {
   Amplify.configure(awsmobile);
@@ -53,6 +66,7 @@ function App() {
 
   return (
     <div className='App'>
+<<<<<<< HEAD
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <Router>
@@ -83,6 +97,30 @@ function App() {
           </Router>
         </AuthProvider>
       </QueryClientProvider>
+=======
+      <AuthProvider>
+        <Router>
+          <Switch>
+            <Route
+              exact
+              path={ACTIVATE_ACCOUNT_PATH}
+              component={ActivateCode}
+            />
+            <Route exact path={CARD_PATH} component={Card} />
+            <Route exact path={DASHBOARD_PATH} component={Dashboard} />
+            <Route exact path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
+            <Route exact path={ABOUT_PATH} component={AboutUsPage} />
+            <Route exact path={LETS_TALK_PATH} component={LetsTalk} />
+            <Route exact path={LOGIN_PATH} component={Login} />
+            <Route exact path={WALLET_PATH} component={Wallet} />
+            <Route exact path={SMS_PATH} component={Bulk} />
+            <Route exact path={LOGIN_PATH} component={Login} />
+            <Route exact path={HOMEPAGE_PATH} component={Login} />
+            <Route exact path={MESSAGEDATA_PATH} component={MessageData} />
+          </Switch>
+        </Router>
+      </AuthProvider>
+>>>>>>> added message data
     </div>
   );
 }
