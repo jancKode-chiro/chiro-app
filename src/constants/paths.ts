@@ -16,3 +16,4 @@ export const CONTACTDATA_PATH = '/contacts';
 export const PASSWORDFORGOT_PATH = '/forgot-password';
 export const SEND_SMS_PATH = '/send-sms';
 export const SLIDENAVIGATION_PATH = '/slidenavigation';
+export const PROFILEDATA_PATH = '/profiledata';

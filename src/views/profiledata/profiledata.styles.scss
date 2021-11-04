@@ -1,0 +1,120 @@
+@import "../../styles/variables.scss";
+
+.profiledata {
+  .profile-a {
+    display: flex;
+
+    margin-left: 59px;
+    font-size: 36px;
+    font-weight: normal;
+    font-style: normal;
+    font-family: $font-family-poppins;
+  }
+
+  .info-a {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 0px 150px;
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-family: $font-family-poppins;
+  }
+
+  .info-a1 {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 0px 150px;
+    color: #b0a6a6;
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-family: $font-family-poppins;
+  }
+
+  .info-b {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 0px 150px;
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-family: $font-family-poppins;
+  }
+
+  .info-b1 {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 0px 150px;
+    color: #b0a6a6;
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-family: $font-family-poppins;
+  }
+
+  .info-c {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 0px 150px;
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-family: $font-family-poppins;
+  }
+
+  .info-c1 {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 0px 150px;
+    color: #b0a6a6;
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-family: $font-family-poppins;
+  }
+
+  .info-d {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 0px 150px;
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-family: $font-family-poppins;
+  }
+
+  .info-d1 {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 0px 150px;
+    color: #b0a6a6;
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-family: $font-family-poppins;
+  }
+
+  .button-a {
+    justify-content: space-between;
+
+    min-height: 2.3125em;
+    border-radius: 0.5em;
+    width: 10.375em;
+    border: 1px solid $primary-green;
+    font-family: $font-family-poppins;
+    font-weight: normal;
+    font-size: 1em;
+    color: white;
+    background-color: #2dcc5a;
+    cursor: pointer;
+  }
+}
