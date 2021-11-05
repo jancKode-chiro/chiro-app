@@ -24,8 +24,8 @@ const inputStyle = css`
   width: ${width};
   border-radius: 8px;
   color: white;
-  background-color: #e5e5e5;
-  border: 1px solid #e5e5e5;
+  background-color: #ffffff;
+  border: 1px solid #2dcc5a;
   padding-left: 16px;
 
   font-size: 16px;
@@ -36,7 +36,7 @@ const inputStyle = css`
   }
 
   &:focus {
-    border: 1px solid #e5e5e5;
+    border: 1px solid #2dcc5a;
     outline: none;
   }
 `;
