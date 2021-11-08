@@ -41,22 +41,26 @@ const CreateAccount = () => {
     // history.push('/dashboard');
     setInputEmail(data.email);
     const name = `${data.firstName} ${data.lastName}`;
-    let result = await createUser(
-      name,
-      data.email,
-      data.phoneNumber,
-      'User',
-      data.password,
 
-      data.country,
-      data.countryCode
-    );
-    console.log('crate-account-result', result);
-    if (result)
-      await history.push({
-        pathname: ACTIVATE_ACCOUNT_PATH,
-        state: 'signUp',
-      });
+    try {
+      let result = await createUser(
+        name,
+        data.email,
+        data.phoneNumber,
+        'User',
+        data.password,
+        data.country,
+        data.countryCode
+      );
+      console.log('crate-account-result', result);
+      if (result)
+        await history.push({
+          pathname: ACTIVATE_ACCOUNT_PATH,
+          state: 'signUp',
+        });
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (
@@ -107,6 +111,7 @@ const CreateAccount = () => {
                     width='25vw'
                     type='text'
                     pattern='^[0-9]*$'
+                    // pattern='/^\+\d+$/'
                     {...register('phoneNumber', {
                       required: true,
                       minLength: 11,

@@ -25,13 +25,18 @@ const ForgotPassword = (): JSX.Element => {
     handleSubmit,
     // formState: { errors },
   } = useForm();
+  const { setInputEmail } = useAuth();
   const history = useHistory();
 
   const submitHandler: SubmitHandler<InputProps> = async (
     data
   ): Promise<void> => {
+    setInputEmail(data.email);
     await forgotUserPassword(data.email);
-    await history.push(ACTIVATE_ACCOUNT_PATH);
+    await history.push({
+      pathname: ACTIVATE_ACCOUNT_PATH,
+      state: 'forgotPassword',
+    });
     await alert('Please check your email for the verification code.');
   };
 

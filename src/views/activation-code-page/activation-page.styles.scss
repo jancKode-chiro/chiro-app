@@ -1,8 +1,17 @@
+@import "../../styles//variables.scss";
+
 .activation-page {
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 75vh;
+  // height: 75vh;
+
+  .label {
+    padding-top: 1.2rem;
+    font-size: 1.5625em;
+    font-weight: $font-weight-bold;
+    padding-bottom: 1rem;
+  }
 
   .form {
     display: flex;
@@ -10,6 +19,12 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 75vh;
+    // height: 75vh;
+    padding: 0 0 1.5rem 0;
+
+    .alert {
+      display: inline-block;
+      color: "red";
+    }
   }
 }

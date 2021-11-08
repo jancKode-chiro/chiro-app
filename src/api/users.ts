@@ -79,7 +79,7 @@ export const createUser = async (
           role: UserRole.USER,
         })
       );
-      if (result && systemError === undefined) {
+      if (result && systemError === '') {
         alert('Success, please check your email for the verification code');
         return dataResult;
       } else if (systemError) {
@@ -121,5 +121,20 @@ export const submitForgotPasswordCode = async (
     return result;
   } catch (err) {
     console.log('Error while processing your change password request', err);
+  }
+};
+
+export const confirmSignup = async (email: string, activationCode: string) => {
+  try {
+    Auth.confirmSignUp(email, activationCode)
+      .then(() => {
+        alert('Success! Redirecting you to the login page.');
+      })
+      .catch((err) => {
+        alert(err.message);
+        console.log('Error while trying to activate account', err);
+      });
+  } catch (err) {
+    console.log('Error while trying to activate account', err);
   }
 };
