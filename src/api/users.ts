@@ -7,7 +7,7 @@ import { isEmpty } from 'lodash';
 import { useAuth } from '../context/auth-context';
 import moment from 'moment';
 
-let systemError: string;
+let systemError: string = '';
 
 DataStore.configure({
   errorHandler: (error) => {
@@ -96,4 +96,30 @@ export const getUser = async (email: string) => {
   const user = await DataStore.query(User, (u) => u.email('eq', email));
   console.log('getuser', user);
   return user[0].id;
+};
+
+export const forgotUserPassword = async (username: string) => {
+  try {
+    const result = Auth.forgotPassword(username);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const submitForgotPasswordCode = async (
+  username: string,
+  code: string,
+  new_password: string
+) => {
+  try {
+    const result = await Auth.forgotPasswordSubmit(
+      username,
+      code,
+      new_password
+    );
+    return result;
+  } catch (err) {
+    console.log('Error while processing your change password request', err);
+  }
 };

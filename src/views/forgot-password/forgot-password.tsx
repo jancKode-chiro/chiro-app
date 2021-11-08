@@ -12,6 +12,8 @@ import {
 import CardWithImage from '../../components/common/wrapper/card-with-image';
 
 import './forgot-passsword.styles.scss';
+import { ACTIVATE_ACCOUNT_PATH } from '../../constants/paths';
+import { forgotUserPassword } from '../../api/users';
 
 type InputProps = {
   email: string;
@@ -25,8 +27,12 @@ const ForgotPassword = (): JSX.Element => {
   } = useForm();
   const history = useHistory();
 
-  const submitHandler: SubmitHandler<InputProps> = (data): void => {
-    history.push('/login');
+  const submitHandler: SubmitHandler<InputProps> = async (
+    data
+  ): Promise<void> => {
+    await forgotUserPassword(data.email);
+    await history.push(ACTIVATE_ACCOUNT_PATH);
+    await alert('Please check your email for the verification code.');
   };
 
   return (

@@ -51,8 +51,12 @@ const CreateAccount = () => {
       data.country,
       data.countryCode
     );
-
-    if (result) await history.push(ACTIVATE_ACCOUNT_PATH);
+    console.log('crate-account-result', result);
+    if (result)
+      await history.push({
+        pathname: ACTIVATE_ACCOUNT_PATH,
+        state: 'signUp',
+      });
   };
 
   return (
