@@ -2,9 +2,8 @@ import React, { ReactNode } from 'react';
 import CustomHeader from '../../components/header/header';
 import { withRouter } from 'react-router';
 import { StyledLink } from '../../components/link/link';
-import { SMS_PATH } from '../../constants/paths';
+import { CONTACTDATA_PATH, SMS_PATH } from '../../constants/paths';
 
-import graph from '../../assets/images/sms/graph.png';
 import home from '../../assets/images/icons/home.png';
 import contacts from '../../assets/images/icons/contacts.png';
 import chart from '../../assets/images/icons/chart.png';
@@ -24,7 +23,7 @@ const listNavOptions = [
     icon: contacts,
     label: 'Contacts',
     id: 2,
-    path: '/',
+    path: CONTACTDATA_PATH,
   },
   {
     icon: chart,
@@ -73,15 +72,8 @@ const Dashboard = ({ children }: DashboardProps) => {
             );
           })}
         </div>
-        <div className='dashboard-cards-wrapper'>
-          <DashBoardCard />
-        </div>
-        <div className='graph'>
-          <img src={graph} alt='graph-img' width='95%' height='100%' />
-        </div>
+        <div className='dashboard-content-wrapper'>{children}</div>
       </div>
-
-      {children}
     </div>
   );
 };

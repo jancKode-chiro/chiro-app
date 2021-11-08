@@ -1,16 +1,9 @@
-import React from 'react';
+import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
 import './App.css';
-
-import CreateAccount from './views/authenthication/createaccount/createaccount';
-import AboutUsPage from './views/about/about';
-import Login from './views/authenthication/login/login';
-import LetsTalk from './views/letstalk/letstalk';
-import Card from './views/card/card';
-import Dashboard from './views/dashboard/dashboard';
-import Bulk from './views/bulk/bulk';
-import Wallet from './views/wallet/wallet';
+import { AuthProvider } from './context/auth-context';
+import { Auth, Amplify } from 'aws-amplify';
+import awsmobile from './aws-exports';
 
 import {
   HOMEPAGE_PATH,
@@ -23,13 +16,26 @@ import {
   SMS_PATH,
   WALLET_PATH,
   ACTIVATE_ACCOUNT_PATH,
+  CONTACTDATA_PATH,
 } from './constants/paths';
+import PrivateRoute from './routes/private-route';
+import Loader from './components/loader/loader';
+import DashboardData from './views/dashboard/dashboard-data/dashboard-data';
 
-import { AuthProvider } from './context/auth-context';
-
-import { Auth, Amplify } from 'aws-amplify';
-import awsmobile from './aws-exports';
-import ActivateCode from './views/activation-code-page/activation-code-page';
+const CreateAccount = lazy(
+  () => import('./views/authenthication/createaccount/createaccount')
+);
+const ActivateCode = lazy(
+  () => import('./views/activation-code-page/activation-code-page')
+);
+const AboutUs = lazy(() => import('./views/about/about'));
+const Login = lazy(() => import('./views/authenthication/login/login'));
+const LetsTalk = lazy(() => import('./views/letstalk/letstalk'));
+const Card = lazy(() => import('./views/card/card'));
+const Dashboard = lazy(() => import('./views/dashboard/dashboard'));
+const Bulk = lazy(() => import('./views/bulk/bulk'));
+const Wallet = lazy(() => import('./views/wallet/wallet'));
+const ContactData = lazy(() => import('./views/contactdata/contactdata'));
 
 function App() {
   Amplify.configure(awsmobile);
@@ -41,23 +47,29 @@ function App() {
     <div className='App'>
       <AuthProvider>
         <Router>
-          <Switch>
-            <Route
-              exact
-              path={ACTIVATE_ACCOUNT_PATH}
-              component={ActivateCode}
-            />
-            <Route exact path={CARD_PATH} component={Card} />
-            <Route exact path={DASHBOARD_PATH} component={Dashboard} />
-            <Route exact path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
-            <Route exact path={ABOUT_PATH} component={AboutUsPage} />
-            <Route exact path={LETS_TALK_PATH} component={LetsTalk} />
-            <Route exact path={LOGIN_PATH} component={Login} />
-            <Route exact path={WALLET_PATH} component={Wallet} />
-            <Route exact path={SMS_PATH} component={Bulk} />
-            <Route exact path={LOGIN_PATH} component={Login} />
-            <Route exact path={HOMEPAGE_PATH} component={Login} />
-          </Switch>
+          <Suspense fallback={<Loader />}>
+            <Switch>
+              <PrivateRoute
+                exact
+                path={HOMEPAGE_PATH}
+                component={DashboardData}
+              />
+              <PrivateRoute
+                exact
+                path={DASHBOARD_PATH}
+                component={DashboardData}
+              />
+              <Route path={LOGIN_PATH} component={Login} />
+              <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
+              <PrivateRoute path={CARD_PATH} component={Card} />
+              <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
+              <Route path={ABOUT_PATH} component={AboutUs} />
+              <Route path={LETS_TALK_PATH} component={LetsTalk} />
+              <PrivateRoute path={WALLET_PATH} component={Wallet} />
+              <PrivateRoute path={SMS_PATH} component={Bulk} />
+              <PrivateRoute path={CONTACTDATA_PATH} component={ContactData} />
+            </Switch>
+          </Suspense>
         </Router>
       </AuthProvider>
     </div>

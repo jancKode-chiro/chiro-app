@@ -1,0 +1,53 @@
+@import "../../styles/variables.scss";
+
+.loader-component {
+  .overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: $white;
+    opacity: 0.5;
+    z-index: 1;
+    margin-left: 196px;
+  }
+
+  .loader {
+    font-size: 25px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+
+    &.loader-blue,
+    &.loader-blue i {
+      color: $primary-blue;
+    }
+
+    &.loader-white,
+    &.loader-white i {
+      color: $white;
+    }
+
+    .icon {
+      &.white {
+        &::before {
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .parentOnly {
+    position: relative;
+    left: unset;
+    top: unset;
+    transform: unset;
+    display: block;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+}

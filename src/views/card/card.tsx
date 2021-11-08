@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { withRouter } from 'react-router';
 
 import verticalSpacer from '../../components/common/spacer/vertical-spacer';
@@ -15,11 +15,6 @@ import {
 
 import { useHistory } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useAuth } from '../../context/auth-context';
-
-type CardProps = {
-  setAuth: () => Boolean;
-};
 
 type InputProps = {
   bankName: string;
@@ -28,16 +23,13 @@ type InputProps = {
 };
 
 const Card = () => {
-  const { isAuth, setIsAuth } = useAuth();
+  // const { isAuth, setIsAuth } = useAuth();
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
   let history = useHistory();
-  const [bankName, setBankName] = useState('');
-  const [name, setName] = useState('');
-  const [cardNumber, setCardNumber] = useState('');
 
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
     history.push('/dashboard');

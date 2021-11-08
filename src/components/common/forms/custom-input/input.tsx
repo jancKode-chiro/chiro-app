@@ -23,8 +23,9 @@ const inputStyle = css`
   height: 52px;
   width: ${width};
   border-radius: 8px;
-  background-color: #ffffff;
-  border: 1px solid #2dcc5a;
+  color: white;
+  background-color: #e5e5e5;
+  border: 1px solid #e5e5e5;
   padding-left: 16px;
 
   font-size: 16px;
@@ -35,7 +36,7 @@ const inputStyle = css`
   }
 
   &:focus {
-    border: 1px solid #2dcc5a;
+    border: 1px solid #e5e5e5;
     outline: none;
   }
 `;
@@ -45,11 +46,12 @@ export const Input = styled.input<InputProps>`
 `;
 
 export const InputButton = styled.input<InputProps>`
+  ${width}
   display: flex;
   justify-content: center;
   min-height: 53px;
   border-radius: 8px;
-  width: 240px;
+  /* width: 240px; */
   border: 1px solid ${UIColors.primaryGreen};
   font-weight: ${TypographyStyles.FontWeightBold};
   font-size: 18px;
@@ -128,4 +130,8 @@ Input.defaultProps = {
 
 PasswordInput.defaultProps = {
   width: '85%',
+};
+
+InputButton.defaultProps = {
+  width: '15rem',
 };
