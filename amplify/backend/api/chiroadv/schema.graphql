@@ -16,7 +16,7 @@ type Contacts @model @auth(rules: [{allow: public}]) @key(name: "byUser", fields
   id: ID!
   name: String
   group: String
-  phone_number: AWSPhone
+  phone_number: String
   date_added: AWSDateTime
   date_updated: AWSDateTime
   userID: ID
@@ -34,7 +34,7 @@ type User @model @auth(rules: [{allow: public}]) {
   name: String
   create_date: AWSDateTime
   email: AWSEmail
-  phone_number: AWSPhone
+  phone_number: String
   user_details: UserDetails
   contacts: [Contacts] @connection(keyName: "byUser", fields: ["id"])
   payments: [Payment] @connection(keyName: "byUser", fields: ["id"])

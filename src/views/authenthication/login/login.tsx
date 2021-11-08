@@ -16,6 +16,7 @@ import {
   LETS_TALK_PATH,
   DASHBOARD_PATH,
   LOGIN_PATH,
+  PASSWORDFORGOT_PATH,
 } from '../../../constants/paths';
 import {
   Input,
@@ -120,7 +121,7 @@ const Login = (): JSX.Element => {
               </StyledLink>
             </div>
             <div>
-              <StyledLink className='forgot' to={FORGOT_PASSWORD}>
+              <StyledLink className='forgot' to={PASSWORDFORGOT_PATH}>
                 Forgot Password
               </StyledLink>
             </div>

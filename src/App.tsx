@@ -17,6 +17,7 @@ import {
   WALLET_PATH,
   ACTIVATE_ACCOUNT_PATH,
   CONTACTDATA_PATH,
+  PASSWORDFORGOT_PATH,
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
@@ -36,6 +37,9 @@ const Dashboard = lazy(() => import('./views/dashboard/dashboard'));
 const Bulk = lazy(() => import('./views/bulk/bulk'));
 const Wallet = lazy(() => import('./views/wallet/wallet'));
 const ContactData = lazy(() => import('./views/contactdata/contactdata'));
+const PasswordForgot = lazy(
+  () => import('./views/forgot-password/forgot-password')
+);
 
 function App() {
   Amplify.configure(awsmobile);
@@ -68,6 +72,7 @@ function App() {
               <PrivateRoute path={WALLET_PATH} component={Wallet} />
               <PrivateRoute path={SMS_PATH} component={Bulk} />
               <PrivateRoute path={CONTACTDATA_PATH} component={ContactData} />
+              <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
             </Switch>
           </Suspense>
         </Router>
