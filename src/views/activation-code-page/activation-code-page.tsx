@@ -10,6 +10,7 @@ import {
 import CardWithImage from '../../components/common/wrapper/card-with-image';
 import { LOGIN_PATH } from '../../constants/paths';
 import './activation-page.styles.scss';
+import { useAuth } from '../../context/auth-context';
 
 type InputProps = {
   email: string;
@@ -23,6 +24,7 @@ const ActivateCode = () => {
     // formState: { errors },
   } = useForm();
   let history = useHistory();
+  const { email } = useAuth();
 
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
     Auth.confirmSignUp(data.email, data.activationCode)
@@ -36,13 +38,15 @@ const ActivateCode = () => {
       });
   };
   return (
-    <CardWithImage text='Activate account' subTitle='enter confimation code'>
+    <CardWithImage text='Activate account'>
       <div className='activation-page'>
         <form onSubmit={handleSubmit(submitHandler)} className='form'>
           <Input
             placeholder='Email'
             type='email'
             required
+            defaultValue={email}
+            readOnly
             marginBottom={'3.5rem'}
             {...register('email', { required: true })}
           />

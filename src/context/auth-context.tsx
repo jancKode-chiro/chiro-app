@@ -15,6 +15,10 @@ type UseAuth = {
   setAuthState: Dispatch<SetStateAction<AuthSession | undefined>>;
   isLoading: boolean;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
+  email: string;
+  setInputEmail: (email: string) => void;
+  currentUserId: string;
+  setCurrentUserId: (userId: string) => void;
 };
 
 const AuthContext = createContext({});
@@ -22,6 +26,8 @@ const AuthContext = createContext({});
 const AuthProvider = (props: any): ReactElement => {
   const [authState, setAuthState] = useState<AuthSession>();
   const [isLoading, setIsLoading] = useState(true);
+  const [email, setEmail] = useState<string>('');
+  const [currentUserId, setUserId] = useState<string>('');
 
   const checkAuthentication = async (setAuthState: Function): Promise<void> => {
     try {
@@ -31,6 +37,14 @@ const AuthProvider = (props: any): ReactElement => {
       console.log(error.message);
     }
     setIsLoading(false);
+  };
+
+  const setInputEmail = (email: string): void => {
+    setEmail(email!);
+  };
+
+  const setCurrentUserId = (userId: string): void => {
+    setUserId(userId);
   };
 
   useEffect(() => {
@@ -43,6 +57,10 @@ const AuthProvider = (props: any): ReactElement => {
     setAuthState,
     isLoading,
     setIsLoading,
+    email,
+    setInputEmail,
+    currentUserId,
+    setCurrentUserId,
   };
 
   return <AuthContext.Provider value={values} {...props} />;

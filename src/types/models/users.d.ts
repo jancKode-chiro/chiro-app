@@ -4,5 +4,9 @@ interface User {
   lastName: string;
   email: string;
   status: string;
-  gates: Gate[];
+  phoneNumber: string;
+  userDetails: {
+    [key: string]: string;
+  };
+  role: string;
 }
