@@ -38,7 +38,7 @@ const Bulk = lazy(() => import('./views/bulk/bulk'));
 const Wallet = lazy(() => import('./views/wallet/wallet'));
 const ContactData = lazy(() => import('./views/contactdata/contactdata'));
 const PasswordForgot = lazy(
-  () => import('./views/passwordforgot/passwordforgot')
+  () => import('./views/forgot-password/forgot-password')
 );
 
 function App() {
