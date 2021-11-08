@@ -60,10 +60,7 @@ function App() {
                 component={DashboardData}
               />
               <Route path={LOGIN_PATH} component={Login} />
-              <PrivateRoute
-                path={ACTIVATE_ACCOUNT_PATH}
-                component={ActivateCode}
-              />
+              <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
               <PrivateRoute path={CARD_PATH} component={Card} />
               <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
               <Route path={ABOUT_PATH} component={AboutUs} />

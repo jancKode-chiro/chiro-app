@@ -1,0 +1,6 @@
+{
+  "authSelections": "userPoolOnly",
+  "resourceName": "chiroadv",
+  "serviceType": "imported",
+  "region": "us-east-2"
+}

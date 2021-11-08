@@ -1,19 +1,24 @@
 {
-  "dev": {
+  "staging": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-chiroapp-dev-171359-authRole",
-      "UnauthRoleArn": "arn:aws:iam::605164681451:role/amplify-chiroapp-dev-171359-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::605164681451:role/amplify-chiroapp-dev-171359-authRole",
+      "AuthRoleName": "amplify-chiroadv-staging-80756-authRole",
+      "UnauthRoleArn": "arn:aws:iam::605164681451:role/amplify-chiroadv-staging-80756-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::605164681451:role/amplify-chiroadv-staging-80756-authRole",
       "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-chiroapp-dev-171359-deployment",
-      "UnauthRoleName": "amplify-chiroapp-dev-171359-unauthRole",
-      "StackName": "amplify-chiroapp-dev-171359",
-      "StackId": "arn:aws:cloudformation:us-east-2:605164681451:stack/amplify-chiroapp-dev-171359/677e12b0-3318-11ec-a3d1-0aea3ecf8b06",
-      "AmplifyAppId": "d3u2sr7ao9mi4s"
+      "DeploymentBucketName": "amplify-chiroadv-staging-80756-deployment",
+      "UnauthRoleName": "amplify-chiroadv-staging-80756-unauthRole",
+      "StackName": "amplify-chiroadv-staging-80756",
+      "StackId": "arn:aws:cloudformation:us-east-2:605164681451:stack/amplify-chiroadv-staging-80756/28db0f60-37c6-11ec-b2a6-0a5174c0eb58",
+      "AmplifyAppId": "dbo8f26li1stx"
     },
     "categories": {
       "auth": {
-        "chiroappcc8f7f9ccc8f7f9c": {}
+        "chiroadv": {
+          "userPoolId": "us-east-2_3WMttyXUq",
+          "userPoolName": "chiro-adv-users",
+          "webClientId": "4dv1rhbqqp8sm4rj0mjretg1k0",
+          "nativeClientId": "4dv1rhbqqp8sm4rj0mjretg1k0"
+        }
       }
     }
   }

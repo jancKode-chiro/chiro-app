@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Auth } from 'aws-amplify';
+import moment from 'moment';
 
 import CardWithImage from '../../../components/common/wrapper/card-with-image';
 import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
@@ -26,6 +27,7 @@ import { useAuth } from '../../../context/auth-context';
 import { getCurrentSession } from '../../../helpers/user-helpers';
 // import useNav from '../../../hooks/use-nav';
 import { isEmpty } from 'lodash';
+import { getUser } from '../../../api/users';
 type InputProps = {
   email: string;
   password: string;
@@ -39,7 +41,7 @@ const Login = (): JSX.Element => {
   } = useForm();
   const history = useHistory();
 
-  const { setAuthState, authState } = useAuth();
+  const { setAuthState, authState, setInputEmail } = useAuth();
   // const { goTo } = useNav();
   const backToHome = (): void => history.push(LOGIN_PATH);
 
@@ -47,10 +49,16 @@ const Login = (): JSX.Element => {
   //   if (isEmpty(authState)) backToHome();
   // }, []);
 
-  const submitHandler: SubmitHandler<InputProps> = (data): void => {
+  const submitHandler: SubmitHandler<InputProps> = async (
+    data
+  ): Promise<void> => {
+    console.log('Login');
+    setInputEmail(data.email);
+    await getUser(data.email);
     Auth.signIn(data.email, data.password)
       .then(async () => {
         const session = await getCurrentSession();
+
         await setAuthState(session);
         // goTo(DASHBOARD_PATH);
         history.push(DASHBOARD_PATH);
