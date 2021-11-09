@@ -22,6 +22,7 @@ import {
   SEND_SMS_PATH,
   SLIDENAVIGATION_PATH,
   PROFILEDATA_PATH,
+  USERS_PATH,
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
@@ -45,9 +46,8 @@ const ContactData = lazy(() => import('./views/contacts/contacts'));
 const PasswordForgot = lazy(
   () => import('./views/forgot-password/forgot-password')
 );
-const SendSMS = lazy(() => import('./views/sms-page/sms-page'));
-const SlideNavigation = lazy(
-  () => import('./views/slidenavigation/slidenavigation')
+const Users = lazy(
+  () => import('./views/users/users')
 );
 const ProfileData = lazy(() => import('./views/profile-info/profile-info'));
 
@@ -88,6 +88,7 @@ function App() {
                 <PrivateRoute path={CONTACTS_PATH} component={ContactData} />
                 <PrivateRoute path={PROFILEDATA_PATH} component={ProfileData} />
                 <PrivateRoute path={SLIDENAVIGATION_PATH} component={SlideNavigation} />
+                <PrivateRoute path={USERS_PATH} component={Users} />
                 <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
               </Switch>
             </Suspense>

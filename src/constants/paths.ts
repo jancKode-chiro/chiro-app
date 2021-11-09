@@ -18,3 +18,4 @@ export const SEND_SMS_PATH = '/send-sms';
 export const SLIDENAVIGATION_PATH = '/slidenavigation';
 export const PROFILEDATA_PATH = '/profiledata';
 export const SELECTFUNCTION_PATH = '/selectfunction';
+export const USERS_PATH = '/users';
