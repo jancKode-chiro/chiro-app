@@ -44,7 +44,8 @@ const CreateAccount = () => {
 
     try {
       let result = await createUser(
-        name,
+        data.firstName,
+        data.lastName,
         data.email,
         data.phoneNumber,
         'User',

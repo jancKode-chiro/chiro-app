@@ -1,0 +1,55 @@
+@import "../../styles/variables.scss";
+
+.contacts {
+  .contacts-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1.1rem;
+
+    .title {
+      font-size: 2.5em;
+      font-family: $font-family-poppins;
+      font-weight: $font-weight-bold;
+    }
+  }
+  .searchbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.2rem 12rem 1.2rem 12rem;
+  }
+
+  .addcontact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 13px 11px 10px 6px;
+    position: absolute;
+    margin-bottom: 1.125em;
+    top: 20%;
+    right: 10%;
+    min-height: 3.3125em;
+    border-radius: 0.5em;
+    width: 8.375em;
+    border: 1px solid $primary-green;
+    font-family: $font-family-poppins;
+    font-weight: normal;
+    font-size: 1em;
+    color: white;
+    background-color: #2dcc5a;
+    cursor: pointer;
+  }
+}
+
+// .addbar {
+//   min-height: 3.3125em;
+//   border-radius: 8px;
+//   width: 15em;
+//   border: 1px solid $primary-green;
+//   font-family: $font-family-poppins;
+//   font-weight: $font-weight-bold;
+//   font-size: 1.125em;
+//   color: $primary-green;
+//   background-color: transparent;
+//   cursor: pointer;
+// }

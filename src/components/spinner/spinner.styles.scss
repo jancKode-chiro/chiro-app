@@ -1,0 +1,19 @@
+@import "../../styles/colors.scss";
+
+.spinner-component {
+  &-black .icon::before {
+    color: black;
+  }
+
+  &-blue .icon::before {
+    color: $primary-blue;
+  }
+
+  &-green .icon::before {
+    color: $primary-green;
+  }
+
+  &-white .icon::before {
+    color: white;
+  }
+}

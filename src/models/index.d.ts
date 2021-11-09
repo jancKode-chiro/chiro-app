@@ -39,7 +39,8 @@ export declare class Payment {
 
 export declare class Contacts {
   readonly id: string;
-  readonly name?: string;
+  readonly first_name?: string;
+  readonly last_name?: string;
   readonly group?: string;
   readonly phone_number?: string;
   readonly date_added?: string;
@@ -54,7 +55,8 @@ export declare class Contacts {
 
 export declare class User {
   readonly id: string;
-  readonly name?: string;
+  readonly first_name?: string;
+  readonly last_name?: string;
   readonly create_date?: string;
   readonly email?: string;
   readonly phone_number?: string;
