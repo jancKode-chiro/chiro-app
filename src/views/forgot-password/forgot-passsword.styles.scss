@@ -1,0 +1,26 @@
+@import "../../styles/variables.scss";
+
+.forgot-password {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .header-text {
+    padding-top: 7.75em;
+    font-size: 1.5625em;
+    font-weight: $font-weight-bold;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 5rem;
+
+    .button {
+      padding: 6.25rem 0 8.31rem 0;
+    }
+  }
+}

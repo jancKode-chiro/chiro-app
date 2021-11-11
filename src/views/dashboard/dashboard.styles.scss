@@ -32,18 +32,7 @@
     }
   }
 
-  .dashboard-cards-wrapper {
+  .dashboard-content-wrapper {
     padding: 1.875em;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    align-content: center;
-
-    .card {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
   }
 }

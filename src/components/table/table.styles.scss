@@ -1,0 +1,144 @@
+@import "../../styles/variables.scss";
+
+.table-container {
+  .filter-summary {
+    margin-bottom: 8px;
+    text-align: right;
+    font-size: 13px;
+    font-weight: bold;
+  }
+}
+
+.table {
+  .table-overlay {
+    position: absolute;
+    z-index: 100;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+
+    i {
+      margin-bottom: 5px;
+    }
+  }
+
+  .hideAllColumns {
+    display: none;
+  }
+  table {
+    width: 100%;
+    border-spacing: 0;
+    border: 1px solid $border-color;
+    border-bottom: none;
+  }
+  table tr:last-child td {
+    border-bottom: 1px solid $border-color;
+  }
+  table th {
+    background: $primary-blue;
+    margin: 0;
+    padding: 15px 0.5rem;
+    border-bottom: 1px solid $primary-blue;
+    border-right: 1px solid $primary-blue;
+    position: relative;
+    color: $white;
+    font-weight: bold;
+    text-align: left;
+    font-size: 12px;
+    min-width: 40px;
+  }
+  table td {
+    margin: 0;
+    padding: 0.5rem;
+    border-bottom: 1px solid $border-color;
+    border-right: 1px solid $border-color;
+    position: static;
+    font-size: 14px;
+    color: $charcoal;
+  }
+  table th:last-child,
+  table td:last-child {
+    border-right: 0;
+  }
+
+  table th::before {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translate(0, -50%);
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+  }
+  table th.sort-asc::before {
+    border-bottom: 5px solid $white;
+  }
+  table th.sort-desc::before {
+    border-top: 5px solid $white;
+  }
+
+  .no-data {
+    border: solid 1px $border-color;
+    padding: 15px;
+    color: $charcoal;
+    font-size: 12px;
+    margin-top: -1px;
+    text-align: center;
+  }
+
+  .loading-infinite,
+  .last-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px 20px;
+    font-size: 12px;
+
+    i {
+      margin-bottom: 5px;
+    }
+  }
+
+  .table-actions {
+    button {
+      font-size: 12px;
+      color: $primary-blue;
+      cursor: pointer;
+      text-decoration: underline;
+      min-height: unset;
+      border: none;
+      width: auto;
+      font-weight: 500;
+      font-family: $font-poppins;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .right-align {
+    display: block;
+    text-align: right;
+  }
+}
+
+.filter-container {
+  display: inline;
+  .filter-input {
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 2px;
+    border: none;
+    width: 5rem;
+  }
+}

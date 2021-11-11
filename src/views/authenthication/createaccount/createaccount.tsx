@@ -13,6 +13,8 @@ import {
 import { ContainerWithImage } from '../../../components/common/wrapper/wrapper-with-image/wrapper-with-bg-image';
 import './createaccount.styles.scss';
 import { ACTIVATE_ACCOUNT_PATH } from '../../../constants/paths';
+import { createUser } from '../../../api/users';
+import { useAuth } from '../../../context/auth-context';
 
 type InputProps = {
   firstName: string;
@@ -24,50 +26,42 @@ type InputProps = {
   countryCode: string;
 };
 
-const CreateAccount = ({ setAuth }: any) => {
+const CreateAccount = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
   let history = useHistory();
+  const { setInputEmail } = useAuth();
 
-  const submitHandler: SubmitHandler<InputProps> = (data): void => {
+  const submitHandler: SubmitHandler<InputProps> = async (
+    data
+  ): Promise<void> => {
     // history.push('/dashboard');
+    setInputEmail(data.email);
+    const name = `${data.firstName} ${data.lastName}`;
 
-    console.log(data);
-    Auth.signUp({
-      username: data.email,
-      password: data.password,
-      attributes: {
-        email: data.email,
-        name: `${data.firstName} ${data.lastName}`,
-        phone_number: data.phoneNumber,
-      },
-    })
-      .then(() => {
-        alert('Success, please check your email for the confirmation code');
-        history.push(ACTIVATE_ACCOUNT_PATH);
-        // notification.success({
-        //   message: 'Succesfully signed up user!',
-        //   description:
-        //     'Account created successfully, Redirecting you in a few!',
-        //   placement: 'topRight',
-        //   duration: 1.5,
-        //   onClose: () => {
-        //     console.log('Success');
-        //   },
-        // });
-      })
-      .catch((err) => {
-        alert(err.message);
-        // notification.error({
-        //   message: 'Error',
-        //   description: 'Error signing up user',
-        //   placement: 'topRight',
-        //   duration: 1.5,
-        // });
-      });
+    try {
+      let result = await createUser(
+        data.firstName,
+        data.lastName,
+        data.email,
+        data.phoneNumber,
+        'User',
+        data.password,
+        data.country,
+        data.countryCode
+      );
+      console.log('crate-account-result', result);
+      if (result)
+        await history.push({
+          pathname: ACTIVATE_ACCOUNT_PATH,
+          state: 'signUp',
+        });
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (
@@ -116,8 +110,13 @@ const CreateAccount = ({ setAuth }: any) => {
                   <Input
                     placeholder='Phone Number'
                     width='25vw'
+                    type='text'
+                    pattern='^[0-9]*$'
+                    // pattern='/^\+\d+$/'
                     {...register('phoneNumber', {
                       required: true,
+                      minLength: 11,
+                      min: 0,
                     })}
                     required
                   />

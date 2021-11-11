@@ -6,12 +6,14 @@ import {
   typography,
   TypographyProps,
   width,
+  size,
 } from 'styled-system';
 
 import { TypographyStyles, UIColors } from '../../../../types/styles';
 type InputProps = SpaceProps &
   TypographyProps & {
     error?: boolean;
+    borderColor?: string;
   };
 
 type StyledPasswordProps = PasswordProps & SpaceProps;
@@ -23,9 +25,11 @@ const inputStyle = css`
   height: 52px;
   width: ${width};
   border-radius: 8px;
+  color: white;
   background-color: #ffffff;
-  border: 1px solid #2dcc5a;
-  padding-left: 16px;
+  border: 1px solid
+    ${(props: any) => (props.borderColor ? props.borderColor : '#2dcc5a')};
+  padding-left: 1rem;
 
   font-size: 16px;
   color: #aca6a6;
@@ -35,7 +39,8 @@ const inputStyle = css`
   }
 
   &:focus {
-    border: 1px solid #2dcc5a;
+    border: 1px solid
+      ${(props: any) => (props.borderColor ? props.borderColor : '#2dcc5a')};
     outline: none;
   }
 `;
@@ -45,11 +50,12 @@ export const Input = styled.input<InputProps>`
 `;
 
 export const InputButton = styled.input<InputProps>`
+  ${width}
   display: flex;
   justify-content: center;
   min-height: 53px;
   border-radius: 8px;
-  width: 240px;
+  /* width: 240px; */
   border: 1px solid ${UIColors.primaryGreen};
   font-weight: ${TypographyStyles.FontWeightBold};
   font-size: 18px;
@@ -122,10 +128,23 @@ export const PasswordInput = styled.input<StyledPasswordProps>`
   ${inputStyle}
 `;
 
+export const TextArea = styled.textarea<InputProps>`
+  ${inputStyle}
+  resize: none;
+  width: 85%;
+  padding-top: 1rem;
+  height: 15rem;
+  margin-left: 1rem;
+`;
+
 Input.defaultProps = {
   width: '85%',
 };
 
 PasswordInput.defaultProps = {
   width: '85%',
+};
+
+InputButton.defaultProps = {
+  width: '15rem',
 };

@@ -1,0 +1,45 @@
+enum UserRole {
+  ADMIN
+  USER
+}
+
+type Payment @model @auth(rules: [{allow: public}]) @key(name: "byUser", fields: ["userID"]) {
+  id: ID!
+  amount: Int
+  payment_type: String
+  payment_date: AWSDateTime
+  balance: Int
+  userID: ID
+}
+
+type Contacts @model @auth(rules: [{allow: public}]) @key(name: "byUser", fields: ["userID"]) {
+  first_name: String
+  last_name: String
+  group: String
+  phone_number: String
+  date_added: AWSDateTime
+  date_updated: AWSDateTime
+  userID: ID
+  email: AWSEmail
+  id: ID!
+}
+
+type UserDetails {
+  address: String
+  country: String
+  country_code: String
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  first_name: String
+  last_name: String
+  create_date: AWSDateTime
+  email: AWSEmail
+  phone_number: String
+  user_details: UserDetails
+  contacts: [Contacts] @connection(keyName: "byUser", fields: ["id"])
+  payments: [Payment] @connection(keyName: "byUser", fields: ["id"])
+  role: UserRole
+  id: ID!
+}
+ 

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Auth } from 'aws-amplify';
+import moment from 'moment';
 
 import CardWithImage from '../../../components/common/wrapper/card-with-image';
 import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
@@ -10,10 +11,11 @@ import './login.style.scss';
 
 import {
   CREATE_ACCOUNT_PATH,
-  FORGOT_PASSWORD,
   ABOUT_PATH,
   LETS_TALK_PATH,
   DASHBOARD_PATH,
+  LOGIN_PATH,
+  PASSWORDFORGOT_PATH,
 } from '../../../constants/paths';
 import {
   Input,
@@ -21,6 +23,11 @@ import {
   PasswordInput,
 } from '../../../components/common/forms/custom-input/input';
 import { StyledLink } from '../../../components/link/link';
+import { useAuth } from '../../../context/auth-context';
+import { getCurrentSession } from '../../../helpers/user-helpers';
+// import useNav from '../../../hooks/use-nav';
+import { isEmpty } from 'lodash';
+import { getUser } from '../../../api/users';
 type InputProps = {
   email: string;
   password: string;
@@ -32,19 +39,31 @@ const Login = (): JSX.Element => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  let history = useHistory();
+  const history = useHistory();
 
-  const submitHandler: SubmitHandler<InputProps> = (data): void => {
+  const { email, setAuthState, authState, setInputEmail, setCurrentUserId } =
+    useAuth();
+  // const { goTo } = useNav();
+  const backToHome = (): void => history.push(LOGIN_PATH);
+
+  const submitHandler: SubmitHandler<InputProps> = async (
+    data
+  ): Promise<void> => {
+    setInputEmail(data.email);
+    setCurrentUserId(await getUser(data.email));
     Auth.signIn(data.email, data.password)
-      .then(() => {
+      .then(async () => {
+        const session = await getCurrentSession();
+
+        await setAuthState(session);
+        // goTo(DASHBOARD_PATH);
         history.push(DASHBOARD_PATH);
       })
       .catch((err) => {
-        alert(err.message);
+        console.log(err.message);
       });
 
     // setIsAuth(true);
-    console.log(data);
   };
 
   return (
@@ -64,6 +83,7 @@ const Login = (): JSX.Element => {
             placeholder='Email'
             type='email'
             required
+            defaultValue='gynnanne@gmail.com'
             {...register('email', { required: true })}
           />
 
@@ -71,6 +91,7 @@ const Login = (): JSX.Element => {
             marginTop='27px'
             type='password'
             placeholder='Password (minimum of 8, alphanumeric and symbols)'
+            defaultValue='Chir_1234.'
             {...register('password', { required: true, minLength: 8 })}
             required
           />
@@ -95,7 +116,7 @@ const Login = (): JSX.Element => {
               </StyledLink>
             </div>
             <div>
-              <StyledLink className='forgot' to={FORGOT_PASSWORD}>
+              <StyledLink className='forgot' to={PASSWORDFORGOT_PATH}>
                 Forgot Password
               </StyledLink>
             </div>
