@@ -1,37 +1,24 @@
 @import "../../styles//variables.scss";
-.message-data {
+.sms-page {
   .smsform {
-    margin-top: 3.375em;
-
     font-family: $font-family-poppins;
     font-style: normal;
     font-weight: normal;
     font-size: 1.5em;
+    padding: 3.8rem 0 3.8rem 0;
+    display: fleex;
   }
 
-  .smstext {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-family: $font-family-poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1.5em;
-  }
-
-  .recepients {
+  .sms-detail-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-family: $font-family-poppins;
-    font-style: normal;
-    font-weight: normal;
     font-size: 1.3em;
+    padding-bottom: 3.8rem;
   }
 
-  .smssend {
+  .sms-inputs {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -40,18 +27,17 @@
     font-style: normal;
     font-weight: normal;
     font-size: 1.5em;
+
+    .sms-elements {
+      width: 85%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 
-  .form-a {
-    padding-right: 2.75em;
-  }
-
-  .text-a {
-    padding-right: 3.563em;
-  }
-
-  .recepients {
-    padding-right: 2.313em;
+  .text {
+    padding-right: 3.563rem;
   }
 
   .button-a {
