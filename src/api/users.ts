@@ -7,7 +7,7 @@ import { isEmpty } from 'lodash';
 import { useAuth } from '../context/auth-context';
 import moment from 'moment';
 
-let systemError: string;
+let systemError: string = '';
 
 DataStore.configure({
   errorHandler: (error) => {
@@ -51,7 +51,8 @@ const authSignup = async (
 };
 
 export const createUser = async (
-  name: string,
+  firstName: string,
+  lastName: string,
   email: string,
   phoneNumber: string,
   // userDetails: { [key: string]: string },
@@ -61,13 +62,14 @@ export const createUser = async (
   countryCode: string
 ): Promise<User | void> => {
   let currentDate = moment().format('YYYY-MM-DDThh:mm:ss.sssZ');
-
+  const fullName = `${firstName} ${lastName}`;
   try {
-    const result = await authSignup(name, email, password, phoneNumber);
+    const result = await authSignup(fullName, email, password, phoneNumber);
     if (result) {
       const dataResult = await DataStore.save(
         new User({
-          name: name,
+          first_name: firstName,
+          last_name: lastName,
           email: email,
           phone_number: `+${phoneNumber}`,
           create_date: currentDate,
@@ -79,7 +81,7 @@ export const createUser = async (
           role: UserRole.USER,
         })
       );
-      if (result && systemError === undefined) {
+      if (result && systemError === '') {
         alert('Success, please check your email for the verification code');
         return dataResult;
       } else if (systemError) {
@@ -96,4 +98,45 @@ export const getUser = async (email: string) => {
   const user = await DataStore.query(User, (u) => u.email('eq', email));
   console.log('getuser', user);
   return user[0].id;
+};
+
+export const forgotUserPassword = async (username: string) => {
+  try {
+    const result = Auth.forgotPassword(username);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const submitForgotPasswordCode = async (
+  username: string,
+  code: string,
+  new_password: string
+) => {
+  try {
+    const result = await Auth.forgotPasswordSubmit(
+      username,
+      code,
+      new_password
+    );
+    return result;
+  } catch (err) {
+    console.log('Error while processing your change password request', err);
+  }
+};
+
+export const confirmSignup = async (email: string, activationCode: string) => {
+  try {
+    Auth.confirmSignUp(email, activationCode)
+      .then(() => {
+        alert('Success! Redirecting you to the login page.');
+      })
+      .catch((err) => {
+        alert(err.message);
+        console.log('Error while trying to activate account', err);
+      });
+  } catch (err) {
+    console.log('Error while trying to activate account', err);
+  }
 };
