@@ -1,0 +1,29 @@
+@import "../../styles/variables.scss";
+
+.text-wrap {
+  display: flex;
+  margin-bottom: 1.375em;
+  margin-top: 4.313em;
+  margin-left: 7.643em;
+
+  font-family: $font-family-poppins;
+  font-size: 1.563em;
+  font-weight: 600;
+}
+
+.text-wrapping {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+
+  margin-bottom: 2.313em;
+}
+
+.add-contact-button {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-right: 11.313em;
+  margin-top: 9.688em;
+}
