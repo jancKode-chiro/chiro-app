@@ -11,7 +11,6 @@ import './login.style.scss';
 
 import {
   CREATE_ACCOUNT_PATH,
-  FORGOT_PASSWORD,
   ABOUT_PATH,
   LETS_TALK_PATH,
   DASHBOARD_PATH,
@@ -42,20 +41,16 @@ const Login = (): JSX.Element => {
   } = useForm();
   const history = useHistory();
 
-  const { setAuthState, authState, setInputEmail } = useAuth();
+  const { email, setAuthState, authState, setInputEmail, setCurrentUserId } =
+    useAuth();
   // const { goTo } = useNav();
   const backToHome = (): void => history.push(LOGIN_PATH);
-
-  // useEffect(() => {
-  //   if (isEmpty(authState)) backToHome();
-  // }, []);
 
   const submitHandler: SubmitHandler<InputProps> = async (
     data
   ): Promise<void> => {
-    console.log('Login');
     setInputEmail(data.email);
-    await getUser(data.email);
+    setCurrentUserId(await getUser(data.email));
     Auth.signIn(data.email, data.password)
       .then(async () => {
         const session = await getCurrentSession();

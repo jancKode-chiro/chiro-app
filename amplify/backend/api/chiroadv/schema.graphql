@@ -13,14 +13,15 @@ type Payment @model @auth(rules: [{allow: public}]) @key(name: "byUser", fields:
 }
 
 type Contacts @model @auth(rules: [{allow: public}]) @key(name: "byUser", fields: ["userID"]) {
-  id: ID!
-  name: String
+  first_name: String
+  last_name: String
   group: String
   phone_number: String
   date_added: AWSDateTime
   date_updated: AWSDateTime
   userID: ID
   email: AWSEmail
+  id: ID!
 }
 
 type UserDetails {
@@ -30,8 +31,8 @@ type UserDetails {
 }
 
 type User @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  name: String
+  first_name: String
+  last_name: String
   create_date: AWSDateTime
   email: AWSEmail
   phone_number: String
@@ -39,5 +40,6 @@ type User @model @auth(rules: [{allow: public}]) {
   contacts: [Contacts] @connection(keyName: "byUser", fields: ["id"])
   payments: [Payment] @connection(keyName: "byUser", fields: ["id"])
   role: UserRole
+  id: ID!
 }
  

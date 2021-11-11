@@ -45,11 +45,13 @@ const AuthProvider = (props: any): ReactElement => {
 
   const setCurrentUserId = (userId: string): void => {
     setUserId(userId);
+    localStorage.setItem('userId', userId);
   };
 
   useEffect(() => {
     const auth = checkAuthentication;
     auth(setAuthState);
+    setCurrentUserId(localStorage.getItem('userId')!);
   }, []);
 
   const values: UseAuth = {
