@@ -8,6 +8,8 @@ import {
   SMS_PATH,
 } from '../../constants/paths';
 
+import SlideNavigation from '../slidenavigation/slidenavigation';
+
 import home from '../../assets/images/icons/home.png';
 import contacts from '../../assets/images/icons/contacts.png';
 import chart from '../../assets/images/icons/chart.png';
@@ -59,6 +61,7 @@ const Dashboard = ({ children }: DashboardProps) => {
       <CustomHeader title='Logo here' />
       <div className='dashboard'>
         <div className='navbar'>
+          <SlideNavigation />
           {listNavOptions.map((nav) => {
             return (
               <div key={nav.id}>

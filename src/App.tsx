@@ -20,6 +20,7 @@ import {
   CONTACTDATA_PATH,
   PASSWORDFORGOT_PATH,
   SEND_SMS_PATH,
+  SLIDENAVIGATION_PATH,
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
@@ -44,6 +45,9 @@ const PasswordForgot = lazy(
   () => import('./views/forgot-password/forgot-password')
 );
 const SendSMS = lazy(() => import('./views/sms-page/sms-page'));
+const SlideNavigation = lazy(
+  () => import('./views/slidenavigation/slidenavigation')
+);
 
 function App() {
   Amplify.configure(awsmobile);
@@ -82,6 +86,7 @@ function App() {
                 <PrivateRoute path={CONTACTDATA_PATH} component={ContactData} />
                 <PrivateRoute path={CONTACTDATA_PATH} component={ContactData} />
                 <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
+                <Route path={SLIDENAVIGATION_PATH} component={SlideNavigation} />
               </Switch>
             </Suspense>
           </Router>
