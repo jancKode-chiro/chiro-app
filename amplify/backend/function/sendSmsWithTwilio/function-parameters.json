@@ -1,0 +1,23 @@
+{
+  "lambdaLayers": [
+    {
+      "type": "ExternalLayer",
+      "arn": "arn:aws:lambda:us-east-2:605164681451:layer:twilioNodeLibrary:1"
+    }
+  ],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "twilioAccountSid",
+      "environmentVariableName": "TWILIO_ACCOUNT_SID"
+    },
+    {
+      "cloudFormationParameterName": "twilioAuthToken",
+      "environmentVariableName": "TWILIO_AUTH_TOKEN"
+    },
+    {
+      "cloudFormationParameterName": "twilioPhoneNumber",
+      "environmentVariableName": "TWILIO_PHONE_NUMBER"
+    }
+  ],
+  "permissions": {}
+}

@@ -1,0 +1,26 @@
+{
+  "authSelections": "identityPoolAndUserPool",
+  "resourceName": "chiroadv635cfe3c",
+  "serviceType": "imported",
+  "region": "us-east-2",
+  "usernameAttributes": [
+    "email"
+  ],
+  "requiredAttributes": [
+    "name",
+    "email",
+    "phone_number"
+  ],
+  "passwordPolicyMinLength": 8,
+  "passwordPolicyCharacters": [
+    "Requires Lowercase",
+    "Requires Uppercase",
+    "Requires Numbers",
+    "Requires Symbols"
+  ],
+  "mfaConfiguration": "OFF",
+  "autoVerifiedAttributes": [
+    "email"
+  ],
+  "mfaTypes": []
+}
