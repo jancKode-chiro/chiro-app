@@ -62,7 +62,7 @@ const Dashboard = ({ children }: DashboardProps) => {
       <CustomHeader title='Logo here' />
       <div className='dashboard'>
         <div className='navbar'>
-          <SlideNavigation />
+
           {/* <SlideNavigationProfile /> */}
           {listNavOptions.map((nav) => {
             return (

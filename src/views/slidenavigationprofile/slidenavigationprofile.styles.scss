@@ -2,7 +2,9 @@
 
 .slideprofile {
   .top-button {
-    margin-left: 19vh;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 1rem;
   }
 
   .menu-bar {
@@ -19,12 +21,12 @@
     justify-content: center;
     position: fixed;
     top: 0;
-    left: -100%;
+    right: -100%;
     transition: 850ms;
   }
 
   .nav-menu.active {
-    left: 84%;
+    right: 0;
     transition: 100ms;
   }
 

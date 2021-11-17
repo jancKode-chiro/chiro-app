@@ -7,6 +7,7 @@ import SlideNavigationProfile from '../../views/slidenavigationprofile/slidenavi
 import user from '../../assets/images/icons/user.png';
 
 import './header.styles.scss';
+import SlideNavigation from '../../views/slidenavigation/slidenavigation';
 
 type HeaderProps = {
   title: string;
@@ -24,6 +25,7 @@ const CustomHeader: FC<HeaderProps> = ({ title }) => {
 
   return (
     <header className='header'>
+      <SlideNavigation />
       <h1 className='page-title'>{title}</h1>
       <SlideNavigationProfile />
     </header>
