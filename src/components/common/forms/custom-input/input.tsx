@@ -62,7 +62,7 @@ export const InputButton = styled.input<InputProps>`
   color: ${UIColors.primaryGreen};
   background-color: transparent;
   cursor: pointer;
-  text-align: 'center';
+  text-align: center;
   &.button:disabled {
     opacity: 0.3;
   }
@@ -121,6 +121,10 @@ export const InputButton = styled.input<InputProps>`
   &.btn-icon {
     border-radius: 100%;
     width: auto;
+  }
+
+  &.bg-gray {
+    background-color: gray;
   }
 `;
 

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState, useEffect, useMemo } from 'react';
 import { withRouter } from 'react-router';
 
 import Button from '../../components/common/button/button';
@@ -6,27 +6,100 @@ import './sms-page.styles.scss';
 import Dashboard from '../dashboard/dashboard';
 import {
   Input,
+  InputButton,
   TextArea,
 } from '../../components/common/forms/custom-input/input';
 
+import { sendSMS } from '../../api/sms-service';
+import { useForm } from 'react-hook-form';
+import CustomButton from '../../components/common/button/button';
+import { CustomDiv } from '../../components/common/wrapper/custom-wrapper/custom-wrapper';
+
+type InputProps = {
+  recipients: string[];
+  message: string;
+};
+
 const SmsPage = () => {
+  const [recipients, setRecipients] = useState<string[]>([]);
+  const [currentRecipient, setCurrentRecipient] = useState('');
+  const { register, handleSubmit, reset, setValue } = useForm();
+
+
+  const onClickHander = (): void => {
+    setRecipients((prevState: string[]) => [...prevState, currentRecipient]);
+    console.log('receipients before set value', recipients)
+
+
+  };
+
+  const sumbitHanlder = async (data: InputProps) => {
+    const combineRecipients = recipients.join(',');
+
+    const result = await sendSMS(
+      '/send-messages',
+      combineRecipients,
+      data.message
+    );
+    console.log('result in handle Request', result);
+    if (result) {
+      setRecipients([]);
+      setCurrentRecipient('');
+    }
+  };
+
+  useEffect(() => {
+
+  }, [recipients]);
   return (
     <Dashboard>
       <div className='sms-page'>
-        <form>
+        <form onSubmit={handleSubmit(sumbitHanlder)}>
           <div className='sms-detail-wrapper'>
             <span className='text'>Select Group:</span>
-            <Input borderColor='#000000' />
+            <Input borderColor='#000000' {...register('group')} />
           </div>
+          {console.log('recipients', recipients.join(','))}
+          <CustomDiv
+            justifyContent={recipients.length > 0 ? 'center' : ''}
+            display={recipients.length > 0 ? 'flex' : ''}
+            paddingLeft={recipients.length > 0 ? 0 : '6rem'}
+            alignItems='center'
+            paddingBottom='2rem'
+          >
 
-          <div className='sms-detail-wrapper'>
-            <span className='text'>Recepients:</span>
-            <Input borderColor='#000000' />
-          </div>
+            <CustomDiv
+              display='flex'
+              paddingRight={recipients.length > 0 ? '12.5rem' : '13rem'}
+            >
+              <span className='text'>Add Recipient/s:</span>
+              <Input
+                type='input'
+                borderColor='#000000'
+                width='12rem'
+                marginRight='4rem'
+                required
+                marginLeft='.2rem'
+                {...register('recipients', {
+                  onChange: (e) => setCurrentRecipient(e.target.value),
+
+                })}
+              />
+              <InputButton disabled={!currentRecipient} type='button' value='ADD CONTACT' onClick={() => onClickHander()} className={`bg-green text-white ${currentRecipient.length < 1 ? 'bg-gray' : ''
+                }`} />
+            </CustomDiv>
+            <div >
+              {recipients.length > 0 ? (<div className='recipients-list-wrapper'><span className='recipient-label'>Recipient/s:</span>
+                <div className='recipients-list'>
+                  <span>{recipients ? recipients.join(',') : null}</span>
+                </div></div>) : null}
+            </div>
+
+          </CustomDiv>
 
           <div className='sms-detail-wrapper'>
             <span className='text'>SMS text:</span>
-            <TextArea borderColor='#000000' rows={3} />
+            <TextArea borderColor='#000000' rows={3} {...register('message')} />
           </div>
 
           <div className='sms-inputs'>
@@ -42,13 +115,19 @@ const SmsPage = () => {
               </div>
               <Input width='6.2vw' />
               <div className='button-a'>
-                <Button>SEND</Button>
+                <InputButton
+                  disabled={recipients.length < 1}
+                  type='submit'
+                  value='SEND'
+                  className={`bg-green text-white ${recipients.length < 1 ? 'bg-gray' : ''
+                    }`}
+                />
               </div>
             </div>
           </div>
         </form>
       </div>
-    </Dashboard>
+    </Dashboard >
   );
 };
 

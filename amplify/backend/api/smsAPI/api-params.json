@@ -1,0 +1,43 @@
+{
+    "paths": [
+        {
+            "name": "/sms-api",
+            "lambdaFunction": "sendSmsWithTwilio",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/sms-api"
+        }
+    ],
+    "resourceName": "smsAPI",
+    "apiName": "smsAPI",
+    "functionArns": [
+        {
+            "lambdaFunction": "sendSmsWithTwilio"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "amplify-chiroadv-staging-80756-authRole",
+        "unAuthRoleName": "amplify-chiroadv-staging-80756-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "sendSmsWithTwilio",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "d7203101"
+}
