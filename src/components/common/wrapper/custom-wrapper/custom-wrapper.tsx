@@ -12,7 +12,10 @@ import {
   LayoutProps
 } from 'styled-system';
 
-type DivProps = LayoutProps & SpaceProps & TypographyProps & FlexDirectionProps & FlexboxProps;
+type DivProps = LayoutProps & SpaceProps & TypographyProps & FlexDirectionProps & FlexboxProps & {
+  isMobile?: boolean;
+};
+
 
 const divStyles = css`
 ${space}

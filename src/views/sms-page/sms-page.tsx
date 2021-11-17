@@ -61,16 +61,19 @@ const SmsPage = () => {
           </div>
           {console.log('recipients', recipients.join(','))}
           <CustomDiv
-            justifyContent={recipients.length > 0 ? 'center' : ''}
+            justifyContent={recipients.length > 0 ? 'center' : 'space-between'}
             display={recipients.length > 0 ? 'flex' : ''}
-            paddingLeft={recipients.length > 0 ? 0 : '6rem'}
+            // paddingLeft={recipients.length > 0 ? 0 : 0}
             alignItems='center'
             paddingBottom='2rem'
+            width='95%'
+            margin='auto'
+
           >
 
             <CustomDiv
               display='flex'
-              paddingRight={recipients.length > 0 ? '12.5rem' : '13rem'}
+
             >
               <span className='text'>Add Recipient/s:</span>
               <Input
