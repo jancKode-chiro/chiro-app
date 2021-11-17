@@ -1,39 +1,39 @@
 import React, { useState } from 'react';
 
-import { Link } from 'react-router-dom';
-import { SidebarData } from '../../components/sidebar/sidebar';
+import { SidebarDataProfile } from '../../components/sidebarprofile/sidebarprofile';
 import { IconContext } from 'react-icons';
+import { Link } from 'react-router-dom';
 
-import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
+import * as FaIcons from 'react-icons/fa';
 
-import './slidenavigation.styles.scss';
+import './slidenavigationprofile.styles.scss';
 
-function SlideNavigation() {
+function SlideNavigationProfile() {
   const [sidebar, setSideBar] = useState(false);
 
   const showSideBar = () => setSideBar(!sidebar);
   return (
     <>
-      <div className='slidenav-a'>
-        <IconContext.Provider value={{ color: '#f8f8f8ef' }}>
+      <div className='slideprofile'>
+        <IconContext.Provider value={{ color: '#000000eb' }}>
           <div>
             <Link to='#' className='menu-bars'>
-              <FaIcons.FaBars
+              <FaIcons.FaUserAlt
                 onClick={showSideBar}
-                color={'#000000f1'}
+                color={'#fffffff1'}
                 fontSize={'2.125em'}
               />
             </Link>
           </div>
           <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
             <ul className='nav-menu-items' onClick={showSideBar}>
-              <div className='navbar-toggle'>
+              <div className='top-button'>
                 <Link to='#' className='menu-bars'>
                   <AiIcons.AiOutlineClose fontSize={'2.341em'} />
                 </Link>
               </div>
-              {SidebarData.map((item, index) => {
+              {SidebarDataProfile.map((item, index) => {
                 return (
                   <li key={index} className={item.cName}>
                     <Link to={item.path}>
@@ -51,4 +51,4 @@ function SlideNavigation() {
   );
 }
 
-export default SlideNavigation;
+export default SlideNavigationProfile;

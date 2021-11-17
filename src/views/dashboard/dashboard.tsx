@@ -17,6 +17,7 @@ import message from '../../assets/images/icons/message.png';
 import cog from '../../assets/images/icons/cog.png';
 import './dashboard.styles.scss';
 import DashBoardCard from './dashboard-card/dashboard-card';
+import SlideNavigationProfile from '../slidenavigationprofile/slidenavigationprofile';
 
 const listNavOptions = [
   {
@@ -62,6 +63,7 @@ const Dashboard = ({ children }: DashboardProps) => {
       <div className='dashboard'>
         <div className='navbar'>
           <SlideNavigation />
+          {/* <SlideNavigationProfile /> */}
           {listNavOptions.map((nav) => {
             return (
               <div key={nav.id}>

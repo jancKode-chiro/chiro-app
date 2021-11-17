@@ -37,7 +37,6 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    // padding: 8px 0px 8px 16px;
     list-style: none;
     height: 6.25em;
 
@@ -57,9 +56,9 @@
     border-radius: 4px;
   }
 
-  .nav-text a:hover {
-    background-color: #cacace;
-  }
+  // .nav-text a:hover {
+  //   background-color: #cccccc;
+  // }
 
   .nav-menu-items {
     width: 100%;

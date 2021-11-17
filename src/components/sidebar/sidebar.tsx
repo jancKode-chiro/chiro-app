@@ -1,20 +1,21 @@
 import React from 'react';
 
-import * as FaIcons from 'react-icons/fa';
+import * as GoIcons from 'react-icons/go';
 import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
+import * as RiIcons from 'react-icons/ri';
+import * as TiIcons from 'react-icons/ti';
 
 export const SidebarData = [
   {
     title: 'Dashboard',
     path: '/Dashboard',
-    icon: <AiIcons.AiFillDashboard />,
+    icon: <GoIcons.GoDashboard />,
     cName: 'nav-text',
   },
 
   {
     title: 'Campaigns',
-    path: '/wallet',
+    path: '/sms',
     icon: <AiIcons.AiOutlineDatabase />,
     cName: 'nav-text',
   },
@@ -22,35 +23,14 @@ export const SidebarData = [
   {
     title: 'Contacts',
     path: '/contactdata',
-    icon: <AiIcons.AiFillContacts />,
+    icon: <RiIcons.RiContactsLine />,
     cName: 'nav-text',
   },
-
-  // {
-  //   title: 'Team',
-  //   path: '/team',
-  //   icon: <IoIcons.IoMdPeople />,
-  //   cName: 'nav-text',
-  // },
-
-  // {
-  //   title: 'Home',
-  //   path: '/',
-  //   icon: <AiIcons.AiFillHome />,
-  //   cName: 'nav-text',
-  // },
 
   {
     title: 'Message',
-    path: '/sms',
-    icon: <FaIcons.FaEnvelopeOpenText />,
+    path: '/messagedata',
+    icon: <TiIcons.TiMessages />,
     cName: 'nav-text',
   },
-
-  // {
-  //   title: 'Support',
-  //   path: '/support',
-  //   icon: <IoIcons.IoMdHelpCircle />,
-  //   cName: 'nav-text',
-  // },
 ];

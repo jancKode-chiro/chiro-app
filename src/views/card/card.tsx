@@ -45,7 +45,9 @@ const Card = () => {
     <ResponsiveGridContainer>
       <ContainerWithImage>
         <div>
-          <img src={CheckIcons} alt='check-icon' />
+          <div className='cardimage'>
+            <img src={CheckIcons} alt='check-icon' />
+          </div>
           {verticalSpacer('1.25em')}
           <div>
             <form className='container' onSubmit={handleSubmit(submitHandler)}>
