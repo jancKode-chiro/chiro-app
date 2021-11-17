@@ -62,10 +62,11 @@
   }
 
   .bulk {
-    width: 114px;
     height: 38px;
     top: 107px;
     left: 385px;
+    display: flex;
+    justify-content: center;
 
     font-family: $font-family-poppins;
     font-size: 25px;

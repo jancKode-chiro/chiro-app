@@ -2,9 +2,12 @@ import React, { ReactNode, FC } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
 
+import SlideNavigationProfile from '../../views/slidenavigationprofile/slidenavigationprofile';
+
 import user from '../../assets/images/icons/user.png';
 
 import './header.styles.scss';
+import SlideNavigation from '../../views/slidenavigation/slidenavigation';
 
 type HeaderProps = {
   title: string;
@@ -19,10 +22,12 @@ const CustomHeader: FC<HeaderProps> = ({ title }) => {
       history.push('/login');
     });
   };
+
   return (
     <header className='header'>
+      <SlideNavigation />
       <h1 className='page-title'>{title}</h1>
-      <img src={user} alt='user-icon' onClick={submitHandler} />
+      <SlideNavigationProfile />
     </header>
   );
 };
