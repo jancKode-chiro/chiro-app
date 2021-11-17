@@ -17,7 +17,9 @@ const ProfileData = ({ children }: DashboardProps) => {
     <NoDashBoard>
       <div className='profiledata'>
         <title className='profile-a'>Profile</title>
-        <img src={profile} alt='graph-img' width='157px' height='157px' />
+        <div className='image'>
+          <img src={profile} alt='graph-img' width='157px' height='157px' />
+        </div>
 
         <div className='info-a'>
           <span>Username:</span>

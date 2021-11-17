@@ -9,6 +9,7 @@ import {
 } from '../../constants/paths';
 
 import home from '../../assets/images/icons/home.png';
+import user from '../../assets/images/icons/user.png'
 import contacts from '../../assets/images/icons/contacts.png';
 import chart from '../../assets/images/icons/chart.png';
 import message from '../../assets/images/icons/message.png';
@@ -22,28 +23,36 @@ const listNavOptions = [
     id: 1,
     path: '/dashboard',
   },
+
+  {
+    icon: user,
+    label: 'Users',
+    id: 2,
+    path: '/paymentmethod'
+  },
+
   {
     icon: contacts,
     label: 'Contacts',
-    id: 2,
+    id: 3,
     path: CONTACTDATA_PATH,
   },
   {
     icon: chart,
     label: 'Campaigns',
-    id: 3,
+    id: 4,
     path: SMS_PATH,
   },
   {
     icon: message,
     label: 'Messages',
-    id: 4,
+    id: 5,
     path: SEND_SMS_PATH,
   },
   {
     icon: cog,
     label: 'Settings',
-    id: 5,
+    id: 6,
     path: '/',
   },
 ];
