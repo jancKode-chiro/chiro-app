@@ -1,7 +1,7 @@
-import React, { ReactNode, useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router';
 
-import Button from '../../components/common/button/button';
+
 import './sms-page.styles.scss';
 import Dashboard from '../dashboard/dashboard';
 import {
@@ -12,7 +12,7 @@ import {
 
 import { sendSMS } from '../../api/sms-service';
 import { useForm } from 'react-hook-form';
-import CustomButton from '../../components/common/button/button';
+
 import { CustomDiv } from '../../components/common/wrapper/custom-wrapper/custom-wrapper';
 
 type InputProps = {
@@ -23,13 +23,11 @@ type InputProps = {
 const SmsPage = () => {
   const [recipients, setRecipients] = useState<string[]>([]);
   const [currentRecipient, setCurrentRecipient] = useState('');
-  const { register, handleSubmit, reset, setValue } = useForm();
+  const { register, handleSubmit } = useForm();
 
 
   const onClickHander = (): void => {
     setRecipients((prevState: string[]) => [...prevState, currentRecipient]);
-    console.log('receipients before set value', recipients)
-
 
   };
 
@@ -41,7 +39,7 @@ const SmsPage = () => {
       combineRecipients,
       data.message
     );
-    console.log('result in handle Request', result);
+
     if (result) {
       setRecipients([]);
       setCurrentRecipient('');
@@ -59,21 +57,20 @@ const SmsPage = () => {
             <span className='text'>Select Group:</span>
             <Input borderColor='#000000' {...register('group')} />
           </div>
-          {console.log('recipients', recipients.join(','))}
           <CustomDiv
-            justifyContent={recipients.length > 0 ? 'center' : 'space-between'}
+            justifyContent='center'
             display={recipients.length > 0 ? 'flex' : ''}
-            // paddingLeft={recipients.length > 0 ? 0 : 0}
             alignItems='center'
             paddingBottom='2rem'
             width='95%'
             margin='auto'
-
+            flexDirection='column'
           >
 
             <CustomDiv
               display='flex'
-
+              alignItems='center'
+              justifyContent='center'
             >
               <span className='text'>Add Recipient/s:</span>
               <Input
@@ -88,8 +85,9 @@ const SmsPage = () => {
 
                 })}
               />
-              <InputButton disabled={!currentRecipient} type='button' value='ADD CONTACT' onClick={() => onClickHander()} className={`bg-green text-white ${currentRecipient.length < 1 ? 'bg-gray' : ''
-                }`} />
+              <InputButton disabled={!currentRecipient} type='button' value='ADD CONTACT'
+                onClick={() => onClickHander()}
+                className={`bg-green text-white ${currentRecipient.length < 1 ? 'bg-gray' : ''}`} />
             </CustomDiv>
             <div >
               {recipients.length > 0 ? (<div className='recipients-list-wrapper'><span className='recipient-label'>Recipient/s:</span>

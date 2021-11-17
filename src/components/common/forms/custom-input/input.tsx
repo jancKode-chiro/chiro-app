@@ -6,7 +6,6 @@ import {
   typography,
   TypographyProps,
   width,
-  size,
 } from 'styled-system';
 
 import { TypographyStyles, UIColors } from '../../../../types/styles';

@@ -20,7 +20,7 @@
 
   .recipients-list-wrapper {
     display: flex;
-
+    padding-top: 3.8rem;
     .recipient-label {
       font-family: $font-family-poppins;
       font-size: 1.3em;
@@ -43,6 +43,7 @@
     justify-content: center;
     font-family: $font-family-poppins;
     font-size: 1.3em;
+
     padding-bottom: 3.8rem;
   }
 

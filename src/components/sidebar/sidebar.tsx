@@ -22,7 +22,7 @@ export const SidebarData = [
 
   {
     title: 'Contacts',
-    path: '/contactdata',
+    path: '/contacts',
     icon: <RiIcons.RiContactsLine />,
     cName: 'nav-text',
   },

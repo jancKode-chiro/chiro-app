@@ -1,11 +1,8 @@
-import axios from 'axios';
-import { smsservice } from './sms-base-api';
-
-type sendSmsProps = {
-  recipient: string[];
-  message: string;
-  passcode: string;
-};
+// type sendSmsProps = {
+//   recipient: string[];
+//   message: string;
+//   passcode: string;
+// };
 
 export const sendSMS = async (
   url: string,
@@ -31,7 +28,6 @@ export const sendSMS = async (
     }
   )
     .then((result) => {
-      console.log(result);
       return result;
     })
     .catch((error) => {

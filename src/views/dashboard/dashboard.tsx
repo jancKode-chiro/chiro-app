@@ -8,16 +8,12 @@ import {
   SMS_PATH,
 } from '../../constants/paths';
 
-import SlideNavigation from '../slidenavigation/slidenavigation';
-
 import home from '../../assets/images/icons/home.png';
 import contacts from '../../assets/images/icons/contacts.png';
 import chart from '../../assets/images/icons/chart.png';
 import message from '../../assets/images/icons/message.png';
 import cog from '../../assets/images/icons/cog.png';
 import './dashboard.styles.scss';
-import DashBoardCard from './dashboard-card/dashboard-card';
-import SlideNavigationProfile from '../slidenavigationprofile/slidenavigationprofile';
 
 const listNavOptions = [
   {

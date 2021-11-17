@@ -3,11 +3,13 @@ import React, { useState } from 'react';
 import { SidebarDataProfile } from '../../components/sidebarprofile/sidebarprofile';
 import { IconContext } from 'react-icons';
 import { Link } from 'react-router-dom';
+import { Auth } from 'aws-amplify'
 
 import * as AiIcons from 'react-icons/ai';
 import * as FaIcons from 'react-icons/fa';
 
 import './slidenavigationprofile.styles.scss';
+
 
 function SlideNavigationProfile() {
   const [sidebar, setSideBar] = useState(false);
@@ -36,7 +38,7 @@ function SlideNavigationProfile() {
               {SidebarDataProfile.map((item, index) => {
                 return (
                   <li key={index} className={item.cName}>
-                    <Link to={item.path}>
+                    <Link to={item.path} onClick={item.callback ? () => Auth.signOut() : () => console.log('Hello')}>
                       {item.icon}
                       <span>{item.title}</span>
                     </Link>

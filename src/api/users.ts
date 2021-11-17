@@ -1,10 +1,7 @@
-import React from 'react';
 import { DataStore } from 'aws-amplify';
 import { User, UserRole } from '../models';
 import { Auth } from 'aws-amplify';
-import { Type } from 'typescript';
-import { isEmpty } from 'lodash';
-import { useAuth } from '../context/auth-context';
+
 import moment from 'moment';
 
 let systemError: string = '';
@@ -17,15 +14,15 @@ DataStore.configure({
   },
 });
 
-type CreateUserProps = {
-  name: string;
-  email: string;
-  phoneNumber: string;
-  userDetails: {
-    [key: string]: string;
-  };
-  role?: string;
-};
+// type CreateUserProps = {
+//   name: string;
+//   email: string;
+//   phoneNumber: string;
+//   userDetails: {
+//     [key: string]: string;
+//   };
+//   role?: string;
+// };
 
 const authSignup = async (
   name: string,
@@ -94,9 +91,7 @@ export const createUser = async (
 };
 
 export const getUser = async (email: string) => {
-  console.log('getUser email', email);
   const user = await DataStore.query(User, (u) => u.email('eq', email));
-  console.log('getuser', user);
   return user[0].id;
 };
 

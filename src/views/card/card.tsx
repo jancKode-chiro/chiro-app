@@ -34,7 +34,6 @@ const Card = () => {
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
     history.push('/dashboard');
     // setIsAuth(true);
-    console.log(data);
   };
 
   useEffect(() => {
