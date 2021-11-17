@@ -28,7 +28,7 @@ const listNavOptions = [
     icon: user,
     label: 'Users',
     id: 2,
-    path: '/paymentmethod'
+    path: '/users'
   },
 
   {
