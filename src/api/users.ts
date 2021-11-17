@@ -92,7 +92,7 @@ export const createUser = async (
 
 export const getUser = async (email: string) => {
   const user = await DataStore.query(User, (u) => u.email('eq', email));
-  if (user) return user[0].id;
+  return user ? user[0].id : '';
 };
 
 export const forgotUserPassword = async (username: string) => {
