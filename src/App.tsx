@@ -20,7 +20,7 @@ import {
   CONTACTS_PATH,
   PASSWORDFORGOT_PATH,
   SEND_SMS_PATH,
-  PROFILEDATA_PATH,
+  PROFILEINFO_PATH,
   USERS_PATH,
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
@@ -46,9 +46,7 @@ const ContactData = lazy(() => import('./views/contacts/contacts'));
 const PasswordForgot = lazy(
   () => import('./views/forgot-password/forgot-password')
 );
-const Users = lazy(
-  () => import('./views/users/users')
-);
+const Users = lazy(() => import('./views/users/users'))
 const ProfileData = lazy(() => import('./views/profile-info/profile-info'));
 const SendSms = lazy(() => import('./views/sms-page/sms-page'))
 
@@ -87,7 +85,7 @@ function App() {
                 <PrivateRoute path={SMS_PATH} component={Bulk} />
                 <PrivateRoute path={SEND_SMS_PATH} component={SendSms} />
                 <PrivateRoute path={CONTACTS_PATH} component={ContactData} />
-                <PrivateRoute path={PROFILEDATA_PATH} component={ProfileData} />
+                <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
                 <PrivateRoute path={USERS_PATH} component={Users} />
                 <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
               </Switch>

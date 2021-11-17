@@ -5,11 +5,12 @@ import * as AiIcons from 'react-icons/ai';
 import * as RiIcons from 'react-icons/ri';
 import * as BsIcons from 'react-icons/bs';
 import * as BiIcons from 'react-icons/bi';
+import { PROFILEINFO_PATH } from '../../constants/paths';
 
 export const SidebarDataProfile = [
   {
     title: 'Personal Info',
-    path: '/profiledata',
+    path: PROFILEINFO_PATH,
     icon: <AiIcons.AiOutlineUser />,
     cName: 'nav-profile',
     callback: false
