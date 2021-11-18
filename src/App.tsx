@@ -49,7 +49,7 @@ const SendSMS = lazy(() => import('./views/sms-page/sms-page'));
 const SlideNavigation = lazy(
   () => import('./views/slidenavigation/slidenavigation')
 );
-const ProfileData = lazy(() => import('./views/profiledata/profiledata'));
+const ProfileData = lazy(() => import('./views/profile-info/profile-info'));
 
 function App() {
   Amplify.configure(awsmobile);

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import CustomHeader from '../../components/header/header';
 import { withRouter } from 'react-router';
 import { StyledLink } from '../../components/link/link';
@@ -57,16 +57,17 @@ const listNavOptions = [
   },
 ];
 
-type DashboardProps = {
-  children?: ReactNode;
-};
+// interface DashboardProps {
+//   isNavbar?: boolean;
+//   children?: ReactElement;
+// };
 
-const Dashboard = ({ children }: DashboardProps) => {
+const Dashboard = ({ isNavbar, children }: any) => {
   return (
     <div>
       <CustomHeader title='Logo here' />
       <div className='dashboard'>
-        <div className='navbar'>
+        {isNavbar ? <div className='navbar'>
           {listNavOptions.map((nav) => {
             return (
               <div key={nav.id}>
@@ -81,9 +82,9 @@ const Dashboard = ({ children }: DashboardProps) => {
                   </StyledLink>
                 </div>
               </div>
-            );
+            )
           })}
-        </div>
+        </div> : null}
         <div className='dashboard-content-wrapper'>{children}</div>
       </div>
     </div>
