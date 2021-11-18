@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Auth } from 'aws-amplify';
 
 import RepsonsiveContainerGrid from '../../../components/common/wrapper/grid-container';
 import {
@@ -40,7 +39,6 @@ const CreateAccount = () => {
   ): Promise<void> => {
     // history.push('/dashboard');
     setInputEmail(data.email);
-    const name = `${data.firstName} ${data.lastName}`;
 
     try {
       let result = await createUser(
@@ -53,7 +51,7 @@ const CreateAccount = () => {
         data.country,
         data.countryCode
       );
-      console.log('crate-account-result', result);
+
       if (result)
         await history.push({
           pathname: ACTIVATE_ACCOUNT_PATH,

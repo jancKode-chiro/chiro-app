@@ -18,6 +18,25 @@
           "userPoolName": "chiro-adv-users",
           "webClientId": "4dv1rhbqqp8sm4rj0mjretg1k0",
           "nativeClientId": "4dv1rhbqqp8sm4rj0mjretg1k0"
+        },
+        "chiroadv635cfe3c": {
+          "userPoolId": "us-east-2_3WMttyXUq",
+          "userPoolName": "chiro-adv-users",
+          "webClientId": "4dv1rhbqqp8sm4rj0mjretg1k0",
+          "nativeClientId": "4dv1rhbqqp8sm4rj0mjretg1k0",
+          "identityPoolId": "us-east-2:1e8b0971-af64-489c-b8a3-da4a6c738932",
+          "identityPoolName": "Chiropractic Users",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::605164681451:role/Cognito_ChiropracticUsersAuth_Role",
+          "authRoleName": "Cognito_ChiropracticUsersAuth_Role",
+          "unauthRoleArn": "arn:aws:iam::605164681451:role/Cognito_ChiropracticUsersUnauth_Role",
+          "unauthRoleName": "Cognito_ChiropracticUsersUnauth_Role"
+        }
+      },
+      "function": {
+        "sendSmsWithTwilio": {
+          "deploymentBucketName": "amplify-chiroadv-staging-80756-deployment",
+          "s3Key": "amplify-builds/sendSmsWithTwilio-48704a7a4c5375524e31-build.zip"
         }
       }
     }

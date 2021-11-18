@@ -1,9 +1,7 @@
 import React, { ReactNode, FC } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Auth } from 'aws-amplify';
 
-import user from '../../assets/images/icons/user.png';
-
+import SlideNavigationProfile from '../../views/slidenavigationprofile/slidenavigationprofile';
+import SlideNavigation from '../../views/slidenavigation/slidenavigation';
 import './header.styles.scss';
 
 type HeaderProps = {
@@ -12,17 +10,12 @@ type HeaderProps = {
 };
 
 const CustomHeader: FC<HeaderProps> = ({ title }) => {
-  let history = useHistory();
-  const submitHandler = () => {
-    Auth.signOut().then(() => {
-      alert('Loggin out');
-      history.push('/login');
-    });
-  };
+
   return (
     <header className='header'>
+      <SlideNavigation />
       <h1 className='page-title'>{title}</h1>
-      <img src={user} alt='user-icon' onClick={submitHandler} />
+      <SlideNavigationProfile />
     </header>
   );
 };

@@ -1,32 +1,106 @@
-import React, { ReactNode } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router';
 
-import Button from '../../components/common/button/button';
+
 import './sms-page.styles.scss';
 import Dashboard from '../dashboard/dashboard';
 import {
   Input,
+  InputButton,
   TextArea,
 } from '../../components/common/forms/custom-input/input';
 
+import { sendSMS } from '../../api/sms-service';
+import { useForm } from 'react-hook-form';
+
+import { CustomDiv } from '../../components/common/wrapper/custom-wrapper/custom-wrapper';
+
+type InputProps = {
+  recipients: string[];
+  message: string;
+};
+
 const SmsPage = () => {
+  const [recipients, setRecipients] = useState<string[]>([]);
+  const [currentRecipient, setCurrentRecipient] = useState('');
+  const { register, handleSubmit } = useForm();
+
+
+  const onClickHander = (): void => {
+    setRecipients((prevState: string[]) => [...prevState, currentRecipient]);
+
+  };
+
+  const sumbitHanlder = async (data: InputProps) => {
+    const combineRecipients = recipients.join(',');
+
+    const result = await sendSMS(
+      '/send-messages',
+      combineRecipients,
+      data.message
+    );
+
+    if (result) {
+      setRecipients([]);
+      setCurrentRecipient('');
+    }
+  };
+
+  useEffect(() => {
+
+  }, [recipients]);
   return (
     <Dashboard>
       <div className='sms-page'>
-        <form>
+        <form onSubmit={handleSubmit(sumbitHanlder)}>
           <div className='sms-detail-wrapper'>
             <span className='text'>Select Group:</span>
-            <Input borderColor='#000000' />
+            <Input borderColor='#000000' {...register('group')} />
           </div>
+          <CustomDiv
+            justifyContent='center'
+            display={recipients.length > 0 ? 'flex' : ''}
+            alignItems='center'
+            paddingBottom='2rem'
+            width='95%'
+            margin='auto'
+            flexDirection='column'
+          >
 
-          <div className='sms-detail-wrapper'>
-            <span className='text'>Recepients:</span>
-            <Input borderColor='#000000' />
-          </div>
+            <CustomDiv
+              display='flex'
+              alignItems='center'
+              justifyContent='center'
+            >
+              <span className='text'>Add Recipient/s:</span>
+              <Input
+                type='input'
+                borderColor='#000000'
+                width='12rem'
+                marginRight='4rem'
+                required
+                marginLeft='.2rem'
+                {...register('recipients', {
+                  onChange: (e) => setCurrentRecipient(e.target.value),
+
+                })}
+              />
+              <InputButton disabled={!currentRecipient} type='button' value='ADD CONTACT'
+                onClick={() => onClickHander()}
+                className={`bg-green text-white ${currentRecipient.length < 1 ? 'bg-gray' : ''}`} />
+            </CustomDiv>
+            <div >
+              {recipients.length > 0 ? (<div className='recipients-list-wrapper'><span className='recipient-label'>Recipient/s:</span>
+                <div className='recipients-list'>
+                  <span>{recipients ? recipients.join(',') : null}</span>
+                </div></div>) : null}
+            </div>
+
+          </CustomDiv>
 
           <div className='sms-detail-wrapper'>
             <span className='text'>SMS text:</span>
-            <TextArea borderColor='#000000' rows={3} />
+            <TextArea borderColor='#000000' rows={3} {...register('message')} />
           </div>
 
           <div className='sms-inputs'>
@@ -42,13 +116,19 @@ const SmsPage = () => {
               </div>
               <Input width='6.2vw' />
               <div className='button-a'>
-                <Button>SEND</Button>
+                <InputButton
+                  disabled={recipients.length < 1}
+                  type='submit'
+                  value='SEND'
+                  className={`bg-green text-white ${recipients.length < 1 ? 'bg-gray' : ''
+                    }`}
+                />
               </div>
             </div>
           </div>
         </form>
       </div>
-    </Dashboard>
+    </Dashboard >
   );
 };
 

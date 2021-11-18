@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Auth } from 'aws-amplify';
-import moment from 'moment';
 
 import CardWithImage from '../../../components/common/wrapper/card-with-image';
 import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
@@ -14,7 +13,6 @@ import {
   ABOUT_PATH,
   LETS_TALK_PATH,
   DASHBOARD_PATH,
-  LOGIN_PATH,
   PASSWORDFORGOT_PATH,
 } from '../../../constants/paths';
 import {
@@ -26,7 +24,6 @@ import { StyledLink } from '../../../components/link/link';
 import { useAuth } from '../../../context/auth-context';
 import { getCurrentSession } from '../../../helpers/user-helpers';
 // import useNav from '../../../hooks/use-nav';
-import { isEmpty } from 'lodash';
 import { getUser } from '../../../api/users';
 type InputProps = {
   email: string;
@@ -41,10 +38,10 @@ const Login = (): JSX.Element => {
   } = useForm();
   const history = useHistory();
 
-  const { email, setAuthState, authState, setInputEmail, setCurrentUserId } =
+  const { email, setAuthState, setInputEmail, setCurrentUserId } =
     useAuth();
   // const { goTo } = useNav();
-  const backToHome = (): void => history.push(LOGIN_PATH);
+  // const backToHome = (): void => history.push(LOGIN_PATH);
 
   const submitHandler: SubmitHandler<InputProps> = async (
     data

@@ -3,9 +3,11 @@ import { withRouter } from 'react-router';
 import Dashboard from '../dashboard';
 import DashBoardCard from '../dashboard-card/dashboard-card';
 
+
+
 const DashboardData = () => {
   return (
-    <Dashboard>
+    <Dashboard isNavbar >
       <DashBoardCard />
     </Dashboard>
   );

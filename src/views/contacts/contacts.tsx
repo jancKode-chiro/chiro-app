@@ -3,15 +3,15 @@ import React, {
   useEffect,
   useState,
   useMemo,
-  ChangeEvent,
+
 } from 'react';
 import { withRouter } from 'react-router';
 import { useQuery } from 'react-query';
 import { isEmpty } from 'lodash';
-import { useAsyncDebounce } from 'react-table';
+
 
 import {
-  Input,
+
   InputButton,
 } from '../../components/common/forms/custom-input/input';
 import Dashboard from '../dashboard/dashboard';
@@ -20,20 +20,17 @@ import { useAuth } from '../../context/auth-context';
 import { getContacts } from '../../api/contacts';
 import './contacts.styles.scss';
 
-import { useForm } from 'react-hook-form';
-
 type DashboardProps = {
   children?: ReactNode;
 };
 
 const ContactData = ({ children }: DashboardProps) => {
-  const { register } = useForm();
+
   const { currentUserId, setCurrentUserId } = useAuth();
   const [contacts, setContacts] = useState<any>([]);
-  const [searchContact, setSearchContact] = useState('');
-  const [filter, setFilter] = useState('');
 
-  const { isLoading, isError, data, error } = useQuery(['contacts'], () =>
+
+  const { data } = useQuery(['contacts'], () =>
     getContacts(currentUserId)
   );
 
@@ -75,11 +72,12 @@ const ContactData = ({ children }: DashboardProps) => {
     ],
     []
   );
-  type FilterProps = {
-    filterValue: string;
-    prefilteredRows: any;
-    setFilter: any;
-  };
+
+  // type FilterProps = {
+  //   filterValue: string;
+  //   prefilteredRows: any;
+  //   setFilter: any;
+  // };
 
   return (
     <Dashboard>
@@ -96,7 +94,7 @@ const ContactData = ({ children }: DashboardProps) => {
 
         <div className='contact-data-image'>
           <Table columns={columns} data={contacts} />
-          {console.log('contacts data', contacts)}
+
         </div>
       </div>
     </Dashboard>
