@@ -15,6 +15,16 @@ function SlideNavigationProfile() {
   const [sidebar, setSideBar] = useState(false);
 
   const showSideBar = () => setSideBar(!sidebar);
+
+
+  const onClickHanlder = (callback: boolean) => {
+    if (callback) {
+      localStorage.clear()
+      Auth.signOut();
+    }
+
+
+  }
   return (
     <>
       <div className='slideprofile'>
@@ -38,7 +48,7 @@ function SlideNavigationProfile() {
               {SidebarDataProfile.map((item, index) => {
                 return (
                   <li key={index} className={item.cName}>
-                    <Link to={item.path} onClick={item.callback ? () => Auth.signOut() : () => console.log('Hello')}>
+                    <Link to={item.path} onClick={() => onClickHanlder(item.callback)}>
                       {item.icon}
                       <span>{item.title}</span>
                     </Link>

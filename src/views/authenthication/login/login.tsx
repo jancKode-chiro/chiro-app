@@ -38,7 +38,7 @@ const Login = (): JSX.Element => {
   } = useForm();
   const history = useHistory();
 
-  const { setAuthState, setInputEmail, setCurrentUserId } =
+  const { email, setAuthState, setInputEmail, setCurrentUserId } =
     useAuth();
   // const { goTo } = useNav();
   // const backToHome = (): void => history.push(LOGIN_PATH);

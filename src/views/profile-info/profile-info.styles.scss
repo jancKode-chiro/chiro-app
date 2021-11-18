@@ -1,0 +1,34 @@
+@import "../../styles/variables.scss";
+
+.profiledata {
+  .arrow-icon {
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+  }
+  .image {
+    display: flex;
+    justify-content: center;
+  }
+
+  .profile-a {
+    display: flex;
+
+    margin-left: 59px;
+    font-size: 36px;
+    font-weight: normal;
+    font-style: normal;
+    font-family: $font-family-poppins;
+  }
+
+  .info-wrapper {
+    justify-content: space-around;
+    display: flex;
+  }
+
+  .button {
+    align-self: center;
+    padding-left: 14rem;
+    padding-top: 2rem;
+  }
+}
