@@ -1,7 +1,16 @@
 @import "../../styles/variables.scss";
 
-.searchbar-a {
-  display: flex;
-  justify-content: space-between;
-  padding: 1.2rem 12rem 1.2rem 12rem;
+.users {
+  .usersform {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1.1rem;
+  }
+
+  .userstitle {
+    font-size: 2.5em;
+    font-family: $font-family-poppins;
+    font-weight: $font-weight-bold;
+  }
 }

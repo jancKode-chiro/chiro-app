@@ -27,6 +27,7 @@ import {
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
 
+
 const CreateAccount = lazy(
   () => import('./views/authenthication/createaccount/createaccount')
 );
@@ -50,6 +51,7 @@ const Users = lazy(
   () => import('./views/users/users')
 );
 const ProfileData = lazy(() => import('./views/profile-info/profile-info'));
+const SendSms = lazy(() => import('./views/sms-page/sms-page'))
 
 function App() {
   Amplify.configure(awsmobile);
@@ -84,10 +86,9 @@ function App() {
                 <Route path={LETS_TALK_PATH} component={LetsTalk} />
                 <PrivateRoute path={WALLET_PATH} component={Wallet} />
                 <PrivateRoute path={SMS_PATH} component={Bulk} />
-                <PrivateRoute path={SEND_SMS_PATH} component={SendSMS} />
+                <PrivateRoute path={SEND_SMS_PATH} component={SendSms} />
                 <PrivateRoute path={CONTACTS_PATH} component={ContactData} />
                 <PrivateRoute path={PROFILEDATA_PATH} component={ProfileData} />
-                <PrivateRoute path={SLIDENAVIGATION_PATH} component={SlideNavigation} />
                 <PrivateRoute path={USERS_PATH} component={Users} />
                 <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
               </Switch>
