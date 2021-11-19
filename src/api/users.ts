@@ -95,6 +95,13 @@ export const getUser = async (email: string) => {
   return user ? user[0].id : '';
 };
 
+export const getUsers = async () => {
+  const users = await DataStore.query(User);
+  console.log('users', users);
+
+  return users;
+};
+
 export const forgotUserPassword = async (username: string) => {
   try {
     const result = Auth.forgotPassword(username);

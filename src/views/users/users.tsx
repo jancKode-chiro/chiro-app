@@ -9,8 +9,10 @@ import { withRouter } from 'react-router';
 import { useQuery } from 'react-query';
 import { isEmpty } from 'lodash';
 
+
 import { useAuth } from '../../context/auth-context';
-import { getContacts } from '../../api/contacts';
+import { getUsers } from '../../api/users';
+
 import { InputButton } from '../../components/common/forms/custom-input/input';
 
 import Table from '../../components/table/table';
@@ -19,6 +21,8 @@ import searchdata from '../../assets/images/searchdata.png';
 import Dashboard from '../dashboard/dashboard';
 
 import './users.styles.scss';
+// import { getContacts } from '../../api/contacts';
+
 
 type UsersProps = {
   children?: ReactNode;
@@ -26,12 +30,10 @@ type UsersProps = {
 
 const Users = ({ children }: UsersProps) => {
 
-  const { currentUserId, setCurrentUserId } = useAuth();
   const [users, setUsers] = useState<any>([]);
 
-
   const { data } = useQuery(['users'], () =>
-    getContacts(currentUserId)
+    getUsers()
   );
 
   useEffect(() => {
@@ -41,8 +43,8 @@ const Users = ({ children }: UsersProps) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Name',
-        accessor: 'user_name',
+        Header: 'Full Name',
+        accessor: 'first_name',
         Cell: ({
           cell: {
             row: { original },
@@ -55,7 +57,7 @@ const Users = ({ children }: UsersProps) => {
       },
       {
         Header: 'Create Date',
-        accessor: 'date_added',
+        accessor: 'create_date',
       },
       {
         Header: 'Email',
@@ -65,6 +67,11 @@ const Users = ({ children }: UsersProps) => {
         Header: 'Phone Number',
         accessor: 'phone_number',
       },
+      {
+        Header: 'Role',
+        accessor: 'role',
+      },
+
     ],
     []
   );
@@ -74,17 +81,16 @@ const Users = ({ children }: UsersProps) => {
   return (
     <Dashboard isNavbar={true}>
       <div className='users'>
-
         <form className='usersform'>
           <label className='userstitle'>Users</label>
           <InputButton
-            value='ADD USERS'
+            value='CREATE USER'
             type='submit'
             className='bg-green text-white'
             width='12rem'
           />
         </form>
-        <div className='search-data-image'>
+        <div>
           <Table columns={columns} data={users} />
         </div>
       </div>
