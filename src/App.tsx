@@ -22,6 +22,7 @@ import {
   SEND_SMS_PATH,
   SLIDENAVIGATION_PATH,
   PROFILEDATA_PATH,
+  SELECTFUNCTION_PATH
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
@@ -50,6 +51,7 @@ const SlideNavigation = lazy(
   () => import('./views/slidenavigation/slidenavigation')
 );
 const ProfileData = lazy(() => import('./views/profile-info/profile-info'));
+const SelectFunction = lazy(() => import('./views/selectfunction/selectfunction'));
 
 function App() {
   Amplify.configure(awsmobile);
@@ -89,6 +91,7 @@ function App() {
                 <PrivateRoute path={PROFILEDATA_PATH} component={ProfileData} />
                 <PrivateRoute path={SLIDENAVIGATION_PATH} component={SlideNavigation} />
                 <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
+                <Route path={SELECTFUNCTION_PATH} component={SelectFunction} />
               </Switch>
             </Suspense>
           </Router>
