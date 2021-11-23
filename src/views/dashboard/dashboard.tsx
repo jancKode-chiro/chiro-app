@@ -3,7 +3,7 @@ import CustomHeader from '../../components/header/header';
 import { withRouter } from 'react-router';
 import { StyledLink } from '../../components/link/link';
 import {
-  CONTACTDATA_PATH,
+  CONTACTS_PATH,
   SEND_SMS_PATH,
   SMS_PATH,
 } from '../../constants/paths';
@@ -35,7 +35,7 @@ const listNavOptions = [
     icon: contacts,
     label: 'Contacts',
     id: 3,
-    path: CONTACTDATA_PATH,
+    path: CONTACTS_PATH,
   },
   {
     icon: chart,

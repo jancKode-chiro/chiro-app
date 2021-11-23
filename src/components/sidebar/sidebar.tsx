@@ -4,6 +4,7 @@ import * as GoIcons from 'react-icons/go';
 import * as AiIcons from 'react-icons/ai';
 import * as RiIcons from 'react-icons/ri';
 import * as TiIcons from 'react-icons/ti';
+import { CONTACTS_PATH, SEND_SMS_PATH } from '../../constants/paths';
 
 export const SidebarData = [
   {
@@ -22,14 +23,14 @@ export const SidebarData = [
 
   {
     title: 'Contacts',
-    path: '/contacts',
+    path: CONTACTS_PATH,
     icon: <RiIcons.RiContactsLine />,
     cName: 'nav-text',
   },
 
   {
     title: 'Message',
-    path: '/messagedata',
+    path: SEND_SMS_PATH,
     icon: <TiIcons.TiMessages />,
     cName: 'nav-text',
   },

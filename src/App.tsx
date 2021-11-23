@@ -17,7 +17,7 @@ import {
   SMS_PATH,
   WALLET_PATH,
   ACTIVATE_ACCOUNT_PATH,
-  CONTACTDATA_PATH,
+  CONTACTS_PATH,
   PASSWORDFORGOT_PATH,
   SEND_SMS_PATH,
   SLIDENAVIGATION_PATH,
@@ -85,8 +85,7 @@ function App() {
                 <PrivateRoute path={WALLET_PATH} component={Wallet} />
                 <PrivateRoute path={SMS_PATH} component={Bulk} />
                 <PrivateRoute path={SEND_SMS_PATH} component={SendSMS} />
-                <PrivateRoute path={CONTACTDATA_PATH} component={ContactData} />
-                <PrivateRoute path={CONTACTDATA_PATH} component={ContactData} />
+                <PrivateRoute path={CONTACTS_PATH} component={ContactData} />
                 <PrivateRoute path={PROFILEDATA_PATH} component={ProfileData} />
                 <PrivateRoute path={SLIDENAVIGATION_PATH} component={SlideNavigation} />
                 <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
