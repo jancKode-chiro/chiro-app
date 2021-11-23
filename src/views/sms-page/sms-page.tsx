@@ -51,7 +51,7 @@ const SmsPage = () => {
 
   }, [recipients]);
   return (
-    <Dashboard>
+    <Dashboard isNavbar={true}>
       <div className='sms-page'>
         <form onSubmit={handleSubmit(sumbitHanlder)}>
           <div className='sms-detail-wrapper'>
