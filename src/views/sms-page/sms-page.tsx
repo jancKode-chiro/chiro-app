@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router';
 
-import SingleSelect from '../selectfunction/selectfunction';
+import CustomSelect from '../../components/select/select';
 
 import Dashboard from '../dashboard/dashboard';
 import {
@@ -56,8 +56,10 @@ const SmsPage = () => {
         <form onSubmit={handleSubmit(sumbitHanlder)}>
           <div className='sms-detail-wrapper'>
             <span className='text'>Select Group:</span>
-            <div>
-              <SingleSelect />
+            <div style={{
+              width: '83vw',
+            }}>
+              <CustomSelect />
             </div>
             {/* <Input borderColor='#000000' {...register('group')} /> */}
           </div>
