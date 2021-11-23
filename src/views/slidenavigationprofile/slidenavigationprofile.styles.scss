@@ -28,6 +28,7 @@
   .nav-menu.active {
     right: 0;
     transition: 100ms;
+    z-index: 1;
   }
 
   .nav-profile {
