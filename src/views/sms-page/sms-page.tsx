@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router';
 
+import CustomSelect from '../../components/select/select';
 
-import './sms-page.styles.scss';
 import Dashboard from '../dashboard/dashboard';
 import {
   Input,
@@ -12,8 +12,10 @@ import {
 
 import { sendSMS } from '../../api/sms-service';
 import { useForm } from 'react-hook-form';
-
 import { CustomDiv } from '../../components/common/wrapper/custom-wrapper/custom-wrapper';
+
+import './sms-page.styles.scss';
+
 
 type InputProps = {
   recipients: string[];
@@ -24,7 +26,6 @@ const SmsPage = () => {
   const [recipients, setRecipients] = useState<string[]>([]);
   const [currentRecipient, setCurrentRecipient] = useState('');
   const { register, handleSubmit } = useForm();
-
 
   const onClickHander = (): void => {
     setRecipients((prevState: string[]) => [...prevState, currentRecipient]);
@@ -55,7 +56,12 @@ const SmsPage = () => {
         <form onSubmit={handleSubmit(sumbitHanlder)}>
           <div className='sms-detail-wrapper'>
             <span className='text'>Select Group:</span>
-            <Input borderColor='#000000' {...register('group')} />
+            <div style={{
+              width: '83vw',
+            }}>
+              <CustomSelect />
+            </div>
+            {/* <Input borderColor='#000000' {...register('group')} /> */}
           </div>
           <CustomDiv
             justifyContent='center'
