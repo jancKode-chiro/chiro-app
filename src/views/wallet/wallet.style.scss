@@ -1,4 +1,13 @@
 @import "../../styles/variables.scss";
+
+.arrow-wallet {
+  display: flex;
+  margin-left: 5.234em;
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
+}
+
 .wallet {
   .container {
     width: 100%;

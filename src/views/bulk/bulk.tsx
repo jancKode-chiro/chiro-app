@@ -7,6 +7,7 @@ import verticalSpacer from '../../components/common/spacer/vertical-spacer';
 import { InputButton } from '../../components/common/forms/custom-input/input';
 import { ContainerWithImage } from '../../components/common/wrapper/wrapper-with-image/wrapper-with-bg-image';
 
+import { VscArrowLeft } from 'react-icons/vsc';
 import { useHistory } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -27,9 +28,14 @@ const Bulk = ({ setAuth }: any) => {
     // setIsAuth(true);
   };
 
+  const onClickHandler = (): void => {
+    history.goBack()
+  }
+
   return (
     <ResponsiveContainerGrid>
       <ContainerWithImage>
+        <VscArrowLeft className='arrow-sms' onClick={onClickHandler} />
         <div className='sms'>
           <div>
             <span className='bulk'>Bulk SMS</span>

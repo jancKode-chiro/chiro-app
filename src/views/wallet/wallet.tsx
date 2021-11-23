@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { withRouter } from 'react-router';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import { VscArrowLeft } from 'react-icons/vsc';
 import RepsonsiveContainerGrid from '../../components/common/wrapper/grid-container';
-
 import { ContainerWithImage } from '../../components/common/wrapper/wrapper-with-image/wrapper-with-bg-image';
 import {
   Input,
@@ -25,15 +26,24 @@ const Wallet = () => {
     // formState: { errors },
   } = useForm();
 
+  const history = useHistory();
+
+  const onClickHandler = (): void => {
+    history.goBack()
+  }
+
   const submitHandler: SubmitHandler<InputProps> = (data): void => {
     // history.push('/dashboard');
     // setIsAuth(true);
     setAvailabsleBalance(data.amountInUSD);
   };
 
+
+
   return (
     <RepsonsiveContainerGrid className='image'>
       <ContainerWithImage>
+        <VscArrowLeft className='arrow-wallet' onClick={onClickHandler} />
         <div className='wallet'>
           <form className='container' onSubmit={handleSubmit(submitHandler)}>
             <div className='balance-container'>

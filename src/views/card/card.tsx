@@ -13,6 +13,7 @@ import {
   InputButton,
 } from '../../components/common/forms/custom-input/input';
 
+import { VscArrowLeft } from 'react-icons/vsc';
 import { useHistory } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -36,6 +37,10 @@ const Card = () => {
     // setIsAuth(true);
   };
 
+  const onClickHandler = (): void => {
+    history.goBack()
+  }
+
   useEffect(() => {
     document.title = ` ${caches} `;
   });
@@ -43,6 +48,7 @@ const Card = () => {
   return (
     <ResponsiveGridContainer>
       <ContainerWithImage>
+        <VscArrowLeft className='arrow-card' onClick={onClickHandler} />
         <div>
           <div className='cardimage'>
             <img src={CheckIcons} alt='check-icon' />
