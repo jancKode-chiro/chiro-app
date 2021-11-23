@@ -6,11 +6,8 @@ import ResponsiveCard from './card';
 
 import './grid-container.styles.scss';
 import { StyledLink } from '../../link/link';
-import { useHistory } from 'react-router-dom';
-import { VscArrowLeft } from 'react-icons/vsc';
 
-
-type CardWithImageProps = {
+type CardsWithImageProps = {
   children?: ReactNode;
   text?: string;
   footerText1?: string;
@@ -21,7 +18,7 @@ type CardWithImageProps = {
   className?: string;
 };
 
-const CardWithImage = ({
+const CardsWithImage = ({
   children,
   text,
   footerText1,
@@ -30,12 +27,8 @@ const CardWithImage = ({
   footerLink2,
   subTitle,
   className,
-}: CardWithImageProps) => {
-  const history = useHistory();
+}: CardsWithImageProps) => {
 
-  const onClickHandler = (): void => {
-    history.goBack()
-  }
   const renderFooter = () => {
     if (footerLink1 || footerLink2) {
       return (
@@ -62,13 +55,9 @@ const CardWithImage = ({
         }}
       >
         <ResponsiveCard>
-
           <div className='card-with-image'>
-            <div className='arrow'>
-              <VscArrowLeft onClick={onClickHandler} />
-            </div>
-            <div className='greetingsContainer'>
 
+            <div className='greetingsContainer'>
               <div className={`banner ${className ?? className}`}>
                 <span className='banner-title'>{text}</span>
                 <span className='banner-sub'>{subTitle}</span>
@@ -83,4 +72,4 @@ const CardWithImage = ({
   );
 };
 
-export default CardWithImage;
+export default CardsWithImage;

@@ -4,7 +4,8 @@ import { withRouter } from 'react-router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Auth } from 'aws-amplify';
 
-import CardWithImage from '../../../components/common/wrapper/card-with-image';
+
+import CardsWithImage from '../../../components/common/wrapper/cards-with-image';
 import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
 import './login.style.scss';
 
@@ -64,7 +65,7 @@ const Login = (): JSX.Element => {
   };
 
   return (
-    <CardWithImage
+    <CardsWithImage
       text='Welcome'
       footerText1='About us'
       footerText2='Contact us'
@@ -120,7 +121,7 @@ const Login = (): JSX.Element => {
           </div>
         </div>
       </div>
-    </CardWithImage>
+    </CardsWithImage>
   );
 };
 

@@ -2,6 +2,15 @@
 
 .create-account {
   // .image {
+
+  .arrow {
+    display: flex;
+    margin-left: 5.234em;
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+  }
+
   .create-account-form {
     display: flex;
     flex-direction: column;

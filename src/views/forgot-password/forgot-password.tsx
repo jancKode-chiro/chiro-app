@@ -9,11 +9,15 @@ import {
   InputButton,
 } from '../../components/common/forms/custom-input/input';
 
+
 import CardWithImage from '../../components/common/wrapper/card-with-image';
 
 import './forgot-passsword.styles.scss';
 import { ACTIVATE_ACCOUNT_PATH } from '../../constants/paths';
 import { forgotUserPassword } from '../../api/users';
+// import { VscArrowLeft } from 'react-icons/vsc';
+
+
 
 type InputProps = {
   email: string;
@@ -27,6 +31,10 @@ const ForgotPassword = (): JSX.Element => {
   } = useForm();
   const { setInputEmail } = useAuth();
   const history = useHistory();
+
+  // const onClickHandler = (): void => {
+  //   history.goBack()
+  // }
 
   const submitHandler: SubmitHandler<InputProps> = async (
     data
@@ -42,9 +50,12 @@ const ForgotPassword = (): JSX.Element => {
 
   return (
     <CardWithImage className='welcome' text='Forgot Password'>
+
+      {/* <VscArrowLeft className='arrow-icon' onClick={onClickHandler} /> */}
       <div className='forgot-password'>
         <span className='header-text'>Enter your registered email</span>
         <form className='form' onSubmit={handleSubmit(submitHandler)}>
+
           <Input
             placeholder='Email'
             type='email'
@@ -60,8 +71,10 @@ const ForgotPassword = (): JSX.Element => {
             />
           </div>
         </form>
+
       </div>
     </CardWithImage>
+
   );
 };
 

@@ -27,6 +27,7 @@ function RepsonsiveContainerGrid({
   children,
   className,
 }: RepsonsiveGridProps): ReactElement {
+
   return (
     <Grid
       className={`${classes.root} ${className ?? ''}`}
@@ -35,7 +36,9 @@ function RepsonsiveContainerGrid({
       justifyContent='center'
       alignContent='center'
     >
+
       {children}
+
     </Grid>
   );
 }

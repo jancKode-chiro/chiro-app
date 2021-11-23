@@ -18,6 +18,15 @@
     align-content: center;
     flex-direction: column;
 
+    .arrow {
+      margin-right: 7.234em;
+      margin-top: 1em;
+      height: 2rem;
+      width: 2rem;
+      cursor: pointer;
+      font-size: 36px;
+    }
+
     .greetingsContainer {
       display: flex;
       justify-content: center;

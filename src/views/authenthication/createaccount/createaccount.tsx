@@ -14,6 +14,7 @@ import './createaccount.styles.scss';
 import { ACTIVATE_ACCOUNT_PATH } from '../../../constants/paths';
 import { createUser } from '../../../api/users';
 import { useAuth } from '../../../context/auth-context';
+import { VscArrowLeft } from 'react-icons/vsc';
 
 type InputProps = {
   firstName: string;
@@ -26,6 +27,7 @@ type InputProps = {
 };
 
 const CreateAccount = () => {
+
   const {
     register,
     handleSubmit,
@@ -33,6 +35,10 @@ const CreateAccount = () => {
   } = useForm();
   let history = useHistory();
   const { setInputEmail } = useAuth();
+
+  const onClickHandler = (): void => {
+    history.goBack()
+  }
 
   const submitHandler: SubmitHandler<InputProps> = async (
     data
@@ -66,6 +72,7 @@ const CreateAccount = () => {
     <div className='create-account'>
       <RepsonsiveContainerGrid>
         <ContainerWithImage>
+          <VscArrowLeft className='arrow' onClick={onClickHandler} />
           <div className='create-account-form'>
             <span className='title'>Create Account</span>
             <div className='form'>
