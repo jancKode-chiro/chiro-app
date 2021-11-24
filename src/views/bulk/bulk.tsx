@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { Input as AntInput } from 'antd';
 
+import UploadButton from '../../components/common/uploadbutton/uploadbutton'
 import ResponsiveContainerGrid from '../../components/common/wrapper/grid-container';
 import verticalSpacer from '../../components/common/spacer/vertical-spacer';
 import { InputButton } from '../../components/common/forms/custom-input/input';
@@ -39,8 +40,9 @@ const Bulk = ({ setAuth }: any) => {
             <form className='form' onSubmit={handleSubmit(submitHandler)}>
               <div className='group'>
                 <span className='search'>Search</span>
-                <button className='choosefile'>Choose File</button>
-
+                <div className='file-upload-button'>
+                  <UploadButton />
+                </div>
                 {verticalSpacer('28px')}
 
                 <span className='bar'>MESSAGE</span>
