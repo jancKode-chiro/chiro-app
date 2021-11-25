@@ -1,69 +1,95 @@
 @import "../../../styles/variables.scss";
+@import "../../../styles/lib/include-media.scss";
 
 .grid-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 1em;
-
-  .card-with-image {
-    background-image: url("../../../assets//images/bg-half.png");
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
+  .grid-detail-wrapper {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    flex-direction: column;
 
-    .greetingsContainer {
+    // @include media("<tablet") {
+    //   display: none;
+    // }
+
+    @include media("<phone") {
+      display: none;
+      width: 100%;
+    }
+    @include media("<desktop") {
+      width: 100%;
+    }
+    .card-with-image {
+      background-image: url("../../../assets//images/bg-half.png");
+      width: 25vw;
+      background-repeat: no-repeat;
+      background-size: cover;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       align-content: center;
-      width: 100%;
-      height: 100%;
+      flex-direction: column;
 
-      text-align: center;
-      .banner {
-        display: flex;
-        flex-direction: column;
+      @include media("<phone") {
+        display: none;
         width: 100%;
+      }
+      @include media("<tablet") {
+        display: none;
+      }
+      @include media("<desktop") {
+        display: none;
+        // background-image: url("../../../assets//images/bg-half.png");
+      }
 
-        &.welcome {
-          align-items: center;
-        }
-        .banner-title {
-          color: #ffffff;
-          font-size: 4em;
-          font-family: $font-family-poppins;
-          font-weight: $font-weight-regular;
-        }
-        .banner-sub {
-          color: #ffffff;
-          font-size: 1.5em;
-          font-family: $font-family-poppins;
-          font-weight: $font-weight-regular;
+      .greetingsContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        width: 100%;
+        height: 100%;
+
+        text-align: center;
+        .banner {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+
+          &.welcome {
+            align-items: center;
+          }
+          .banner-title {
+            color: #ffffff;
+            font-size: 4em;
+            font-family: $font-family-poppins;
+            font-weight: $font-weight-regular;
+          }
+          .banner-sub {
+            color: #ffffff;
+            font-size: 1.5em;
+            font-family: $font-family-poppins;
+            font-weight: $font-weight-regular;
+          }
         }
       }
-    }
 
-    .footer {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      padding-bottom: 2.75em;
-      .footerText1,
-      .footerText2 {
-        display: flex;
-        color: #ffffff;
+      .footer {
         width: 100%;
-        justify-content: center;
-        font-size: 1em;
-        font-family: $font-family-poppins;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-bottom: 2.75em;
+        .footerText1,
+        .footerText2 {
+          display: flex;
+          color: #ffffff;
+          width: 100%;
+          justify-content: center;
+          font-size: 1em;
+          font-family: $font-family-poppins;
+        }
       }
     }
   }

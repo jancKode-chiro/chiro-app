@@ -1,4 +1,5 @@
 @import "../../../styles/variables.scss";
+@import "../../../styles/lib/include-media.scss";
 
 .dashboardcard {
   width: 100%;
@@ -7,6 +8,13 @@
     flex-direction: row;
     justify-content: space-evenly;
     width: 100%;
+
+    @include media("<phone") {
+      flex-direction: column;
+    }
+    @include media("<tablet") {
+      flex-direction: column;
+    }
     .card {
       width: 25%;
       height: 15em;
@@ -19,19 +27,53 @@
       justify-content: center;
       align-items: center;
 
+      @include media("<phone") {
+        margin-bottom: 0.5rem;
+      }
+
+      @include media("<tablet") {
+        margin-bottom: 0.5rem;
+      }
+
       &.blue-card {
         background: #7d9ceb;
+
+        @include media("<phone") {
+          width: 100%;
+          margin-bottom: 0.5rem;
+        }
+
+        @include media("<tablet") {
+          width: 100%;
+          margin-bottom: 0.5rem;
+        }
       }
       &.green-card {
         background: #4ab938;
+
+        @include media("<phone") {
+          width: 100%;
+        }
+
+        @include media("<tablet") {
+          width: 100%;
+        }
       }
       &.dark-blue-card {
         background: #2e3750;
+
+        @include media("<phone") {
+          width: 100%;
+        }
+
+        @include media("<tablet") {
+          width: 100%;
+        }
       }
 
       .icon {
-        width: 3.375em;
-        height: 3.375em;
+        width: 6.375rem;
+        height: 6.375rem;
         padding-left: 0.75em;
       }
 

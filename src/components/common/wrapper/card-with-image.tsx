@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import Grid from '@material-ui/core/Grid';
 
 import RepsonsiveContainerGrid from './grid-container';
-import ResponsiveCard from './card';
+import ResponsiveCard from './card/responsive-card';
 
 import './grid-container.styles.scss';
 import { StyledLink } from '../../link/link';
@@ -45,22 +45,17 @@ const CardWithImage = ({
   return (
     <RepsonsiveContainerGrid className='grid-container'>
       <Grid
-        style={{
-          flexDirection: 'row',
-          display: 'flex',
-        }}
+        className='grid-detail-wrapper'
       >
-        <ResponsiveCard>
-          <div className='card-with-image'>
-            <div className='greetingsContainer'>
-              <div className={`banner ${className ?? className}`}>
-                <span className='banner-title'>{text}</span>
-                <span className='banner-sub'>{subTitle}</span>
-              </div>
+        <div className='card-with-image'>
+          <div className='greetingsContainer'>
+            <div className={`banner ${className ?? className}`}>
+              <span className='banner-title'>{text}</span>
+              <span className='banner-sub'>{subTitle}</span>
             </div>
-            {renderFooter()}
           </div>
-        </ResponsiveCard>
+          {renderFooter()}
+        </div>
         <ResponsiveCard>{children}</ResponsiveCard>
       </Grid>
     </RepsonsiveContainerGrid>

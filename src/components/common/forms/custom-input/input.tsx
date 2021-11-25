@@ -1,3 +1,4 @@
+import '../../../../styles/lib/include-media.scss'
 import styled, { css } from 'styled-components';
 import { PasswordProps } from 'antd/lib/input';
 import {
@@ -10,6 +11,7 @@ import {
 
 import { TextArea } from 'semantic-ui-react'
 
+import { devices } from '../../../../styles/theme'
 import { TypographyStyles, UIColors } from '../../../../types/styles';
 type InputProps = SpaceProps &
   TypographyProps & {
@@ -24,7 +26,6 @@ const inputStyle = css`
   ${typography}
   ${width}
   height: 52px;
-  width: ${width};
   border-radius: 8px;
   background-color: #ffffff;
   border: 1px solid
@@ -34,6 +35,7 @@ const inputStyle = css`
   font-size: 16px;
   color: #aca6a6;
 
+ 
   input {
     border: none;
   }
@@ -47,14 +49,6 @@ const inputStyle = css`
 
 export const Input = styled.input<InputProps>`
   ${inputStyle};
-   ::-webkit-inner-spin-button{
-        -webkit-appearance: none;
-        margin: 0;
-    }
-    ::-webkit-outer-spin-button{
-        -webkit-appearance: none;
-        margin: 0;
-    }
 `;
 
 export const InputButton = styled.input<InputProps>`
