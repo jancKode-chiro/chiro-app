@@ -26,7 +26,7 @@ type InputProps = {
 const SmsPage = () => {
   const [recipients, setRecipients] = useState<string[]>([]);
   const [currentRecipient, setCurrentRecipient] = useState('');
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState, reset } = useForm({
     mode: "onChange"
   });
 
@@ -34,6 +34,9 @@ const SmsPage = () => {
 
   const onClickHander = (): void => {
     setRecipients((prevState: string[]) => [...prevState, `+${currentRecipient}`]);
+    setCurrentRecipient('')
+
+
 
   };
 
@@ -175,14 +178,16 @@ const SmsPage = () => {
               </div>
               <Input width='6.2vw' /> */}
               <div className='button-a'>
+
                 <InputButton
-                  disabled={!isValid && recipients.length > 0}
+                  disabled={!isValid || recipients.length < 1}
                   type='submit'
                   value='SEND'
                   className={`bg-green text-white ${(!isValid || recipients.length < 1) ? 'bg-gray' : ''
                     }`}
                 />
               </div>
+
             </div>
           </div>
         </form>
