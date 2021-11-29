@@ -1,7 +1,8 @@
 import React, { ReactNode, FC } from 'react';
 
-import SlideNavigationProfile from '../../views/slidenavigationprofile/slidenavigationprofile';
-import SlideNavigation from '../../views/slidenavigation/slidenavigation';
+import SideBarNavigation from '../../components/sidebar-navigation/sidebar-data/sidebar-data';
+import SideBarProfileData from '../../components/sidebar-navigation/sidebar-profile-data/sidebar-profile-data';
+
 import './header.styles.scss';
 
 type HeaderProps = {
@@ -13,9 +14,9 @@ const CustomHeader: FC<HeaderProps> = ({ title }) => {
 
   return (
     <header className='header'>
-      <SlideNavigation />
-      <h1 className='page-title'>{title}</h1>
-      <SlideNavigationProfile />
+      <SideBarNavigation />
+      <h1 className='page-title'>{title} </h1>
+      <SideBarProfileData />
     </header>
   );
 };

@@ -1,19 +1,24 @@
-@import "../../styles/variables.scss";
+@import "../../../styles/variables.scss";
 
-.slideprofile {
-  .top-button {
+.sidebarprofile {
+  // .sidebarprofile-icon {
+  //   display: flex;
+  //   justify-content: flex-end;
+  // }
+
+  .top-button-profile {
     display: flex;
     justify-content: flex-end;
     padding-right: 1rem;
   }
 
-  .menu-bar {
+  .menu-bar-profile {
     margin-left: 2rem;
     font-size: 2rem;
     background: none;
   }
 
-  .nav-menu {
+  .nav-menu-profile {
     background-color: #ffffff;
     width: 17.325em;
     height: 100vh;
@@ -25,7 +30,7 @@
     transition: 850ms;
   }
 
-  .nav-menu.active {
+  .nav-menu-profile.active {
     right: 0;
     transition: 100ms;
     z-index: 1;
@@ -56,12 +61,12 @@
     border-radius: 4px;
   }
 
-  .nav-menu-items {
+  .nav-menu-profile-items {
     width: 100%;
     margin-right: 2.124;
   }
 
-  .nav-out {
+  .nav-out-profile {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -74,7 +79,7 @@
     font-size: 16px;
   }
 
-  .nav-out a {
+  .nav-out-profile a {
     text-decoration: 1px solid #c9c9c9cc;
     color: #000000;
     font-size: 1.325em;
@@ -86,7 +91,7 @@
     border-radius: 4px;
   }
 
-  span {
+  span-profile {
     margin-left: 1em;
   }
 }

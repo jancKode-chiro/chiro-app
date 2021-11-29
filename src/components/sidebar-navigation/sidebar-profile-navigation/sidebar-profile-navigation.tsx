@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { SidebarDataProfile } from '../../components/sidebarprofile/sidebarprofile';
+import { SidebarDataProfile } from '../../../constants/sidebar-options';
 import { IconContext } from 'react-icons';
 import { Link } from 'react-router-dom';
 import { Auth } from 'aws-amplify'
@@ -8,10 +8,10 @@ import { Auth } from 'aws-amplify'
 import * as AiIcons from 'react-icons/ai';
 import * as FaIcons from 'react-icons/fa';
 
-import './slidenavigationprofile.styles.scss';
+import './sidebar-profile-navigation.styles.scss'
 
 
-function SlideNavigationProfile() {
+function SideBarProfile() {
   const [sidebar, setSideBar] = useState(false);
 
   const showSideBar = () => setSideBar(!sidebar);
@@ -27,21 +27,22 @@ function SlideNavigationProfile() {
   }
   return (
     <>
-      <div className='slideprofile'>
+      <div className='sidebarprofile'>
         <IconContext.Provider value={{ color: '#000000eb' }}>
-          <div>
-            <Link to='#' className='menu-bars'>
+          <div className='sidebarprofile-icon'>
+            <Link to='#'>
               <FaIcons.FaUserAlt
                 onClick={showSideBar}
                 color={'#fffffff1'}
                 fontSize={'2.125em'}
+
               />
             </Link>
           </div>
-          <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-            <ul className='nav-menu-items' onClick={showSideBar}>
-              <div className='top-button'>
-                <Link to='#' className='menu-bars'>
+          <nav className={sidebar ? 'nav-menu-profile active' : 'nav-menu-profile'}>
+            <ul className='nav-menu-profile-items' onClick={showSideBar}>
+              <div className='top-button-profile'>
+                <Link to='#' >
                   <AiIcons.AiOutlineClose fontSize={'2.341em'} />
                 </Link>
               </div>
@@ -63,4 +64,4 @@ function SlideNavigationProfile() {
   );
 }
 
-export default SlideNavigationProfile;
+export default SideBarProfile;
