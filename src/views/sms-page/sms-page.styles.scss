@@ -1,14 +1,22 @@
 @import "../../styles//variables.scss";
-.sms-page {
-  .smsform {
-    font-family: $font-family-poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1.5em;
-    padding: 3.8rem 0 3.8rem 0;
-    display: fleex;
-  }
 
+.sms-page {
+  display: flex;
+  justify-self: start;
+  justify-content: center;
+  .input-number {
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+  }
   .add-recipient-wrapper {
     // display: flex;
     // align-items: center;
@@ -21,19 +29,33 @@
   .recipients-list-wrapper {
     display: flex;
     padding-top: 3.8rem;
+    display: flex;
+    overflow: hidden;
+    word-break: break-word;
+    align-items: center;
     .recipient-label {
       font-family: $font-family-poppins;
       font-size: 1.3em;
     }
     .recipients-list {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-family: $font-family-poppins;
       font-size: 1em;
       border: 1px solid #2dcc5a;
       border-radius: 8px;
       padding: 1rem;
-      width: 50vw;
+      min-width: 80.5vw;
       color: gray;
       margin-left: 0.2rem;
+    }
+
+    .clear-button {
+      padding: 0.5rem;
+      font-size: 1.2em;
+      border: 1px solid gray;
+      border-radius: 8px;
     }
   }
 
@@ -57,11 +79,35 @@
     font-weight: normal;
     font-size: 1.5em;
 
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      margin: 0;
+    }
+
     .sms-elements {
       width: 85%;
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+  }
+
+  .upload-contacts {
+    margin-left: 2rem;
+    border: 1px solid;
+    height: 52px;
+    font-size: 16px;
+    font-family: $font-family-poppins;
+    padding: 1rem;
+    border-radius: 9px;
+    background-color: $primary-green;
+    color: white;
+    font-weight: $font-weight-bold;
+    input[type="file"] {
+      display: none;
     }
   }
 
