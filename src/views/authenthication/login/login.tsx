@@ -80,7 +80,7 @@ const Login = (): JSX.Element => {
             placeholder='Email'
             type='email'
             required
-            defaultValue='gynnanne@gmail.com'
+            // defaultValue='gynnanne@gmail.com'
             {...register('email', { required: true })}
           />
 
@@ -88,7 +88,7 @@ const Login = (): JSX.Element => {
             marginTop='27px'
             type='password'
             placeholder='Password (minimum of 8, alphanumeric and symbols)'
-            defaultValue='Chir_1234.'
+            // defaultValue='Chir_1234.'
             {...register('password', { required: true, minLength: 8 })}
             required
           />
