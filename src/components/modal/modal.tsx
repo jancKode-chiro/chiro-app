@@ -8,9 +8,9 @@ type CutomModalProps = {
   onCloseButtonText: string;
   onOpenButtonText: string;
   onCloseCallback?: () => void;
-  onOpenCallback?: () => void;
+  onOpenCallback: () => void;
   customComponent?: JSX.Element
-  openModal: boolean
+  // openModal: boolean
 }
 
 function modalReducer(state: any, action: any) {
@@ -31,7 +31,7 @@ const CustomModal = ({
   onCloseCallback,
   onOpenCallback,
   customComponent,
-  openModal
+  // openModal
 }: CutomModalProps) => {
   const [state, dispatch] = useReducer(modalReducer, {
     open: false,
@@ -43,10 +43,10 @@ const CustomModal = ({
       <Grid.Column>
         <Modal
           closeOnDimmerClick={false}
-          open={openModal}
+          open={open}
           onOpen={() => dispatch({ type: 'OPEN_MODAL' })}
           onClose={() => dispatch({ type: 'CLOSE_MODAL' })}
-          trigger={<Button>{buttonTriggerText}</Button>}
+          trigger={customComponent}
         >
           <Modal.Header>{headerText}</Modal.Header>
           <Modal.Content>
@@ -57,7 +57,7 @@ const CustomModal = ({
               {onCloseButtonText}
             </Button>
 
-            <Button onClick={() => { dispatch({ type: 'CLOSE_MODAL' }) }} positive>
+            <Button onClick={() => { onOpenCallback(); dispatch({ type: 'CLOSE_MODAL' }) }} positive>
               {onOpenButtonText}
             </Button>
           </Modal.Actions>

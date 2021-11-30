@@ -9,6 +9,7 @@ import {
   USERS_PATH,
 } from '../../constants/paths';
 
+
 import home from '../../assets/images/icons/home.png';
 import user from '../../assets/images/icons/user.png'
 import contacts from '../../assets/images/icons/contacts.png';
@@ -66,6 +67,7 @@ const listNavOptions = [
 const Dashboard = ({ isNavbar, children }: any) => {
   return (
     <div>
+
       <CustomHeader title='Logo here' />
       <div className='dashboard'>
         {isNavbar ? <div className='navbar'>
