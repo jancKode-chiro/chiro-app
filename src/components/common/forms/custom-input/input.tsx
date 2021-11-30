@@ -35,6 +35,8 @@ const inputStyle = css`
 
   input {
     border: none;
+
+
   }
 
   &:focus {
@@ -46,6 +48,14 @@ const inputStyle = css`
 
 export const Input = styled.input<InputProps>`
   ${inputStyle};
+   ::-webkit-inner-spin-button{
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    ::-webkit-outer-spin-button{
+        -webkit-appearance: none;
+        margin: 0;
+    }
 `;
 
 export const InputButton = styled.input<InputProps>`
@@ -134,7 +144,7 @@ export const PasswordInput = styled.input<StyledPasswordProps>`
 export const TextArea = styled.textarea<InputProps>`
   ${inputStyle}
   resize: none;
-  width: 85%;
+  width: 88%;
   padding-top: 1rem;
   height: 15rem;
   margin-left: 1rem;

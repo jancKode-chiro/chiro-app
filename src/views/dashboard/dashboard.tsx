@@ -6,7 +6,9 @@ import {
   CONTACTS_PATH,
   SEND_SMS_PATH,
   SMS_PATH,
+  USERS_PATH,
 } from '../../constants/paths';
+
 
 import home from '../../assets/images/icons/home.png';
 import user from '../../assets/images/icons/user.png'
@@ -28,7 +30,7 @@ const listNavOptions = [
     icon: user,
     label: 'Users',
     id: 2,
-    path: '/users'
+    path: USERS_PATH
   },
 
   {
@@ -65,6 +67,7 @@ const listNavOptions = [
 const Dashboard = ({ isNavbar, children }: any) => {
   return (
     <div>
+
       <CustomHeader title='Logo here' />
       <div className='dashboard'>
         {isNavbar ? <div className='navbar'>

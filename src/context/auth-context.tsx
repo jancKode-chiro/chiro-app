@@ -19,6 +19,7 @@ type UseAuth = {
   setInputEmail: (email: string) => void;
   currentUserId: string;
   setCurrentUserId: (userId: string) => void;
+
 };
 
 const AuthContext = createContext({});
@@ -28,6 +29,7 @@ const AuthProvider = (props: any): ReactElement => {
   const [isLoading, setIsLoading] = useState(true);
   const [email, setEmail] = useState<string>('');
   const [currentUserId, setUserId] = useState<string>('');
+
 
   const checkAuthentication = async (setAuthState: Function): Promise<void> => {
     try {
@@ -48,10 +50,13 @@ const AuthProvider = (props: any): ReactElement => {
     localStorage.setItem('userId', userId);
   };
 
+
+
   useEffect(() => {
     const auth = checkAuthentication;
     auth(setAuthState);
     setCurrentUserId(localStorage.getItem('userId')!);
+
   }, []);
 
   const values: UseAuth = {
@@ -63,6 +68,7 @@ const AuthProvider = (props: any): ReactElement => {
     setInputEmail,
     currentUserId,
     setCurrentUserId,
+
   };
 
   return <AuthContext.Provider value={values} {...props} />;
