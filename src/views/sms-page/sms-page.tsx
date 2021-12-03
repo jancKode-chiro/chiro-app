@@ -16,6 +16,9 @@ import { CustomDiv } from '../../components/common/wrapper/custom-wrapper/custom
 
 import './sms-page.styles.scss';
 import { readExcelFile } from '../../utilities/excel-parser';
+import CustomModal from '../../components/modal/modal';
+import Auth from '@aws-amplify/auth';
+import { boolean } from 'yup/lib/locale';
 
 
 type InputProps = {
@@ -81,6 +84,15 @@ const SmsPage = () => {
     };
   }
 
+  const onClickHanlder = (callback: boolean) => {
+    if (callback) {
+      console.log('inside callback', callback)
+      localStorage.clear()
+      Auth.signOut();
+
+    }
+
+  }
 
   return (
     <Dashboard isNavbar={true}>
@@ -144,13 +156,29 @@ const SmsPage = () => {
             </CustomDiv>
             <div >
               {recipients.length > 0 ?
-                (<div className='recipients-list-wrapper'><span className='recipient-label'>Recipient/s:</span>
-                  <div className='recipients-list'>
+                (<div className='recipients-list-page-wrapper'><span className='recipient-page-label'>Recipient/s:</span>
+                  <div className='recipients-page-list'>
                     <div>
                       <span>{recipients ? recipients.join(',') : null}</span>
-
                     </div>
-                    <span className='clear-button' onClick={() => setRecipients([])}>X</span>
+
+                    <CustomModal
+                      buttonTriggerText='X'
+                      headerText='You are about to remove your data Recipient'
+                      contentText='Are you sure?'
+                      onCloseButtonText='No'
+                      onOpenButtonText='X'
+                      customComponent={<span><CustomDiv
+                        display='flex'
+                        fontSize='1.2em'
+                        justifyContent='flex-end'
+                        marginRight='2rem'
+                      >
+                      </CustomDiv>
+                        <span onClick={() => setRecipients([])}>X</span>
+                      </span>}
+                      onOpenCallback={function (): void { }}
+                    />
                   </div>
                 </div>) : null}
             </div>
