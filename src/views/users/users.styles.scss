@@ -1,11 +1,23 @@
 @import "../../styles/variables.scss";
 
+.add-users {
+  display: flex;
+
+  justify-content: flex-end;
+  // margin-bottom: 3.125em;
+}
+
+.add-input-user {
+  margin-left: 2em;
+  margin-right: 3em;
+}
+
 .users {
   .usersform {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 1.1rem;
+    margin-bottom: 4.25rem;
   }
 
   .userstitle {

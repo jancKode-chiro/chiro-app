@@ -90,7 +90,24 @@ const Users = ({ children }: UsersProps) => {
             width='12rem'
           />
         </form>
+
+
+
         <div>
+          <form className='add-users'>
+            <InputButton
+              value='ADD USER'
+              type='submit'
+              className='bg-green text-white'
+              width='12rem'
+            />
+            <Input
+              className='add-input-user'
+              placeholder='Add user here'
+              type='add user'
+              width='20rem'
+            />
+          </form>
           <Table columns={columns} data={users} />
         </div>
       </div>
