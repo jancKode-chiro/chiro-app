@@ -1,11 +1,16 @@
 @import "../../styles//variables.scss";
 
 .sms-page {
-  display: flex;
-  justify-self: start;
-  justify-content: center;
-  flex-direction: column;
-  align-items: flex-end;
+  // display: flex;
+  // justify-self: start;
+  // justify-content: center;
+  // flex-direction: column;
+  // align-items: flex-end;
+
+  .grid-row {
+    align-items: center !important;
+    text-align: end;
+  }
   .input-number {
     /* Chrome, Safari, Edge, Opera */
     input::-webkit-outer-spin-button,
@@ -35,25 +40,29 @@
     overflow: hidden;
     word-break: break-word;
     align-items: center;
+    text-align: end;
+    align-items: center !important;
     .recipient-label {
       font-family: $font-family-poppins;
       font-size: 1.3em;
+      display: inline-block;
     }
     .recipients-list {
-      display: flex;
+      display: flex !important;
       justify-content: space-between;
       align-items: center;
       font-family: $font-family-poppins;
       font-size: 1em;
-      border: 1px solid #2dcc5a;
+      border: 1px solid #2dcc5a !important;
       border-radius: 8px;
       padding: 1rem;
-      min-width: 80.5vw;
+
       color: gray;
-      margin-left: 0.2rem;
+      margin-left: 1.2rem;
     }
 
     .clear-button {
+      display: inline-block;
       padding: 0.5rem;
       font-size: 1.2em;
       border: 1px solid gray;
@@ -67,14 +76,15 @@
     justify-content: center;
     font-family: $font-family-poppins;
     font-size: 1.3em;
-
+    text-align: end;
     padding-bottom: 3.8rem;
+    align-items: center !important;
   }
 
   .sms-inputs {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center !important;
 
     font-family: $font-family-poppins;
     font-style: normal;
@@ -98,6 +108,7 @@
   }
 
   .upload-contacts {
+    align-self: center;
     margin-left: 2rem;
     border: 1px solid;
     height: 52px;
@@ -111,6 +122,7 @@
     input[type="file"] {
       display: none;
     }
+    cursor: pointer;
   }
 
   .text {
