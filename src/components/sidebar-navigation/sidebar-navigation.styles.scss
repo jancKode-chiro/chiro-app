@@ -16,13 +16,13 @@
     position: fixed;
     top: 0;
     left: -100%;
-    transition: 850ms;
+    transition: 950ms;
     z-index: 1;
   }
 
   .nav-menu.active {
     left: 0;
-    transition: 350ms;
+    transition: 650ms;
     z-index: 1;
   }
 

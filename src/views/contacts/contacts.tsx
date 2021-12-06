@@ -80,7 +80,7 @@ const ContactData = ({ children }: DashboardProps) => {
   // };
 
   return (
-    <Dashboard>
+    <Dashboard isNavbar={true}>
       <div className='contacts'>
         <form className='contacts-form'>
           <label className='title'>Contacts</label>

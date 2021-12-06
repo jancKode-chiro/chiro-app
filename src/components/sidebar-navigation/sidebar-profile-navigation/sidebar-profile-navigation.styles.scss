@@ -27,12 +27,12 @@
     position: fixed;
     top: 0;
     right: -100%;
-    transition: 850ms;
+    transition: 950ms;
   }
 
   .nav-menu-profile.active {
     right: 0;
-    transition: 350ms;
+    transition: 650ms;
     z-index: 1;
   }
 
