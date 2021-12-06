@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import { withRouter } from 'react-router';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import * as XLSX from 'xlsx'
 
 import CustomSelect from '../../components/select/select';
@@ -8,7 +8,7 @@ import Dashboard from '../dashboard/dashboard';
 import {
   Input,
   InputButton,
-  TextArea,
+  CustomTextArea,
 } from '../../components/common/forms/custom-input/input';
 
 import { sendSMS } from '../../api/sms-service';
@@ -16,6 +16,8 @@ import { CustomDiv } from '../../components/common/wrapper/custom-wrapper/custom
 
 import './sms-page.styles.scss';
 import { readExcelFile } from '../../utilities/excel-parser';
+import { Button, Grid, Form, Segment } from 'semantic-ui-react';
+import CustomModal from '../../components/modal/modal';
 
 
 type InputProps = {
@@ -26,7 +28,8 @@ type InputProps = {
 const SmsPage = () => {
   const [recipients, setRecipients] = useState<string[]>([]);
   const [currentRecipient, setCurrentRecipient] = useState('');
-  const { register, handleSubmit, formState, reset } = useForm({
+  const [smsContent, setSmsContent] = useState('')
+  const { register, handleSubmit, formState, reset, control } = useForm({
     mode: "onChange"
   });
 
@@ -35,9 +38,7 @@ const SmsPage = () => {
   const onClickHander = (): void => {
     setRecipients((prevState: string[]) => [...prevState, `+${currentRecipient}`]);
     setCurrentRecipient('')
-
-
-
+    reset({ currentRecipient: '' })
   };
 
   const sumbitHanlder = async (data: InputProps) => {
@@ -46,7 +47,7 @@ const SmsPage = () => {
     const result = await sendSMS(
       '/send-messages',
       combineRecipients,
-      data.message
+      smsContent
     );
 
     if (result) {
@@ -84,34 +85,24 @@ const SmsPage = () => {
 
   return (
     <Dashboard isNavbar={true}>
-      <div className='sms-page'>
-        <form onSubmit={handleSubmit(sumbitHanlder)} >
-          <div className='sms-detail-wrapper'>
-            <span className='text'>Select Group:</span>
-            <div style={{
-              width: '83vw',
-            }}>
+      <Form className='sms-page' onSubmit={handleSubmit(sumbitHanlder)}>
+        <Grid columns='equal' relaxed stackable>
+          <Grid.Row className='grid-row'>
+            <Grid.Column width='3'>
+              <span className='text'>Select Group:</span>
+            </Grid.Column>
+            <Grid.Column width='9' >
               <CustomSelect />
-            </div>
-            {/* <Input borderColor='#000000' {...register('group')} /> */}
-          </div>
-
-          <CustomDiv
-            justifyContent='center'
-            display={recipients.length > 0 ? 'flex' : ''}
-            alignItems='center'
-            paddingBottom='2rem'
-            width='95%'
-            margin='auto'
-            flexDirection='column'
-          >
-
-            <CustomDiv
-              display='flex'
-              alignItems='center'
-              justifyContent='center'
-            >
+            </Grid.Column>
+            <Grid.Column width='3' >
+              <Button>Search</Button>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row className='grid-row'>
+            <Grid.Column width='3'>
               <span className='text'>Add Recipient/s:</span>
+            </Grid.Column>
+            <Grid.Column width='4'>
               <Input
                 type='number'
                 className='input-number'
@@ -120,19 +111,21 @@ const SmsPage = () => {
                 marginRight='4rem'
                 marginLeft='.2rem'
                 pattern='^[0-9]*$'
-                {...register('recipients', {
+                {...register('currentRecipient', {
                   onChange: (e) => setCurrentRecipient(e.target.value),
-                  required: true,
                   pattern: {
                     value: /^[0-9]*$/,
                     message: 'Invalid contact number'
                   }
                 })}
               />
+            </Grid.Column>
+            <Grid.Column width='3' >
               <InputButton disabled={!currentRecipient} type='button' value='ADD CONTACT'
                 onClick={() => onClickHander()}
                 className={`bg-green text-white ${currentRecipient.length < 1 ? 'bg-gray' : ''}`} />
-
+            </Grid.Column>
+            <Grid.Column width='4'>
 
               <label className="upload-contacts">
                 UPLOAD CONTACTS
@@ -141,57 +134,65 @@ const SmsPage = () => {
                 }} />
 
               </label>
-            </CustomDiv>
-            <div >
-              {recipients.length > 0 ?
-                (<div className='recipients-list-wrapper'><span className='recipient-label'>Recipient/s:</span>
-                  <div className='recipients-list'>
-                    <div>
-                      <span>{recipients ? recipients.join(',') : null}</span>
+            </Grid.Column>
+          </Grid.Row>
+          {recipients.length > 0 ? <Grid.Row className='recipients-list-wrapper'>
+            <Grid.Column width='3' >
+              <span className='recipient-label'>Recipient/s:</span>
+            </Grid.Column>
+            <Grid.Column className='recipients-list' width='12'>
+              <span className='recipient-label'>{recipients ? recipients.join(',') : null}</span>
+              <CustomModal
+                headerText='Clear recipients'
+                contentText='Are you sure you want to clear all the recipients?'
+                buttonTriggerText='Clear recipients?'
+                onOpenCallback={() => setRecipients([])}
+                customComponent={<span className='clear-button'>X</span>}
+                onCloseButtonText='No'
+                onOpenButtonText='Yes'
+              />
+            </Grid.Column>
+          </Grid.Row> : null}
+          <Grid.Row className='sms-detail-wrapper'>
+            <Grid.Column width='3'>
+              <span className='text'>SMS text:</span>
+            </Grid.Column>
+            {console.log('message', smsContent)}
+            <Controller
+              name='message'
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Grid.Column width='10'>
+                  <CustomTextArea
+                    rows={3}
+                    onChange={(e: any) => setSmsContent(e.target.value)}
+                    value={value}
 
-                    </div>
-                    <span className='clear-button' onClick={() => setRecipients([])}>X</span>
-                  </div>
-                </div>) : null}
-            </div>
+                  />
+                </Grid.Column>
+              )}
 
-          </CustomDiv>
+            />
+            {/* <Grid.Column width='10'>
+              <CustomTextArea
+                borderColor='#000000'
+                rows={3} {...register('message')}
+              />
+            </Grid.Column> */}
+          </Grid.Row>
+          {recipients.length && smsContent ? <Grid.Row className='sms-inputs'>
 
-          <div className='sms-detail-wrapper'>
-            <span className='text'>SMS text:</span>
-            <TextArea
-              required borderColor='#000000' rows={3} {...register('message', {
-                required: true
-              })} />
-          </div>
+            <InputButton
+              width='85%'
+              type='submit'
+              value='SEND'
+              className={`bg-green text-white ${(!isValid && recipients.length === 0) ? 'bg-gray' : ''
+                }`}
+            />
 
-          <div className='sms-inputs'>
-            {/* <span className='text'>Send SMS: </span> */}
-            <div className='sms-elements'>
-              {/* <div>
-                <input type='radio' value='Immediately' name='Immediately' />
-                Immediately
-              </div>
-              <div>
-                <input type='radio' />
-                Start sending at:
-              </div>
-              <Input width='6.2vw' /> */}
-              <div className='button-a'>
-
-                <InputButton
-                  disabled={!isValid || recipients.length < 1}
-                  type='submit'
-                  value='SEND'
-                  className={`bg-green text-white ${(!isValid || recipients.length < 1) ? 'bg-gray' : ''
-                    }`}
-                />
-              </div>
-
-            </div>
-          </div>
-        </form>
-      </div>
+          </Grid.Row> : null}
+        </Grid>
+      </Form>
     </Dashboard >
   );
 };

@@ -8,6 +8,8 @@ import {
   width,
 } from 'styled-system';
 
+import { TextArea } from 'semantic-ui-react'
+
 import { TypographyStyles, UIColors } from '../../../../types/styles';
 type InputProps = SpaceProps &
   TypographyProps & {
@@ -141,7 +143,7 @@ export const PasswordInput = styled.input<StyledPasswordProps>`
   ${inputStyle}
 `;
 
-export const TextArea = styled.textarea<InputProps>`
+export const CustomTextArea = styled(TextArea) <InputProps>`
   ${inputStyle}
   resize: none;
   width: 88%;
