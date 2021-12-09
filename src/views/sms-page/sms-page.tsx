@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent, useRef } from 'react';
 import { withRouter } from 'react-router';
 import { useForm, Controller } from 'react-hook-form';
 import * as XLSX from 'xlsx'
@@ -15,9 +15,9 @@ import { sendSMS } from '../../api/sms-service';
 import { CustomDiv } from '../../components/common/wrapper/custom-wrapper/custom-wrapper';
 
 import './sms-page.styles.scss';
-import { readExcelFile } from '../../utilities/excel-parser';
-import { Button, Grid, Form, Segment } from 'semantic-ui-react';
+import { Button, Grid, Form } from 'semantic-ui-react';
 import CustomModal from '../../components/modal/modal';
+import { toast } from 'react-toastify';
 
 
 type InputProps = {
@@ -34,6 +34,7 @@ const SmsPage = () => {
   });
 
   const { isValid } = formState;
+  const loadId = useRef(null) as any;
 
   const onClickHander = (): void => {
     setRecipients((prevState: string[]) => [...prevState, `+${currentRecipient}`]);
@@ -41,7 +42,15 @@ const SmsPage = () => {
     reset({ currentRecipient: '' })
   };
 
+  const notify = () => loadId.current = toast('Sending message...', { type: toast.TYPE.INFO, autoClose: false });
+
+  const update = () => toast.update(loadId.current, { render: 'Message was successfully delivered', type: toast.TYPE.SUCCESS, autoClose: 3000 })
+  const updateError = () => toast.update(loadId.current, {
+    render: 'Something went wrong when trying to send your message, please check if the number is valid',
+    type: toast.TYPE.ERROR, autoClose: 3000
+  })
   const sumbitHanlder = async (data: InputProps) => {
+    notify();
     const combineRecipients = recipients.join(',');
 
     const result = await sendSMS(
@@ -50,9 +59,13 @@ const SmsPage = () => {
       smsContent
     );
 
-    if (result) {
+    if (result.data.status === 200) {
+      update()
       setRecipients([]);
       setCurrentRecipient('');
+      reset();
+    } else {
+      updateError()
     }
   };
 

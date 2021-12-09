@@ -56,6 +56,27 @@
         display: flex;
         margin-left: 2.3125em;
       }
+
+      .password-input {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 25vw;
+        border: 1px solid #2dcc5a;
+        border-radius: 8px;
+        height: 52px;
+
+        color: #aca6a6;
+        background-color: #ffffff;
+
+        .eye-icon {
+          height: 1.6rem;
+          width: 1.6rem;
+          :hover {
+            cursor: pointer;
+          }
+        }
+      }
     }
 
     .createaccount {

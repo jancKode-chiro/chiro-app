@@ -1,0 +1,17 @@
+@import "../../../../styles/variables.scss";
+
+.inline-error {
+  display: inherit;
+  p {
+    padding-top: 6px;
+    font-family: $font-family-poppins;
+    color: #bf1650;
+    font-size: 1.1em;
+    text-align: center;
+  }
+
+  p::before {
+    display: inline;
+    content: "⚠ ";
+  }
+}
