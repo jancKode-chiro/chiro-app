@@ -26,7 +26,6 @@ const inputStyle = css`
   height: 52px;
   width: ${width};
   border-radius: 8px;
-  color: white;
   background-color: #ffffff;
   border: 1px solid
     ${(props: any) => (props.borderColor ? props.borderColor : '#2dcc5a')};
@@ -37,8 +36,6 @@ const inputStyle = css`
 
   input {
     border: none;
-
-
   }
 
   &:focus {
@@ -140,7 +137,18 @@ export const InputButton = styled.input<InputProps>`
 `;
 
 export const PasswordInput = styled.input<StyledPasswordProps>`
-  ${inputStyle}
+  width: 90%;
+  border: none;
+  padding-left: .5rem;
+  border-radius: 8px;
+  color: #aca6a6;
+  font-family: ${TypographyStyles.FontFamilyPoppins};
+  background-color: #FFFFFF;
+
+  :focus {
+    outline: none;
+  }
+  
 `;
 
 export const CustomTextArea = styled(TextArea) <InputProps>`

@@ -2,6 +2,8 @@ import React from 'react';
 import 'semantic-ui-css/semantic.min.css'
 import ReactDOM from 'react-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import 'react-toastify/dist/ReactToastify.css';
+
 // import store from './redux/store';
 
 import App from './App';

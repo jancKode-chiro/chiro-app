@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { FaEyeSlash, FaEye } from 'react-icons/fa';
 
 import RepsonsiveContainerGrid from '../../../components/common/wrapper/grid-container';
 import {
@@ -14,6 +15,8 @@ import './createaccount.styles.scss';
 import { ACTIVATE_ACCOUNT_PATH } from '../../../constants/paths';
 import { createUser } from '../../../api/users';
 import { useAuth } from '../../../context/auth-context';
+import { InlineSingleErrorMessage } from '../../../components/common/notification/inline-notification/inline-notification';
+import { toast } from 'react-toastify';
 
 type InputProps = {
   firstName: string;
@@ -29,10 +32,11 @@ const CreateAccount = () => {
   const {
     register,
     handleSubmit,
-    // formState: { errors },
+    formState: { errors },
   } = useForm();
   let history = useHistory();
   const { setInputEmail } = useAuth();
+  const [showPassword, setShowPassword] = useState<boolean>(false)
 
   const submitHandler: SubmitHandler<InputProps> = async (
     data
@@ -57,10 +61,15 @@ const CreateAccount = () => {
           pathname: ACTIVATE_ACCOUNT_PATH,
           state: 'signUp',
         });
-    } catch (error) {
-      alert(error);
+    } catch (error: any) {
+      toast.error(error)
     }
   };
+
+
+  const showPasswordHandler = () => {
+    setShowPassword(!showPassword)
+  }
 
   return (
     <div className='create-account'>
@@ -71,73 +80,119 @@ const CreateAccount = () => {
             <div className='form'>
               <form onSubmit={handleSubmit(submitHandler)}>
                 <div className='text-wrapper'>
-                  <Input
-                    placeholder='First Name'
-                    width={'25vw'}
-                    required
-                    {...register('firstName', { required: true })}
-                  />
+                  <div>
+                    <Input
+                      placeholder='First Name'
+                      width={'25vw'}
+                      {...register('firstName', { required: 'First name is Required' })}
+                    />
 
-                  <Input
-                    placeholder='Last Name'
-                    width='25vw'
-                    required
-                    {...register('lastName', { required: true })}
-                  />
+                    <InlineSingleErrorMessage
+                      errors={errors}
+                      name='firstName'
+                    />
+                  </div>
+                  <div>
+                    <Input
+                      placeholder='Last Name'
+                      width='25vw'
+                      {...register('lastName', { required: 'Last name is required' })}
+                    />
+
+                    <InlineSingleErrorMessage
+                      errors={errors}
+                      name='lastName'
+                    />
+                  </div>
                 </div>
 
                 <div className='text-wrapper'>
-                  <Input
-                    placeholder='Email'
-                    type='email'
-                    width='25vw'
-                    required
-                    {...register('email', { required: true })}
-                  />
+                  <div>
+                    <Input
+                      placeholder='Email'
+                      type='email'
+                      width='25vw'
+                      {...register('email', { required: 'Email is required' })}
+                    />
 
-                  <PasswordInput
-                    placeholder='Password (minimum of 8, alphanumeric and symbols)'
-                    type='password'
-                    width='25vw'
-                    {...register('password', { required: true })}
-                    required
-                  />
+                    <InlineSingleErrorMessage
+                      errors={errors}
+                      name='email'
+                    />
+                  </div>
+                  <div>
+                    <div className='password-input'>
+                      <PasswordInput
+                        placeholder='Password (minimum of 8, alphanumeric and symbols)'
+                        type={showPassword ? 'text' : 'password'}
+                        width='25vw'
+                        {...register('password', { required: 'Password is required' })}
+                      />
+                      {showPassword ? <FaEyeSlash onClick={showPasswordHandler} className='eye-icon' />
+                        : <FaEye onClick={showPasswordHandler} className='eye-icon' />}
+                    </div>
+                    <InlineSingleErrorMessage
+                      errors={errors}
+                      name='password'
+                    />
+                  </div>
+
                 </div>
 
                 <div className='text-wrapper'>
-                  <Input
-                    placeholder='Phone Number'
-                    width='25vw'
-                    type='text'
-                    pattern='^[0-9]*$'
-                    // pattern='/^\+\d+$/'
-                    {...register('phoneNumber', {
-                      required: true,
-                      minLength: 11,
-                      min: 0,
-                    })}
-                    required
-                  />
+                  <div>
+                    <Input
+                      placeholder='Phone Number'
+                      width='25vw'
+                      type='text'
+                      pattern='^[0-9]*$'
+                      {...register('phoneNumber', {
+                        required: 'Phone number is required',
+                        minLength: {
+                          value: 11,
+                          message: 'Minimum length is 11'
+                        },
+                        min: 0,
+                      })}
+                    />
+                    <InlineSingleErrorMessage
+                      errors={errors}
+                      name='phoneNumber'
+                    />
+                  </div>
                 </div>
-                <div className='text-wrapper'>
-                  <Input
-                    placeholder='Country'
-                    width='25vw'
-                    {...register('country', { required: true })}
-                  />
 
-                  <Input
-                    placeholder='Country Code'
-                    width='25vw'
-                    {...register('countryCode', {
-                      required: true,
-                    })}
-                    required
-                  />
+                <div className='text-wrapper'>
+                  <div>
+                    <Input
+                      placeholder='Country'
+                      width='25vw'
+                      {...register('country', { required: 'Country is required' })}
+                    />
+
+                    <InlineSingleErrorMessage
+                      errors={errors}
+                      name='country'
+                    />
+                  </div>
+                  <div>
+                    <Input
+                      placeholder='Country Code'
+                      width='25vw'
+                      {...register('countryCode', {
+                        required: 'Country code is required',
+                      })}
+                    />
+                    <InlineSingleErrorMessage
+                      errors={errors}
+                      name='countryCode'
+                    />
+                  </div>
                 </div>
                 <div className='create-button'>
                   <InputButton
                     type='submit'
+                    // disabled={!isDirty || !isValid}
                     value='Create Account'
                     className='bg-green text-white '
                   />

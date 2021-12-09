@@ -5,7 +5,7 @@ import { AuthProvider } from './context/auth-context';
 import { Auth, Amplify } from 'aws-amplify';
 import awsmobile from './aws-exports';
 import { QueryClient, QueryClientProvider } from 'react-query';
-
+import { ToastContainer } from 'react-toastify'
 import {
   HOMEPAGE_PATH,
   CREATE_ACCOUNT_PATH,
@@ -57,7 +57,6 @@ function App() {
   Auth.configure(awsmobile);
 
   const queryClient = new QueryClient();
-
   return (
     <div className='App'>
       <QueryClientProvider client={queryClient}>
@@ -90,6 +89,7 @@ function App() {
                 <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
               </Switch>
             </Suspense>
+            <ToastContainer />
           </Router>
         </AuthProvider>
       </QueryClientProvider>

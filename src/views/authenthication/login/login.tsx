@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Auth } from 'aws-amplify';
+import { FaEyeSlash, FaEye } from "react-icons/fa";
+
 
 import CardWithImage from '../../../components/common/wrapper/card-with-image';
 import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
+import { toast } from 'react-toastify';
 import './login.style.scss';
 
 import {
@@ -25,20 +28,22 @@ import { useAuth } from '../../../context/auth-context';
 import { getCurrentSession } from '../../../helpers/user-helpers';
 // import useNav from '../../../hooks/use-nav';
 import { getUser } from '../../../api/users';
+import { InlineSingleErrorMessage } from '../../../components/common/notification/inline-notification/inline-notification';
 type InputProps = {
   email: string;
   password: string;
 };
 
 const Login = (): JSX.Element => {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm();
-  const history = useHistory();
 
-  const { email, setAuthState, setInputEmail, setCurrentUserId } =
+  const history = useHistory();
+  const { setAuthState, setInputEmail, setCurrentUserId } =
     useAuth();
   // const { goTo } = useNav();
   // const backToHome = (): void => history.push(LOGIN_PATH);
@@ -46,22 +51,28 @@ const Login = (): JSX.Element => {
   const submitHandler: SubmitHandler<InputProps> = async (
     data
   ): Promise<void> => {
+
     setInputEmail(data.email);
     setCurrentUserId(await getUser(data.email));
+
     Auth.signIn(data.email, data.password)
       .then(async () => {
         const session = await getCurrentSession();
 
         await setAuthState(session);
-        // goTo(DASHBOARD_PATH);
         history.push(DASHBOARD_PATH);
+        toast.success('Welcome back')
+
       })
       .catch((err) => {
-        console.log(err.message);
+        toast.error(err.message)
       });
 
-    // setIsAuth(true);
   };
+
+  const showPasswordHandler = () => {
+    setShowPassword(!showPassword)
+  }
 
   return (
     <CardWithImage
@@ -79,28 +90,44 @@ const Login = (): JSX.Element => {
             marginTop='80px'
             placeholder='Email'
             type='email'
-            required
             defaultValue='gynnanne@gmail.com'
-            {...register('email', { required: true })}
+            {...register('email', { required: 'Email is required' })}
+          />
+          <InlineSingleErrorMessage
+            errors={errors}
+            name='email'
+          />
+          <div className='password-input'>
+            <PasswordInput
+              type={showPassword ? 'text' : 'password'}
+              placeholder='Password'
+              defaultValue='Chir_1234.'
+              {...register('password', {
+                required: 'Passwrord is required', minLength: {
+                  value: 8,
+                  message: 'The minimum length is 8'
+                },
+              })}
+              required
+            />
+            {showPassword ? <FaEyeSlash onClick={showPasswordHandler} className='eye-icon' /> : <FaEye onClick={showPasswordHandler} className='eye-icon' />}
+          </div>
+
+          <InlineSingleErrorMessage
+            errors={errors}
+            name='password'
           />
 
-          <PasswordInput
-            marginTop='27px'
-            type='password'
-            placeholder='Password (minimum of 8, alphanumeric and symbols)'
-            defaultValue='Chir_1234.'
-            {...register('password', { required: true, minLength: 8 })}
-            required
-          />
-          {errors.password &&
-            'The required minimum length is 8 with alphanumeric and symbols'}
+
           <div className='button'>
             <InputButton
+              disabled={!isValid}
               type='submit'
               value='Login'
               className='bg-green text-white'
             />
           </div>
+
         </form>
         <div className='buttomWrapper'>
           {verticalSpacer('80px')}

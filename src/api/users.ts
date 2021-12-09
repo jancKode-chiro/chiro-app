@@ -3,6 +3,7 @@ import { User, UserRole } from '../models';
 import { Auth } from 'aws-amplify';
 
 import moment from 'moment';
+import { toast } from 'react-toastify';
 
 let systemError: string = '';
 
@@ -43,7 +44,7 @@ const authSignup = async (
 
     return result;
   } catch (error: any) {
-    alert(error.message);
+    toast.error(error.message);
   }
 };
 
