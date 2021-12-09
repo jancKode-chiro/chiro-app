@@ -19,8 +19,10 @@ import Table from '../../components/table/table';
 import { Input } from '../../components/common/forms/custom-input/input';
 import searchdata from '../../assets/images/searchdata.png';
 import Dashboard from '../dashboard/dashboard';
+import CreateFormUser from '../create-form-user/create-user';
 
 import './users.styles.scss';
+
 // import { getContacts } from '../../api/contacts';
 
 
@@ -79,7 +81,7 @@ const Users = ({ children }: UsersProps) => {
 
 
   return (
-    <Dashboard isNavbar={true}>
+    <Dashboard >
       <div className='users'>
         <form className='usersform'>
           <label className='userstitle'>Users</label>
@@ -90,6 +92,8 @@ const Users = ({ children }: UsersProps) => {
             width='12rem'
           />
         </form>
+        {/* <CreateUser /> */}
+
         <div>
           <Table columns={columns} data={users} />
         </div>
