@@ -40,8 +40,8 @@ const positionItems: FormikSelectItem[] = [
     value: "dev_ops"
   },
   {
-    label: "QA",
-    value: "qa"
+    label: "Quality Assurance",
+    value: "quality_assurance"
   }
 ];
 
@@ -75,18 +75,18 @@ const SignupSchema = Yup.object().shape({
     .lowercase()
     .email('Must be a valid email!')
     .notOneOf(emailAddresses, 'Email already taken!')
-    .required('Required!'),
+    .required('Email Required!'),
   password: Yup.string()
     .matches(lowercaseRegex, 'one lowercase required!')
     .matches(uppercaseRegex, 'one uppercase required!')
     .matches(numericRegex, 'one number required!')
     .min(8, 'Minimum 8 characters required!')
-    .required('Required!'),
+    .required('Password Required!'),
   passwordConfirm: Yup.string()
     .oneOf([Yup.ref('password')], 'Password must be the same!')
     .required('Required!'),
   phoneNumber: Yup.string()
-    .min(12, 'Maximum of 12 numbers is required!')
+    .min(12, 'Maximum of 12 numbers required!')
     .required('Your Number is Required!'),
   position: Yup.string().required("Required")
 });
