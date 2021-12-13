@@ -169,17 +169,10 @@ const AddUser = () => {
                 />
               </div>
 
-              <Grid columns='equal' relaxed stackable>
-                <Grid.Row className='user-grid-row'>
-                  <Grid.Column>
-                    <span className='user-text'>Select Role:</span>
-                  </Grid.Column>
-                  <Grid.Column width='16' >
-                    <AddSelect />
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-
+              <div className='user-wrapper-row'>
+                <span className='user-text'>Select Role:</span>
+                <AddSelect />
+              </div>
             </div>
 
 
