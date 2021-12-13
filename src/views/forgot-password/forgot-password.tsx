@@ -50,7 +50,7 @@ const ForgotPassword = (): JSX.Element => {
           <Input
             placeholder='Email'
             type='email'
-            width={'20vw'}
+
             required
             {...register('email', { required: true })}
           />

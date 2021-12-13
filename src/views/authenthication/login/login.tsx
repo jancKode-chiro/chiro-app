@@ -9,7 +9,7 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import CardWithImage from '../../../components/common/wrapper/card-with-image';
 import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
 import { toast } from 'react-toastify';
-import './login.style.scss';
+import './login.styles.scss';
 
 import {
   CREATE_ACCOUNT_PATH,
