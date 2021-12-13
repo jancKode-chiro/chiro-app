@@ -33,10 +33,12 @@ const customStyles: StylesConfig = {
 const AddSelect = () => {
   return (
     <Select
+      className='test-test'
       closeMenuOnSelect={false}
       components={animatedComponents}
       options={countryOptions}
       styles={customStyles}
+      placeholder='Select Role...'
     />
   )
 }
