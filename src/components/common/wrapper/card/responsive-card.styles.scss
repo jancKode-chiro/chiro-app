@@ -1,0 +1,11 @@
+@import "../../../../styles/lib/include-media.scss";
+
+.responsive-card {
+  width: 25vw;
+  @include media("<phone") {
+    width: 100%;
+  }
+  @include media("<desktop") {
+    width: 100%;
+  }
+}

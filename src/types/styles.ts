@@ -37,3 +37,13 @@ export enum Space {
   medium = '1.5em',
   large = '2em',
 }
+
+export enum Breakpoints {
+  mobileS = '320px',
+  mobileM = '375px',
+  mobileL = '425px',
+  tablet = '768px',
+  laptop = '1024px',
+  laptopL = '1140px',
+  desktop = '2560px',
+}
