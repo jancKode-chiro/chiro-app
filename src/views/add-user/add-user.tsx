@@ -170,7 +170,6 @@ const AddUser = () => {
               </div>
 
               <div className='user-wrapper-row'>
-                <span className='user-text'>Select Role:</span>
                 <AddSelect />
               </div>
             </div>
