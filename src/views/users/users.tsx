@@ -19,6 +19,8 @@ import Dashboard from '../dashboard/dashboard';
 
 import './users.styles.scss';
 
+
+
 type InputProps = {
   user: string;
 };
@@ -39,10 +41,8 @@ const Users = ({ children }: UsersProps) => {
   let history = useHistory();
 
   const submitHandler: SubmitHandler<InputProps> = (data: any): void => {
-    history.push('/adduser');
+    history.push('/create-account');
   };
-
-
 
   useEffect(() => {
     if (!isEmpty(data)) setUsers(data);
@@ -84,6 +84,15 @@ const Users = ({ children }: UsersProps) => {
     []
   );
 
+  // <div>
+  //   <Button id='button'>Create User</Button>
+  // </div>
+
+  // let button = document.querySelector('#button');
+
+  // button?.addEventListener('click', () => {
+  //   document.body.style.backgroundImage = "url('images/whiteimage.png')";
+  // })
 
 
   return (
