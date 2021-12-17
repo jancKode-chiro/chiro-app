@@ -1,0 +1,106 @@
+@import "../../styles/variables.scss";
+
+.add-user-account {
+  // .image {
+
+  .user-text {
+    font-family: $font-family-poppins;
+    font-size: 1em;
+  }
+
+  .user-wrapper-row {
+    align-items: center !important;
+    width: 42%;
+    // background-color: #2dcc5a;
+    // height: 50px;
+    // text-align: end;
+  }
+
+  .create-account-user-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    // padding-top: 64px;
+    .user-title {
+      display: flex;
+
+      font-family: $font-family-poppins;
+      font-size: 1.5625em;
+      font-weight: 600;
+      // line-height: 37px;
+      font-style: normal;
+      color: #000000;
+      width: 100%;
+      justify-content: center;
+      padding-bottom: 4em;
+    }
+
+    .user-form {
+      display: flex;
+      flex-direction: column;
+      width: 60%;
+
+      .create-user-button {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0;
+      }
+
+      .text-user-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-bottom: 2em;
+      }
+
+      // .email-user-wrapper {
+      //   display: flex;
+      //   flex-direction: row;
+      //   justify-content: space-between;
+      //   padding-bottom: 2em;
+      //   // margin-bottom: 37px;
+      //   // margin-top: 22px;
+      //   // margin-left: 37px;
+      //   // margin-right: 80px;
+      // }
+
+      // .userinputwrapper1 {
+      //   align-self: flex-start;
+      //   display: flex;
+      //   margin-left: 2.3125em;
+      // }
+
+      .password-user-input {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 25vw;
+        border: 1px solid #2dcc5a;
+        border-radius: 8px;
+        height: 52px;
+
+        color: #aca6a6;
+        background-color: #ffffff;
+
+        .eye-user-icon {
+          height: 1.6rem;
+          width: 1.6rem;
+          :hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    // .user-create-account {
+    //   width: 53.4375em;
+    //   height: 39.1875em;
+    //   top: 2.6875em;
+    //   left: 3.625em;
+    //   color: #fefcfc;
+    //   background-color: #fefcfc;
+    // }
+    // }
+  }
+}

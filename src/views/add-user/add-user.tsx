@@ -4,30 +4,27 @@ import { useHistory } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { FaEyeSlash, FaEye } from 'react-icons/fa';
 
-import RepsonsiveContainerGrid from '../../../components/common/wrapper/grid-container';
 import {
   Input,
   InputButton,
-  PasswordInput,
-} from '../../../components/common/forms/custom-input/input';
-import { ContainerWithImage } from '../../../components/common/wrapper/wrapper-with-image/wrapper-with-bg-image';
-import './createaccount.styles.scss';
-import { ACTIVATE_ACCOUNT_PATH, USERS_PATH } from '../../../constants/paths';
-import { createUser } from '../../../api/users';
-import { useAuth } from '../../../context/auth-context';
-import { InlineSingleErrorMessage } from '../../../components/common/notification/inline-notification/inline-notification';
+  PasswordInput
+} from '../../components/common/forms/custom-input/input';
+
+import CustomModal from '../../components/modal/modal';
+import AddSelect from '../../components/add-select/add-select';
+
+import { ACTIVATE_ACCOUNT_PATH, ADDUSER_PATH, DASHBOARD_PATH, USERS_PATH } from '../../constants/paths';
+import { createUser } from '../../api/users';
+import { useAuth } from '../../context/auth-context';
+import { InlineSingleErrorMessage } from '../../components/common/notification/inline-notification/inline-notification';
 import { toast } from 'react-toastify';
-import AddSelect from '../../../components/add-select/add-select';
+import { Grid } from 'semantic-ui-react'
+
+import './add-user.styles.scss'
 
 
-// function check() {
-//   if ($("#form input[name=bg]:checked").val() === "yes") {
-//     $('body').css('background-image', "url(https://c2.staticflickr.com/8/7151/6717697085_6d28849226_z.jpg)");
-//   } else {
-//     $('body').css('background', "");
-//   }
-//   return false;
-// }
+
+
 
 type InputProps = {
   firstName: string;
@@ -37,43 +34,40 @@ type InputProps = {
   phoneNumber: string;
   country: string;
   countryCode: string;
-  role: any;
 };
 
-const CreateAccount = () => {
+const AddUser = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm();
   let history = useHistory();
   const { setInputEmail } = useAuth();
   const [showPassword, setShowPassword] = useState<boolean>(false)
-  const [role, setRole] = useState(true);
+
   const submitHandler: SubmitHandler<InputProps> = async (
     data
   ): Promise<void> => {
     // history.push('/dashboard');
     setInputEmail(data.email);
-    setRole(data.role);
+
     try {
       let result = await createUser(
         data.firstName,
         data.lastName,
         data.email,
         data.phoneNumber,
-        'UserRole',
+        'User',
         data.password,
         data.country,
-        data.countryCode,
-
-
+        data.countryCode
       );
 
       if (result)
         await history.push({
-          pathname: USERS_PATH,
-          state: 'signUp',
+          pathname: DASHBOARD_PATH,
+          state: 'Thank you for creating one!',
         });
     } catch (error: any) {
       toast.error(error)
@@ -86,13 +80,14 @@ const CreateAccount = () => {
   }
 
   return (
-    <div className='create-account'>
-
-      <div className='create-account-form'>
-        <span className='title'>Create Account</span>
-        <div className='form'>
+    <div className='add-user-account'>
+      {/* <RepsonsiveContainerGrid>
+        <ContainerWithImage> */}
+      <div className='create-account-user-form'>
+        <span className='user-title'>Create User</span>
+        <div className='user-form'>
           <form onSubmit={handleSubmit(submitHandler)}>
-            <div className='text-wrapper'>
+            <div className='text-user-wrapper'>
               <div>
                 <Input
                   placeholder='First Name'
@@ -119,7 +114,7 @@ const CreateAccount = () => {
               </div>
             </div>
 
-            <div className='text-wrapper'>
+            <div className='text-user-wrapper'>
               <div>
                 <Input
                   placeholder='Email'
@@ -134,7 +129,7 @@ const CreateAccount = () => {
                 />
               </div>
               <div>
-                <div className='password-input'>
+                <div className='password-user-input'>
                   <PasswordInput
                     placeholder='Password (minimum of 8, alphanumeric and symbols)'
                     type={showPassword ? 'text' : 'password'}
@@ -149,10 +144,10 @@ const CreateAccount = () => {
                   name='password'
                 />
               </div>
-
             </div>
 
-            <div className='text-wrapper'>
+
+            <div className='text-user-wrapper'>
               <div>
                 <Input
                   placeholder='Phone Number'
@@ -173,12 +168,15 @@ const CreateAccount = () => {
                   name='phoneNumber'
                 />
               </div>
+
               <div className='user-wrapper-row'>
                 <AddSelect />
               </div>
             </div>
 
-            <div className='text-wrapper'>
+
+
+            <div className='text-user-wrapper'>
               <div>
                 <Input
                   placeholder='Country'
@@ -205,20 +203,31 @@ const CreateAccount = () => {
                 />
               </div>
             </div>
-            <div className='create-button'>
+            <div className='create-user-button'>
+
               <InputButton
                 type='submit'
+                // disabled={!isValid}
                 // disabled={!isDirty || !isValid}
-                value='Create Account'
+                value='Create User'
                 className='bg-green text-white '
               />
+              {/* <CustomModal
+                headerText='Create User'
+                buttonTriggerText='Create User?'
+                onOpenCallback={() => setRecipients([])}
+                onCloseButtonText='No'
+                onOpenButtonText='Yes'
+                contentText={''}
+              /> */}
             </div>
           </form>
         </div>
       </div>
-
+      {/* </ContainerWithImage>
+      </RepsonsiveContainerGrid> */}
     </div>
   );
 };
 
-export default withRouter(CreateAccount);
+export default withRouter(AddUser);

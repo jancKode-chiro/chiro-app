@@ -5,24 +5,25 @@ import React, {
   useMemo,
 
 } from 'react';
-import { withRouter } from 'react-router';
+import { useHistory, withRouter } from 'react-router';
 import { useQuery } from 'react-query';
 import { isEmpty } from 'lodash';
-
-
-import { useAuth } from '../../context/auth-context';
 import { getUsers } from '../../api/users';
-
 import { InputButton } from '../../components/common/forms/custom-input/input';
+import { Button } from 'semantic-ui-react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import CustomModal from '../../components/modal/modal';
 
 import Table from '../../components/table/table';
-import { Input } from '../../components/common/forms/custom-input/input';
-import searchdata from '../../assets/images/searchdata.png';
 import Dashboard from '../dashboard/dashboard';
 
 import './users.styles.scss';
-// import { getContacts } from '../../api/contacts';
 
+
+
+type InputProps = {
+  user: string;
+};
 
 type UsersProps = {
   children?: ReactNode;
@@ -35,6 +36,13 @@ const Users = ({ children }: UsersProps) => {
   const { data } = useQuery(['users'], () =>
     getUsers()
   );
+
+  const { handleSubmit } = useForm();
+  let history = useHistory();
+
+  const submitHandler: SubmitHandler<InputProps> = (data: any): void => {
+    history.push('/create-account');
+  };
 
   useEffect(() => {
     if (!isEmpty(data)) setUsers(data);
@@ -76,18 +84,30 @@ const Users = ({ children }: UsersProps) => {
     []
   );
 
+  // <div>
+  //   <Button id='button'>Create User</Button>
+  // </div>
+
+  // let button = document.querySelector('#button');
+
+  // button?.addEventListener('click', () => {
+  //   document.body.style.backgroundImage = "url('images/whiteimage.png')";
+  // })
 
 
   return (
     <Dashboard isNavbar={true}>
       <div className='users'>
-        <form className='usersform'>
+        <form className='usersform' onSubmit={handleSubmit(submitHandler)}>
           <label className='userstitle'>Users</label>
-          <InputButton
-            value='CREATE USER'
-            type='submit'
-            className='bg-green text-white'
-            width='12rem'
+          <CustomModal
+            headerText='You are about to create your user account'
+            contentText='Are you sure you want to create?'
+            buttonTriggerText='Clear data?'
+            onOpenCallback={() => setUsers([])}
+            customComponent={<Button className='user-button-wrapper'>CREATE USER</Button>}
+            onCloseButtonText='No'
+            onOpenButtonText='Yes'
           />
         </form>
         <div>
