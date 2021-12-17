@@ -3,6 +3,7 @@ import Select, { StylesConfig } from 'react-select';
 import makeAnimated from 'react-select/animated'
 
 
+
 const animatedComponents = makeAnimated();
 
 const countryOptions = [
@@ -32,6 +33,7 @@ const customStyles: StylesConfig = {
 
 const AddSelect = () => {
   return (
+
     <Select
       className='test-test'
       closeMenuOnSelect={false}
@@ -40,6 +42,9 @@ const AddSelect = () => {
       styles={customStyles}
       placeholder='Select Role...'
     />
+
+
+
   )
 }
 

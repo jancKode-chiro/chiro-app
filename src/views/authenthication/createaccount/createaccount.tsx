@@ -12,7 +12,7 @@ import {
 } from '../../../components/common/forms/custom-input/input';
 import { ContainerWithImage } from '../../../components/common/wrapper/wrapper-with-image/wrapper-with-bg-image';
 import './createaccount.styles.scss';
-import { ACTIVATE_ACCOUNT_PATH } from '../../../constants/paths';
+import { ACTIVATE_ACCOUNT_PATH, USERS_PATH } from '../../../constants/paths';
 import { createUser } from '../../../api/users';
 import { useAuth } from '../../../context/auth-context';
 import { InlineSingleErrorMessage } from '../../../components/common/notification/inline-notification/inline-notification';
@@ -37,6 +37,7 @@ type InputProps = {
   phoneNumber: string;
   country: string;
   countryCode: string;
+  role: any;
 };
 
 const CreateAccount = () => {
@@ -48,28 +49,30 @@ const CreateAccount = () => {
   let history = useHistory();
   const { setInputEmail } = useAuth();
   const [showPassword, setShowPassword] = useState<boolean>(false)
-
+  const [role, setRole] = useState(true);
   const submitHandler: SubmitHandler<InputProps> = async (
     data
   ): Promise<void> => {
     // history.push('/dashboard');
     setInputEmail(data.email);
-
+    setRole(data.role);
     try {
       let result = await createUser(
         data.firstName,
         data.lastName,
         data.email,
         data.phoneNumber,
-        'User',
+        'UserRole',
         data.password,
         data.country,
-        data.countryCode
+        data.countryCode,
+
+
       );
 
       if (result)
         await history.push({
-          pathname: ACTIVATE_ACCOUNT_PATH,
+          pathname: USERS_PATH,
           state: 'signUp',
         });
     } catch (error: any) {
