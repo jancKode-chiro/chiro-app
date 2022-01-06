@@ -25,8 +25,9 @@ import {
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
+import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
 
-
+import theme from './styles/theme';
 const CreateAccount = lazy(
   () => import('./views/authenthication/createaccount/createaccount')
 );
@@ -60,38 +61,41 @@ function App() {
   return (
     <div className='App'>
       <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <Router>
-            <Suspense fallback={<Loader />}>
-              <Switch>
-                <PrivateRoute
-                  exact
-                  path={HOMEPAGE_PATH}
-                  component={DashboardData}
-                />
-                <PrivateRoute
-                  exact
-                  path={DASHBOARD_PATH}
-                  component={DashboardData}
-                />
-                <Route path={LOGIN_PATH} component={Login} />
-                <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
-                <PrivateRoute path={CARD_PATH} component={Card} />
-                <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
-                <Route path={ABOUT_PATH} component={AboutUs} />
-                <Route path={LETS_TALK_PATH} component={LetsTalk} />
-                <PrivateRoute path={WALLET_PATH} component={Wallet} />
-                <PrivateRoute path={SMS_PATH} component={Bulk} />
-                <PrivateRoute path={SEND_SMS_PATH} component={SendSms} />
-                <PrivateRoute path={CONTACTS_PATH} component={ContactData} />
-                <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
-                <PrivateRoute path={USERS_PATH} component={Users} />
-                <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
-              </Switch>
-            </Suspense>
-            <ToastContainer />
-          </Router>
-        </AuthProvider>
+        <MuiThemeProvider theme={theme}>
+          <CssBaseline />
+          <AuthProvider>
+            <Router>
+              <Suspense fallback={<Loader />}>
+                <Switch>
+                  <PrivateRoute
+                    exact
+                    path={HOMEPAGE_PATH}
+                    component={DashboardData}
+                  />
+                  <PrivateRoute
+                    exact
+                    path={DASHBOARD_PATH}
+                    component={DashboardData}
+                  />
+                  <Route path={LOGIN_PATH} component={Login} />
+                  <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
+                  <PrivateRoute path={CARD_PATH} component={Card} />
+                  <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
+                  <Route path={ABOUT_PATH} component={AboutUs} />
+                  <Route path={LETS_TALK_PATH} component={LetsTalk} />
+                  <PrivateRoute path={WALLET_PATH} component={Wallet} />
+                  <PrivateRoute path={SMS_PATH} component={Bulk} />
+                  <PrivateRoute path={SEND_SMS_PATH} component={SendSms} />
+                  <PrivateRoute path={CONTACTS_PATH} component={ContactData} />
+                  <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
+                  <PrivateRoute path={USERS_PATH} component={Users} />
+                  <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
+                </Switch>
+              </Suspense>
+              <ToastContainer />
+            </Router>
+          </AuthProvider>
+        </MuiThemeProvider>
       </QueryClientProvider>
     </div>
   );

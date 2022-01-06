@@ -29,12 +29,13 @@ import { getCurrentSession } from '../../../helpers/user-helpers';
 // import useNav from '../../../hooks/use-nav';
 import { getUser } from '../../../api/users';
 import { InlineSingleErrorMessage } from '../../../components/common/notification/inline-notification/inline-notification';
+
 type InputProps = {
   email: string;
   password: string;
 };
 
-const Login = (): JSX.Element => {
+const Login = (props: any): JSX.Element => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const {
     register,

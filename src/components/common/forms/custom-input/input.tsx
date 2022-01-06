@@ -11,7 +11,6 @@ import {
 
 import { TextArea } from 'semantic-ui-react'
 
-import { devices } from '../../../../styles/theme'
 import { TypographyStyles, UIColors } from '../../../../types/styles';
 type InputProps = SpaceProps &
   TypographyProps & {
