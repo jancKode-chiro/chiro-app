@@ -5,10 +5,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 1em;
+
   .grid-detail-wrapper {
     display: flex;
-
+    justify-content: center;
+    width: 100%;
     // @include media("<tablet") {
     //   display: none;
     // }
@@ -22,7 +23,7 @@
     }
     .card-with-image {
       background-image: url("../../../assets//images/bg-half.png");
-      width: 25vw;
+      width: 40%;
       background-repeat: no-repeat;
       background-size: cover;
       display: flex;
