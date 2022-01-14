@@ -17,7 +17,7 @@ type RepsonsiveGridProps = {
 const stylesheet = (theme: Theme) => ({
   root: {
     [theme?.breakpoints?.up(breakpoint.mobileBreakpoint)]: {
-      'min-height': 1000,
+      'min-height': '100vh',
     },
   },
 });

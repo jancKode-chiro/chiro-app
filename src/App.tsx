@@ -28,6 +28,8 @@ import Loader from './components/loader/loader';
 import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
 
 import theme from './styles/theme';
+import GlobalStyles from './styles/global-styles';
+
 const CreateAccount = lazy(
   () => import('./views/authenthication/createaccount/createaccount')
 );
@@ -50,6 +52,7 @@ const PasswordForgot = lazy(
 const Users = lazy(() => import('./views/users/users'))
 const ProfileData = lazy(() => import('./views/profile-info/profile-info'));
 const SendSms = lazy(() => import('./views/sms-page/sms-page'))
+const HomePage = lazy(() => import('./views/home/main/main'))
 
 function App() {
   Amplify.configure(awsmobile);
@@ -63,14 +66,15 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
+          <GlobalStyles />
           <AuthProvider>
             <Router>
               <Suspense fallback={<Loader />}>
                 <Switch>
-                  <PrivateRoute
+                  <Route
                     exact
                     path={HOMEPAGE_PATH}
-                    component={DashboardData}
+                    component={HomePage}
                   />
                   <PrivateRoute
                     exact

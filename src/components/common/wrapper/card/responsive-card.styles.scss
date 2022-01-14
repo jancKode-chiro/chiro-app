@@ -1,7 +1,7 @@
 @import "../../../../styles/lib/include-media.scss";
 
 .responsive-card {
-  width: 25vw;
+  width: 25%;
   @include media("<phone") {
     width: 100%;
   }
