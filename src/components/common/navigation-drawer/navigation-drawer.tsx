@@ -1,17 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
-  List,
+  isWidthUp,
   ListItemText,
   Drawer,
   withStyles,
   IconButton,
   Typography,
   withWidth,
-  isWidthUp,
-  Toolbar,
-  ListItemProps,
-  ListProps,
-  IconProps
 } from '@material-ui/core';
 import { DrawerLink, DrawerList, DrawerListItem, DrawerListItemIcon, DrawerToolbar } from './navigation-drawer.styles';
 import CloseIcon from "@material-ui/icons/Close";
@@ -34,14 +29,28 @@ type NavigationDrawProps = {
 
 const styles = (theme: any) => ({})
 
-const NavigationDrawer = ({ anchor, menuItems, theme, selectedItem, open, onClose, width }: NavigationDrawProps) => {
+const NavigationDrawer = ({ anchor, menuItems, selectedItem, open, onClose, width }: NavigationDrawProps) => {
+
+  useEffect(() => {
+    window.onresize = () => {
+      if (isWidthUp("sm", width) && open) {
+        onClose();
+      }
+    };
+  }, [width, open, onClose]);
+
+
   return (
-    <Drawer variant='temporary' anchor={anchor}
+    <Drawer
+      variant='temporary'
+      anchor={anchor}
+      open={open}
+      onClose={onClose}
     >
       <DrawerToolbar>
-        <DrawerListItem button>
+        <DrawerListItem button disableGutters anchor={anchor}>
           <DrawerListItemIcon>
-            <IconButton>
+            <IconButton onClick={onClose} aria-label="Close Navigation">
               <CloseIcon color='primary' />
             </IconButton>
           </DrawerListItemIcon>
@@ -49,7 +58,9 @@ const NavigationDrawer = ({ anchor, menuItems, theme, selectedItem, open, onClos
       </DrawerToolbar>
       <DrawerList>
         {menuItems.map((element: any) => {
+
           if (element.link) {
+            console.log('element.link', element.link)
             return (
               <DrawerLink
                 key={element.name}
@@ -81,14 +92,14 @@ const NavigationDrawer = ({ anchor, menuItems, theme, selectedItem, open, onClos
             >
               <DrawerListItemIcon>
                 {element.icon}
-                <ListItemText
-                  primary={
-                    <Typography >
-                      {element.name}
-                    </Typography>
-                  }
-                />
               </DrawerListItemIcon>
+              <ListItemText
+                primary={
+                  <Typography variant='subtitle1' className='text-white' >
+                    {element.name}
+                  </Typography>
+                }
+              />
             </DrawerListItem>
           )
         })}
@@ -97,7 +108,5 @@ const NavigationDrawer = ({ anchor, menuItems, theme, selectedItem, open, onClos
   )
 }
 
-export default withWidth()(
-  withStyles(styles, { withTheme: true })(NavigationDrawer)
-);
+export default withWidth()(withStyles(styles, { withTheme: true })(NavigationDrawer));
 

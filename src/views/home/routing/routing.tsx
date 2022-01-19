@@ -31,6 +31,7 @@ const Routing = (props: any) => {
         selectBlog={selectBlog}
         blogPosts={blogPosts}
       /> */}
+
       <PropsRoute path="/" component={Home} selectHome={selectHome} />
     </Switch>
   )

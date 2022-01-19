@@ -13,7 +13,7 @@ export const DrawerToolbar = styled(Toolbar)({
   width: 200,
 });
 
-export const DrawerListItem = styled(ListItem)<ListItemProps>({
+export const DrawerListItem = styled(ListItem)({
   paddingTop: 0,
   paddingBottom: 0,
   height: '100%',
@@ -27,7 +27,7 @@ export const DrawerListItemIcon = styled(ListItemIcon)<ListItemProps>({
 
 export const DrawerList = styled(List)<ListProps>({
   backgroundColor: 'black',
-  height: '100%',
+  height: '20%',
 });
 
 export const DrawerLink = styled(Link)<LinkProps>({
