@@ -77,7 +77,7 @@ const NavBar = (props: any) => {
               display="inline"
               color="secondary"
             >
-              Advretising
+              Advertising
             </Typography>
           </div>
           <div>
