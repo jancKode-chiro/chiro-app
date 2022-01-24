@@ -54,7 +54,6 @@ const Users = lazy(() => import('./views/users/users'))
 const ProfileData = lazy(() => import('./views/profile-info/profile-info'));
 const SendSms = lazy(() => import('./views/sms-page/sms-page'))
 const HomePage = lazy(() => import('./views/home/main/main'))
-const NavBar = lazy(() => import('./views/dashboard/navigation-bar/navigation/navbar'))
 
 function App() {
   Amplify.configure(awsmobile);
@@ -96,7 +95,6 @@ function App() {
                   <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
                   <PrivateRoute path={USERS_PATH} component={Users} />
                   <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
-                  <Route path={NAVBAR_PATH} component={NavBar} />
                 </Switch>
               </Suspense>
               <ToastContainer />
