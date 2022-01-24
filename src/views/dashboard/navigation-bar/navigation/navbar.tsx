@@ -1,6 +1,6 @@
 import React, { Fragment, useRef, useCallback, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+
 import classNames from "classnames";
 import {
   AppBar,
@@ -25,7 +25,7 @@ import SideDrawer from "./sidedrawer";
 import Balance from "./balance";
 import NavigationDrawer from '../../../../components/common/navigation-drawer/navigation-drawer';
 import MessagePopperButton from "./messagepopper-button";
-import AddBalanceDialog from '../../../../components/subscription/addbalance-dialog';
+import AddBalanceDialog from '../../../../components/subscription/add-balance-dialog'
 
 import ImageIcon from "@material-ui/icons/Image";
 import DashboardIcon from "@material-ui/icons/Dashboard";
@@ -159,7 +159,7 @@ function NavBar(props: any) {
   useEffect(() => {
     if (open && !hasFetchedAddBalanceDialog) {
       setHasFetchedAddBlanceDialog(true);
-      import("../../../../components/subscription/addbalance-dialog").then(Component => {
+      import('../../../../components/subscription/add-balance-dialog').then(Component => {
         setAddBalanceDialog((Component: any) => Component.default);
       });
     }

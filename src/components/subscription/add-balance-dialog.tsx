@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from "react";
-
+import PropTypes from "prop-types";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
@@ -9,13 +9,12 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 import { Grid, Button, Box, withTheme } from "@material-ui/core";
-import StripeCardForm from "../stripe/stripe-card-form/stripe-card-form";
-import StripeIbanForm from "../stripe/stripe-iban-form/stripe-iban-form";
+import StripeCardForm from '../../components/stripe/stripe-card-form/stripe-card-form'
+import StripeIbanForm from "../../components/stripe/stripe-iban-form/stripe-iban-form"
 import FormDialog from "../shared/formdialog";
-import ColoredButton from "../shared/colored-button";
+import ColoredButton from "../common/colored-button/colored-button";
 import HighlightedInformation from "../shared/Highlighted-information";
 import ButtonCircularProgress from "../shared/buttoncircular-progress";
-// import { AnyObjectSchema } from "yup";
 
 const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 
@@ -117,11 +116,11 @@ const AddBalanceDialog = withTheme(function (props: any) {
 
   return (
     <FormDialog
-      open={open}
-      onClose={onClose}
-      headline="Add Balance"
-      hideBackdrop={false}
-      loading={loading}
+      // open={open}
+      // onClose={onClose}
+      // headline="Add Balance"
+      // hideBackdrop={false}
+      // loading={loading}
       // onFormSubmit={async event => {
       //   event.preventDefault();
       //   if (amount <= 0) {
@@ -196,5 +195,6 @@ function Wrapper(props: any) {
     </Elements>
   );
 }
+
 
 export default Wrapper;
