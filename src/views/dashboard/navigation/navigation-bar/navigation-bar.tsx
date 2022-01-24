@@ -1,6 +1,5 @@
 import React, { Fragment, useRef, useCallback, useState } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import classNames from "classnames";
 import {
   AppBar,
@@ -21,9 +20,9 @@ import {
   withWidth,
 } from "@material-ui/core";
 
-import SideDrawer from "./sidedrawer";
-import Balance from "./balance";
-import MessagePopperButton from "./messagepopper-button";
+import SideDrawer from "../side-drawer/sidedrawer";
+import Balance from "./balance/balance";
+import MessagePopperButton from "./message-popper-button/messagepopper-button";
 
 import ImageIcon from "@material-ui/icons/Image";
 import DashboardIcon from "@material-ui/icons/Dashboard";
@@ -31,7 +30,7 @@ import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MenuIcon from "@material-ui/icons/Menu";
-import NavigationDrawer from "../../../../../components/common/navigation-drawer/navigation-drawer";
+import NavigationDrawer from "../../../../components/common/navigation-drawer/navigation-drawer";
 
 const styles = (theme: any) => ({
   appBar: {

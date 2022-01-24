@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 
 import './dashboard.styles.scss';
-import NavBar from './navigation/navigation-bar/navigation/navbar';
+import NavBar from './navigation/navigation-bar/navigation-bar';
 
 
 const Dashboard = ({ isNavbar, children }: any) => {
