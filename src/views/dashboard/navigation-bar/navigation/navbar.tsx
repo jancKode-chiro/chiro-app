@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useCallback, useState } from "react";
+import React, { Fragment, useRef, useCallback, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -25,6 +25,7 @@ import SideDrawer from "./sidedrawer";
 import Balance from "./balance";
 import NavigationDrawer from '../../../../components/common/navigation-drawer/navigation-drawer';
 import MessagePopperButton from "./messagepopper-button";
+import AddBalanceDialog from '../../../../components/subscription/addbalance-dialog';
 
 import ImageIcon from "@material-ui/icons/Image";
 import DashboardIcon from "@material-ui/icons/Dashboard";
@@ -134,6 +135,10 @@ function NavBar(props: any) {
   const links = useRef([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
+  const { open, onClose, onSuccess } = props;
+  const [AddBalanceDialog, setAddBalanceDialog] = useState(null);
+  const [hasFetchedAddBalanceDialog, setHasFetchedAddBlanceDialog] = useState(false);
+
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);
@@ -150,6 +155,15 @@ function NavBar(props: any) {
   const closeDrawer = useCallback(() => {
     setIsSideDrawerOpen(false);
   }, [setIsSideDrawerOpen]);
+
+  useEffect(() => {
+    if (open && !hasFetchedAddBalanceDialog) {
+      setHasFetchedAddBlanceDialog(true);
+      import("../../../../components/subscription/addbalance-dialog").then(Component => {
+        setAddBalanceDialog((Component: any) => Component.default);
+      });
+    }
+  }, [open, hasFetchedAddBalanceDialog, setHasFetchedAddBlanceDialog, setAddBalanceDialog]);
 
   const menuItems = [
     {
@@ -263,6 +277,13 @@ function NavBar(props: any) {
                 />
               </Box>
             )}
+            {/* {AddBalanceDialog && (
+              <AddBalanceDialog
+                open={open}
+                onClose={onClose}
+                onSuccess={onSuccess}
+              ></AddBalanceDialog>
+            )} */}
             <MessagePopperButton messages={messages} />
             <ListItem
               disableGutters
