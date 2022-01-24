@@ -1,6 +1,5 @@
 import React, { Fragment, useRef, useCallback, useState } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import classNames from "classnames";
 import {
   AppBar,
@@ -21,10 +20,9 @@ import {
   withWidth,
 } from "@material-ui/core";
 
-import SideDrawer from "./sidedrawer";
-import Balance from "./balance";
-import NavigationDrawer from '../../../../components/common/navigation-drawer/navigation-drawer';
-import MessagePopperButton from "./messagepopper-button";
+import SideDrawer from "../side-drawer/sidedrawer";
+import Balance from "./balance/balance";
+import MessagePopperButton from "./message-popper-button/messagepopper-button";
 
 import ImageIcon from "@material-ui/icons/Image";
 import DashboardIcon from "@material-ui/icons/Dashboard";
@@ -32,6 +30,7 @@ import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MenuIcon from "@material-ui/icons/Menu";
+import NavigationDrawer from "../../../../components/common/navigation-drawer/navigation-drawer";
 
 const styles = (theme: any) => ({
   appBar: {
@@ -128,10 +127,10 @@ const styles = (theme: any) => ({
   },
 });
 
-function NavBar(props: any) {
+const NavBar = (props: any) => {
   const { selectedTab, messages, classes, width, openAddBalanceDialog } = props;
-
-  const links = useRef([]);
+  // Will be use to make website more accessible by screen readers
+  const links = useRef<any>([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
 
@@ -213,7 +212,6 @@ function NavBar(props: any) {
       },
     },
   ];
-
   return (
     <Fragment>
       <AppBar position="sticky" className={classes.appBar}>
@@ -293,6 +291,66 @@ function NavBar(props: any) {
           <SideDrawer open={isSideDrawerOpen} onClose={closeDrawer} />
         </Toolbar>
       </AppBar>
+      <Hidden xsDown>
+        <Drawer //  both drawers can be combined into one for performance
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+          open={false}
+        >
+          <List>
+            {menuItems.map((element, index) => (
+              <Link
+                to={element.link}
+                className={classes.menuLink}
+                onClick={element.onClick}
+                key={index}
+                ref={(node) => {
+                  links.current[index] = node;
+                }}
+              >
+                <Tooltip
+                  title={element.name}
+                  placement="right"
+                  key={element.name}
+                >
+                  <ListItem
+                    selected={selectedTab === element.name}
+                    button
+                    divider={index !== menuItems.length - 1}
+                    className={classes.permanentDrawerListItem}
+                    onClick={() => {
+                      links.current[index].click();
+                    }}
+                    aria-label={
+                      element.name === "Logout"
+                        ? "Logout"
+                        : `Go to ${element.name}`
+                    }
+                  >
+                    <ListItemIcon className={classes.justifyCenter}>
+                      {element.icon.desktop}
+                    </ListItemIcon>
+                  </ListItem>
+                </Tooltip>
+              </Link>
+            ))}
+          </List>
+        </Drawer>
+      </Hidden>
+      <NavigationDrawer
+        menuItems={menuItems.map((element) => ({
+          link: element.link,
+          name: element.name,
+          icon: element.icon.mobile,
+          onClick: element.onClick,
+        }))}
+        anchor="left"
+        open={isMobileOpen}
+        selectedItem={selectedTab}
+        onClose={closeMobileDrawer}
+      />
     </Fragment>
   );
 }

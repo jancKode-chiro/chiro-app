@@ -13,7 +13,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import MessageIcon from "@material-ui/icons/Message";
-import MessageListItem from "./messagelist-item";
+import MessageListItem from "../message-list-item/messagelist-item";
 
 const styles = (theme: any) => ({
   tabContainer: {

@@ -22,7 +22,6 @@ import {
   SEND_SMS_PATH,
   PROFILEINFO_PATH,
   USERS_PATH,
-  NAVBAR_PATH
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';

@@ -1,35 +1,47 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
-  isWidthUp,
+  List,
+  ListItem,
+  ListItemIcon,
   ListItemText,
   Drawer,
   withStyles,
   IconButton,
   Typography,
   withWidth,
-} from '@material-ui/core';
-import { DrawerLink, DrawerList, DrawerListItem, DrawerListItemIcon, DrawerToolbar } from './navigation-drawer.styles';
+  isWidthUp,
+  Toolbar
+} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 
-type NavigationDrawProps = {
-  anchor: "left" | "top" | "right" | "bottom" | undefined;
-  theme?: any;
-  width?: any;
-  selectedItem: any;
-  open: any;
-  onClose: () => void;
-  menuItems: any
-  // menuItems: [{
-  //   link?: string,
-  //   name: string,
-  //   onClick?: any
-  //   icon: any
-  // }];
-}
+const styles = (theme: any) => ({
+  closeIcon: {
+    marginRight: theme.spacing(0.5)
+  },
+  headSection: {
+    width: 200
+  },
+  blackList: {
+    backgroundColor: theme.palette.common.black,
+    height: "100%"
+  },
+  noDecoration: {
+    textDecoration: "none !important"
+  }
+});
 
-const styles = (theme: any) => ({})
-
-const NavigationDrawer = ({ anchor, menuItems, selectedItem, open, onClose, width }: NavigationDrawProps) => {
+const NavigationDrawer = (props: any) => {
+  const {
+    width,
+    open,
+    onClose,
+    anchor,
+    classes,
+    menuItems,
+    selectedItem,
+    theme
+  } = props;
 
   useEffect(() => {
     window.onresize = () => {
@@ -39,74 +51,77 @@ const NavigationDrawer = ({ anchor, menuItems, selectedItem, open, onClose, widt
     };
   }, [width, open, onClose]);
 
-
   return (
-    <Drawer
-      variant='temporary'
-      anchor={anchor}
-      open={open}
-      onClose={onClose}
-    >
-      <DrawerToolbar>
-        <DrawerListItem button disableGutters anchor={anchor}>
-          <DrawerListItemIcon>
+    <Drawer variant="temporary" open={open} onClose={onClose} anchor={anchor}>
+      <Toolbar className={classes.headSection}>
+        <ListItem
+          style={{
+            paddingTop: theme.spacing(0),
+            paddingBottom: theme.spacing(0),
+            height: "100%",
+            justifyContent: anchor === "left" ? "flex-start" : "flex-end"
+          }}
+          disableGutters
+        >
+          <ListItemIcon className={classes.closeIcon}>
             <IconButton onClick={onClose} aria-label="Close Navigation">
-              <CloseIcon color='primary' />
+              <CloseIcon color="primary" />
             </IconButton>
-          </DrawerListItemIcon>
-        </DrawerListItem>
-      </DrawerToolbar>
-      <DrawerList>
+          </ListItemIcon>
+        </ListItem>
+      </Toolbar>
+      <List className={classes.blackList}>
         {menuItems.map((element: any) => {
-
           if (element.link) {
-            console.log('element.link', element.link)
             return (
-              <DrawerLink
+              <Link
                 key={element.name}
                 to={element.link}
+                className={classes.noDecoration}
                 onClick={onClose}
               >
-                <DrawerListItem button
+                <ListItem
+                  button
                   selected={selectedItem === element.name}
+                  /**
+                   * We disable ripple as it will make a weird animation
+                   * with primary and secondary color
+                   */
                   disableRipple
                   disableTouchRipple
                 >
-                  <DrawerListItemIcon>{element.icon}</DrawerListItemIcon>
+                  <ListItemIcon>{element.icon}</ListItemIcon>
                   <ListItemText
                     primary={
-                      <Typography >
+                      <Typography variant="subtitle1" className="text-white">
                         {element.name}
                       </Typography>
                     }
                   />
-                </DrawerListItem>
-              </DrawerLink>
-            )
+                </ListItem>
+              </Link>
+            );
           }
           return (
-            <DrawerListItem
-              button
-              key={element.name}
-              onClick={element.onClick}
-            >
-              <DrawerListItemIcon>
-                {element.icon}
-              </DrawerListItemIcon>
+            <ListItem button key={element.name} onClick={element.onClick}>
+              <ListItemIcon>{element.icon}</ListItemIcon>
               <ListItemText
                 primary={
-                  <Typography variant='subtitle1' className='text-white' >
+                  <Typography variant="subtitle1" className="text-white">
                     {element.name}
                   </Typography>
                 }
               />
-            </DrawerListItem>
-          )
+            </ListItem>
+          );
         })}
-      </DrawerList>
+      </List>
     </Drawer>
-  )
+  );
 }
 
-export default withWidth()(withStyles(styles, { withTheme: true })(NavigationDrawer));
 
+
+export default withWidth()(
+  withStyles(styles, { withTheme: true })(NavigationDrawer)
+);
