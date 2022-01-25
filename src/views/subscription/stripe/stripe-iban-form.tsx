@@ -1,8 +1,7 @@
 import React from "react";
-
 import { TextField, Grid, InputAdornment } from "@material-ui/core";
-import StripeTextField from "../stripe-text-field/stripe-text-field";
 import { IbanElement } from "@stripe/react-stripe-js";
+import StripeTextField from "./stripe-text-field";
 
 function StripeIBANForm(props: any) {
   const {
@@ -83,7 +82,7 @@ function StripeIBANForm(props: any) {
               setStripeError("");
             }
           }}
-        ></StripeTextField>
+        />
       </Grid>
     </Grid>
   );

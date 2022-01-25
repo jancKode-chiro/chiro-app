@@ -1,8 +1,9 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import { TextField, Grid, InputAdornment } from "@material-ui/core";
-import { CardElement } from '@stripe/react-stripe-js'
-import StripeTextField from "../stripe-text-field/stripe-text-field";
+import { CardElement } from "@stripe/react-stripe-js";
+import StripeTextField from "./stripe-text-field";
+
 
 function StripeCardForm(props: any) {
   const {
@@ -66,7 +67,7 @@ function StripeCardForm(props: any) {
               setStripeError("");
             }
           }}
-        ></StripeTextField>
+        />
       </Grid>
     </Grid>
   );
