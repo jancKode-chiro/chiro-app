@@ -18,4 +18,8 @@ export const SEND_SMS_PATH = '/send-sms';
 export const SLIDENAVIGATION_PATH = '/slidenavigation';
 export const PROFILEINFO_PATH = '/profile-info';
 export const USERS_PATH = '/users';
+<<<<<<< HEAD
 export const SUBSCRIPTION_PATH = '/subscription';
+=======
+export const DASHBOARD_C_PATH = '/dashboard-C-data';
+>>>>>>> dashboard-C data chart

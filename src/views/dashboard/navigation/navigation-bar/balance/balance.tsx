@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { OutlinedInput, withStyles } from "@material-ui/core";
+import FormDailog from "../../../../../components/shared/form-dailog";
 import currencyPrettyPrint from '../../../../../components/shared/currencyprettyprint';
 
 const styles = {
@@ -17,9 +18,19 @@ const styles = {
 };
 
 function Balance(props: any) {
-  const { balance, classes, openAddBalanceDialog } = props;
+  const { open, onClose, balance, classes, openAddBalanceDialog } = props;
+
+  const [loading, setLoading] = useState(false);
+
   return (
     <div className={classes.wrapper}>
+      {/* <FormDailog
+        open={open}
+        onClose={onClose}
+        headline="Add Balance"
+        hideBackdrop={false}
+        loading={loading}
+      /> */}
       <OutlinedInput
         value={balance === null ? "" : currencyPrettyPrint(balance)}
         className={classes.outlinedInput}

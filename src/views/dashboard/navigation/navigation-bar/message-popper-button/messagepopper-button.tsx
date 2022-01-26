@@ -87,12 +87,22 @@ function MessagePopperButton(props: any) {
           </Box>
           <Divider className={classes.divider} />
         </AppBar>
-        <List>
-          <ListItem>
-            <ListItemText>
-              You haven&apos;t received any messages yet.
-            </ListItemText>
-          </ListItem>
+        <List dense className={classes.tabContainer}>
+          {messages?.length <= 0 ? (
+            <ListItem>
+              <ListItemText>
+                You haven&apos;t received any messages yet.
+              </ListItemText>
+            </ListItem>
+          ) : (
+            messages?.map((element: any, index: number) => (
+              <MessageListItem
+                key={index}
+                message={element}
+                divider={index !== messages?.length - 1}
+              />
+            ))
+          )}
         </List>
       </Popover>
     </Fragment>

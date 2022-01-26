@@ -128,8 +128,14 @@ const styles = (theme: any) => ({
 });
 
 const NavBar = (props: any) => {
-  const { selectedTab, messages, classes, width, openAddBalanceDialog } = props;
-  // Will be use to make website more accessible by screen readers
+  const {
+    selectedTab,
+    messages,
+    classes,
+    width,
+    openAddBalanceDialog
+  }
+    = props;
   const links = useRef<any>([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
@@ -152,7 +158,7 @@ const NavBar = (props: any) => {
 
   const menuItems = [
     {
-      link: "/c/dashboard",
+      link: "dashboard-C-data",
       name: "Dashboard",
       onClick: closeMobileDrawer,
       icon: {
@@ -255,6 +261,7 @@ const NavBar = (props: any) => {
           >
             {isWidthUp("sm", width) && (
               <Box mr={3}>
+
                 <Balance
                   balance={2573}
                   openAddBalanceDialog={openAddBalanceDialog}
@@ -292,7 +299,7 @@ const NavBar = (props: any) => {
         </Toolbar>
       </AppBar>
       <Hidden xsDown>
-        <Drawer //  both drawers can be combined into one for performance
+        <Drawer
           variant="permanent"
           classes={{
             paper: classes.drawerPaper,

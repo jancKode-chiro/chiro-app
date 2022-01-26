@@ -22,7 +22,8 @@ import {
   SEND_SMS_PATH,
   PROFILEINFO_PATH,
   USERS_PATH,
-  SUBSCRIPTION_PATH
+  SUBSCRIPTION_PATH,
+  DASHBOARD_C_PATH
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
@@ -55,6 +56,7 @@ const ProfileData = lazy(() => import('./views/profile-info/profile-info'));
 const SendSms = lazy(() => import('./views/sms-page/sms-page'))
 const HomePage = lazy(() => import('./views/home/main/main'))
 const Subscription = lazy(() => import('./views/dashboard/subscription/subscription/subscription'))
+const DashboardC = lazy(() => import('./views/dashboard/dashboard-C-data/dashboard-C/home-dashboard'))
 
 function App() {
   Amplify.configure(awsmobile);
@@ -83,20 +85,21 @@ function App() {
                     path={DASHBOARD_PATH}
                     component={DashboardData}
                   />
-                  <Route path={LOGIN_PATH} component={Login} />
-                  <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
                   <PrivateRoute path={CARD_PATH} component={Card} />
-                  <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
-                  <Route path={ABOUT_PATH} component={AboutUs} />
-                  <Route path={LETS_TALK_PATH} component={LetsTalk} />
                   <PrivateRoute path={WALLET_PATH} component={Wallet} />
                   <PrivateRoute path={SMS_PATH} component={Bulk} />
                   <PrivateRoute path={SEND_SMS_PATH} component={SendSms} />
                   <PrivateRoute path={CONTACTS_PATH} component={ContactData} />
                   <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
                   <PrivateRoute path={USERS_PATH} component={Users} />
+                  <PrivateRoute path={SUBSCRIPTION_PATH} component={Subscription} />
+                  <PrivateRoute path={DASHBOARD_C_PATH} component={DashboardC} />
+                  <Route path={LOGIN_PATH} component={Login} />
+                  <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
+                  <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
+                  <Route path={ABOUT_PATH} component={AboutUs} />
+                  <Route path={LETS_TALK_PATH} component={LetsTalk} />
                   <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
-                  <Route path={SUBSCRIPTION_PATH} component={Subscription} />
                 </Switch>
               </Suspense>
               <ToastContainer />
