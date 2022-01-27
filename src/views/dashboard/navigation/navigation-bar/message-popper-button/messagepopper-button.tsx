@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useRef, useCallback } from "react";
-import PropTypes from "prop-types";
+
 import {
   Popover,
   IconButton,

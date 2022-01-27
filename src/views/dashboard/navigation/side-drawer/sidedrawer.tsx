@@ -16,7 +16,8 @@ import {
   ListItem
 } from "@material-ui/core";
 
-import CloseIcon from "@material-ui/icons/Close";
+import { RiCloseCircleLine } from "react-icons/ri";
+// import CloseIcon from "@material-ui/icons/Close";
 import HelpOutline from "@material-ui/icons/HelpOutline";
 import Mail from "@material-ui/icons/Mail";
 import Payment from "@material-ui/icons/Payment"
@@ -146,7 +147,7 @@ function SideDrawer(props: any) {
             color="primary"
             aria-label="Close Sidedrawer"
           >
-            <CloseIcon />
+            <RiCloseCircleLine fontSize={35} />
           </IconButton>
 
         </Box>
