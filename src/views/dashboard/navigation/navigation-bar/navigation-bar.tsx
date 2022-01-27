@@ -24,6 +24,7 @@ import SideDrawer from "../side-drawer/sidedrawer";
 import Balance from "./balance/balance";
 import MessagePopperButton from "./message-popper-button/messagepopper-button";
 
+import Message from "@material-ui/icons/Message";
 import ImageIcon from "@material-ui/icons/Image";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
@@ -205,6 +206,24 @@ const NavBar = (props: any) => {
           />
         ),
         mobile: <AccountBalanceIcon className="text-white" />,
+      },
+    },
+    {
+      link: "message",
+      name: "Messages",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <Message
+            className={
+              selectedTab === "Messages"
+                ? classes.textPrimary
+                : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <Message className="text-white" />,
       },
     },
     {

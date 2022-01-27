@@ -59,10 +59,6 @@ function MessagePopperButton(props: any) {
         aria-label="Open Messages"
         color="secondary"
         buttonRef={anchorEl}
-      // onClick={handleClick}  
-      // buttonRef={anchorEl}  
-      // aria-label="Open Messages"
-      // aria-describedby={id}
       >
         <MessageIcon />
       </IconButton>
