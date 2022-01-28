@@ -17,11 +17,10 @@ import {
 } from "@material-ui/core";
 
 import { RiCloseCircleLine } from "react-icons/ri";
-// import CloseIcon from "@material-ui/icons/Close";
+
 import HelpOutline from "@material-ui/icons/HelpOutline";
-import Mail from "@material-ui/icons/Mail";
 import Payment from "@material-ui/icons/Payment"
-import Money from "@material-ui/icons/Money"
+import Card from "@material-ui/icons/CardMembershipOutlined"
 
 const drawerWidth = 240;
 
@@ -62,14 +61,14 @@ function SideDrawer(props: any) {
 
   const sideDrawerItems = [
     {
-      link: "information",
-      name: "Information Center",
+      link: "profile-info",
+      name: "Profile Information ",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
           <HelpOutline
             className={
-              selectedTab === "Information Center" ? classes.textPrimary : "text-black"
+              selectedTab === "Profile Information " ? classes.textPrimary : "text-black"
             }
             fontSize="large"
           />
@@ -78,23 +77,7 @@ function SideDrawer(props: any) {
       },
     },
     {
-      link: "mail",
-      name: "Mail Center",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <Mail
-            className={
-              selectedTab === "Mail Center" ? classes.textPrimary : "text-black"
-            }
-            fontSize="large"
-          />
-        ),
-        mobile: <Mail className="text-black" />,
-      },
-    },
-    {
-      link: "payment-method",
+      link: "wallet",
       name: "Payment Method",
       onClick: closeMobileDrawer,
       icon: {
@@ -110,19 +93,19 @@ function SideDrawer(props: any) {
       },
     },
     {
-      link: "money",
-      name: "Money Information",
+      link: "card",
+      name: "Card",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
-          <Money
+          <Card
             className={
-              selectedTab === "Money Information" ? classes.textPrimary : "text-black"
+              selectedTab === "Card" ? classes.textPrimary : "text-black"
             }
             fontSize="large"
           />
         ),
-        mobile: <Money className="text-black" />,
+        mobile: <Card className="text-black" />,
       },
     },
   ]

@@ -24,10 +24,11 @@ import SideDrawer from "../side-drawer/sidedrawer";
 import Balance from "./balance/balance";
 import MessagePopperButton from "./message-popper-button/messagepopper-button";
 
+import Contact from "@material-ui/icons/ContactMailOutlined"
 import Message from "@material-ui/icons/Message";
-import ImageIcon from "@material-ui/icons/Image";
+
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import User from "@material-ui/icons/VerifiedUserOutlined"
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -159,7 +160,7 @@ const NavBar = (props: any) => {
 
   const menuItems = [
     {
-      link: "dashboard-C-data",
+      link: "dashboard",
       name: "Dashboard",
       onClick: closeMobileDrawer,
       icon: {
@@ -175,41 +176,39 @@ const NavBar = (props: any) => {
       },
     },
     {
-      link: "/c/posts",
-      name: "Posts",
+      link: "users",
+      name: "Users",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
-          <ImageIcon
+          <User
+            className={
+              selectedTab === "Users" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <User className="text-white" />,
+      },
+    },
+    {
+      link: "contacts",
+      name: "Contact",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <Contact
             className={
               selectedTab === "Posts" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
         ),
-        mobile: <ImageIcon className="text-white" />,
+        mobile: <Contact className="text-white" />,
       },
     },
     {
-      link: "/subscription",
-      name: "Subscription",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <AccountBalanceIcon
-            className={
-              selectedTab === "Subscription"
-                ? classes.textPrimary
-                : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <AccountBalanceIcon className="text-white" />,
-      },
-    },
-    {
-      link: "message",
+      link: "send-sms",
       name: "Messages",
       onClick: closeMobileDrawer,
       icon: {
