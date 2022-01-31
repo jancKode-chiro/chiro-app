@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import PropTypes from "prop-types";
+
 import { Button, MuiThemeProvider } from "@material-ui/core";
 import { createTheme } from '@material-ui/core/styles'
 

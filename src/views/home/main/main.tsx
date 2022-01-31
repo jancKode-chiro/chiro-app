@@ -6,7 +6,7 @@ import { withStyles } from "@material-ui/core";
 
 import smoothScrollTop from '../../../utilities/smooth-scroll-top';
 import NavBar from '../navigation/nav-bar';
-import { MainDiv } from './main.styles';
+import { MainDiv } from '../../../components/styles-menu/main-styles/main.styles';
 import Routing from '../routing/routing';
 import Footer from '../../footer/footer';
 
