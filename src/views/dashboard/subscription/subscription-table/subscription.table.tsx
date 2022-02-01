@@ -76,51 +76,51 @@ function SubscriptionTable(props: any) {
     [setPage]
   );
 
-  // if (transactions.length > 0) {
-  return (
-    <div className={classes.tableWrapper}>
-      <Table aria-labelledby="tableTitle">
-        {/* <EnhancedTableHead rowCount={transactions.length} rows={rows} /> */}
-        <TableBody>
-          {transactions.map((transaction: any, index: string) => (
-            <TableRow hover tabIndex={-1} key={index}>
-              <TableCell
-                component="th"
-                scope="row"
-                className={classes.firstData}
-              >
-                {transaction.description}
-              </TableCell>
-              <TableCell component="th" scope="row">
-                {transaction.balanceChange > 0 ? (
-                  <ColorfulChip
-                    label={`+${currencyPrettyPrint(
-                      transaction.balanceChange
-                    )}`}
-                    color={theme.palette.secondary.main}
-                  />
-                ) : (
-                  <ColorfulChip
-                    label={currencyPrettyPrint(transaction.balanceChange)}
-                    color={theme.palette.error.dark}
-                  />
-                )}
-              </TableCell>
-              <TableCell component="th" scope="row">
-                {unixToDateString(transaction.timestamp)}
-              </TableCell>
-              <TableCell component="th" scope="row">
-                {transaction.paidUntil
-                  ? unixToDateString(transaction.paidUntil)
-                  : ""}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+  if (transactions > 0) {
+    return (
+      <div className={classes.tableWrapper}>
+        <Table aria-labelledby="tableTitle">
+          {/* <EnhancedTableHead rowCount={transactions.length} rows={rows} /> */}
+          <TableBody>
+            {transactions.map((transaction: any, index: string) => (
+              <TableRow hover tabIndex={-1} key={index}>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  className={classes.firstData}
+                >
+                  {transaction.description}
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  {transaction.balanceChange > 0 ? (
+                    <ColorfulChip
+                      label={`+${currencyPrettyPrint(
+                        transaction.balanceChange
+                      )}`}
+                      color={theme.palette.secondary.main}
+                    />
+                  ) : (
+                    <ColorfulChip
+                      label={currencyPrettyPrint(transaction.balanceChange)}
+                      color={theme.palette.error.dark}
+                    />
+                  )}
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  {unixToDateString(transaction.timestamp)}
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  {transaction.paidUntil
+                    ? unixToDateString(transaction.paidUntil)
+                    : ""}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
 
 
-      {/* <TablePagination
+        {/* <TablePagination
           component="div"
           count={transactions.length}
           rowsPerPage={rowsPerPage}
@@ -140,17 +140,17 @@ function SubscriptionTable(props: any) {
           }}
           labelRowsPerPage=""
         /> */}
+      </div>
+    );
+  }
+  return (
+    <div className={classes.contentWrapper}>
+      <HighlightedInformation>
+        No transactions received yet.
+      </HighlightedInformation>
     </div>
   );
 }
-// return (
-//   <div className={classes.contentWrapper}>
-//     <HighlightedInformation>
-//       No transactions received yet.
-//     </HighlightedInformation>
-//   </div>
-// );
-// }
 
 
 export default withStyles(styles as {}, { withTheme: true })(SubscriptionTable);
