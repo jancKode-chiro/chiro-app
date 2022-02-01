@@ -168,7 +168,7 @@ const NavBar = (props: any) => {
       },
     },
     {
-      link: "/c/posts",
+      link: "addpost",
       name: "Posts",
       onClick: closeMobileDrawer,
       icon: {
