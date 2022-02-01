@@ -28,10 +28,15 @@ import Contact from "@material-ui/icons/ContactMailOutlined"
 import Message from "@material-ui/icons/Message";
 
 import DashboardIcon from "@material-ui/icons/Dashboard";
+import ImageIcon from "@material-ui/icons/Image";
+import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import User from "@material-ui/icons/VerifiedUserOutlined"
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MenuIcon from "@material-ui/icons/Menu";
+import HelpOutline from "@material-ui/icons/HelpOutline";
+import Card from "@material-ui/icons/CardMembershipOutlined";
+import Payment from "@material-ui/icons/Payment";
 import NavigationDrawer from "../../../../components/common/navigation-drawer/navigation-drawer";
 
 const styles = (theme: any) => ({
@@ -176,6 +181,40 @@ const NavBar = (props: any) => {
       },
     },
     {
+      link: "/c/posts",
+      name: "Posts",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <ImageIcon
+            className={
+              selectedTab === "Posts" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <ImageIcon className="text-white" />,
+      },
+    },
+    {
+      link: "/c/subscription",
+      name: "Subscription",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <AccountBalanceIcon
+            className={
+              selectedTab === "Subscription"
+                ? classes.textPrimary
+                : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <AccountBalanceIcon className="text-white" />,
+      },
+    },
+    {
       link: "users",
       name: "Users",
       onClick: closeMobileDrawer,
@@ -235,6 +274,55 @@ const NavBar = (props: any) => {
         mobile: <PowerSettingsNewIcon className="text-white" />,
       },
     },
+    {
+      link: "profile-info",
+      name: "Profile Information ",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <HelpOutline
+            className={
+              selectedTab === "Profile Information " ? classes.textPrimary : "text-black"
+            }
+            fontSize="large"
+          />
+        ),
+        mobile: <HelpOutline className="text-black" />,
+      },
+    },
+    {
+      link: "wallet",
+      name: "Payment Method",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <Payment
+            className={
+              selectedTab === "PaymentMethod" ? classes.textPrimary : "text-black"
+            }
+            fontSize="large"
+          />
+        ),
+        mobile: <Payment className="text-black" />,
+      },
+    },
+    {
+      link: "card",
+      name: "Card",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <Card
+            className={
+              selectedTab === "Card" ? classes.textPrimary : "text-black"
+            }
+            fontSize="large"
+          />
+        ),
+        mobile: <Card className="text-black" />,
+      },
+    },
+
   ];
   return (
     <Fragment>
