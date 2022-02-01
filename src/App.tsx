@@ -22,6 +22,7 @@ import {
   SEND_SMS_PATH,
   PROFILEINFO_PATH,
   USERS_PATH,
+  SUBSCRIPTION_PATH
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
@@ -53,6 +54,7 @@ const Users = lazy(() => import('./views/users/users'))
 const ProfileData = lazy(() => import('./views/profile-info/profile-info'));
 const SendSms = lazy(() => import('./views/sms-page/sms-page'))
 const HomePage = lazy(() => import('./views/home/main/main'))
+const Subscription = lazy(() => import('./views/dashboard/subscription/subscription/subscription'))
 
 function App() {
   Amplify.configure(awsmobile);
@@ -94,6 +96,7 @@ function App() {
                   <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
                   <PrivateRoute path={USERS_PATH} component={Users} />
                   <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
+                  <Route path={SUBSCRIPTION_PATH} component={Subscription} />
                 </Switch>
               </Suspense>
               <ToastContainer />

@@ -184,7 +184,7 @@ const NavBar = (props: any) => {
       },
     },
     {
-      link: "/c/subscription",
+      link: "/subscription",
       name: "Subscription",
       onClick: closeMobileDrawer,
       icon: {
