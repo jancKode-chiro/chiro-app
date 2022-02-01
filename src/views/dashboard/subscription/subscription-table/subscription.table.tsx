@@ -80,42 +80,44 @@ function SubscriptionTable(props: any) {
     return (
       <div className={classes.tableWrapper}>
         <Table aria-labelledby="tableTitle">
-          {/* <EnhancedTableHead rowCount={transactions.length} rows={rows} /> */}
+          <EnhancedTableHead rowCount={transactions} rows={rows} />
           <TableBody>
-            {transactions.map((transaction: any, index: string) => (
-              <TableRow hover tabIndex={-1} key={index}>
-                <TableCell
-                  component="th"
-                  scope="row"
-                  className={classes.firstData}
-                >
-                  {transaction.description}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {transaction.balanceChange > 0 ? (
-                    <ColorfulChip
-                      label={`+${currencyPrettyPrint(
-                        transaction.balanceChange
-                      )}`}
-                      color={theme.palette.secondary.main}
-                    />
-                  ) : (
-                    <ColorfulChip
-                      label={currencyPrettyPrint(transaction.balanceChange)}
-                      color={theme.palette.error.dark}
-                    />
-                  )}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {unixToDateString(transaction.timestamp)}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {transaction.paidUntil
-                    ? unixToDateString(transaction.paidUntil)
-                    : ""}
-                </TableCell>
-              </TableRow>
-            ))}
+            {transactions
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((transaction: any, index: string) => (
+                <TableRow hover tabIndex={-1} key={index}>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    className={classes.firstData}
+                  >
+                    {transaction.description}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {transaction.balanceChange > 0 ? (
+                      <ColorfulChip
+                        label={`+${currencyPrettyPrint(
+                          transaction.balanceChange
+                        )}`}
+                        color={theme.palette.secondary.main}
+                      />
+                    ) : (
+                      <ColorfulChip
+                        label={currencyPrettyPrint(transaction.balanceChange)}
+                        color={theme.palette.error.dark}
+                      />
+                    )}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {unixToDateString(transaction.timestamp)}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {transaction.paidUntil
+                      ? unixToDateString(transaction.paidUntil)
+                      : ""}
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
 
