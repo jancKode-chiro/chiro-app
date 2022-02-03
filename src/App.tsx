@@ -22,6 +22,8 @@ import {
   SEND_SMS_PATH,
   PROFILEINFO_PATH,
   USERS_PATH,
+  LOGINDIALOG_PATH,
+  REGISTERDIALOG_PATH
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
@@ -29,6 +31,7 @@ import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
 
 import theme from './styles/theme';
 import GlobalStyles from './styles/global-styles';
+
 
 const CreateAccount = lazy(
   () => import('./views/authenthication/createaccount/createaccount')
@@ -53,6 +56,8 @@ const Users = lazy(() => import('./views/users/users'))
 const ProfileData = lazy(() => import('./views/profile-info/profile-info'));
 const SendSms = lazy(() => import('./views/sms-page/sms-page'))
 const HomePage = lazy(() => import('./views/home/main/main'))
+const LoginDialog = lazy(() => import('./views/authenthication/login-dialog/login-dialog'))
+const RegisterDialog = lazy(() => import('./views/authenthication/register-dialog/register.dialog'))
 
 function App() {
   Amplify.configure(awsmobile);
@@ -94,6 +99,8 @@ function App() {
                   <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
                   <PrivateRoute path={USERS_PATH} component={Users} />
                   <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
+                  <Route path={LOGINDIALOG_PATH} component={LoginDialog} />
+                  <Route path={REGISTERDIALOG_PATH} component={RegisterDialog} />
                 </Switch>
               </Suspense>
               <ToastContainer />

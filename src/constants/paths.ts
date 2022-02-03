@@ -18,3 +18,5 @@ export const SEND_SMS_PATH = '/send-sms';
 export const SLIDENAVIGATION_PATH = '/slidenavigation';
 export const PROFILEINFO_PATH = '/profile-info';
 export const USERS_PATH = '/users';
+export const LOGINDIALOG_PATH = '/logindialog';
+export const REGISTERDIALOG_PATH = '/registerdialog';

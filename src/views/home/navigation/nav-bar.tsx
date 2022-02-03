@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 
 import { styles } from './nav-bar.styles'
 import NavigationDrawer from '../../../components/common/navigation-drawer/navigation-drawer';
-import { LOGIN_PATH, CREATE_ACCOUNT_PATH } from '../../../constants/paths';
+import { LOGINDIALOG_PATH, CREATE_ACCOUNT_PATH } from '../../../constants/paths';
 
 const NavBar = (props: any) => {
   const {
@@ -45,13 +45,13 @@ const NavBar = (props: any) => {
       icon: <BookIcon className="text-white" />
     },
     {
-      link: CREATE_ACCOUNT_PATH,
+      link: "/registerdialog",
       name: "Register",
       onClick: openRegisterDialog,
       icon: <HowToRegIcon className="text-white" />
     },
     {
-      link: LOGIN_PATH,
+      link: LOGINDIALOG_PATH,
       name: "Login",
       onClick: openLoginDialog,
       icon: <LockOpenIcon className="text-white" />
