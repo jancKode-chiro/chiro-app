@@ -23,7 +23,9 @@ import {
   PROFILEINFO_PATH,
   USERS_PATH,
   LOGINDIALOG_PATH,
-  REGISTERDIALOG_PATH
+  REGISTERDIALOG_PATH,
+  TERMS_SERVICE_PATH,
+  FORGOTPASSWORD_DIALOG_PATH
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
@@ -58,6 +60,8 @@ const SendSms = lazy(() => import('./views/sms-page/sms-page'))
 const HomePage = lazy(() => import('./views/home/main/main'))
 const LoginDialog = lazy(() => import('./views/authenthication/login-dialog/login-dialog'))
 const RegisterDialog = lazy(() => import('./views/authenthication/register-dialog/register.dialog'))
+const TermsOfService = lazy(() => import('./views/authenthication/register-dialog/terms-of-service-dialog/terms-of-service-dialog'))
+const ForgotPasswordDialog = lazy(() => import('./views/forgot-password-dialog/forgot-password-dialog'))
 
 function App() {
   Amplify.configure(awsmobile);
@@ -101,6 +105,8 @@ function App() {
                   <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
                   <Route path={LOGINDIALOG_PATH} component={LoginDialog} />
                   <Route path={REGISTERDIALOG_PATH} component={RegisterDialog} />
+                  <Route path={TERMS_SERVICE_PATH} component={TermsOfService} />
+                  <Route path={FORGOTPASSWORD_DIALOG_PATH} component={ForgotPasswordDialog} />
                 </Switch>
               </Suspense>
               <ToastContainer />

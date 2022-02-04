@@ -16,7 +16,9 @@ import { useAuth } from '../../../context/auth-context';
 import { useForm, SubmitHandler } from 'react-hook-form';
 // import { InlineSingleErrorMessage } from '../../../components/common/notification/inline-notification/inline-notification';
 import { toast } from 'react-toastify';
-import { ACTIVATE_ACCOUNT_PATH } from '../../../constants/paths';
+import { ACTIVATE_ACCOUNT_PATH, TERMS_SERVICE_PATH } from '../../../constants/paths';
+import { styles } from "./register-dialog.styles";
+import { StyledLink } from "../../../components/link/link";
 import ColoredButton from "../../../components/common/colored-button/colored-button";
 import FormDialog from "../../../components/common/forms/form-dialog/form-dialog";
 import HighlightedInformation from "../../../components/common/highlighted-information/highlighted-information";
@@ -33,32 +35,6 @@ type InputProps = {
   country: string;
   countryCode: string;
 };
-
-const styles = (theme: any) => ({
-  link: {
-    transition: theme.transitions.create(["background-color"], {
-      duration: theme.transitions.duration.complex,
-      easing: theme.transitions.easing.easeInOut,
-    }),
-    cursor: "pointer",
-    color: theme.palette.primary.main,
-    "&:enabled:hover": {
-      color: theme.palette.primary.dark,
-    },
-    "&:enabled:focus": {
-      color: theme.palette.primary.dark,
-    },
-    backIcon: {
-      marginRight: theme.spacing(1)
-    },
-    dialogActions: {
-      justifyContent: "flex-start",
-      paddingTop: theme.spacing(2),
-      paddingBottom: theme.spacing(2),
-      paddingRight: theme.spacing(2)
-    }
-  },
-});
 
 function RegisterDialog(props: any) {
   const { setStatus, theme, onClose, openTermsDialog, status, classes } = props;
@@ -281,27 +257,24 @@ function RegisterDialog(props: any) {
               label={
                 <Typography variant="body1">
                   I agree to the
-                  <span
-                    className={classes.link}
-                    onClick={isLoading ? null : openTermsDialog}
-                    tabIndex={0}
-                    role="button"
-                    onKeyDown={(event) => {
-                      // For screenreaders listen to space and enter events
-                      if (
-                        (!isLoading && event.keyCode === 13) ||
-                        event.keyCode === 32
-                      ) {
-                        openTermsDialog();
-                      }
-                    }}
-                  >
-                    {" "}
-                    terms of service
-                  </span>
                 </Typography>
               }
             />
+            <StyledLink
+              onClick={isLoading ? null : openTermsDialog}
+              className={classes.link}
+              to={TERMS_SERVICE_PATH}
+            >
+              <span
+                className={classes.link}
+                onClick={isLoading ? null : openTermsDialog}
+                tabIndex={0}
+                role="button"
+              >
+                {" "}
+                terms of service
+              </span>
+            </StyledLink>
             {hasTermsOfServiceError && (
               <FormHelperText
                 error

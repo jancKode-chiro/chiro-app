@@ -14,11 +14,13 @@ import {
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { Auth } from 'aws-amplify';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { DASHBOARD_PATH } from '../../../constants/paths';
+import { DASHBOARD_PATH, FORGOTPASSWORD_DIALOG_PATH, PASSWORDFORGOT_PATH } from '../../../constants/paths';
 import { useAuth } from '../../../context/auth-context';
 import { toast } from 'react-toastify';
 import { getUser } from '../../../api/users';
 import { getCurrentSession } from '../../../helpers/user-helpers';
+import { styles } from './login-dialog.styles';
+import { StyledLink } from "../../../components/link/link";
 import ColoredButton from "../../../components/common/colored-button/colored-button";
 import FormDialog from "../../../components/common/form-dialog/form-dialog";
 import ButtonCircularProgress from "../../../components/common/button/button-circular-progress/button-circular-progress";
@@ -29,36 +31,6 @@ type InputProps = {
   email: string;
   password: string;
 };
-
-const styles = (theme: any) => ({
-  forgotPassword: {
-    marginTop: theme.spacing(2),
-    color: theme.palette.primary.main,
-    cursor: "pointer",
-    "&:enabled:hover": {
-      color: theme.palette.primary.dark,
-    },
-    "&:enabled:focus": {
-      color: theme.palette.primary.dark,
-    },
-  },
-  disabledText: {
-    cursor: "auto",
-    color: theme.palette.text.disabled,
-  },
-  formControlLabel: {
-    marginRight: 0,
-  },
-  backIcon: {
-    marginRight: theme.spacing(1)
-  },
-  dialogActions: {
-    justifyContent: "flex-start",
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
-    paddingRight: theme.spacing(2)
-  },
-});
 
 function LoginDialog(props: any) {
   const {
@@ -226,7 +198,7 @@ function LoginDialog(props: any) {
                 Login
                 {isLoading && <ButtonCircularProgress />}
               </Button>
-              <Typography
+              {/* <Typography
                 align="center"
                 className={classNames(
                   classes.forgotPassword,
@@ -245,19 +217,31 @@ function LoginDialog(props: any) {
                     openChangePasswordDialog();
                   }
                 }}
-              >
-                Forgot Password?
-              </Typography>
-              <DialogActions className={classes.dialogActions}>
-                <ColoredButton
-                  onClick={onClose}
-                  variant="contained"
-                  color={theme.palette.common.black}
-                >
-                  <ArrowBackIcon path="/" className={classes.backIcon} />
-                  Back
-                </ColoredButton>
-              </DialogActions>
+              > */}
+              <StyledLink
+                className={classNames(
+                  classes.forgotPassword,
+                  isLoading ? classes.disabledText : null
+                )} to={PASSWORDFORGOT_PATH}>
+                <Typography align="center">
+                  Forgot Password
+                </Typography>
+
+              </StyledLink>
+
+              <StyledLink to="/">
+                <DialogActions className={classes.dialogActions}>
+                  <ColoredButton
+                    onClick={onClose}
+                    variant="contained"
+                    color={theme.palette.common.black}
+                  >
+                    <ArrowBackIcon path="/" className={classes.backIcon} />
+                    Back
+                  </ColoredButton>
+                </DialogActions>
+              </StyledLink>
+
             </Fragment>
 
           }

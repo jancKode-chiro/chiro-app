@@ -20,3 +20,5 @@ export const PROFILEINFO_PATH = '/profile-info';
 export const USERS_PATH = '/users';
 export const LOGINDIALOG_PATH = '/logindialog';
 export const REGISTERDIALOG_PATH = '/registerdialog';
+export const TERMS_SERVICE_PATH = '/termsofservice';
+export const FORGOTPASSWORD_DIALOG_PATH = '/forgotpassword-dialog';
