@@ -9,9 +9,8 @@ import {
   Typography,
   FormControlLabel,
   withStyles,
-  DialogActions,
 } from "@material-ui/core";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+
 import { Auth } from 'aws-amplify';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { DASHBOARD_PATH, FORGOTPASSWORD_DIALOG_PATH, PASSWORDFORGOT_PATH } from '../../../constants/paths';
@@ -21,11 +20,10 @@ import { getUser } from '../../../api/users';
 import { getCurrentSession } from '../../../helpers/user-helpers';
 import { styles } from './login-dialog.styles';
 import { StyledLink } from "../../../components/link/link";
-import ColoredButton from "../../../components/common/colored-button/colored-button";
-import FormDialog from "../../../components/common/form-dialog/form-dialog";
+import FormDialog from "../../../components/common/forms/form-dialog/form-dialog";
 import ButtonCircularProgress from "../../../components/common/button/button-circular-progress/button-circular-progress";
 import VisibilityPasswordTextField from "../../../components/common/visibility-password-textfield/visibility-password-textfield";
-import theme from "../../../styles/theme";
+
 
 type InputProps = {
   email: string;
@@ -78,27 +76,6 @@ function LoginDialog(props: any) {
 
   };
 
-
-  // const login = useCallback(() => {
-  //   setIsLoading(true);
-  //   setStatus(null);
-  //   if (loginEmail.current.value !== "test@web.com") {
-  //     setTimeout(() => {
-  //       setStatus("invalidEmail");
-  //       setIsLoading(false);
-  //     }, 1500);
-  //   } else if (loginPassword.current.value !== "HaRzwc") {
-  //     setTimeout(() => {
-  //       setStatus("invalidPassword");
-  //       setIsLoading(false);
-  //     }, 1500);
-  //   } else {
-  //     setTimeout(() => {
-  //       history.push("/c/dashboard");
-  //     }, 150);
-  //   }
-  // }, [setIsLoading, loginEmail, loginPassword, history, setStatus]);
-
   return (
     <Fragment>
       <form onSubmit={handleSubmit(submitHandler)}>
@@ -106,10 +83,6 @@ function LoginDialog(props: any) {
           open
           onClose={onClose}
           loading={isLoading}
-          // onFormSubmit={(e: { preventDefault: () => void; }) => {
-          //   e.preventDefault();
-          //   login();
-          // }}
           hideBackdrop
           headline="Login"
           content={
@@ -198,26 +171,6 @@ function LoginDialog(props: any) {
                 Login
                 {isLoading && <ButtonCircularProgress />}
               </Button>
-              {/* <Typography
-                align="center"
-                className={classNames(
-                  classes.forgotPassword,
-                  isLoading ? classes.disabledText : null
-                )}
-                color="primary"
-                onClick={isLoading ? null : openChangePasswordDialog}
-                tabIndex={0}
-                role="button"
-                onKeyDown={(event) => {
-                  // For screenreaders listen to space and enter events
-                  if (
-                    (!isLoading && event.keyCode === 13) ||
-                    event.keyCode === 32
-                  ) {
-                    openChangePasswordDialog();
-                  }
-                }}
-              > */}
               <StyledLink
                 className={classNames(
                   classes.forgotPassword,
@@ -228,20 +181,6 @@ function LoginDialog(props: any) {
                 </Typography>
 
               </StyledLink>
-
-              <StyledLink to="/">
-                <DialogActions className={classes.dialogActions}>
-                  <ColoredButton
-                    onClick={onClose}
-                    variant="contained"
-                    color={theme.palette.common.black}
-                  >
-                    <ArrowBackIcon path="/" className={classes.backIcon} />
-                    Back
-                  </ColoredButton>
-                </DialogActions>
-              </StyledLink>
-
             </Fragment>
 
           }

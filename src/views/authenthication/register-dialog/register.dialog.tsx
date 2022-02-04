@@ -8,18 +8,14 @@ import {
   Typography,
   FormControlLabel,
   withStyles,
-  DialogActions,
 } from "@material-ui/core";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { createUser } from '../../../api/users';
 import { useAuth } from '../../../context/auth-context';
 import { useForm, SubmitHandler } from 'react-hook-form';
-// import { InlineSingleErrorMessage } from '../../../components/common/notification/inline-notification/inline-notification';
 import { toast } from 'react-toastify';
 import { ACTIVATE_ACCOUNT_PATH, TERMS_SERVICE_PATH } from '../../../constants/paths';
 import { styles } from "./register-dialog.styles";
 import { StyledLink } from "../../../components/link/link";
-import ColoredButton from "../../../components/common/colored-button/colored-button";
 import FormDialog from "../../../components/common/forms/form-dialog/form-dialog";
 import HighlightedInformation from "../../../components/common/highlighted-information/highlighted-information";
 import ButtonCircularProgress from "../../../components/common/button/button-circular-progress/button-circular-progress";
@@ -89,10 +85,6 @@ function RegisterDialog(props: any) {
         onClose={onClose}
         open
         headline="Register"
-        // onFormSubmit={(e) => {   
-        //   e.preventDefault();
-        //   register();
-        // }}
         hideBackdrop
         hasCloseIcon
         content={

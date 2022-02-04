@@ -1,5 +1,6 @@
 import React from "react";
 import { Dialog, DialogContent, Box, withStyles } from "@material-ui/core";
+import { StyledLink } from "../../../link/link";
 import DialogTitleWithCloseIcon from "../../dialog/dialog-title-with-icon/dialog-title-with-icon";
 
 const styles = (theme: any) => ({
@@ -50,11 +51,14 @@ function FormDialog(props: any) {
       }}
       hideBackdrop={hideBackdrop ? hideBackdrop : false}
     >
-      <DialogTitleWithCloseIcon
-        title={headline}
-        onClose={onClose}
-        disabled={loading}
-      />
+      <StyledLink to="/">
+        <DialogTitleWithCloseIcon
+          title={headline}
+          onClose={onClose}
+          disabled={loading}
+        />
+      </StyledLink>
+
       <DialogContent className={classes.dialogContent}>
         <form onSubmit={onFormSubmit}>
           <div>{content}</div>
