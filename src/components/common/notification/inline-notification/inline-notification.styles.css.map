@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": ";AAEA,AAAA,aAAa,CAAC;EACZ,OAAO,EAAE,OAAO;CAajB;;AAdD,AAEE,aAFW,CAEX,CAAC,CAAC;EACA,WAAW,EAAE,GAAG;EAChB,WAAW,ECNA,SAAS,EAEa,UAAU;EDK3C,KAAK,EAAE,OAAO;EACd,SAAS,EAAE,KAAK;EAChB,UAAU,EAAE,MAAM;CACnB;;AARH,AAUE,aAVW,CAUX,CAAC,AAAA,QAAQ,CAAC;EACR,OAAO,EAAE,MAAM;EACf,OAAO,EAAE,KAAK;CACf",
+    "sources": [
+        "inline-notification.styles.scss",
+        "../../../../styles/variables.scss"
+    ],
+    "names": [],
+    "file": "inline-notification.styles.css"
+}

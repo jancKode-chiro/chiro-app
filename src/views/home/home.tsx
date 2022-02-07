@@ -1,4 +1,5 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useCallback, useState } from 'react'
+import LoginDialog from '../authenthication/login-dialog/login-dialog';
 import FeatureSection from './feature-section/feature-section';
 import HeadSection from './head-section/head-section';
 import PricingSection from './pricing-section/pricing-section';

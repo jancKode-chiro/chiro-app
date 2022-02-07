@@ -1,0 +1,16 @@
+.spinner-component-black .icon::before {
+  color: black;
+}
+
+.spinner-component-blue .icon::before {
+  color: #004884;
+}
+
+.spinner-component-green .icon::before {
+  color: #52ae32;
+}
+
+.spinner-component-white .icon::before {
+  color: white;
+}
+/*# sourceMappingURL=spinner.styles.css.map */

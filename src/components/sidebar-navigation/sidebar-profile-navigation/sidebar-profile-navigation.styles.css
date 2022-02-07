@@ -1,0 +1,117 @@
+.sidebarprofile .top-button-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding-right: 1rem;
+}
+
+.sidebarprofile .menu-bar-profile {
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+}
+
+.sidebarprofile .nav-menu-profile {
+  background-color: #ffffff;
+  width: 17.325em;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  -webkit-transition: 950ms;
+  transition: 950ms;
+}
+
+.sidebarprofile .nav-menu-profile.active {
+  right: 0;
+  -webkit-transition: 650ms;
+  transition: 650ms;
+  z-index: 1;
+}
+
+.sidebarprofile .nav-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style: none;
+  height: 6.25em;
+  font-weight: normal;
+  font-family: "Poppins", sans-serif;
+}
+
+.sidebarprofile .nav-profile a {
+  -webkit-text-decoration: 1px solid #c9c9c9cc;
+          text-decoration: 1px solid #c9c9c9cc;
+  color: #000000;
+  font-size: 1.325em;
+  width: 95%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 16px;
+  border-radius: 4px;
+}
+
+.sidebarprofile .nav-menu-profile-items {
+  width: 100%;
+  margin-right: 2.124;
+}
+
+.sidebarprofile .nav-out-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style: none;
+  margin-top: 5.635em;
+  height: 6.25em;
+  font-weight: normal;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+
+.sidebarprofile .nav-out-profile a {
+  -webkit-text-decoration: 1px solid #c9c9c9cc;
+          text-decoration: 1px solid #c9c9c9cc;
+  color: #000000;
+  font-size: 1.325em;
+  width: 95%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 16px;
+  border-radius: 4px;
+}
+
+.sidebarprofile span-profile {
+  margin-left: 1em;
+}
+/*# sourceMappingURL=sidebar-profile-navigation.styles.css.map */

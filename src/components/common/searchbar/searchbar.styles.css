@@ -1,0 +1,17 @@
+.search-a {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1.125em;
+  min-height: 3.3125em;
+  border-radius: 0.5em;
+  width: 38em;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.125em;
+  cursor: pointer;
+}
+/*# sourceMappingURL=searchbar.styles.css.map */

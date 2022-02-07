@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import {
   AppBar,
   Toolbar,
@@ -16,10 +16,37 @@ import BookIcon from "@material-ui/icons/Book";
 import { Link } from "react-router-dom";
 
 import { styles } from './nav-bar.styles'
+import LoginDialog from "../../authenthication/login-dialog/login-dialog"
 import NavigationDrawer from '../../../components/common/navigation-drawer/navigation-drawer';
 import { LOGINDIALOG_PATH, CREATE_ACCOUNT_PATH } from '../../../constants/paths';
 
 const NavBar = (props: any) => {
+  const [isLoginDataDialogOpen, setIsLoginDialogOpen] = useState(false);
+  const [pushMessageToSnackbar, setPushMessageToSnackbar] = useState<{}>();
+
+
+  const openLoginDataDialog = useCallback(() => {
+    setIsLoginDialogOpen(true);
+  }, [setIsLoginDialogOpen]);
+
+  const closeLoginDialog = useCallback(() => {
+    setIsLoginDialogOpen(false);
+  }, [setIsLoginDialogOpen]);
+
+  const onLoginSuccess = useCallback(() => {
+    setPushMessageToSnackbar({
+      text: "Your account has been logged in.",
+    });
+    setIsLoginDialogOpen(false);
+  }, [setIsLoginDialogOpen]);
+
+  const getPushMessageFromChild = useCallback(
+    (pushMessage) => {
+      setPushMessageToSnackbar(() => pushMessage);
+    },
+    [setPushMessageToSnackbar]
+  );
+
   const {
     classes,
     openRegisterDialog,
@@ -126,16 +153,22 @@ const NavBar = (props: any) => {
           </div>
         </Toolbar>
       </AppBar>
-      <NavigationDrawer
+      {/* <LoginDialog
+        open={isLoginDataDialogOpen}
+        onClose={closeLoginDialog}
+        onSuccess={onLoginSuccess}
+      /> */}
+      {/* <NavigationDrawer
         menuItems={navBarMenu}
         selectedItem={selectedTab}
         anchor='right'
         onClose={handleMobileDrawerClose}
         open={mobileDrawerOpen}
-      />
+        openLoginDataDialog={openLoginDataDialog}
+      /> */}
 
     </div>
   )
 }
 
-export default withStyles(styles, { withTheme: true })(memo(NavBar));
+export default withStyles(styles, { withTheme: true })(memo(NavBar)); 

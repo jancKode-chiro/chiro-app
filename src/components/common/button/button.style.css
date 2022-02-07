@@ -1,0 +1,74 @@
+.custom-button {
+  min-height: 3.3125em;
+  border-radius: 0.5em;
+  width: 8.375em;
+  border: 1px solid #52ae32;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.125em;
+  color: white;
+  background-color: #2dcc5a;
+  cursor: pointer;
+}
+
+.custom-button.button:disabled {
+  opacity: 0.3;
+}
+
+.custom-button.mini-button {
+  min-height: 2.625em;
+  width: 5.25em;
+  border-radius: 3px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.75em;
+}
+
+.custom-button:hover:not(:disabled):not(.disabled) {
+  -webkit-box-shadow: inset 0 0 6.25em 6.25em rgba(255, 255, 255, 0.1);
+          box-shadow: inset 0 0 6.25em 6.25em rgba(255, 255, 255, 0.1);
+}
+
+.custom-button.bg-green {
+  background-color: #52ae32;
+  border: none;
+}
+
+.custom-button.bg-blue {
+  background-color: #004884;
+  border: none;
+}
+
+.custom-button.text-white {
+  color: #ffffff;
+}
+
+.custom-button.text-blue {
+  color: #004884;
+}
+
+.custom-button.with-next-icon {
+  position: relative;
+  padding: 0.9375em 2.5em;
+}
+
+.custom-button.tiny-button {
+  min-height: 1.75em;
+  width: 5.25em;
+  border-radius: 2px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.75em;
+}
+
+.custom-button.text-green {
+  color: #52ae32;
+}
+
+.custom-button.right {
+  margin-left: auto;
+}
+
+.custom-button.btn-icon {
+  border-radius: 100%;
+  width: auto;
+}
+/*# sourceMappingURL=button.style.css.map */

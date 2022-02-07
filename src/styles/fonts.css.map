@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,UAAU;EACR,WAAW,ECHE,SAAS;EDItB,GAAG,EAAE,gDAAgD;EACrD,WAAW,ECDO,GAAG;;;ADIvB,UAAU;EACR,WAAW,ECTE,SAAS;EDUtB,GAAG,EAAE,sDAAsD;EAC3D,WAAW,EAAE,MAAM",
+    "sources": [
+        "fonts.scss",
+        "variables.scss"
+    ],
+    "names": [],
+    "file": "fonts.css"
+}

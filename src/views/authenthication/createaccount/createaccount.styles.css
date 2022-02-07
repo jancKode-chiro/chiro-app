@@ -1,0 +1,210 @@
+.create-account .create-account-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.create-account .create-account-form .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5625em;
+  font-weight: 600;
+  font-style: normal;
+  color: #fefcfc;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 4em;
+}
+
+@media (max-width: 319px) {
+  .create-account .create-account-form .title {
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .create-account .create-account-form .title {
+    padding-bottom: 0;
+  }
+}
+
+.create-account .create-account-form .form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 60%;
+}
+
+@media (max-width: 767px) {
+  .create-account .create-account-form .form {
+    width: 85%;
+  }
+}
+
+@media (max-width: 1023px) {
+  .create-account .create-account-form .form {
+    width: 84%;
+  }
+}
+
+.create-account .create-account-form .form .create-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .create-account .create-account-form .form .create-button {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+@media (max-width: 1023px) {
+  .create-account .create-account-form .form .create-button {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.create-account .create-account-form .form .text-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 2em;
+}
+
+@media (max-width: 319px) {
+  .create-account .create-account-form .form .text-wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media (max-width: 767px) {
+  .create-account .create-account-form .form .text-wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.create-account .create-account-form .form .text-wrapper .input-text {
+  width: 25vw;
+}
+
+@media (max-width: 319px) {
+  .create-account .create-account-form .form .text-wrapper .input-text {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .create-account .create-account-form .form .text-wrapper .input-text {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.create-account .create-account-form .form .email-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 2em;
+}
+
+.create-account .create-account-form .form .inputwrapper1 {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 2.3125em;
+}
+
+.create-account .create-account-form .form .password-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 25vw;
+  border: 1px solid #2dcc5a;
+  border-radius: 8px;
+  height: 52px;
+  color: #aca6a6;
+  background-color: #ffffff;
+}
+
+.create-account .create-account-form .form .password-input .eye-icon {
+  height: 1.6rem;
+  width: 1.6rem;
+}
+
+.create-account .create-account-form .form .password-input .eye-icon :hover {
+  cursor: pointer;
+}
+
+.create-account .create-account-form .createaccount {
+  width: 53.4375em;
+  height: 39.1875em;
+  top: 2.6875em;
+  left: 3.625em;
+  color: #fefcfc;
+  background-color: #fefcfc;
+}
+/*# sourceMappingURL=createaccount.styles.css.map */

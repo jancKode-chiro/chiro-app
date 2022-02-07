@@ -11,7 +11,7 @@ import {
 import { Grid, Button, Box, withTheme } from "@material-ui/core";
 import StripeCardForm from '../stripe/stripe-card-form'
 import StripeIbanForm from "../stripe/stripe-iban-form"
-import FormDialog from "../../../components/common/forms/form-dialog/form-dialog";
+import FormDialog from "../../../components/common/form-dialog/form-dialog"
 import ColoredButton from "../../../components/common/colored-button/colored-button";
 import HighlightedInformation from "../../../components/common/highlighted-information/highlighted-information";
 import ButtonCircularProgress from "../../../components/common/button/button-circular-progress/button-circular-progress";

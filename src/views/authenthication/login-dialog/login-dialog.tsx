@@ -20,6 +20,7 @@ import { getUser } from '../../../api/users';
 import { getCurrentSession } from '../../../helpers/user-helpers';
 import { styles } from './login-dialog.styles';
 import { StyledLink } from "../../../components/link/link";
+import HighlightedInformation from "../../../components/common/highlighted-information/highlighted-information";
 import FormDialog from "../../../components/common/forms/form-dialog/form-dialog";
 import ButtonCircularProgress from "../../../components/common/button/button-circular-progress/button-circular-progress";
 import VisibilityPasswordTextField from "../../../components/common/visibility-password-textfield/visibility-password-textfield";
@@ -88,7 +89,7 @@ function LoginDialog(props: any) {
           content={
             <Fragment>
               <TextField
-                defaultValue='gynnanne@gmail.com'
+                // defaultValue='gynnanne@gmail.com'
                 variant="outlined"
                 margin="normal"
                 error={status === "invalidEmail"}
@@ -111,7 +112,7 @@ function LoginDialog(props: any) {
                 FormHelperTextProps={{ error: true }}
               />
               <VisibilityPasswordTextField
-                defaultValue='Chir_1234.'
+                // defaultValue='Chir_1234.'
                 variant="outlined"
                 margin="normal"
                 required
@@ -149,13 +150,13 @@ function LoginDialog(props: any) {
                 We have send instructions on how to reset your password to your
                 email address
               </HighlightedInformation>
-            ) : (
+            ) : ( */}
               <HighlightedInformation>
                 Email is: <b>test@web.com</b>
                 <br />
                 Password is: <b>HaRzwc</b>
               </HighlightedInformation>
-            )} */}
+              {/* )}  */}
             </Fragment>
           }
           actions={

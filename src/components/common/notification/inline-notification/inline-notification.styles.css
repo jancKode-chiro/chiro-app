@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.inline-error {
+  display: inherit;
+}
+
+.inline-error p {
+  padding-top: 6px;
+  font-family: "Poppins", sans-serif;
+  color: #bf1650;
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.inline-error p::before {
+  display: inline;
+  content: "⚠ ";
+}
+/*# sourceMappingURL=inline-notification.styles.css.map */
