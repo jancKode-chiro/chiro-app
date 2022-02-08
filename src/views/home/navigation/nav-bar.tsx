@@ -16,7 +16,7 @@ import BookIcon from "@material-ui/icons/Book";
 import { Link } from "react-router-dom";
 
 import { styles } from './nav-bar.styles'
-import LoginDialog from "../../authenthication/login-dialog/login-dialog"
+import LoginDialog from '../../authenthication/login-dialog/login-dialog';
 import NavigationDrawer from '../../../components/common/navigation-drawer/navigation-drawer';
 import { LOGINDIALOG_PATH, CREATE_ACCOUNT_PATH } from '../../../constants/paths';
 
