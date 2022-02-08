@@ -108,6 +108,11 @@ const NavBar = (props: any) => {
             </Typography>
           </div>
           <div>
+            {/* <LoginDialog
+              open={isLoginDataDialogOpen}
+              onClose={closeLoginDialog}
+              onSuccess={onLoginSuccess}
+            /> */}
             <Hidden mdUp>
               <IconButton
                 className={classes.menuButton}
@@ -153,11 +158,7 @@ const NavBar = (props: any) => {
           </div>
         </Toolbar>
       </AppBar>
-      {/* <LoginDialog
-        open={isLoginDataDialogOpen}
-        onClose={closeLoginDialog}
-        onSuccess={onLoginSuccess}
-      /> */}
+
       {/* <NavigationDrawer
         menuItems={navBarMenu}
         selectedItem={selectedTab}

@@ -16,10 +16,12 @@ import { toast } from 'react-toastify';
 import { ACTIVATE_ACCOUNT_PATH, TERMS_SERVICE_PATH } from '../../../constants/paths';
 import { styles } from "./register-dialog.styles";
 import { StyledLink } from "../../../components/link/link";
+import TermsOfServiceDialog from "./terms-of-service-dialog/terms-of-service-dialog";
 import FormDialog from "../../../components/common/forms/form-dialog/form-dialog";
 import HighlightedInformation from "../../../components/common/highlighted-information/highlighted-information";
 import ButtonCircularProgress from "../../../components/common/button/button-circular-progress/button-circular-progress";
 import VisibilityPasswordTextField from "../../../components/common/visibility-password-textfield/visibility-password-textfield";
+import NavBar from "../../home/navigation/nav-bar";
 
 
 type InputProps = {
@@ -33,6 +35,33 @@ type InputProps = {
 };
 
 function RegisterDialog(props: any) {
+  const [isRegisterDataDialogOpen, setIsRegisterDialogOpen] = useState(false);
+  const [pushMessageToSnackbar, setPushMessageToSnackbar] = useState<{}>();
+
+
+  const openRegisterDataDialog = useCallback(() => {
+    setIsRegisterDialogOpen(true);
+  }, [setIsRegisterDialogOpen]);
+
+  const closeRegisterDialog = useCallback(() => {
+    setIsRegisterDialogOpen(false);
+  }, [setIsRegisterDialogOpen]);
+
+  const onRegisterSuccess = useCallback(() => {
+    setPushMessageToSnackbar({
+      text: "Your account has been logged in.",
+    });
+    setIsRegisterDialogOpen(false);
+  }, [setIsRegisterDialogOpen]);
+
+  const getPushMessageFromChild = useCallback(
+    (pushMessage) => {
+      setPushMessageToSnackbar(() => pushMessage);
+    },
+    [setPushMessageToSnackbar]
+  );
+
+
   const { setStatus, theme, onClose, openTermsDialog, status, classes } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [hasTermsOfServiceError, setHasTermsOfServiceError] = useState(false);
@@ -80,6 +109,7 @@ function RegisterDialog(props: any) {
 
   return (
     <form onSubmit={handleSubmit(submitHandler)}>
+      {/* <NavBar> */}
       <FormDialog
         loading={isLoading}
         onClose={onClose}
@@ -289,7 +319,11 @@ function RegisterDialog(props: any) {
                 Registration is disabled until we go live.
               </HighlightedInformation>
             )}
-
+            {/* <TermsOfServiceDialog
+              open={isRegisterDataDialogOpen}
+              onClose={closeRegisterDialog}
+              onSuccess={onRegisterSuccess}
+            /> */}
           </Fragment>
 
 
@@ -311,6 +345,7 @@ function RegisterDialog(props: any) {
       />
 
       );
+      {/* </NavBar> */}
     </form>
   )
 }

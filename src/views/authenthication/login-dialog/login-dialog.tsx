@@ -24,6 +24,7 @@ import HighlightedInformation from "../../../components/common/highlighted-infor
 import FormDialog from "../../../components/common/forms/form-dialog/form-dialog";
 import ButtonCircularProgress from "../../../components/common/button/button-circular-progress/button-circular-progress";
 import VisibilityPasswordTextField from "../../../components/common/visibility-password-textfield/visibility-password-textfield";
+// import NavBar from "../../home/navigation/nav-bar";
 
 
 type InputProps = {
@@ -79,6 +80,7 @@ function LoginDialog(props: any) {
 
   return (
     <Fragment>
+      {/* <NavBar /> */}
       <form onSubmit={handleSubmit(submitHandler)}>
         <FormDialog
           open
