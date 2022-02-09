@@ -129,7 +129,6 @@ const styles = (theme: any) => ({
 
 const NavBar = (props: any) => {
   const { selectedTab, messages, classes, width, openAddBalanceDialog } = props;
-  // Will be use to make website more accessible by screen readers
   const links = useRef<any>([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
