@@ -27,6 +27,7 @@ import MessagePopperButton from "./message-popper-button/messagepopper-button";
 import Contact from "@material-ui/icons/ContactMailOutlined"
 import Message from "@material-ui/icons/Message";
 
+import DataChart from "@material-ui/icons/DataUsageOutlined"
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ImageIcon from "@material-ui/icons/Image";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
@@ -165,6 +166,22 @@ const NavBar = (props: any) => {
 
   const menuItems = [
     {
+      link: "dashboard-C-data",
+      name: "Data Chart",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <DataChart
+            className={
+              selectedTab === "Data Chart " ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <DataChart className="text-white" />,
+      },
+    },
+    {
       link: "dashboard",
       name: "Dashboard",
       onClick: closeMobileDrawer,
@@ -265,16 +282,6 @@ const NavBar = (props: any) => {
       },
     },
     {
-      link: "/",
-      name: "Logout",
-      icon: {
-        desktop: (
-          <PowerSettingsNewIcon className="text-white" fontSize="small" />
-        ),
-        mobile: <PowerSettingsNewIcon className="text-white" />,
-      },
-    },
-    {
       link: "profile-info",
       name: "Profile Information ",
       onClick: closeMobileDrawer,
@@ -282,12 +289,12 @@ const NavBar = (props: any) => {
         desktop: (
           <HelpOutline
             className={
-              selectedTab === "Profile Information " ? classes.textPrimary : "text-black"
+              selectedTab === "Profile Information " ? classes.textPrimary : "text-white"
             }
-            fontSize="large"
+            fontSize="small"
           />
         ),
-        mobile: <HelpOutline className="text-black" />,
+        mobile: <HelpOutline className="text-white" />,
       },
     },
     {
@@ -298,12 +305,12 @@ const NavBar = (props: any) => {
         desktop: (
           <Payment
             className={
-              selectedTab === "PaymentMethod" ? classes.textPrimary : "text-black"
+              selectedTab === "PaymentMethod" ? classes.textPrimary : "text-white"
             }
-            fontSize="large"
+            fontSize="small"
           />
         ),
-        mobile: <Payment className="text-black" />,
+        mobile: <Payment className="text-white" />,
       },
     },
     {
@@ -314,15 +321,24 @@ const NavBar = (props: any) => {
         desktop: (
           <Card
             className={
-              selectedTab === "Card" ? classes.textPrimary : "text-black"
+              selectedTab === "Card" ? classes.textPrimary : "text-white"
             }
-            fontSize="large"
+            fontSize="small"
           />
         ),
-        mobile: <Card className="text-black" />,
+        mobile: <Card className="text-white" />,
       },
     },
-
+    {
+      link: "/",
+      name: "Logout",
+      icon: {
+        desktop: (
+          <PowerSettingsNewIcon className="text-white" fontSize="small" />
+        ),
+        mobile: <PowerSettingsNewIcon className="text-white" />,
+      },
+    },
   ];
   return (
     <Fragment>

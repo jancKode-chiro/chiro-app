@@ -18,11 +18,11 @@ function Dashboard(props: any) {
     isAccountActivated,
   } = props;
 
-  useEffect(selectDashboard, [selectDashboard]);
+  // useEffect(selectDashboard, [selectDashboard]);
 
   return (
     <Fragment>
-      <StatisticsArea CardChart={CardChart} data={statistics} />
+      {/* <StatisticsArea CardChart={CardChart} data={statistics} /> */}
       <Box mt={4}>
         <Typography variant="subtitle1" gutterBottom>
           Your Account
