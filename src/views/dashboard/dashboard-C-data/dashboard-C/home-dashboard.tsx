@@ -5,6 +5,7 @@ import SettingsArea from '../settings-area/settings-area'
 import UserDataArea from '../userdata-area/userdata-area'
 import AccountInformationArea from '../account-information-area/account-infomration-area';
 import StatisticsArea from '../statistics-area/statistics-area'
+import NavBar from "../../../home/navigation/nav-bar";
 
 function Dashboard(props: any) {
   const {
@@ -22,7 +23,9 @@ function Dashboard(props: any) {
 
   return (
     <Fragment>
+      <NavBar />
       {/* <StatisticsArea CardChart={CardChart} data={statistics} /> */}
+
       <Box mt={4}>
         <Typography variant="subtitle1" gutterBottom>
           Your Account
