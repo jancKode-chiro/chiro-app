@@ -107,29 +107,28 @@ function CustomTable(props: any) {
     [setOrder, setOrderBy, order, orderBy]
   );
 
-  // const deleteTarget = useCallback(() => {
-  //   setIsDeleteTargetLoading(true);
-  //   setTimeout(() => {
-  //     setIsDeleteTargetDialogOpen(false);
-  //     setIsDeleteTargetLoading(false);
-  //     const _targets = [...targets];
-  //     const index = _targets.findIndex(
-  //       (element) => element.id === deleteTargetDialogRow.id
-  //     );
-  //     _targets.splice(index, 1);
-  //     setTargets(_targets);
-  //     pushMessageToSnackbar({
-  //       text: "Your friend has been removed",
-  //     });
-  //   }, 1500);
-  // }, [
-  //   setIsDeleteTargetDialogOpen,
-  //   setIsDeleteTargetLoading,
-  //   pushMessageToSnackbar,
-  //   setTargets,
-  //   deleteTargetDialogRow,
-  //   targets,
-  // ]);
+  const deleteTarget = useCallback(() => {
+    setIsDeleteTargetLoading(true);
+    setTimeout(() => {
+      setIsDeleteTargetDialogOpen(false);
+      setIsDeleteTargetLoading(false);
+      const _targets = [...targets];
+      const index = _targets.findIndex(
+        (element) => element.id
+      );
+      _targets.splice(index, 1);
+      setTargets(_targets);
+      pushMessageToSnackbar({
+        text: "Your friend has been removed",
+      });
+    }, 1500);
+  }, [
+    setIsDeleteTargetDialogOpen,
+    setIsDeleteTargetLoading,
+    pushMessageToSnackbar,
+    setTargets,
+    targets
+  ]);
 
   const handleChangePage = useCallback(
     (_, page) => {
@@ -188,7 +187,7 @@ function CustomTable(props: any) {
           ) : null
         }
         onClose={handleDeleteTargetDialogClose}
-        // onConfirm={deleteTarget}
+        onConfirm={deleteTarget}
         loading={isDeleteTargetLoading}
       />
       <Box width="100%">
@@ -202,106 +201,75 @@ function CustomTable(props: any) {
               // rowCount={targets.length}
               rows={rows}
             />
-            {/* <TableBody>
-              {stableSort(targets, getSorting(order, orderBy))
+            <TableBody>
+              {/* {stableSort(targets, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row: any, index: string) => (
-                  <TableRow hover tabIndex={-1} key={index}>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      className={classes.firstData}
+                .map((row: any, index: string) => ( */}
+              <TableRow hover tabIndex={-1}>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  className={classes.firstData}
+                >
+                  <Avatar
+                    className={classes.avatar}
+                  />
+                </TableCell>
+                {/* <TableCell component="th" scope="row">
+
+                </TableCell>
+                <TableCell component="th" scope="row">
+
+                </TableCell>
+                <TableCell component="th" scope="row">
+
+                </TableCell>
+                <TableCell component="th" scope="row">
+
+                </TableCell>
+                <TableCell component="th" scope="row">
+
+                </TableCell> */}
+                <TableCell component="th" scope="row">
+                  <Box display="flex" justifyContent="flex-end">
+
+                    <IconButton
+                      className={classes.iconButton}
+                      onClick={() => {
+                      }}
+                      aria-label="Pause"
                     >
-                      <Avatar
-                        className={classes.avatar}
-                        src={row.profilePicUrl}
-                      />
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      {row.number1}
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      {row.number2}
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      {row.number3}
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      {row.number4}
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      <Box display="flex" justifyContent="flex-end">
-                        {row.isActivated ? (
-                          <IconButton
-                            className={classes.iconButton}
-                            onClick={() => {
-                              toggleTarget(row);
-                            }}
-                            aria-label="Pause"
-                          >
-                            <PauseCircleOutlineIcon
-                              className={classes.blackIcon}
-                            />
-                          </IconButton>
-                        ) : (
-                          <IconButton
-                            className={classes.iconButton}
-                            color="primary"
-                            onClick={() => {
-                              toggleTarget(row);
-                            }}
-                            aria-label="Resume"
-                          >
-                            <PlayCirlceOutlineIcon />
-                          </IconButton>
-                        )}
-                        <IconButton
-                          className={classes.iconButton}
-                          onClick={() => {
-                            handleDeleteTargetDialogOpen(row);
-                          }}
-                          aria-label="Delete"
-                        >
-                          <DeleteIcon className={classes.blackIcon} />
-                        </IconButton>
-                      </Box>
-                    </TableCell>
-                  </TableRow>
-                ))}
-            </TableBody> */}
+                    </IconButton>
+                    <IconButton
+                      className={classes.iconButton}
+                      color="primary"
+                      onClick={() => {
+                      }}
+                      aria-label="Resume"
+                    >
+                      <PlayCirlceOutlineIcon />
+                    </IconButton>
+                    <IconButton
+                      className={classes.iconButton}
+                      onClick={() => {
+                      }}
+                      aria-label="Delete"
+                    >
+                      <DeleteIcon className={classes.blackIcon} />
+                    </IconButton>
+                  </Box>
+                </TableCell>
+              </TableRow>
+
+            </TableBody>
           </Table>
-          ) : (
           <Box m={2}>
             <HighlightedInformation>
               No friends added yet.
             </HighlightedInformation>
           </Box>
-          {/* )} */}
         </div>
         <div className={classes.alignRight}>
-          {/* <TablePagination
-            component="div"
-            count={targets.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            backIconButtonProps={{
-              "aria-label": "Previous Page",
-            }}
-            nextIconButtonProps={{
-              "aria-label": "Next Page",
-            }}
-            onChangePage={handleChangePage}
-            classes={{
-              select: classes.dNone,
-              selectIcon: classes.dNone,
-              actions: targets.length > 0 ? classes.dBlock : classes.dNone,
-              caption: targets.length > 0 ? classes.dBlock : classes.dNone,
-            }}
-            labelRowsPerPage=""
-          /> */}
         </div>
       </Box>
     </Accordion>

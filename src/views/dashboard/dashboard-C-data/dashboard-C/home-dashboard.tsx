@@ -23,7 +23,7 @@ function Dashboard(props: any) {
 
   return (
     <Fragment>
-      <NavBar />
+      {/* <NavBar /> */}
       {/* <StatisticsArea CardChart={CardChart} data={statistics} /> */}
 
       <Box mt={4}>
