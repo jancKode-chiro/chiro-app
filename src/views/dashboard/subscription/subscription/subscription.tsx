@@ -18,7 +18,7 @@ function Subscription(props: any) {
     selectSubscription
   } = props;
 
-  useEffect(selectSubscription, [selectSubscription]);
+  // useEffect(selectSubscription, [selectSubscription]);
 
   return (
     <Paper>

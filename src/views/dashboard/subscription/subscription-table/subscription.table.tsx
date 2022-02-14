@@ -82,42 +82,39 @@ function SubscriptionTable(props: any) {
         <Table aria-labelledby="tableTitle">
           <EnhancedTableHead rowCount={transactions} rows={rows} />
           <TableBody>
-            {transactions
+            {/* {transactions
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((transaction: any, index: string) => (
-                <TableRow hover tabIndex={-1} key={index}>
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    className={classes.firstData}
-                  >
-                    {transaction.description}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {transaction.balanceChange > 0 ? (
-                      <ColorfulChip
-                        label={`+${currencyPrettyPrint(
-                          transaction.balanceChange
-                        )}`}
-                        color={theme.palette.secondary.main}
-                      />
-                    ) : (
-                      <ColorfulChip
-                        label={currencyPrettyPrint(transaction.balanceChange)}
-                        color={theme.palette.error.dark}
-                      />
-                    )}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {unixToDateString(transaction.timestamp)}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {transaction.paidUntil
-                      ? unixToDateString(transaction.paidUntil)
-                      : ""}
-                  </TableCell>
-                </TableRow>
-              ))}
+              .map((transaction, index) => ( */}
+            <TableRow hover tabIndex={-1}>
+              <TableCell
+                component="th"
+                scope="row"
+                className={classes.firstData}
+              >
+              </TableCell>
+              <TableCell component="th" scope="row">
+
+                {/* <ColorfulChip
+                  label={`+${currencyPrettyPrint(
+
+                  )}`}
+                  color={theme.palette.secondary.main}
+                /> */}
+
+                <ColorfulChip
+                  label={currencyPrettyPrint}
+                  color={theme.palette.error.dark}
+                />
+
+              </TableCell>
+              <TableCell component="th" scope="row">
+
+              </TableCell>
+              <TableCell component="th" scope="row">
+
+              </TableCell>
+            </TableRow>
+            {/* ))} */}
           </TableBody>
         </Table>
 
