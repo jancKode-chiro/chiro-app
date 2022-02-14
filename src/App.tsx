@@ -95,8 +95,8 @@ function App() {
                   <PrivateRoute path={CONTACTS_PATH} component={ContactData} />
                   <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
                   <PrivateRoute path={USERS_PATH} component={Users} />
+                  <PrivateRoute path={SUBSCRIPTION_PATH} component={Subscription} />
                   <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
-                  <Route path={SUBSCRIPTION_PATH} component={Subscription} />
                 </Switch>
               </Suspense>
               <ToastContainer />

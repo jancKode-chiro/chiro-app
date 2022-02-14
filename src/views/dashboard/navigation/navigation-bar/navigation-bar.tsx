@@ -152,7 +152,7 @@ const NavBar = (props: any) => {
 
   const menuItems = [
     {
-      link: "/c/dashboard",
+      link: "/dashboard",
       name: "Dashboard",
       onClick: closeMobileDrawer,
       icon: {
