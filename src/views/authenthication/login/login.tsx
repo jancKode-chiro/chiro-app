@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -41,7 +41,8 @@ const Login = (props: any): JSX.Element => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState,
+    watch
   } = useForm();
 
   const history = useHistory();
@@ -49,6 +50,7 @@ const Login = (props: any): JSX.Element => {
     useAuth();
   // const { goTo } = useNav();
   // const backToHome = (): void => history.push(LOGIN_PATH);
+  const watchFields = watch(['email', 'password'])
 
   const submitHandler: SubmitHandler<InputProps> = async (
     data
@@ -95,7 +97,7 @@ const Login = (props: any): JSX.Element => {
             {...register('email', { required: 'Email is required' })}
           />
           <InlineSingleErrorMessage
-            errors={errors}
+            errors={formState.errors}
             name='email'
           />
           <div className='password-input'>
@@ -108,33 +110,33 @@ const Login = (props: any): JSX.Element => {
                   message: 'The minimum length is 8'
                 },
               })}
-              required
             />
             {showPassword ? <FaEyeSlash onClick={showPasswordHandler} className='eye-icon' /> : <FaEye onClick={showPasswordHandler} className='eye-icon' />}
           </div>
 
           <InlineSingleErrorMessage
-            errors={errors}
+            errors={formState.errors}
             name='password'
           />
 
 
           <div className='button'>
             <InputButton
-              disabled={!isValid}
+              disabled={formState.isValid}
               type='submit'
               value='Login'
-              className='bg-green text-white'
+              className={`text-white ${watchFields[0] && watchFields[1] ? 'bg-green' : 'bg-gray'}`}
             />
           </div>
+
           <HighlightedInformation>
-            You can tast the app by using the credentials below:
-            <p>
-              Email is: <b>gynnanne@gmail.com</b>
-              <br />
-              Password is: <b>Chir_1234.</b>
-            </p>
+            Demo account:
+            <br />
+            Email: <b>gynnanne@gmail.com</b>
+            <br />
+            password: <b>Chir_1234.</b>
           </HighlightedInformation>
+
         </form>
         <div className='buttomWrapper'>
           {verticalSpacer('80px')}
