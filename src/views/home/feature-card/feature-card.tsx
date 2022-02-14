@@ -1,17 +1,7 @@
 import React, { Fragment } from "react";
-import { Typography, withStyles } from "@material-ui/core";
+import { styles } from "../../../components/styles-menu/feature-card-styles/feature-card.styles";
 
-const styles = (theme: any) => ({
-  iconWrapper: {
-    borderRadius: theme.shape.borderRadius,
-    textAlign: "center",
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: theme.spacing(3),
-    padding: theme.spacing(1) * 1.5
-  }
-});
+import { Typography, withStyles } from "@material-ui/core";
 
 function shadeColor(hex: string, percent: number) {
   const f = parseInt(hex.slice(1), 16);

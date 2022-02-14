@@ -1,31 +1,8 @@
 import React from "react";
 import { Dialog, DialogContent, Box, withStyles } from "@material-ui/core";
+import { styles } from "../../../styles-menu/form-dialog-styles/form-dialog.styles";
 import DialogTitleWithCloseIcon from "../../dialog/dialog-title-with-icon/dialog-title-with-icon";
 
-const styles = (theme: any) => ({
-  dialogPaper: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    paddingBottom: theme.spacing(3),
-    maxWidth: 420
-  },
-  actions: {
-    marginTop: theme.spacing(2)
-  },
-  dialogPaperScrollPaper: {
-    maxHeight: "none"
-  },
-  dialogContent: {
-    paddingTop: 0,
-    paddingBottom: 0
-  }
-});
-
-/**
- * A Wrapper around the Dialog component to create centered
- * Login, Register or other Dialogs.
- */
 function FormDialog(props: any) {
   const {
     classes,

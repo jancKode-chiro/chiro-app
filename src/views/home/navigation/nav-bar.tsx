@@ -15,7 +15,7 @@ import LockOpenIcon from "@material-ui/icons/LockOpen";
 import BookIcon from "@material-ui/icons/Book";
 import { Link } from "react-router-dom";
 
-import { styles } from './nav-bar.styles'
+import { styles } from '../../../components/styles-menu/nav-bar-styles/nav-bar.styles'
 import NavigationDrawer from '../../../components/common/navigation-drawer/navigation-drawer';
 import { LOGIN_PATH, CREATE_ACCOUNT_PATH } from '../../../constants/paths';
 

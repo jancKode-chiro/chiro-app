@@ -1,15 +1,7 @@
 import React from "react";
 import classNames from "classnames";
+import { styles } from '../../../components/styles-menu/highlighted-information-styles/highlighted-information.styles';
 import { Typography, withStyles } from "@material-ui/core";
-
-const styles = (theme: any) => ({
-  main: {
-    backgroundColor: theme.palette.warning.light,
-    border: `2px solid ${theme.palette.warning.main}`,
-    padding: theme.spacing(2),
-    borderRadius: theme.shape.borderRadius
-  }
-});
 
 function HighlighedInformation(props: any) {
   const { className, children, classes } = props;

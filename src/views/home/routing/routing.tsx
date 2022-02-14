@@ -1,4 +1,3 @@
-import React, { memo } from 'react'
 import { Switch } from 'react-router-dom';
 import PropsRoute from '../../../components/common/props-route/props-route';
 import useLocationBlocker from '../../../utilities/location-blocker';
