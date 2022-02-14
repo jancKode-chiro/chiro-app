@@ -29,6 +29,7 @@ import { getCurrentSession } from '../../../helpers/user-helpers';
 // import useNav from '../../../hooks/use-nav';
 import { getUser } from '../../../api/users';
 import { InlineSingleErrorMessage } from '../../../components/common/notification/inline-notification/inline-notification';
+import HighlightedInformation from '../../../components/common/highlighted-information/highlighted-information';
 
 type InputProps = {
   email: string;
@@ -91,7 +92,6 @@ const Login = (props: any): JSX.Element => {
             marginTop='80px'
             placeholder='Email'
             type='email'
-            defaultValue='gynnanne@gmail.com'
             {...register('email', { required: 'Email is required' })}
           />
           <InlineSingleErrorMessage
@@ -102,7 +102,6 @@ const Login = (props: any): JSX.Element => {
             <PasswordInput
               type={showPassword ? 'text' : 'password'}
               placeholder='Password'
-              defaultValue='Chir_1234.'
               {...register('password', {
                 required: 'Passwrord is required', minLength: {
                   value: 8,
@@ -128,7 +127,14 @@ const Login = (props: any): JSX.Element => {
               className='bg-green text-white'
             />
           </div>
-
+          <HighlightedInformation>
+            You can tast the app by using the credentials below:
+            <p>
+              Email is: <b>gynnanne@gmail.com</b>
+              <br />
+              Password is: <b>Chir_1234.</b>
+            </p>
+          </HighlightedInformation>
         </form>
         <div className='buttomWrapper'>
           {verticalSpacer('80px')}
