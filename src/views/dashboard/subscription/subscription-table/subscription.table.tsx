@@ -93,19 +93,16 @@ function SubscriptionTable(props: any) {
               >
               </TableCell>
               <TableCell component="th" scope="row">
-
-                {/* <ColorfulChip
+                <ColorfulChip
                   label={`+${currencyPrettyPrint(
-
+                    transactions.balanceChange
                   )}`}
                   color={theme.palette.secondary.main}
-                /> */}
-
+                />
                 <ColorfulChip
                   label={currencyPrettyPrint}
                   color={theme.palette.error.dark}
                 />
-
               </TableCell>
               <TableCell component="th" scope="row">
 
