@@ -3,6 +3,7 @@ import { User, UserRole } from '../models';
 import { Auth } from 'aws-amplify';
 
 import moment from 'moment';
+import { toast } from 'react-toastify';
 
 let systemError: string = '';
 
@@ -43,7 +44,7 @@ const authSignup = async (
 
     return result;
   } catch (error: any) {
-    alert(error.message);
+    toast.error(error.message);
   }
 };
 
@@ -92,7 +93,7 @@ export const createUser = async (
 
 export const getUser = async (email: string) => {
   const user = await DataStore.query(User, (u) => u.email('eq', email));
-  return user ? user[0].id : '';
+  return user.length ? user[0].id : '';
 };
 
 export const getUsers = async () => {

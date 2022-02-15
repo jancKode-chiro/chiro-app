@@ -1,3 +1,4 @@
+import '../../../../styles/lib/include-media.scss'
 import styled, { css } from 'styled-components';
 import { PasswordProps } from 'antd/lib/input';
 import {
@@ -24,9 +25,7 @@ const inputStyle = css`
   ${typography}
   ${width}
   height: 52px;
-  width: ${width};
   border-radius: 8px;
-  color: white;
   background-color: #ffffff;
   border: 1px solid
     ${(props: any) => (props.borderColor ? props.borderColor : '#2dcc5a')};
@@ -35,10 +34,9 @@ const inputStyle = css`
   font-size: 16px;
   color: #aca6a6;
 
+ 
   input {
     border: none;
-
-
   }
 
   &:focus {
@@ -50,14 +48,6 @@ const inputStyle = css`
 
 export const Input = styled.input<InputProps>`
   ${inputStyle};
-   ::-webkit-inner-spin-button{
-        -webkit-appearance: none;
-        margin: 0;
-    }
-    ::-webkit-outer-spin-button{
-        -webkit-appearance: none;
-        margin: 0;
-    }
 `;
 
 export const InputButton = styled.input<InputProps>`
@@ -140,7 +130,18 @@ export const InputButton = styled.input<InputProps>`
 `;
 
 export const PasswordInput = styled.input<StyledPasswordProps>`
-  ${inputStyle}
+  width: 90%;
+  border: none;
+  padding-left: .5rem;
+  border-radius: 8px;
+  color: #aca6a6;
+  font-family: ${TypographyStyles.FontFamilyPoppins};
+  background-color: #FFFFFF;
+
+  :focus {
+    outline: none;
+  }
+  
 `;
 
 export const CustomTextArea = styled(TextArea) <InputProps>`

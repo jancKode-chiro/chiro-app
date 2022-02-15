@@ -5,7 +5,7 @@ import { AuthProvider } from './context/auth-context';
 import { Auth, Amplify } from 'aws-amplify';
 import awsmobile from './aws-exports';
 import { QueryClient, QueryClientProvider } from 'react-query';
-
+import { ToastContainer } from 'react-toastify'
 import {
   HOMEPAGE_PATH,
   CREATE_ACCOUNT_PATH,
@@ -22,10 +22,14 @@ import {
   SEND_SMS_PATH,
   PROFILEINFO_PATH,
   USERS_PATH,
+  SUBSCRIPTION_PATH
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
+import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
 
+import theme from './styles/theme';
+import GlobalStyles from './styles/global-styles';
 
 const CreateAccount = lazy(
   () => import('./views/authenthication/createaccount/createaccount')
@@ -49,6 +53,8 @@ const PasswordForgot = lazy(
 const Users = lazy(() => import('./views/users/users'))
 const ProfileData = lazy(() => import('./views/profile-info/profile-info'));
 const SendSms = lazy(() => import('./views/sms-page/sms-page'))
+const HomePage = lazy(() => import('./views/home/main/main'))
+const Subscription = lazy(() => import('./views/dashboard/subscription/subscription/subscription'))
 
 function App() {
   Amplify.configure(awsmobile);
@@ -57,41 +63,46 @@ function App() {
   Auth.configure(awsmobile);
 
   const queryClient = new QueryClient();
-
   return (
     <div className='App'>
       <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <Router>
-            <Suspense fallback={<Loader />}>
-              <Switch>
-                <PrivateRoute
-                  exact
-                  path={HOMEPAGE_PATH}
-                  component={DashboardData}
-                />
-                <PrivateRoute
-                  exact
-                  path={DASHBOARD_PATH}
-                  component={DashboardData}
-                />
-                <Route path={LOGIN_PATH} component={Login} />
-                <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
-                <PrivateRoute path={CARD_PATH} component={Card} />
-                <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
-                <Route path={ABOUT_PATH} component={AboutUs} />
-                <Route path={LETS_TALK_PATH} component={LetsTalk} />
-                <PrivateRoute path={WALLET_PATH} component={Wallet} />
-                <PrivateRoute path={SMS_PATH} component={Bulk} />
-                <PrivateRoute path={SEND_SMS_PATH} component={SendSms} />
-                <PrivateRoute path={CONTACTS_PATH} component={ContactData} />
-                <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
-                <PrivateRoute path={USERS_PATH} component={Users} />
-                <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
-              </Switch>
-            </Suspense>
-          </Router>
-        </AuthProvider>
+        <MuiThemeProvider theme={theme}>
+          <CssBaseline />
+          <GlobalStyles />
+          <AuthProvider>
+            <Router>
+              <Suspense fallback={<Loader />}>
+                <Switch>
+                  <Route
+                    exact
+                    path={HOMEPAGE_PATH}
+                    component={HomePage}
+                  />
+                  <PrivateRoute
+                    exact
+                    path={DASHBOARD_PATH}
+                    component={DashboardData}
+                  />
+                  <Route path={LOGIN_PATH} component={Login} />
+                  <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
+                  <PrivateRoute path={CARD_PATH} component={Card} />
+                  <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
+                  <Route path={ABOUT_PATH} component={AboutUs} />
+                  <Route path={LETS_TALK_PATH} component={LetsTalk} />
+                  <PrivateRoute path={WALLET_PATH} component={Wallet} />
+                  <PrivateRoute path={SMS_PATH} component={Bulk} />
+                  <PrivateRoute path={SEND_SMS_PATH} component={SendSms} />
+                  <PrivateRoute path={CONTACTS_PATH} component={ContactData} />
+                  <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
+                  <PrivateRoute path={USERS_PATH} component={Users} />
+                  <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
+                  <Route path={SUBSCRIPTION_PATH} component={Subscription} />
+                </Switch>
+              </Suspense>
+              <ToastContainer />
+            </Router>
+          </AuthProvider>
+        </MuiThemeProvider>
       </QueryClientProvider>
     </div>
   );

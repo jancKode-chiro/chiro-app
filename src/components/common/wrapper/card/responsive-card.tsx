@@ -1,7 +1,9 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import { withStyles } from '@material-ui/core';
-import { breakpoint } from '../../../utilities/break-points';
+import { breakpoint } from '../../../../utilities/break-points';
+
+import './responsive-card.styles.scss';
 
 type Theme = {
   [key: string]: any;
@@ -21,7 +23,7 @@ const stylesheet = (theme: Theme) => ({
 });
 
 function ResponsiveCard({ classes, children }: any) {
-  return <Card className={classes.root}>{children}</Card>;
+  return <Card className={`responsive-card`}>{children}</Card>;
 }
 
 export default withStyles(stylesheet)(ResponsiveCard);

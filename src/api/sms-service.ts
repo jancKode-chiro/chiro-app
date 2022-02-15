@@ -28,10 +28,13 @@ export const sendSMS = async (
     }
   )
     .then((result) => {
-      return result;
+      return {
+        status: 'OK',
+        data: result,
+      };
     })
     .catch((error) => {
-      console.log('Error while sending sms', error);
+      return { status: 'error', data: error };
     });
 
   return result;

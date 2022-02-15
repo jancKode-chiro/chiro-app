@@ -1,4 +1,5 @@
 @import "../../../styles/variables.scss";
+@import "../../../styles/lib/include-media.scss";
 
 .create-account {
   // .image {
@@ -20,6 +21,14 @@
       width: 100%;
       justify-content: center;
       padding-bottom: 4em;
+
+      @include media("<phone") {
+        padding-bottom: 0;
+      }
+
+      @include media("<tablet") {
+        padding-bottom: 0;
+      }
     }
 
     .form {
@@ -27,10 +36,26 @@
       flex-direction: column;
       width: 60%;
 
+      @include media("<tablet") {
+        width: 85%;
+      }
+
+      @include media("<desktop") {
+        width: 84%;
+      }
+
       .create-button {
         display: flex;
         justify-content: flex-end;
         margin: 0;
+
+        @include media("<tablet") {
+          justify-content: center;
+        }
+
+        @include media("<desktop") {
+          justify-content: center;
+        }
       }
 
       .text-wrapper {
@@ -38,6 +63,29 @@
         flex-direction: row;
         justify-content: space-between;
         padding-bottom: 2em;
+
+        @include media("<phone") {
+          flex-direction: column;
+        }
+
+        @include media("<tablet") {
+          flex-direction: column;
+        }
+
+        .input-text {
+          width: 25vw;
+
+          @include media("<phone") {
+            flex-direction: column;
+            width: 100%;
+            margin-bottom: 0.5rem;
+          }
+          @include media("<tablet") {
+            flex-direction: column;
+            width: 100%;
+            margin-bottom: 0.5rem;
+          }
+        }
       }
 
       .email-wrapper {
@@ -55,6 +103,27 @@
         align-self: flex-start;
         display: flex;
         margin-left: 2.3125em;
+      }
+
+      .password-input {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 25vw;
+        border: 1px solid #2dcc5a;
+        border-radius: 8px;
+        height: 52px;
+
+        color: #aca6a6;
+        background-color: #ffffff;
+
+        .eye-icon {
+          height: 1.6rem;
+          width: 1.6rem;
+          :hover {
+            cursor: pointer;
+          }
+        }
       }
     }
 

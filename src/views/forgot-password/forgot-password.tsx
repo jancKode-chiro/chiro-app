@@ -14,6 +14,7 @@ import CardWithImage from '../../components/common/wrapper/card-with-image';
 import './forgot-passsword.styles.scss';
 import { ACTIVATE_ACCOUNT_PATH } from '../../constants/paths';
 import { forgotUserPassword } from '../../api/users';
+import { toast } from 'react-toastify';
 
 type InputProps = {
   email: string;
@@ -37,7 +38,8 @@ const ForgotPassword = (): JSX.Element => {
       pathname: ACTIVATE_ACCOUNT_PATH,
       state: 'forgotPassword',
     });
-    await alert('Please check your email for the verification code.');
+
+    await toast.info('Please check your email for the verification code.');
   };
 
   return (
@@ -48,7 +50,7 @@ const ForgotPassword = (): JSX.Element => {
           <Input
             placeholder='Email'
             type='email'
-            width={'20vw'}
+
             required
             {...register('email', { required: true })}
           />
