@@ -13,6 +13,15 @@ function Posts(props: any) {
     setPosts,
   } = props;
   const [isAddPostPaperOpen, setIsAddPostPaperOpen] = useState(false);
+  const [isAddPostOpen, setIsAddPostOpen] = useState(false);
+
+  const openAddPost = useCallback(() => {
+    setIsAddPostOpen(true);
+  }, [setIsAddPostOpen]);
+
+  const closeAddPost = useCallback(() => {
+    setIsAddPostOpen(false);
+  }, [setIsAddPostOpen]);
 
   const openAddPostModal = useCallback(() => {
     setIsAddPostPaperOpen(true);
@@ -28,6 +37,7 @@ function Posts(props: any) {
 
   if (isAddPostPaperOpen) {
     return <AddPost
+      // open={openAddPost}
       onClose={closeAddPostModal}
       EmojiTextArea={EmojiTextArea}
       ImageCropper={ImageCropper}
@@ -41,6 +51,9 @@ function Posts(props: any) {
     posts={posts}
     setPosts={setPosts}
     pushMessageToSnackbar={pushMessageToSnackbar}
+  // open={isAddPostOpen}
+  // onClose={closeAddPost}
+
   />
 }
 export default Posts;
