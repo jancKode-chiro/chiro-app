@@ -22,7 +22,6 @@ const styles = {
 
 
 function SideDrawer(props: any) {
-  const [openInfo, setIsOpenInfo] = useState(false);
 
   const { classes, onClose, open } = props;
   return (

@@ -8,6 +8,7 @@ import {
   Input,
   InputButton,
 } from '../../components/common/forms/custom-input/input';
+import NavBar from '../dashboard/navigation/navigation-bar/navigation-bar';
 
 import './wallet.style.scss';
 
@@ -33,6 +34,7 @@ const Wallet = () => {
 
   return (
     <RepsonsiveContainerGrid className='image'>
+      <NavBar />
       <ContainerWithImage>
         <div className='wallet'>
           <form className='container' onSubmit={handleSubmit(submitHandler)}>
