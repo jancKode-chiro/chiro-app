@@ -99,7 +99,7 @@ const Dashboard = ({ children }: DashboardProps) => {
           })}
         </div>
         <div className='graph'>
-          <img src={graph} alt='graph-img' height='650' />
+          <img src={graph} alt='graph-img' style={{ height: 'auto', width: '100%' }} />
         </div>
       </div>
 
