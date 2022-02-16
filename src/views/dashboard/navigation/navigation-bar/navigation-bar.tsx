@@ -24,12 +24,20 @@ import SideDrawer from "../side-drawer/sidedrawer";
 import Balance from "./balance/balance";
 import MessagePopperButton from "./message-popper-button/messagepopper-button";
 
-import ImageIcon from "@material-ui/icons/Image";
+import Contact from "@material-ui/icons/ContactMailOutlined"
+import Message from "@material-ui/icons/Message";
+
+import DataChart from "@material-ui/icons/DataUsageOutlined"
 import DashboardIcon from "@material-ui/icons/Dashboard";
+import ImageIcon from "@material-ui/icons/Image";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import User from "@material-ui/icons/VerifiedUserOutlined"
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MenuIcon from "@material-ui/icons/Menu";
+import HelpOutline from "@material-ui/icons/HelpOutline";
+import Card from "@material-ui/icons/CardMembershipOutlined";
+import Payment from "@material-ui/icons/Payment";
 import NavigationDrawer from "../../../../components/common/navigation-drawer/navigation-drawer";
 
 const styles = (theme: any) => ({
@@ -128,8 +136,14 @@ const styles = (theme: any) => ({
 });
 
 const NavBar = (props: any) => {
-  const { selectedTab, messages, classes, width, openAddBalanceDialog } = props;
-  // Will be use to make website more accessible by screen readers
+  const {
+    selectedTab,
+    messages,
+    classes,
+    width,
+    openAddBalanceDialog
+  }
+    = props;
   const links = useRef<any>([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
@@ -152,7 +166,23 @@ const NavBar = (props: any) => {
 
   const menuItems = [
     {
-      link: "/c/dashboard",
+      link: "dashboard-C-data",
+      name: "Data Chart",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <DataChart
+            className={
+              selectedTab === "Data Chart " ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <DataChart className="text-white" />,
+      },
+    },
+    {
+      link: "dashboard",
       name: "Dashboard",
       onClick: closeMobileDrawer,
       icon: {
@@ -184,7 +214,7 @@ const NavBar = (props: any) => {
       },
     },
     {
-      link: "/subscription",
+      link: "/c/subscription",
       name: "Subscription",
       onClick: closeMobileDrawer,
       icon: {
@@ -199,6 +229,104 @@ const NavBar = (props: any) => {
           />
         ),
         mobile: <AccountBalanceIcon className="text-white" />,
+      },
+    },
+    {
+      link: "users",
+      name: "Users",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <User
+            className={
+              selectedTab === "Users" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <User className="text-white" />,
+      },
+    },
+    {
+      link: "contacts",
+      name: "Contact",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <Contact
+            className={
+              selectedTab === "Posts" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <Contact className="text-white" />,
+      },
+    },
+    {
+      link: "send-sms",
+      name: "Messages",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <Message
+            className={
+              selectedTab === "Messages"
+                ? classes.textPrimary
+                : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <Message className="text-white" />,
+      },
+    },
+    {
+      link: "profile-info",
+      name: "Profile Information ",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <HelpOutline
+            className={
+              selectedTab === "Profile Information " ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <HelpOutline className="text-white" />,
+      },
+    },
+    {
+      link: "wallet",
+      name: "Payment Method",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <Payment
+            className={
+              selectedTab === "PaymentMethod" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <Payment className="text-white" />,
+      },
+    },
+    {
+      link: "card",
+      name: "Card",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <Card
+            className={
+              selectedTab === "Card" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <Card className="text-white" />,
       },
     },
     {
@@ -255,6 +383,7 @@ const NavBar = (props: any) => {
           >
             {isWidthUp("sm", width) && (
               <Box mr={3}>
+
                 <Balance
                   balance={2573}
                   openAddBalanceDialog={openAddBalanceDialog}
@@ -292,7 +421,7 @@ const NavBar = (props: any) => {
         </Toolbar>
       </AppBar>
       <Hidden xsDown>
-        <Drawer //  both drawers can be combined into one for performance
+        <Drawer
           variant="permanent"
           classes={{
             paper: classes.drawerPaper,

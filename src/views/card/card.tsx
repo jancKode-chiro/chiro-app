@@ -15,6 +15,7 @@ import {
 
 import { useHistory } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import NavBar from '../dashboard/navigation/navigation-bar/navigation-bar';
 
 type InputProps = {
   bankName: string;
@@ -42,7 +43,9 @@ const Card = () => {
 
   return (
     <ResponsiveGridContainer>
+      <NavBar />
       <ContainerWithImage>
+
         <div>
           <div className='cardimage'>
             <img src={CheckIcons} alt='check-icon' />
