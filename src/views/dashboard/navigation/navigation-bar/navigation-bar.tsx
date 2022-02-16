@@ -197,40 +197,40 @@ const NavBar = (props: any) => {
         mobile: <DashboardIcon className="text-white" />,
       },
     },
-    {
-      link: "/c/posts",
-      name: "Posts",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <ImageIcon
-            className={
-              selectedTab === "Posts" ? classes.textPrimary : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <ImageIcon className="text-white" />,
-      },
-    },
-    {
-      link: "/c/subscription",
-      name: "Subscription",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <AccountBalanceIcon
-            className={
-              selectedTab === "Subscription"
-                ? classes.textPrimary
-                : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <AccountBalanceIcon className="text-white" />,
-      },
-    },
+    // {
+    //   link: "/c/posts",
+    //   name: "Posts",
+    //   onClick: closeMobileDrawer,
+    //   icon: {
+    //     desktop: (
+    //       <ImageIcon
+    //         className={
+    //           selectedTab === "Posts" ? classes.textPrimary : "text-white"
+    //         }
+    //         fontSize="small"
+    //       />
+    //     ),
+    //     mobile: <ImageIcon className="text-white" />,
+    //   },
+    // },
+    // {
+    //   link: "/c/subscription",
+    //   name: "Subscription",
+    //   onClick: closeMobileDrawer,
+    //   icon: {
+    //     desktop: (
+    //       <AccountBalanceIcon
+    //         className={
+    //           selectedTab === "Subscription"
+    //             ? classes.textPrimary
+    //             : "text-white"
+    //         }
+    //         fontSize="small"
+    //       />
+    //     ),
+    //     mobile: <AccountBalanceIcon className="text-white" />,
+    //   },
+    // },
     {
       link: "users",
       name: "Users",
