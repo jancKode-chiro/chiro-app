@@ -94,7 +94,6 @@ const ContactData = ({ children }: DashboardProps) => {
 
         <div className='contact-data-image'>
           <Table columns={columns} data={contacts} />
-          h
         </div>
       </div>
     </Dashboard>

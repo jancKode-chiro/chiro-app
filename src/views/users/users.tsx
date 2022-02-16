@@ -90,7 +90,7 @@ const Users = ({ children }: UsersProps) => {
             width='12rem'
           />
         </form>
-        <div>
+        <div className='users-data'>
           <Table columns={columns} data={users} />
         </div>
       </div>
