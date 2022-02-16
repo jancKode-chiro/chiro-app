@@ -13,10 +13,12 @@ const renderMergedProps = (component: string, ...rest: any) => {
  * Taken from https://github.com/ReactTraining/react-router/issues/4105
  */
 const PropsRoute = ({ component, ...rest }: any) => (
-  <Route
-    {...rest}
-    render={routeProps => renderMergedProps(component, routeProps, rest)}
-  />
+  <>{console.log('test', component)}
+    < Route
+      {...rest}
+      render={routeProps => renderMergedProps(component, routeProps, rest)}
+    />
+  </>
 );
 
 export default PropsRoute;
