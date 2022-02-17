@@ -1,5 +1,5 @@
 export const LOGIN_PATH = '/login' || '/';
-export const HOMEPAGE_PATH = '/';
+// export const HOMEPAGE_PATH = '/';
 export const ABOUT_PATH = '/about-us';
 export const CONTACT_PATH = '/contact-us';
 export const CREATE_ACCOUNT_PATH = '/create-account';

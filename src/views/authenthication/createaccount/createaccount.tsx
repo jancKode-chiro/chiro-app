@@ -80,7 +80,7 @@ const CreateAccount = () => {
             <div className='form'>
               <form onSubmit={handleSubmit(submitHandler)}>
                 <div className='text-wrapper'>
-                  <div>
+                  <div className='firstname'>
                     <Input
                       placeholder='First Name'
                       width={'25vw'}
@@ -175,7 +175,7 @@ const CreateAccount = () => {
                       name='country'
                     />
                   </div>
-                  <div>
+                  <div className='code'>
                     <Input
                       placeholder='Country Code'
                       width='25vw'
