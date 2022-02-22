@@ -11,7 +11,8 @@ export const sendSMS = async (
   passcode = '0101'
 ) => {
   const result = await fetch(
-    'https://sms-notifications-4093-ajowbv.twil.io/send-messages',
+    // 'https://sms-notifications-4093-ajowbv.twil.io/send-messages',
+    'https://lead-flo-sms-service-2056.twil.io/send-sms',
     {
       method: 'POST',
       headers: {

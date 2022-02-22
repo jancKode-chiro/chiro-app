@@ -8,8 +8,9 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 30,
-              "description": "api key description"
+              "apiKeyExpirationDays": 60,
+              "apiKeyExpirationDate": "2022-03-15T10:13:50.170Z",
+              "description": "chiradv_adv_api_key"
             }
           },
           "additionalAuthenticationProviders": [
@@ -19,7 +20,7 @@
             {
               "authenticationType": "AMAZON_COGNITO_USER_POOLS",
               "userPoolConfig": {
-                "userPoolId": "authchiroadv"
+                "userPoolId": "us-east-2_3WMttyXUq"
               }
             }
           ]

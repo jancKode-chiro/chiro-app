@@ -16,10 +16,10 @@
     "s3Key": {
       "Type": "String"
     },
-    "twilioAccountSid": {
+    "twilioAuthToken": {
       "Type": "String"
     },
-    "twilioAuthToken": {
+    "twilioAccountSid": {
       "Type": "String"
     },
     "twilioPhoneNumber": {
@@ -79,11 +79,11 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "TWILIO_ACCOUNT_SID": {
-              "Ref": "twilioAccountSid"
-            },
             "TWILIO_AUTH_TOKEN": {
               "Ref": "twilioAuthToken"
+            },
+            "TWILIO_ACCOUNT_SID": {
+              "Ref": "twilioAccountSid"
             },
             "TWILIO_PHONE_NUMBER": {
               "Ref": "twilioPhoneNumber"
