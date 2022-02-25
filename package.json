@@ -30,6 +30,7 @@
     "axios": "^0.24.0",
     "classnames": "^2.3.1",
     "formik": "^2.2.9",
+    "http-proxy-middleware": "^2.0.3",
     "include-media": "^1.4.10",
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
@@ -72,6 +73,8 @@
       "react-app/jest"
     ]
   },
+  "proxy": "https://lead-flo-sms-service-2056.twil.io",
+  "homepage": "http://localhost:3000",
   "browserslist": {
     "production": [
       ">0.2%",
