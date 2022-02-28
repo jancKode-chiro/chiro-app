@@ -12,7 +12,6 @@ import {
 } from '../../components/common/forms/custom-input/input';
 
 import { sendSMS } from '../../api/sms-service';
-import { CustomDiv } from '../../components/common/wrapper/custom-wrapper/custom-wrapper';
 
 import './sms-page.styles.scss';
 import { Button, Grid, Form } from 'semantic-ui-react';
@@ -54,12 +53,11 @@ const SmsPage = () => {
     const combineRecipients = recipients.join(',');
 
     const result = await sendSMS(
-      '/send-messages',
+      '/sms-notification',
       combineRecipients,
       smsContent
     );
-
-    if (result.data.status === 200) {
+    if (result?.data?.status === 200) {
       update()
       setRecipients([]);
       setCurrentRecipient('');
@@ -170,7 +168,6 @@ const SmsPage = () => {
             <Grid.Column width='3'>
               <span className='text'>SMS text:</span>
             </Grid.Column>
-            {console.log('message', smsContent)}
             <Controller
               name='message'
               control={control}
