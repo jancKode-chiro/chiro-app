@@ -57,6 +57,7 @@ const SendSms = lazy(() => import('./views/sms-page/sms-page'))
 const HomePage = lazy(() => import('./views/home/main/main'))
 const Subscription = lazy(() => import('./views/dashboard/subscription/subscription/subscription'))
 const DashboardC = lazy(() => import('./views/dashboard/dashboard-C-data/dashboard-C/home-dashboard'))
+const BlogPost = lazy(() => import('./views/blog/blog-post/blog-post'))
 
 function App() {
   Amplify.configure(awsmobile);
@@ -99,6 +100,7 @@ function App() {
                   <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
                   <Route path={ABOUT_PATH} component={AboutUs} />
                   <Route path={LETS_TALK_PATH} component={LetsTalk} />
+                  <Route path={'/blog'} component={BlogPost} />
                   <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
                 </Switch>
               </Suspense>

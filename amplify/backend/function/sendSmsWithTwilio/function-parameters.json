@@ -7,16 +7,20 @@
   ],
   "environmentVariableList": [
     {
-      "cloudFormationParameterName": "twilioAccountSid",
-      "environmentVariableName": "TWILIO_ACCOUNT_SID"
-    },
-    {
       "cloudFormationParameterName": "twilioAuthToken",
       "environmentVariableName": "TWILIO_AUTH_TOKEN"
     },
     {
+      "cloudFormationParameterName": "twilioAccountSid",
+      "environmentVariableName": "TWILIO_ACCOUNT_SID"
+    },
+    {
       "cloudFormationParameterName": "twilioPhoneNumber",
       "environmentVariableName": "TWILIO_PHONE_NUMBER"
+    },
+    {
+      "cloudFormationParameterName": "twilioAuthToken",
+      "environmentVariableName": "TWILIO_AUTH_TOKEN"
     }
   ],
   "permissions": {}

@@ -36,7 +36,10 @@
       "function": {
         "sendSmsWithTwilio": {
           "deploymentBucketName": "amplify-chiroadv-staging-80756-deployment",
-          "s3Key": "amplify-builds/sendSmsWithTwilio-48704a7a4c5375524e31-build.zip"
+          "s3Key": "amplify-builds/sendSmsWithTwilio-48704a7a4c5375524e31-build.zip",
+          "twilioAccountSid": "AC5a08bb7877f1cacd1af2ce7eec0d2b17",
+          "twilioPhoneNumber": "+18608912304",
+          "twilioAuthToken": "93fd65c6490ae704760f42e38956b26a"
         }
       }
     }

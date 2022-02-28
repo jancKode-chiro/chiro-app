@@ -2,14 +2,18 @@ import { Switch } from 'react-router-dom';
 import PropsRoute from '../../../components/common/props-route/props-route';
 import useLocationBlocker from '../../../utilities/location-blocker';
 import Home from '../home';
+import BlogPost from '../../blog/blog-post/blog-post';
+import Blog from '../blog/blog';
+import dummyPost from '../blog/blog-posts-mock-data'
 
 const Routing = (props: any) => {
-  const { selectHome } = props;
-  console.log('routing', selectHome)
+  const { blogPosts, selectBlog, selectHome } = props;
+  console.log('blogPosts', blogPosts)
+  console.log('routing', selectBlog)
   useLocationBlocker();
   return (
     <Switch>
-      {/* {blogPosts.map((post) => (
+      {dummyPost.map((post: any) => (
         <PropsRoute
           path={post.url}
           component={BlogPost}
@@ -19,17 +23,17 @@ const Routing = (props: any) => {
           date={post.date}
           content={post.content}
           otherArticles={blogPosts.filter(
-            (blogPost) => blogPost.id !== post.id
+            (blogPost: any) => blogPost.id !== post.id
           )}
         />
-      ))} */}
-      {/* <PropsRoute
+      ))}
+      <PropsRoute
         exact
         path="/blog"
         component={Blog}
         selectBlog={selectBlog}
-        blogPosts={blogPosts}
-      /> */}
+        blogPosts={dummyPost}
+      />
 
       <PropsRoute path="/" component={Home} selectHome={selectHome} />
     </Switch>
