@@ -95,6 +95,41 @@ const SmsPage = () => {
     };
   }
 
+  // let phoneNumber = [0 - 1555 - 555, 1 - 555 - 1555, 1 - 1555 - 550, 0 - 1555 - 555]
+
+  // const findDuplicate = (phoneNumber = []) => {
+  //   let map = {};
+  //   let res: any[] = [];
+  //   for (let i = 0; i < phoneNumber.length; i++) {
+  //     if (map[phoneNumber[i]]) {
+  //       if (map[phoneNumber[i]] === 1) {
+  //         res.push(phoneNumber[i]);
+  //       }
+  //       map[phoneNumber[i]] = map[phoneNumber[i]] + 1;
+  //     } else {
+  //       map[phoneNumber[i]] = 1;
+  //     };
+  //   };   
+  //   return res;
+  // };
+  // console.log(findDuplicate(phoneNumber));
+
+  let phoneNumber =
+    [
+      '015555555',
+      '155515155',
+      '015555555',
+      '115515555',
+      '155515155'];
+
+  let uniquePhoneNumber: string[] = [];
+  phoneNumber.forEach((c: string) => {
+    if (!uniquePhoneNumber.includes(c)) {
+      uniquePhoneNumber.push(c);
+    }
+  });
+
+  console.log(uniquePhoneNumber);
 
   return (
     <Dashboard isNavbar={true}>
