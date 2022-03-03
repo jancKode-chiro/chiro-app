@@ -28,17 +28,22 @@ const SmsPage = () => {
   const [recipients, setRecipients] = useState<string[]>([]);
   const [currentRecipient, setCurrentRecipient] = useState('');
   const [smsContent, setSmsContent] = useState('')
-  const { register, handleSubmit, formState, reset, control } = useForm({
+  const { register, handleSubmit, formState, reset, control, formState: { isDirty, isSubmitSuccessful } } = useForm({
     mode: "onChange"
   });
+
+  console.log("isDirty", isDirty);
 
   const { isValid } = formState;
   const loadId = useRef(null) as any;
 
   const onClickHander = (): void => {
     setRecipients((prevState: string[]) => [...prevState, `+${currentRecipient}`]);
+    console.log('smsContent', smsContent)
     setCurrentRecipient('')
-    reset({ currentRecipient: '' })
+    // reset({
+    //   smsContent: 'kjhkjhkjh'
+    // })
   };
 
   const notify = () => loadId.current = toast('Sending message...', { type: toast.TYPE.INFO, autoClose: false });
@@ -51,7 +56,7 @@ const SmsPage = () => {
   const sumbitHanlder = async (data: InputProps) => {
     notify();
     const combineRecipients = recipients.join(',');
-
+    // setSmsContent((prevState: string[]) => ]);
     const result = await sendSMS(
       '/sms-notification',
       combineRecipients,
@@ -61,7 +66,7 @@ const SmsPage = () => {
       update()
       setRecipients([]);
       setCurrentRecipient('');
-      reset();
+      reset({ message: smsContent, recipients: setRecipients });
     } else {
       updateError()
     }
@@ -92,7 +97,6 @@ const SmsPage = () => {
       return data;
     };
   }
-
 
   return (
     <Dashboard isNavbar={true}>
@@ -171,14 +175,21 @@ const SmsPage = () => {
             <Controller
               name='message'
               control={control}
+              // defaultValue=""
               render={({ field: { onChange, value } }) => (
                 <Grid.Column width='10'>
-                  <CustomTextArea
+                  {/* <CustomTextArea
                     rows={3}
-                    onChange={(e: any) => setSmsContent(e.target.value)}
-                    value={value}
 
-                  />
+
+                    {...register('smsContent', {
+                      onChange: (e: any) => setSmsContent(e.target.value),
+                    })}
+                  /> */}
+
+                  <textarea {...register('smsContent', {
+                    onChange: (e: any) => setSmsContent(e.target.value),
+                  })} />
                 </Grid.Column>
               )}
 
