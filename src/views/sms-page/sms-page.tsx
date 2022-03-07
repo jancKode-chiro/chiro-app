@@ -1,22 +1,23 @@
 import React, { useState, useEffect, ChangeEvent, useRef } from 'react';
 import { withRouter } from 'react-router';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import * as XLSX from 'xlsx'
 
 import CustomSelect from '../../components/select/select';
+// import { DatePicker } from 'react/datepicker'
 import Dashboard from '../dashboard/dashboard';
 import {
   Input,
   InputButton,
   CustomTextArea,
 } from '../../components/common/forms/custom-input/input';
-
-import { sendSMS } from '../../api/sms-service';
-
-import './sms-page.styles.scss';
-import { Button, Grid, Form } from 'semantic-ui-react';
 import CustomModal from '../../components/modal/modal';
+import { sendSMS } from '../../api/sms-service';
+import { Button, Grid, Form } from 'semantic-ui-react';
 import { toast } from 'react-toastify';
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css"
+import './sms-page.styles.scss';
 
 
 type InputProps = {
@@ -24,25 +25,33 @@ type InputProps = {
   message: string;
 };
 
+type FormInputs = {
+  selectDate: Date;
+}
+
 const SmsPage = () => {
   const [recipients, setRecipients] = useState<string[]>([]);
   const [currentRecipient, setCurrentRecipient] = useState('');
   const [smsContent, setSmsContent] = useState('')
-  const { register, handleSubmit, formState, reset, control, formState: { isDirty, isSubmitSuccessful } } = useForm({
+  const [selectDate, setSelectDate] = useState('')
+  const { register, handleSubmit, formState, reset, control, } = useForm({
     mode: "onChange"
   });
 
-  console.log("isDirty", isDirty);
-
   const { isValid } = formState;
   const loadId = useRef(null) as any;
+
+  const onSubmitDateHandler = (data: Date): void => {
+    setSelectDate(selectDate)
+    console.log(data)
+  }
 
   const onClickHander = (): void => {
     setRecipients((prevState: string[]) => [...prevState, `+${currentRecipient}`]);
     console.log('smsContent', smsContent)
     setCurrentRecipient('')
     // reset({
-    //   smsContent: 'kjhkjhkjh'
+    //   smsContent: 'kjhkjhkjh'  
     // })
   };
 
@@ -56,7 +65,6 @@ const SmsPage = () => {
   const sumbitHanlder = async (data: InputProps) => {
     notify();
     const combineRecipients = recipients.join(',');
-    // setSmsContent((prevState: string[]) => ]);
     const result = await sendSMS(
       '/sms-notification',
       combineRecipients,
@@ -99,6 +107,7 @@ const SmsPage = () => {
   }
 
   return (
+
     <Dashboard isNavbar={true}>
       <Form className='sms-page' onSubmit={handleSubmit(sumbitHanlder)}>
         <Grid columns='equal' relaxed stackable>
@@ -141,7 +150,6 @@ const SmsPage = () => {
                 className={`bg-green text-white ${currentRecipient.length < 1 ? 'bg-gray' : ''}`} />
             </Grid.Column>
             <Grid.Column width='4'>
-
               <label className="upload-contacts">
                 UPLOAD CONTACTS
                 <input type="file" onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -175,7 +183,6 @@ const SmsPage = () => {
             <Controller
               name='message'
               control={control}
-              // defaultValue=""
               render={({ field: { onChange, value } }) => (
                 <Grid.Column width='10'>
                   {/* <CustomTextArea
@@ -194,6 +201,42 @@ const SmsPage = () => {
               )}
 
             />
+            <Grid.Column>
+              <Controller
+                name="Select a date..."
+                control={control}
+                defaultValue={null}
+                render={({ field }) => (
+                  // <input
+                  //   // onChange={(e) => field.onChange(e)}
+                  //   onSelect={field.value}
+                  //   type="datetime-local"
+                  //   {...register('selectDate', {
+                  //     onChange: (e: any) => setSelectDate(e.target.value),
+                  //   })}
+                  // />
+                  <DatePicker
+                    onChange={(e) => field.onChange(e)}
+                    selected={field.value}
+                    placeholderText="Enter date"
+                    showTimeSelect
+                    dateFormat="Pp"
+                  />
+                )}
+              />
+              <br />
+              {/* <InputButton
+                disabled={!selectDate}
+                type="button"
+                width='25%'
+                value='SUBMIT'
+                onClick={() => onSubmitDateHandler(new Date())}
+              // className={`bg-green text-white ${selectDate.length < 1 ? 'bg-gray' : ''}`}
+              /> */}
+              <div className='schedule-reminder'>
+                Choose an available day and time for your scheduled message/s!
+              </div>
+            </Grid.Column>
             {/* <Grid.Column width='10'>
               <CustomTextArea
                 borderColor='#000000'
