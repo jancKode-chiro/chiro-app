@@ -43,7 +43,7 @@ const SmsPage = () => {
   const loadId = useRef(null) as any;
   const loadDate = useRef(new Date() as any)
 
-  const notifyDate = () => toast.update(loadDate.current, { render: 'Schedule has been selected', type: toast.TYPE.SUCCESS, autoClose: 10000 })
+  const notifyDate = () => toast.update(loadDate.current, { render: 'Schedule has been set', type: toast.TYPE.SUCCESS, autoClose: 10000 })
 
   const onSelectDateHandler = async (data: Date): Promise<void> => {
     setSelectDate(selectDate)
