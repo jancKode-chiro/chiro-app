@@ -1,6 +1,10 @@
 import React, { useState, useEffect, ChangeEvent, useRef } from 'react';
 import { withRouter } from 'react-router';
-import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
+import * as XLSX from 'xlsx'
+
+import CustomSelect from '../../components/select/select';
+import Dashboard from '../dashboard/dashboard';
 import {
   Input,
   InputButton,
@@ -10,12 +14,7 @@ import { sendSMS } from '../../api/sms-service';
 import { Button, Grid, Form } from 'semantic-ui-react';
 import { toast } from 'react-toastify';
 
-import * as XLSX from 'xlsx'
 import DatePicker from 'react-datepicker'
-
-import CustomSelect from '../../components/select/select';
-// import { DatePicker } from 'react/datepicker'
-import Dashboard from '../dashboard/dashboard';
 import CustomModal from '../../components/modal/modal';
 
 import "react-datepicker/dist/react-datepicker.css"
@@ -189,6 +188,7 @@ const SmsPage = () => {
           <Grid.Row className='sms-detail-wrapper'>
             <Grid.Column width='3'>
               <span className='text'>SMS text:</span>
+
             </Grid.Column>
             <Controller
               name='message'

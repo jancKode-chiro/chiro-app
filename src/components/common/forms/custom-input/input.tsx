@@ -30,10 +30,12 @@ const inputStyle = css`
   border: 1px solid
     ${(props: any) => (props.borderColor ? props.borderColor : '#2dcc5a')};
   padding-left: 1rem;
-
   font-size: 16px;
   color: #aca6a6;
-
+  
+@media screen and (max-width: 768px) {
+  width: 100%
+}
  
   input {
     border: none;

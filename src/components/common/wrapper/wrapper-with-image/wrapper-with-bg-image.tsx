@@ -28,7 +28,11 @@ export const ContainerWithImage = styled.div<ContainerProps>`
   justify-content: center;
   background-image: url(${bgFull});
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; 
   height: 100vh;
   width: 100%;
+
+@media screen and (max-width: 480px) {
+  display: none;
+}
 `;
