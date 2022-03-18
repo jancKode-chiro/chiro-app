@@ -6,6 +6,7 @@ import {
   InputButton,
   CustomTextArea,
 } from '../../components/common/forms/custom-input/input';
+import SmsDatePicker from './sms-date-picker/sms-date-picker';
 import { sendSMS } from '../../api/sms-service';
 import { Button, Grid, Form } from 'semantic-ui-react';
 import { toast } from 'react-toastify';
@@ -26,35 +27,16 @@ type InputProps = {
   message: string;
 };
 
-type FormInputs = {
-  selectDate: Date;
-}
-
 const SmsPage = () => {
   const [recipients, setRecipients] = useState<string[]>([]);
   const [currentRecipient, setCurrentRecipient] = useState('');
   const [smsContent, setSmsContent] = useState('')
-  const [selectDate, setSelectDate] = useState(new Date())
   const { register, handleSubmit, formState, reset, control, } = useForm({
     mode: "onChange"
   });
 
   const { isValid } = formState;
   const loadId = useRef(null) as any;
-  const loadDate = useRef(new Date() as any)
-
-  const notifyDate = () => toast.update(loadDate.current, { render: 'Schedule has been set', type: toast.TYPE.SUCCESS, autoClose: 10000 })
-
-  const onSelectDateHandler = async (data: Date): Promise<void> => {
-    setSelectDate(selectDate)
-    notifyDate();
-    console.log(data)
-  }
-
-  let handleColor = (time: { getHours: () => number; }) => {
-    return time.getHours() > 12 ? "text-success" : "text-error";
-
-  };
 
   const onClickHander = (): void => {
     setRecipients((prevState: string[]) => [...prevState, `+${currentRecipient}`]);
@@ -212,44 +194,7 @@ const SmsPage = () => {
 
             />
             <Grid.Column>
-              <Controller
-                name=''
-                control={control}
-                defaultValue={null}
-                render={({ field }) => (
-                  // <input
-                  //   // onChange={(e) => field.onChange(e)}
-                  //   onSelect={field.value}
-                  //   type="datetime-local"
-                  //   {...register('selectDate', { 
-                  //     onChange: (e: any) => setSelectDate(e.target.value),
-                  //   })}
-                  // />
-
-                  <DatePicker
-                    onChange={(e) => field.onChange((e), onSelectDateHandler)}
-                    selected={field.value}
-                    placeholderText="Select date and time"
-                    showTimeSelect={true}
-                    dateFormat="Pp"
-                    isClearable
-                    timeClassName={handleColor}
-                    withPortal
-                  />
-                )}
-              />
-              <br />
-              {/* <InputButton
-                disabled={!selectDate}
-                type="button" 
-                width='25%'
-                value='SUBMIT'
-                onClick={() => onSubmitDateHandler(new Date())}
-              // className={`bg-green text-white ${selectDate.length < 1 ? 'bg-gray' : ''}`}
-              /> */}
-              <div className='schedule-reminder'>
-                Choose an available day and time for your scheduled message/s!
-              </div>
+              <SmsDatePicker />
             </Grid.Column>
 
 
