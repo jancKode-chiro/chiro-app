@@ -12,10 +12,7 @@ import { Button, Grid, Form } from 'semantic-ui-react';
 import { toast } from 'react-toastify';
 
 import * as XLSX from 'xlsx'
-import DatePicker from 'react-datepicker'
-
 import CustomSelect from '../../components/select/select';
-// import { DatePicker } from 'react/datepicker'
 import Dashboard from '../dashboard/dashboard';
 import CustomModal from '../../components/modal/modal';
 
