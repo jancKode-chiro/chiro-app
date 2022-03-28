@@ -4,6 +4,27 @@ import { toast } from 'react-toastify'
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { KeyboardDateTimePicker } from '@material-ui/pickers'
 import Button from "@material-ui/core/Button"
+// import DatePicker from 'react-datepicker'
+
+// const DateScheduler = new DayPilot.Navigator("datepicker", {
+//   onTimeRangeSelected: (args: any) => {
+
+//     scheduler.update({
+//       startDate: args.day,
+//     });                                                       
+
+//   }       
+// });
+// DateScheduler.init();
+
+// const scheduler = new DayPilot.Scheduler("scheduler", {
+//   timeHeaders: [{ groupBy: "Day", format: "MMMM d, yyyy" }, { groupBy: "Hour" }, { groupBy: "Cell" }],
+//   scale: "CellDuration",
+//   cellDuration: 15,
+//   days: 1,  
+//   // ...
+// });
+// scheduler.init(); 
 
 const SmsDatePicker = () => {
   const [date, setDate] = useState<Date | null>(null);
@@ -65,6 +86,7 @@ const SmsDatePicker = () => {
             >
               Set Schedule
             </Button>
+            {date?.toUTCString()}
             {/* <DatePicker
               onChange={(e) => field.onChange((e), onSelectDateHandler)}
               selected={field.value}
