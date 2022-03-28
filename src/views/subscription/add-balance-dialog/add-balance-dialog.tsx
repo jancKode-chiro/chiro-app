@@ -9,6 +9,7 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 import { Grid, Button, Box, withTheme } from "@material-ui/core";
+// import StatusMessages from './StatusMessages'
 import StripeCardForm from '../stripe/stripe-card-form'
 import StripeIbanForm from "../stripe/stripe-iban-form"
 import FormDialog from "../../../components/common/forms/form-dialog/form-dialog";
@@ -32,6 +33,31 @@ const AddBalanceDialog = withTheme(function (props: any) {
   const [amountError, setAmountError] = useState("");
   const elements = useElements();
   const stripe = useStripe();
+
+  // const handleSubmit = async (e: any) => {  
+  //   e.preventDefault();
+  //   if(!stripe || !elements) {
+  //     return;
+  //   }
+  //   const {clientSecret} = await fetch('/create-payment-intent', {
+  //    method: 'Post',
+  //    headers: {
+  //      'Content-Type' : 'application/json'
+  //    },
+  //    body: JSON.stringify({ 
+  //     paymentMethodType: 'card',
+  //     currency: 'dollar'  
+  //    }),
+  //   }).then(r => r.json());
+  //   const {paymentIntent} = await stripe.confirmCardPayment(
+  //     clientSecret, {
+  //       payment_method: {
+  //         card: elements.getElement(CardElement),
+  //       }
+  //     }
+  //   )
+  // }
+
 
   const onAmountChange = (amount: number) => {
     if (amount < 0) {

@@ -74,6 +74,20 @@ const SmsPage = () => {
   }, [recipients]);
 
 
+  // const accountSid = 'ACfb589adfa2862b04e2f5eba00f8c2660';
+  // const authToken = '[AuthToken]';
+  // const client = require('twilio')(accountSid, authToken, {
+  //   lazyLoading: true
+  // });
+
+  // client.messages
+  //   .create({
+  //     messagingServiceSid: 'MG291dc7b1bda94bdc325b1e3a79fdcebd',
+  //     to: '+639457784594'
+  //   })
+  //   .then((message: { sid: any; }) => console.log(message.sid))
+  //   .done();
+
   const readExcelHandler = async (file: any) => {
     const fileReader = new FileReader();
     fileReader.readAsArrayBuffer(file[0] as any);

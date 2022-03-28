@@ -1,58 +1,70 @@
+import React from 'react'
 import { useState, useRef, SetStateAction } from 'react'
 import { toast } from 'react-toastify'
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
-import { DateTimePicker } from '@material-ui/pickers'
-import DatePicker from 'react-datepicker'
-import React from 'react'
-
+import { KeyboardDateTimePicker } from '@material-ui/pickers'
+import Button from "@material-ui/core/Button"
 
 const SmsDatePicker = () => {
-  const [date, setDate] = useState();
+  const [date, setDate] = useState<Date | null>(null);
 
   const loadDate = useRef(new Date() as any)
 
-  const { control } = useForm()
+  const { control, handleSubmit } = useForm()
 
-  // const [myDate, setMyDate] = useState<Date | null>(null)
+  // const datepicker = new DayPilot.Navigator("datepicker", {
+  //   onTimeRangeSelected: (args: any) => {
 
-  const [clearedDate, handleClearedDateChange] = useState(null);
+  //     scheduler.update({
+  //       startDate: args.day,
+  //       scrollTo: args.day.addHours(9)
+  //     });
+
+  //   }
+  // });
+  // datepicker.init();
+
   const [selectedTime, handleTimeChange] = React.useState(new Date());
   const [selectDate, setSelectDate] = useState<Date | null>(null)
   const notifyDate = () => toast.update(loadDate.current, { render: 'Schedule has been set', type: toast.TYPE.SUCCESS, autoClose: 10000 })
 
-  const onSelectDateHandler = async (date: any): Promise<void> => {
-    setSelectDate(selectDate)
+  const submitData = (Date: any) => {
+    console.log(Date);
     notifyDate();
-    // clearDayTimeout()   
-    console.log(date)
   }
-
-  // const handleSelectDate = (date: any) => {
-
+  // const onSelectDateHandler = async (date: any): Promise<void> => {
+  //   setSelectDate(selectDate)
+  //   notifyDate();
+  //   // clearDayTimeout()   
+  //   console.log(date)
   // }
-
-  const handleDateChange = (date: any) => {
-    setDate(date);
-  };
-
-  // console.log(date)
-
   return (
     <>
       <Controller
         name=''
         control={control}
-        defaultValue={null}
+        defaultValue={date}
         render={({ field }) => (
           <>
-            <DateTimePicker
-              label="DateTimePicker"
+            <KeyboardDateTimePicker
+              InputAdornmentProps={{ position: 'end' }}
+              label="Select Schedule"
               inputVariant="outlined"
-              value={selectedTime}
+              value={date}
               color='secondary'
+              onChange={setDate}
               fullWidth
-              onChange={onSelectDateHandler}
             />
+            <Button
+              onSubmit={handleSubmit(submitData)}
+              type='button'
+              variant='contained'
+              color='secondary'
+              size='small'
+              fullWidth
+            >
+              Set Schedule
+            </Button>
             {/* <DatePicker
               onChange={(e) => field.onChange((e), onSelectDateHandler)}
               selected={field.value}
@@ -61,17 +73,6 @@ const SmsDatePicker = () => {
               dateFormat="Pp"
               isClearable
               withPortal
-            /> */}
-            {/* <br /> */}
-            {/* <KeyboardTimePicker
-              autoOk
-              // variant='static'
-              openTo='hours'
-              placeholder="Select Time"
-              mask="__:__ _M"
-              value={selectedTime}
-              onChange={(date: any) => handleDateChange(date)}
-
             /> */}
           </>
         )}
