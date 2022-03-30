@@ -8,7 +8,6 @@ import Dashboard from '../dashboard/dashboard';
 import {
   Input,
   InputButton,
-  CustomTextArea,
 } from '../../components/common/forms/custom-input/input';
 import { sendSMS } from '../../api/sms-service';
 import { Button, Grid, Form } from 'semantic-ui-react';
@@ -57,7 +56,6 @@ const SmsPage = () => {
 
   const onClickHander = (): void => {
     setRecipients((prevState: string[]) => [...prevState, `+${currentRecipient}`]);
-    console.log('smsContent', smsContent)
     setCurrentRecipient('')
     // reset({
     //   smsContent: 'kjhkjhkjh'  

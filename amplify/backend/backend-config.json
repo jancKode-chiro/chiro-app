@@ -26,20 +26,6 @@
           ]
         }
       }
-    },
-    "smsAPI": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "sendSmsWithTwilio",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ]
     }
   },
   "auth": {
@@ -51,12 +37,5 @@
       "customAuth": false
     }
   },
-  "function": {
-    "sendSmsWithTwilio": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": []
-    }
-  }
+  "function": {}
 }

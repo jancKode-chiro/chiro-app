@@ -1,8 +1,12 @@
-import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
+import {
+  ModelInit,
+  MutableModel,
+  PersistentModelConstructor,
+} from '@aws-amplify/datastore';
 
 export enum UserRole {
-  ADMIN = "ADMIN",
-  USER = "USER"
+  ADMIN = 'ADMIN',
+  USER = 'USER',
 }
 
 export declare class UserDetails {
@@ -14,15 +18,15 @@ export declare class UserDetails {
 
 type PaymentMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
-}
+};
 
 type ContactsMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
-}
+};
 
 type UserMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
-}
+};
 
 export declare class Payment {
   readonly id: string;
@@ -34,11 +38,16 @@ export declare class Payment {
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Payment, PaymentMetaData>);
-  static copyOf(source: Payment, mutator: (draft: MutableModel<Payment, PaymentMetaData>) => MutableModel<Payment, PaymentMetaData> | void): Payment;
+  static copyOf(
+    source: Payment,
+    mutator: (
+      draft: MutableModel<Payment, PaymentMetaData>
+    ) => MutableModel<Payment, PaymentMetaData> | void
+  ): Payment;
 }
 
 export declare class Contacts {
-  readonly id: string;
+  readonly id?: string;
   readonly first_name?: string;
   readonly last_name?: string;
   readonly group?: string;
@@ -50,7 +59,12 @@ export declare class Contacts {
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Contacts, ContactsMetaData>);
-  static copyOf(source: Contacts, mutator: (draft: MutableModel<Contacts, ContactsMetaData>) => MutableModel<Contacts, ContactsMetaData> | void): Contacts;
+  static copyOf(
+    source: Contacts,
+    mutator: (
+      draft: MutableModel<Contacts, ContactsMetaData>
+    ) => MutableModel<Contacts, ContactsMetaData> | void
+  ): Contacts;
 }
 
 export declare class User {
@@ -67,5 +81,10 @@ export declare class User {
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<User, UserMetaData>);
-  static copyOf(source: User, mutator: (draft: MutableModel<User, UserMetaData>) => MutableModel<User, UserMetaData> | void): User;
+  static copyOf(
+    source: User,
+    mutator: (
+      draft: MutableModel<User, UserMetaData>
+    ) => MutableModel<User, UserMetaData> | void
+  ): User;
 }
