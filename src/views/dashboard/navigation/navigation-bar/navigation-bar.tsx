@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useCallback, useState } from "react";
+import React, { Fragment, useRef, useCallback, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 import {
@@ -39,6 +39,10 @@ import HelpOutline from "@material-ui/icons/HelpOutline";
 import Card from "@material-ui/icons/CardMembershipOutlined";
 import Payment from "@material-ui/icons/Payment";
 import NavigationDrawer from "../../../../components/common/navigation-drawer/navigation-drawer";
+import { useAuth } from "../../../../context/auth-context";
+import { useQuery } from "react-query";
+import { getBalance } from "../../../../api/payments";
+import { isEmpty } from "lodash";
 
 const styles = (theme: any) => ({
   appBar: {
@@ -147,6 +151,7 @@ const NavBar = (props: any) => {
   const links = useRef<any>([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
+  const [balance, setBalance] = useState<number | null | undefined>(0)
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);
@@ -163,6 +168,17 @@ const NavBar = (props: any) => {
   const closeDrawer = useCallback(() => {
     setIsSideDrawerOpen(false);
   }, [setIsSideDrawerOpen]);
+
+  const { currentUserId } = useAuth();
+
+  const { data } = useQuery(['balance'], () =>
+    getBalance(currentUserId)
+  )
+
+  useEffect(() => {
+
+    if (data) setBalance(data)
+  }, [data])
 
   const menuItems = [
     {
@@ -385,7 +401,7 @@ const NavBar = (props: any) => {
               <Box mr={3}>
 
                 <Balance
-                  balance={2573}
+                  balance={balance}
                   openAddBalanceDialog={openAddBalanceDialog}
                 />
               </Box>
