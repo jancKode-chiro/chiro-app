@@ -166,22 +166,6 @@ const NavBar = (props: any) => {
 
   const menuItems = [
     {
-      link: "dashboard-C-data",
-      name: "Data Chart",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <DataChart
-            className={
-              selectedTab === "Data Chart " ? classes.textPrimary : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <DataChart className="text-white" />,
-      },
-    },
-    {
       link: "dashboard",
       name: "Dashboard",
       onClick: closeMobileDrawer,

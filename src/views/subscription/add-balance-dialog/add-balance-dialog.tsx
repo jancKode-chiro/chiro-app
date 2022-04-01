@@ -15,14 +15,18 @@ import FormDialog from "../../../components/common/forms/form-dialog/form-dialog
 import ColoredButton from "../../../components/common/colored-button/colored-button";
 import HighlightedInformation from "../../../components/common/highlighted-information/highlighted-information";
 import ButtonCircularProgress from "../../../components/common/button/button-circular-progress/button-circular-progress";
+import axios from "axios";
 
-const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
+const PUBLIC_KEY = "pk_live_51KTrLGFY8Bm4hnHxiSaue1e72YmaaKbnjTKeKfvX9dfWHfCUJ3UyvV40YecyjPWNVyri4dKs71YKW9SppNbsRVKH00wLcQccJ4"
+
+const stripePromise = loadStripe(PUBLIC_KEY);
 
 const paymentOptions = ["Credit Card", "SEPA Direct Debit"];
 
 const AddBalanceDialog = withTheme(function (props: any) {
   const { open, theme, onClose, onSuccess } = props;
 
+  const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false);
   const [paymentOption, setPaymentOption] = useState("Credit Card");
   const [stripeError, setStripeError] = useState("");
@@ -115,7 +119,22 @@ const AddBalanceDialog = withTheme(function (props: any) {
         throw new Error("No case selected in switch statement");
     }
   };
+  // if (!Error) {
+  //   try {
+  //     const response =  axios.post("http://localhost:3000/addbalance", {
+  //       amount: 1000
+  //     })
+  //     if (response.data.success) {
+  //       console.log("Successful payment")
+  //       setSuccess(true)
+  //     }
 
+  //   } catch (error) {
+  //     console.log("Error", error);
+  //   }
+  // } else {
+  //   console.log(error);
+  // }
   return (
     <FormDialog
       open={open}
