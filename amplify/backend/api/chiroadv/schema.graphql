@@ -4,7 +4,7 @@ enum UserRole {
 }
 
 type Payment @model @auth(rules: [{allow: public}]) @key(name: "byUser", fields: ["userID"]) {
-  id: ID!
+  id: ID
   amount: Int
   payment_type: String
   payment_date: AWSDateTime

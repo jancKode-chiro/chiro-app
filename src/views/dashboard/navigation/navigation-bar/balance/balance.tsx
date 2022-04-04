@@ -24,13 +24,13 @@ function Balance(props: any) {
 
   return (
     <div className={classes.wrapper}>
-      {/* <FormDailog
+      <FormDailog
         open={open}
         onClose={onClose}
         headline="Add Balance"
         hideBackdrop={false}
         loading={loading}
-      /> */}
+      />
       <OutlinedInput
         value={balance === null ? "" : currencyPrettyPrint(balance)}
         className={classes.outlinedInput}
