@@ -18,6 +18,6 @@
       }
     },
     "apiName": "chiroadv",
-    "gqlSchemaPath": "/tmp/amplify-8377f55b-5b66-4d52-9b2d-e875283070d1/amplify/backend/api/chiroadv/schema.graphql"
+    "gqlSchemaPath": "/tmp/amplify-b6423460-8f3e-4e36-8383-b30344045bc4/amplify/backend/api/chiroadv/schema.graphql"
   }
 }

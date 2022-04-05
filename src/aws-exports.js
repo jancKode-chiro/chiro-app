@@ -34,9 +34,6 @@ const awsmobile = {
     },
     "aws_cognito_verification_mechanisms": [
         "EMAIL"
-    ],
-    "aws_cognito_login_mechanisms": [
-        "PREFERRED_USERNAME"
     ]
 };
 
