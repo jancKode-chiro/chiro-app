@@ -8,37 +8,58 @@ import Dashboard from '../dashboard/dashboard';
 import {
   Input,
   InputButton,
-  CustomTextArea,
 } from '../../components/common/forms/custom-input/input';
-
 import { sendSMS } from '../../api/sms-service';
-
-import './sms-page.styles.scss';
 import { Button, Grid, Form } from 'semantic-ui-react';
-import CustomModal from '../../components/modal/modal';
 import { toast } from 'react-toastify';
 
+import DatePicker from 'react-datepicker'
+import CustomModal from '../../components/modal/modal';
+
+import "react-datepicker/dist/react-datepicker.css"
+import './sms-page.styles.scss';
 
 type InputProps = {
   recipients: string[];
   message: string;
 };
 
+type FormInputs = {
+  selectDate: Date;
+}
+
 const SmsPage = () => {
   const [recipients, setRecipients] = useState<string[]>([]);
   const [currentRecipient, setCurrentRecipient] = useState('');
   const [smsContent, setSmsContent] = useState('')
-  const { register, handleSubmit, formState, reset, control } = useForm({
+  const [selectDate, setSelectDate] = useState(new Date())
+  const { register, handleSubmit, formState, reset, control, } = useForm({
     mode: "onChange"
   });
 
   const { isValid } = formState;
   const loadId = useRef(null) as any;
+  const loadDate = useRef(new Date() as any)
+
+  const notifyDate = () => toast.update(loadDate.current, { render: 'Schedule has been set', type: toast.TYPE.SUCCESS, autoClose: 10000 })
+
+  const onSelectDateHandler = async (data: Date): Promise<void> => {
+    setSelectDate(selectDate)
+    notifyDate();
+    console.log(data)
+  }
+
+  let handleColor = (time: { getHours: () => number; }) => {
+    return time.getHours() > 12 ? "text-success" : "text-error";
+
+  };
 
   const onClickHander = (): void => {
     setRecipients((prevState: string[]) => [...prevState, `+${currentRecipient}`]);
     setCurrentRecipient('')
-    reset({ currentRecipient: '' })
+    // reset({
+    //   smsContent: 'kjhkjhkjh'  
+    // }) 
   };
 
   const notify = () => loadId.current = toast('Sending message...', { type: toast.TYPE.INFO, autoClose: false });
@@ -51,7 +72,6 @@ const SmsPage = () => {
   const sumbitHanlder = async (data: InputProps) => {
     notify();
     const combineRecipients = recipients.join(',');
-
     const result = await sendSMS(
       '/sms-notification',
       combineRecipients,
@@ -61,7 +81,7 @@ const SmsPage = () => {
       update()
       setRecipients([]);
       setCurrentRecipient('');
-      reset();
+      reset({ message: smsContent, recipients: setRecipients });
     } else {
       updateError()
     }
@@ -93,8 +113,8 @@ const SmsPage = () => {
     };
   }
 
-
   return (
+
     <Dashboard isNavbar={true}>
       <Form className='sms-page' onSubmit={handleSubmit(sumbitHanlder)}>
         <Grid columns='equal' relaxed stackable>
@@ -137,7 +157,6 @@ const SmsPage = () => {
                 className={`bg-green text-white ${currentRecipient.length < 1 ? 'bg-gray' : ''}`} />
             </Grid.Column>
             <Grid.Column width='4'>
-
               <label className="upload-contacts">
                 UPLOAD CONTACTS
                 <input type="file" onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -167,22 +186,71 @@ const SmsPage = () => {
           <Grid.Row className='sms-detail-wrapper'>
             <Grid.Column width='3'>
               <span className='text'>SMS text:</span>
+
             </Grid.Column>
             <Controller
               name='message'
               control={control}
               render={({ field: { onChange, value } }) => (
                 <Grid.Column width='10'>
-                  <CustomTextArea
+                  {/* <CustomTextArea
                     rows={3}
-                    onChange={(e: any) => setSmsContent(e.target.value)}
-                    value={value}
 
-                  />
+
+                    {...register('smsContent', {
+                      onChange: (e: any) => setSmsContent(e.target.value),
+                    })}
+                  /> */}
+
+                  <textarea {...register('smsContent', {
+                    onChange: (e: any) => setSmsContent(e.target.value),
+                  })} />
                 </Grid.Column>
               )}
 
             />
+            <Grid.Column>
+              <Controller
+                name=''
+                control={control}
+                defaultValue={null}
+                render={({ field }) => (
+                  // <input
+                  //   // onChange={(e) => field.onChange(e)}
+                  //   onSelect={field.value}
+                  //   type="datetime-local"
+                  //   {...register('selectDate', { 
+                  //     onChange: (e: any) => setSelectDate(e.target.value),
+                  //   })}
+                  // />
+
+                  <DatePicker
+                    onChange={(e) => field.onChange((e), onSelectDateHandler)}
+                    selected={field.value}
+                    placeholderText="Select date and time"
+                    showTimeSelect={true}
+                    dateFormat="Pp"
+                    isClearable
+                    timeClassName={handleColor}
+                    withPortal
+                  />
+                )}
+              />
+              <br />
+              {/* <InputButton
+                disabled={!selectDate}
+                type="button" 
+                width='25%'
+                value='SUBMIT'
+                onClick={() => onSubmitDateHandler(new Date())}
+              // className={`bg-green text-white ${selectDate.length < 1 ? 'bg-gray' : ''}`}
+              /> */}
+              <div className='schedule-reminder'>
+                Choose an available day and time for your scheduled message/s!
+              </div>
+            </Grid.Column>
+
+
             {/* <Grid.Column width='10'>
               <CustomTextArea
                 borderColor='#000000'

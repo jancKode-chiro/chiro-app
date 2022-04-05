@@ -2,20 +2,29 @@
 @import "../../../styles/lib/include-media.scss";
 
 .create-account {
-  // .image {
+  .firstname {
+    @media screen and (max-width: 768px) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .code {
+    @media screen and (max-width: 768px) {
+      margin-top: 20px;
+    }
+  }
+
   .create-account-form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    // padding-top: 64px;
     .title {
       display: flex;
 
       font-family: $font-family-poppins;
       font-size: 1.5625em;
       font-weight: 600;
-      // line-height: 37px;
       font-style: normal;
       color: #fefcfc;
       width: 100%;
@@ -66,10 +75,14 @@
 
         @include media("<phone") {
           flex-direction: column;
+          align-items: center;
+          width: 100%;
         }
 
         @include media("<tablet") {
           flex-direction: column;
+          align-items: center;
+          width: 100%;
         }
 
         .input-text {
@@ -93,10 +106,6 @@
         flex-direction: row;
         justify-content: space-between;
         padding-bottom: 2em;
-        // margin-bottom: 37px;
-        // margin-top: 22px;
-        // margin-left: 37px;
-        // margin-right: 80px;
       }
 
       .inputwrapper1 {
@@ -117,6 +126,12 @@
         color: #aca6a6;
         background-color: #ffffff;
 
+        @media screen and (max-width: 768px) {
+          width: 100%;
+          margin-top: 20px;
+          margin-right: 30px;
+        }
+
         .eye-icon {
           height: 1.6rem;
           width: 1.6rem;
@@ -135,6 +150,5 @@
       color: #fefcfc;
       background-color: #fefcfc;
     }
-    // }
   }
 }

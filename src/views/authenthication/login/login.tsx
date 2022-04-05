@@ -30,6 +30,7 @@ import { getCurrentSession } from '../../../helpers/user-helpers';
 import { getUser } from '../../../api/users';
 import { InlineSingleErrorMessage } from '../../../components/common/notification/inline-notification/inline-notification';
 import HighlightedInformation from '../../../components/common/highlighted-information/highlighted-information';
+import ButtonCircularProgress from '../../../components/common/button/button-circular-progress/button-circular-progress';
 
 type InputProps = {
   email: string;
@@ -38,11 +39,13 @@ type InputProps = {
 
 const Login = (props: any): JSX.Element => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false)
   const {
     register,
     handleSubmit,
     formState,
-    watch
+    watch,
+    reset
   } = useForm();
 
   const history = useHistory();
@@ -58,8 +61,9 @@ const Login = (props: any): JSX.Element => {
 
     setInputEmail(data.email);
     setCurrentUserId(await getUser(data.email));
+    setLoading(true)
 
-    Auth.signIn(data.email, data.password)
+    await Auth.signIn(data.email, data.password)
       .then(async () => {
         const session = await getCurrentSession();
 
@@ -70,6 +74,8 @@ const Login = (props: any): JSX.Element => {
       })
       .catch((err) => {
         toast.error(err.message)
+        setLoading(false)
+        reset()
       });
 
   };
@@ -121,12 +127,14 @@ const Login = (props: any): JSX.Element => {
 
 
           <div className='button'>
-            <InputButton
-              disabled={formState.isValid}
-              type='submit'
-              value='Login'
-              className={`text-white ${watchFields[0] && watchFields[1] ? 'bg-green' : 'bg-gray'}`}
-            />
+            {loading ?
+              <ButtonCircularProgress /> :
+              <InputButton
+                disabled={formState.isValid}
+                type='submit'
+                value={`Login `}
+                className={`text-white ${watchFields[0] && watchFields[1] ? 'bg-green' : 'bg-gray'}`}
+              />}
           </div>
 
           <HighlightedInformation>

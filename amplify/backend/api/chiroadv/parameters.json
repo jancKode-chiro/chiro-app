@@ -2,10 +2,5 @@
   "AppSyncApiName": "chiroadv",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthCognitoUserPoolId": {
-    "Fn::GetAtt": [
-      "us-east-2_3WMttyXUq",
-      "Outputs.UserPoolId"
-    ]
-  }
+  "AuthModeLastUpdated": "2022-03-30T15:58:00.501Z"
 }

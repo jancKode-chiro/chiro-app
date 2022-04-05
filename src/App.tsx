@@ -7,7 +7,6 @@ import awsmobile from './aws-exports';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ToastContainer } from 'react-toastify'
 import {
-  HOMEPAGE_PATH,
   CREATE_ACCOUNT_PATH,
   ABOUT_PATH,
   LETS_TALK_PATH,
@@ -54,7 +53,7 @@ const PasswordForgot = lazy(
 const Users = lazy(() => import('./views/users/users'))
 const ProfileData = lazy(() => import('./views/profile-info/profile-info'));
 const SendSms = lazy(() => import('./views/sms-page/sms-page'))
-const HomePage = lazy(() => import('./views/home/main/main'))
+// const HomePage = lazy(() => import('./views/home/main/main'))
 const Subscription = lazy(() => import('./views/dashboard/subscription/subscription/subscription'))
 const DashboardC = lazy(() => import('./views/dashboard/dashboard-C-data/dashboard-C/home-dashboard'))
 const BlogPost = lazy(() => import('./views/blog/blog-post/blog-post'))
@@ -78,8 +77,8 @@ function App() {
                 <Switch>
                   <Route
                     exact
-                    path={HOMEPAGE_PATH}
-                    component={HomePage}
+                    path={LOGIN_PATH}
+                    component={Login}
                   />
                   <PrivateRoute
                     exact

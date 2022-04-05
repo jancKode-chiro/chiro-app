@@ -7,9 +7,10 @@ const UserRole = {
   "USER": "USER"
 };
 
-const { Payment, Contacts, User, UserDetails } = initSchema(schema);
+const { Templates, Payment, Contacts, User, UserDetails } = initSchema(schema);
 
 export {
+  Templates,
   Payment,
   Contacts,
   User,
