@@ -1,12 +1,8 @@
-import {
-  ModelInit,
-  MutableModel,
-  PersistentModelConstructor,
-} from '@aws-amplify/datastore';
+import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
 
 export enum UserRole {
-  ADMIN = 'ADMIN',
-  USER = 'USER',
+  ADMIN = "ADMIN",
+  USER = "USER"
 }
 
 export declare class UserDetails {
@@ -16,34 +12,43 @@ export declare class UserDetails {
   constructor(init: ModelInit<UserDetails>);
 }
 
+type TemplatesMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 type PaymentMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
-};
+}
 
 type ContactsMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
-};
+}
 
 type UserMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
-};
+}
+
+export declare class Templates {
+  readonly id: string;
+  readonly title?: string | null;
+  readonly content?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  constructor(init: ModelInit<Templates, TemplatesMetaData>);
+  static copyOf(source: Templates, mutator: (draft: MutableModel<Templates, TemplatesMetaData>) => MutableModel<Templates, TemplatesMetaData> | void): Templates;
+}
 
 export declare class Payment {
   readonly id: string;
-  amount?: number | null;
+  readonly amount?: number | null;
   readonly payment_type?: string | null;
-  payment_date?: string | null;
-  balance?: number | null;
+  readonly payment_date?: string | null;
+  readonly balance?: number | null;
   readonly userID?: string | null;
-  createdAt?: string | null;
+  readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Payment, PaymentMetaData>);
-  static copyOf(
-    source: Payment,
-    mutator: (
-      draft: MutableModel<Payment, PaymentMetaData>
-    ) => MutableModel<Payment, PaymentMetaData> | void
-  ): Payment;
+  static copyOf(source: Payment, mutator: (draft: MutableModel<Payment, PaymentMetaData>) => MutableModel<Payment, PaymentMetaData> | void): Payment;
 }
 
 export declare class Contacts {
@@ -59,12 +64,7 @@ export declare class Contacts {
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Contacts, ContactsMetaData>);
-  static copyOf(
-    source: Contacts,
-    mutator: (
-      draft: MutableModel<Contacts, ContactsMetaData>
-    ) => MutableModel<Contacts, ContactsMetaData> | void
-  ): Contacts;
+  static copyOf(source: Contacts, mutator: (draft: MutableModel<Contacts, ContactsMetaData>) => MutableModel<Contacts, ContactsMetaData> | void): Contacts;
 }
 
 export declare class User {
@@ -81,10 +81,5 @@ export declare class User {
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<User, UserMetaData>);
-  static copyOf(
-    source: User,
-    mutator: (
-      draft: MutableModel<User, UserMetaData>
-    ) => MutableModel<User, UserMetaData> | void
-  ): User;
+  static copyOf(source: User, mutator: (draft: MutableModel<User, UserMetaData>) => MutableModel<User, UserMetaData> | void): User;
 }
