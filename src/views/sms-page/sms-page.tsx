@@ -105,7 +105,8 @@ const SmsPage = () => {
 
       const data = XLSX.utils.sheet_to_json(workSheet);
 
-      const joinData = data.filter((o: any) => o['Name'] === 'Juan Od').map((person: any) => person.contact_number).join(',')
+      // const joinData = data.filter((o: any) => o['Name'] === 'Juan Od').map((person: any) => person.contact_number).join(',')
+      const joinData = data.map((person: any) => person.contact_number).join(',')
 
       setRecipients([joinData])
 
