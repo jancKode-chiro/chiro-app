@@ -60,44 +60,43 @@ const customStyles: StylesConfig = {
 // );
 
 
-const CustomSelect = () => {
+const CustomSelect = ({ onChange }: any) => {
   const [inputValue, setValue] = useState('')
   const [selectedValue, setSelectedValue] = useState(null);
 
-  const [template, setTemplate] = useState<any>({
-    Header: "",
-    Accessor: ""
-  });
+
+  const [template, setTemplate] = useState<any>();
 
   const { data } = useQuery(['templates'], () =>
     getTemplates()
   );
 
+  const parseDataHandler = (data: any) => {
+
+    return data?.map((template: any) => {
+      return {
+        value: template.content,
+        label: template.title
+
+      }
+    })
+  }
+
   useEffect(() => {
-    if (!isEmpty(data)) setTemplate(data);
+    if (!isEmpty(data)) {
+      setTemplate(parseDataHandler(data))
+    };
   }, [data]);
 
-  const templateColumns = useMemo(
-    () => [
-      {
-        Header: 'Title',
-        Accessor: 'title'
-      },
-      {
-        Header: 'Content',
-        Accessor: 'content'
-      },
-    ],
-    [],
 
-  );
 
   const handleInputChange = (value: any) => {
     setValue(value)
   }
 
-  const handleChange = (value: any) => {
-    setSelectedValue(value)
+  const handleChange = (item: any) => {
+    setSelectedValue(item)
+    onChange(item.value)
   }
 
   return (
@@ -105,7 +104,7 @@ const CustomSelect = () => {
       <Select
         closeMenuOnSelect={false}
         components={animatedComponents}
-        options={templateColumns}
+        options={template}
         styles={customStyles}
         onInputChange={handleInputChange}
         onChange={handleChange}

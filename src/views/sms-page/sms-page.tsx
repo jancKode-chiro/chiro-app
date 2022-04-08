@@ -62,8 +62,9 @@ const SmsPage = () => {
     // }) 
   };
 
-  const onChangeHandler = () => {
-    let sms
+  const onChangeHandler = (setContent: string) => {
+    console.log('setContent', setContent)
+    setSmsContent(setContent)
   }
 
   const notify = () => loadId.current = toast('Sending message...', { type: toast.TYPE.INFO, autoClose: false });
@@ -93,7 +94,7 @@ const SmsPage = () => {
 
   useEffect(() => {
 
-  }, [recipients]);
+  }, [recipients, smsContent]);
 
 
   const readExcelHandler = async (file: any) => {
@@ -127,7 +128,7 @@ const SmsPage = () => {
               <span className='text'>Select Group:</span>
             </Grid.Column>
             <Grid.Column width='9' >
-              <CustomSelect />
+              <CustomSelect onChange={onChangeHandler} />
             </Grid.Column>
             <Grid.Column width='3' >
               <Button>Search</Button>
@@ -206,9 +207,11 @@ const SmsPage = () => {
                     })}
                   /> */}
 
-                  <textarea {...register('smsContent', {
-                    onChange: (e: any) => setSmsContent(e.target.value),
-                  })} />
+                  <textarea
+                    value={smsContent || ''}
+                    {...register('smsContent', {
+                      onChange: (e: any) => setSmsContent(e.target.value),
+                    })} />
                 </Grid.Column>
               )}
 
