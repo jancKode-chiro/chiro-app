@@ -77,7 +77,6 @@ const CustomSelect = ({ onChange }: any) => {
       return {
         value: template.content,
         label: template.title
-
       }
     })
   }
@@ -102,7 +101,6 @@ const CustomSelect = ({ onChange }: any) => {
   return (
     <>
       <Select
-        closeMenuOnSelect={false}
         components={animatedComponents}
         options={template}
         styles={customStyles}
