@@ -11,6 +11,8 @@ import { styles } from "../../../components/styles-menu/pricing-section-styles/p
 import calculateSpacing from "../../../utilities/calculate-spacing";
 import PriceCard from "../price-card/price-card";
 
+import './pricing-section.scss';
+
 const PricingSection = (props: any) => {
   const [selectedPrice, setSelectedPrice] = useState('')
 
@@ -18,12 +20,16 @@ const PricingSection = (props: any) => {
   const onChangeHandler = (setPrice: any) => {
     console.log('setPrice', setPrice)
     setSelectedPrice(setPrice)
+
+    document.addEventListener("submit", async (e: { preventDefault: () => void; }) => {
+      e.preventDefault();
+    })
   }
 
   const { width, classes } = props;
   return (
     <div className="lg-p-top" style={{ backgroundColor: "#FFFFFF" }}>
-      <Typography variant="h3" align="center" className="lg-mg-bottom">
+      <Typography color="primary" variant="h3" align="center" className="lg-mg-bottom">
         Pricing
       </Typography>
       <div className={classNames("container-fluid", classes.containerFix)}>
@@ -41,17 +47,18 @@ const PricingSection = (props: any) => {
               className={classes.cardWrapper}
               data-aos="zoom-in-up"
             >
-
-              <PriceCard
-                title="Starter"
-                pricing={
-                  <span>
-                    $14.99
-                    <Typography display="inline"> / month</Typography>
-                  </span>
-                }
-                features={["Feature 1", "Feature 2", "Feature 3"]}
-              />
+              <div className="price-card">
+                <PriceCard
+                  title="Starter"
+                  pricing={
+                    <span>
+                      $14.99
+                      <Typography display="inline"> / month</Typography>
+                    </span>
+                  }
+                  features={["Feature 1", "Feature 2", "Feature 3"]}
+                />
+              </div>
             </Grid>
             <Grid
               item
@@ -62,18 +69,19 @@ const PricingSection = (props: any) => {
               data-aos="zoom-in-up"
               data-aos-delay="200"
             >
-
-              <PriceCard
-                highlighted
-                title="Premium"
-                pricing={
-                  <span>
-                    $29.99
-                    <Typography display="inline"> / month</Typography>
-                  </span>
-                }
-                features={["Feature 1", "Feature 2", "Feature 3"]}
-              />
+              <div className="price-card-a">
+                <PriceCard
+                  highlighted
+                  title="Premium"
+                  pricing={
+                    <span>
+                      $29.99
+                      <Typography display="inline"> / month</Typography>
+                    </span>
+                  }
+                  features={["Feature 1", "Feature 2", "Feature 3"]}
+                />
+              </div>
             </Grid>
             <Grid
               item
@@ -84,16 +92,18 @@ const PricingSection = (props: any) => {
               data-aos="zoom-in-up"
               data-aos-delay={isWidthUp("md", width) ? "400" : "0"}
             >
-              <PriceCard
-                title="Business"
-                pricing={
-                  <span>
-                    $49.99
-                    <Typography display="inline"> / month</Typography>
-                  </span>
-                }
-                features={["Feature 1", "Feature 2", "Feature 3"]}
-              />
+              <div className="price-card">
+                <PriceCard
+                  title="Business"
+                  pricing={
+                    <span>
+                      $49.99
+                      <Typography display="inline"> / month</Typography>
+                    </span>
+                  }
+                  features={["Feature 1", "Feature 2", "Feature 3"]}
+                />
+              </div>
             </Grid>
             <Grid
               item
@@ -104,17 +114,18 @@ const PricingSection = (props: any) => {
               data-aos="zoom-in-up"
               data-aos-delay={isWidthUp("md", width) ? "600" : "200"}
             >
-              <PriceCard
-                title="Tycoon"
-                pricing={
-                  <span>
-                    $99.99
-                    <Typography display="inline"> / month</Typography>
-                  </span>
-                }
-                features={["Feature 1", "Feature 2", "Feature 3"]}
-              />
-
+              <div className="price-card">
+                <PriceCard
+                  title="Tycoon"
+                  pricing={
+                    <span>
+                      $99.99
+                      <Typography display="inline"> / month</Typography>
+                    </span>
+                  }
+                  features={["Feature 1", "Feature 2", "Feature 3"]}
+                />
+              </div>
             </Grid>
           </Grid>
         </div>

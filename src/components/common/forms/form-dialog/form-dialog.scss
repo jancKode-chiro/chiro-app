@@ -1,0 +1,11 @@
+.gen {
+  // .scroll {
+  //   scroll-snap-type: y mandatory ;
+  // }
+  @media screen and (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-type: y mandatory;
+  }
+}

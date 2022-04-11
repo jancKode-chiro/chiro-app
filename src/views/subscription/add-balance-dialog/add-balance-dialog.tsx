@@ -68,8 +68,9 @@ const AddBalanceDialog = withTheme(function (props: any) {
   const handlerChange = ({ onChange, item, event }: any) => {
     setSelectedValue(event.target.value)
     onChange(item.value)
-  }
 
+    // const form = document.getElementById("stripe-payment")
+  }
 
   return (
     <FormDialog

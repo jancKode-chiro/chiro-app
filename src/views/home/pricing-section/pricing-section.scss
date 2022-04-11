@@ -1,0 +1,16 @@
+.price-card {
+  transition: transform 0.2s;
+  margin: 0 auto;
+}
+
+.price-card:hover {
+  transform: scale(1.1);
+}
+
+.price-card-a {
+  transition: transform 0.2s;
+}
+
+.price-card-a:hover {
+  transform: scale(1.1);
+}
