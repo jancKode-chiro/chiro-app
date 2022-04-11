@@ -67,10 +67,8 @@ const AddBalanceDialog = withTheme(function (props: any) {
 
   const handleChange = ({ onChange, item }: any) => {
     setSelectedValue(item)
-    onChange()
-    getStripePaymentInfo()
+    onChange(item.value)
   }
-
 
 
   return (

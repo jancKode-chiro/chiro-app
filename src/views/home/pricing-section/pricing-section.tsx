@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 import {
   Grid,
@@ -12,6 +12,14 @@ import calculateSpacing from "../../../utilities/calculate-spacing";
 import PriceCard from "../price-card/price-card";
 
 const PricingSection = (props: any) => {
+  // const [setPrice, setSelectedPrice] = useState()
+
+
+  //   const onChangeHandler = (setPrice: string) => {
+  //     console.log('setPrice', setPrice)
+  //     setSelectedPrice(setPrice)
+  //   }
+
   const { width, classes } = props;
   return (
     <div className="lg-p-top" style={{ backgroundColor: "#FFFFFF" }}>
