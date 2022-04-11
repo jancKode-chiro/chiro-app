@@ -65,8 +65,8 @@ const AddBalanceDialog = withTheme(function (props: any) {
   };
 
 
-  const handleChange = ({ onChange, item }: any) => {
-    setSelectedValue(item)
+  const handlerChange = ({ onChange, item, event }: any) => {
+    setSelectedValue(event.target.value)
     onChange(item.value)
   }
 
@@ -100,7 +100,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
       }}
       content={
         <Grid container spacing={1}>
-          <PricingSection onClick={handleChange} />
+          <PricingSection onClick={handlerChange} />
         </Grid>
       }
     />

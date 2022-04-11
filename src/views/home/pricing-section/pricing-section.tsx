@@ -12,13 +12,13 @@ import calculateSpacing from "../../../utilities/calculate-spacing";
 import PriceCard from "../price-card/price-card";
 
 const PricingSection = (props: any) => {
-  // const [setPrice, setSelectedPrice] = useState()
+  const [selectedPrice, setSelectedPrice] = useState('')
 
 
-  //   const onChangeHandler = (setPrice: string) => {
-  //     console.log('setPrice', setPrice)
-  //     setSelectedPrice(setPrice)
-  //   }
+  const onChangeHandler = (setPrice: any) => {
+    console.log('setPrice', setPrice)
+    setSelectedPrice(setPrice)
+  }
 
   const { width, classes } = props;
   return (
@@ -27,93 +27,97 @@ const PricingSection = (props: any) => {
         Pricing
       </Typography>
       <div className={classNames("container-fluid", classes.containerFix)}>
-        <Grid
-          container
-          spacing={calculateSpacing(width)}
-          className={classes.gridContainer}
-        >
+        <div onClick={onChangeHandler}>
           <Grid
-            item
-            xs={12}
-            sm={6}
-            lg={3}
-            className={classes.cardWrapper}
-            data-aos="zoom-in-up"
+            container
+            spacing={calculateSpacing(width)}
+            className={classes.gridContainer}
           >
-            <PriceCard
-              title="Starter"
-              pricing={
-                <span>
-                  $14.99
-                  <Typography display="inline"> / month</Typography>
-                </span>
-              }
-              features={["Feature 1", "Feature 2", "Feature 3"]}
-            />
-          </Grid>
-          <Grid
-            item
-            className={classes.cardWrapperHighlighted}
-            xs={12}
-            sm={6}
-            lg={3}
-            data-aos="zoom-in-up"
-            data-aos-delay="200"
-          >
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              lg={3}
+              className={classes.cardWrapper}
+              data-aos="zoom-in-up"
+            >
 
-            <PriceCard
-              highlighted
-              title="Premium"
-              pricing={
-                <span>
-                  $29.99
-                  <Typography display="inline"> / month</Typography>
-                </span>
-              }
-              features={["Feature 1", "Feature 2", "Feature 3"]}
-            />
+              <PriceCard
+                title="Starter"
+                pricing={
+                  <span>
+                    $14.99
+                    <Typography display="inline"> / month</Typography>
+                  </span>
+                }
+                features={["Feature 1", "Feature 2", "Feature 3"]}
+              />
+            </Grid>
+            <Grid
+              item
+              className={classes.cardWrapperHighlighted}
+              xs={12}
+              sm={6}
+              lg={3}
+              data-aos="zoom-in-up"
+              data-aos-delay="200"
+            >
+
+              <PriceCard
+                highlighted
+                title="Premium"
+                pricing={
+                  <span>
+                    $29.99
+                    <Typography display="inline"> / month</Typography>
+                  </span>
+                }
+                features={["Feature 1", "Feature 2", "Feature 3"]}
+              />
+            </Grid>
+            <Grid
+              item
+              className={classes.cardWrapper}
+              xs={12}
+              sm={6}
+              lg={3}
+              data-aos="zoom-in-up"
+              data-aos-delay={isWidthUp("md", width) ? "400" : "0"}
+            >
+              <PriceCard
+                title="Business"
+                pricing={
+                  <span>
+                    $49.99
+                    <Typography display="inline"> / month</Typography>
+                  </span>
+                }
+                features={["Feature 1", "Feature 2", "Feature 3"]}
+              />
+            </Grid>
+            <Grid
+              item
+              className={classes.cardWrapper}
+              xs={12}
+              sm={6}
+              lg={3}
+              data-aos="zoom-in-up"
+              data-aos-delay={isWidthUp("md", width) ? "600" : "200"}
+            >
+              <PriceCard
+                title="Tycoon"
+                pricing={
+                  <span>
+                    $99.99
+                    <Typography display="inline"> / month</Typography>
+                  </span>
+                }
+                features={["Feature 1", "Feature 2", "Feature 3"]}
+              />
+
+            </Grid>
           </Grid>
-          <Grid
-            item
-            className={classes.cardWrapper}
-            xs={12}
-            sm={6}
-            lg={3}
-            data-aos="zoom-in-up"
-            data-aos-delay={isWidthUp("md", width) ? "400" : "0"}
-          >
-            <PriceCard
-              title="Business"
-              pricing={
-                <span>
-                  $49.99
-                  <Typography display="inline"> / month</Typography>
-                </span>
-              }
-              features={["Feature 1", "Feature 2", "Feature 3"]}
-            />
-          </Grid>
-          <Grid
-            item
-            className={classes.cardWrapper}
-            xs={12}
-            sm={6}
-            lg={3}
-            data-aos="zoom-in-up"
-            data-aos-delay={isWidthUp("md", width) ? "600" : "200"}
-          >
-            <PriceCard
-              title="Tycoon"
-              pricing={
-                <span>
-                  $99.99
-                  <Typography display="inline"> / month</Typography>
-                </span>
-              }
-              features={["Feature 1", "Feature 2", "Feature 3"]}
-            />
-          </Grid>
-        </Grid>
+        </div>
       </div>
     </div>
   );
