@@ -20,6 +20,7 @@ const paymentOptions = ["Credit Card", "SEPA Direct Debit"];
 const AddBalanceDialog = withTheme(function (props: any) {
   const { open, theme, onClose, onSuccess } = props;
 
+  const [selectedValue, setSelectedValue] = useState(null);
   const [loading, setLoading] = useState(false);
   const [paymentOption, setPaymentOption] = useState("Credit Card");
   const [stripeError, setStripeError] = useState("");
@@ -63,9 +64,14 @@ const AddBalanceDialog = withTheme(function (props: any) {
     }
   };
 
-  const onClickHandler = () => {
-    // const let = stripePromise()
+
+  const handleChange = ({ onChange, item }: any) => {
+    setSelectedValue(item)
+    onChange()
+    getStripePaymentInfo()
   }
+
+
 
   return (
     <FormDialog
@@ -96,7 +102,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
       }}
       content={
         <Grid container spacing={1}>
-          <PricingSection />
+          <PricingSection onClick={handleChange} />
         </Grid>
       }
     />
