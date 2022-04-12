@@ -16,7 +16,7 @@ type StylesProps = {
   root: {
     position: 'relative';
     width: '100%';
-    marginBottom: -7;
+    marginBottom: -45;
     // height: '7vw';
     height: '100%';
     minHeight: '7vw';
@@ -37,7 +37,7 @@ export const styles: StylesProps = {
   root: {
     position: 'relative',
     width: '100%',
-    marginBottom: -7,
+    marginBottom: -45,
     // height: '7vw',
     height: '100%',
     minHeight: '7vw',

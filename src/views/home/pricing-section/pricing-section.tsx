@@ -29,7 +29,7 @@ const PricingSection = (props: any) => {
 
   return (
     <div className="lg-p-top" style={{ backgroundColor: "#FFFFFF" }}>
-      <Typography color="primary" variant="h3" align="center" className="lg-mg-bottom">
+      <Typography color="primary" variant="h3" align="center" className="balance">
         Add Balance
       </Typography>
       <div className={classNames("container-fluid", classes.containerFix)}>
