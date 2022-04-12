@@ -101,7 +101,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
       content={
         <div>
           <WaveBorder
-            upperColor={theme.palette.primary.main}
+            upperColor={theme.palette.secondary.main}
             lowerColor="#ffffff"
             // className={classes.waveBorder}
             animationNegativeDelay={2}
