@@ -17,7 +17,8 @@ type StylesProps = {
     position: 'relative';
     width: '100%';
     marginBottom: -7;
-    height: '7vw';
+    // height: '7vw';
+    height: '100%';
     minHeight: '7vw';
   };
 };
@@ -37,7 +38,8 @@ export const styles: StylesProps = {
     position: 'relative',
     width: '100%',
     marginBottom: -7,
-    height: '7vw',
+    // height: '7vw',
+    height: '100%',
     minHeight: '7vw',
   },
 };

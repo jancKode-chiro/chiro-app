@@ -27,7 +27,7 @@ export const styles = (theme: any) => ({
     [theme.breakpoints.down('xs')]: {
       marginLeft: 'auto',
       marginRight: 'auto',
-      maxWidth: 360,
+      maxWidth: 100,
     },
   },
 });

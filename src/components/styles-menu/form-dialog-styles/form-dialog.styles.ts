@@ -5,6 +5,7 @@ export const styles = (theme: any) => ({
     alignItems: 'center',
     paddingBottom: theme.spacing(3),
     maxWidth: `100%`,
+    height: `100%`,
   },
   actions: {
     marginTop: theme.spacing(2),

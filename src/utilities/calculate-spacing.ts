@@ -7,7 +7,7 @@ import { isWidthUp } from '@material-ui/core/withWidth';
 
 function calculateSpacing(width: 'xs' | 'sm' | 'md' | 'lg' | 'xl') {
   if (isWidthUp('lg', width)) {
-    return 5;
+    return 3;
   }
   if (isWidthUp('md', width)) {
     return 4;

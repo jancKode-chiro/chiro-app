@@ -5,9 +5,9 @@ import { styles } from '../../../components/styles-menu/price-card-styles/price-
 import CheckIcon from "@material-ui/icons/Check";
 
 const PriceCard = (props: any) => {
-  const { classes, theme, title, pricing, features, highlighted } = props;
+  const { classes, theme, title, pricing, features, highlighted, onClick } = props;
   return (
-    <div className={highlighted ? classes.cardHightlighted : classes.card}>
+    <div className={highlighted ? classes.cardHightlighted : classes.card} onClick={onClick}>
       <Box mb={2}>
         <Typography
           variant={highlighted ? "h5" : "h6"}

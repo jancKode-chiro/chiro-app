@@ -1,6 +1,13 @@
 .price-card {
   transition: transform 0.2s;
   margin: 0 auto;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-type: y mandatory;
+  }
 }
 
 .price-card:hover {
@@ -9,8 +16,15 @@
 
 .price-card-a {
   transition: transform 0.2s;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-type: y mandatory;
+  }
 }
 
 .price-card-a:hover {
-  transform: scale(1.1);
+  transform: scale(1.07);
 }

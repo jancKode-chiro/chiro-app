@@ -9,6 +9,7 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 import { Grid, Button, Box, withTheme } from "@material-ui/core";
+import WaveBorder from "../../../components/common/wave-border/wave-border";
 import FormDialog from "../../../components/common/forms/form-dialog/form-dialog";
 import PricingSection from "../../home/pricing-section/pricing-section";
 
@@ -18,7 +19,7 @@ const paymentOptions = ["Credit Card", "SEPA Direct Debit"];
 
 
 const AddBalanceDialog = withTheme(function (props: any) {
-  const { open, theme, onClose, onSuccess } = props;
+  const { classes, open, theme, onClose, onSuccess } = props;
 
   const [selectedValue, setSelectedValue] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -65,9 +66,8 @@ const AddBalanceDialog = withTheme(function (props: any) {
   };
 
 
-  const handlerChange = ({ onChange, item, event }: any) => {
-    setSelectedValue(event.target.value)
-    onChange(item.value)
+  const onClickHandler = ({ onChange, item, event }: any) => {
+    console.log('item Clicked')
 
     // const form = document.getElementById("stripe-payment")
   }
@@ -76,7 +76,6 @@ const AddBalanceDialog = withTheme(function (props: any) {
     <FormDialog
       open={open}
       onClose={onClose}
-      headline="Add Balance"
       hideBackdrop={false}
       loading={loading}
       onFormSubmit={async (event: any) => {
@@ -100,16 +99,27 @@ const AddBalanceDialog = withTheme(function (props: any) {
         onSuccess();
       }}
       content={
-        <Grid container spacing={1}>
-          <PricingSection onClick={handlerChange} />
-        </Grid>
+        <div>
+          <WaveBorder
+            upperColor={theme.palette.primary.main}
+            lowerColor="#ffffff"
+            // className={classes.waveBorder}
+            animationNegativeDelay={2}
+          />
+          <Grid container spacing={1}>
+            <PricingSection onClick={onClickHandler} />
+
+          </Grid>
+        </div>
       }
     />
+
   );
+
 });
 
 function Wrapper(props: any) {
-  const { open, onClose, onSuccess } = props;
+  const { theme, classes, open, onClose, onSuccess } = props;
   return (
     <Elements stripe={stripePromise}>
       {open && (
@@ -117,6 +127,7 @@ function Wrapper(props: any) {
       )}
     </Elements>
   );
+
 }
 
 export default Wrapper;
