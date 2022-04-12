@@ -1,7 +1,7 @@
 export const styles = (theme: any) => ({
   card: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
     paddingLeft: theme.spacing(4),
     paddingRight: theme.spacing(4),
     marginTop: theme.spacing(2),
@@ -16,9 +16,9 @@ export const styles = (theme: any) => ({
     border: `1px solid ${theme.palette.primary.dark}`,
     borderRadius: theme.shape.borderRadius * 1,
     backgroundColor: theme.palette.primary.main,
-    // [theme.breakpoints.down('xs')]: {
-    //   marginTop: theme.spacing(2),
-    // },
+    [theme.breakpoints.down('xs')]: {
+      marginTop: theme.spacing(2),
+    },
   },
   title: {
     color: theme.palette.primary.main,
