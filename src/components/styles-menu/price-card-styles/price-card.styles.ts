@@ -9,8 +9,8 @@ export const styles = (theme: any) => ({
     borderRadius: theme.shape.borderRadius * 2,
   },
   cardHightlighted: {
-    // paddingTop: theme.spacing(0),
-    // paddingBottom: theme.spacing(0),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
     paddingLeft: theme.spacing(4),
     paddingRight: theme.spacing(4),
     border: `1px solid ${theme.palette.primary.dark}`,
