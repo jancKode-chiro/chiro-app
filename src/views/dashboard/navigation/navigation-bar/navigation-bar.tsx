@@ -23,26 +23,18 @@ import {
 import SideDrawer from "../side-drawer/sidedrawer";
 import Balance from "./balance/balance";
 import MessagePopperButton from "./message-popper-button/messagepopper-button";
-
 import Contact from "@material-ui/icons/ContactMailOutlined"
 import Message from "@material-ui/icons/Message";
-
-import DataChart from "@material-ui/icons/DataUsageOutlined"
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import ImageIcon from "@material-ui/icons/Image";
-import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import User from "@material-ui/icons/VerifiedUserOutlined"
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MenuIcon from "@material-ui/icons/Menu";
 import HelpOutline from "@material-ui/icons/HelpOutline";
-import Card from "@material-ui/icons/CardMembershipOutlined";
-import Payment from "@material-ui/icons/Payment";
 import NavigationDrawer from "../../../../components/common/navigation-drawer/navigation-drawer";
 import { useAuth } from "../../../../context/auth-context";
 import { useQuery } from "react-query";
 import { getBalance } from "../../../../api/payments";
-import { isEmpty } from "lodash";
 
 const styles = (theme: any) => ({
   appBar: {
@@ -181,22 +173,22 @@ const NavBar = (props: any) => {
   }, [data])
 
   const menuItems = [
-    {
-      link: "dashboard-C-data",
-      name: "Data Chart",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <DataChart
-            className={
-              selectedTab === "Data Chart " ? classes.textPrimary : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <DataChart className="text-white" />,
-      },
-    },
+    // {
+    //   link: "dashboard-C-data",
+    //   name: "Data Chart",
+    //   onClick: closeMobileDrawer,
+    //   icon: {
+    //     desktop: (
+    //       <DataChart
+    //         className={
+    //           selectedTab === "Data Chart " ? classes.textPrimary : "text-white"
+    //         }
+    //         fontSize="small"
+    //       />
+    //     ),
+    //     mobile: <DataChart className="text-white" />,
+    //   },
+    // },
     {
       link: "dashboard",
       name: "Dashboard",
@@ -313,38 +305,38 @@ const NavBar = (props: any) => {
         mobile: <HelpOutline className="text-white" />,
       },
     },
-    {
-      link: "wallet",
-      name: "Payment Method",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <Payment
-            className={
-              selectedTab === "PaymentMethod" ? classes.textPrimary : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <Payment className="text-white" />,
-      },
-    },
-    {
-      link: "card",
-      name: "Card",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <Card
-            className={
-              selectedTab === "Card" ? classes.textPrimary : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <Card className="text-white" />,
-      },
-    },
+    // {
+    //   link: "wallet",
+    //   name: "Payment Method",
+    //   onClick: closeMobileDrawer,
+    //   icon: {
+    //     desktop: (
+    //       <Payment
+    //         className={
+    //           selectedTab === "PaymentMethod" ? classes.textPrimary : "text-white"
+    //         }
+    //         fontSize="small"
+    //       />
+    //     ),
+    //     mobile: <Payment className="text-white" />,
+    //   },
+    // },
+    // {
+    //   link: "card",
+    //   name: "Card",
+    //   onClick: closeMobileDrawer,
+    //   icon: {
+    //     desktop: (
+    //       <Card
+    //         className={
+    //           selectedTab === "Card" ? classes.textPrimary : "text-white"
+    //         }
+    //         fontSize="small"
+    //       />
+    //     ),
+    //     mobile: <Card className="text-white" />,
+    //   },
+    // },
     {
       link: "/",
       name: "Logout",
