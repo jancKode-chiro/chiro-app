@@ -9,6 +9,7 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 import { Grid, Button, Box, withTheme } from "@material-ui/core";
+import { stripePayment } from "../../../api/stripe";
 import StripeCardForm from '../stripe/stripe-card-form'
 import StripeIbanForm from "../stripe/stripe-iban-form"
 import FormDialog from "../../../components/common/forms/form-dialog/form-dialog";
@@ -133,7 +134,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
           setStripeError("");
         }
         setLoading(true);
-        const { error }: any = await stripe?.createPaymentMethod(
+        const { error, paymentMethod }: any = await stripe?.createPaymentMethod(
           getStripePaymentInfo()
         );
         if (error) {
@@ -141,7 +142,13 @@ const AddBalanceDialog = withTheme(function (props: any) {
           setLoading(false);
           return;
         }
+        if (paymentMethod) {
+          console.log('paymentMethod', paymentMethod)
+          // const confirmPayment = await stripePayment('stripe-payment', paymentMethod.id)
+        }
         onSuccess();
+
+
       }}
       content={
         <Box pb={2}>

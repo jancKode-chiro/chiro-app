@@ -411,11 +411,6 @@ const NavBar = (props: any) => {
               disableGutters
               className={classNames(classes.iconListItem, classes.smBordered)}
             >
-              <Avatar
-                alt="profile picture"
-                src={`${process.env.PUBLIC_URL}/images/logged_in/profilePicture.jpg`}
-                className={classNames(classes.accountAvatar)}
-              />
               {isWidthUp("sm", width) && (
                 <ListItemText
                   className={classes.username}
