@@ -1,15 +1,7 @@
 import axios from 'axios';
-
-export const stripePayment = async (
-  url: string,
-  pmId: string,
-  message: string,
-  passcode = '0101'
-) => {
+export const createPaymentIntent = async (url: string, amount: number) => {
   const data = {
-    message: message,
-    pmId: pmId,
-    passcode,
+    amount: amount,
   };
 
   const config = {
@@ -20,13 +12,14 @@ export const stripePayment = async (
       'Content-Type': 'application/json',
     },
   };
+
   try {
     const result = await axios
       .post(url, data, config)
       .then((result) => {
         return {
           status: 'OK',
-          data: result,
+          result: result.data?.client_secret,
         };
       })
       .catch((error) => {

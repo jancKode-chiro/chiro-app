@@ -9,7 +9,7 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 import { Grid, Button, Box, withTheme } from "@material-ui/core";
-import { stripePayment } from "../../../api/stripe";
+import { createPaymentIntent } from "../../../api/stripe";
 import StripeCardForm from '../stripe/stripe-card-form'
 import StripeIbanForm from "../stripe/stripe-iban-form"
 import FormDialog from "../../../components/common/forms/form-dialog/form-dialog";
@@ -66,6 +66,37 @@ const AddBalanceDialog = withTheme(function (props: any) {
         throw new Error("No case selected in switch statement");
     }
   };
+
+  const clientSecret = "pi_3Kqwp9FY8Bm4hnHx1vyqIMvQ_secret_wJgzN64PUKw3HBxDfudyra9Ne"
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    if (amount <= 0) {
+      setAmountError("Can't be Zero");
+      return;
+    }
+    if (stripeError) {
+      setStripeError("");
+    }
+    setLoading(true);
+
+    if (!stripe || !elements) {
+      return
+    }
+
+    const result = await createPaymentIntent('payment-intent', amount)
+
+    console.log('clientSecret', result)
+    onSuccess();
+
+    const { paymentIntent } = await stripe.confirmCardPayment(
+      clientSecret,
+      {
+        payment_method: "pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+      }
+    )
+    onSuccess(paymentIntent);
+  }
 
   const renderPaymentComponent = () => {
     switch (paymentOption) {
@@ -124,32 +155,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
       headline="Add Balance"
       hideBackdrop={false}
       loading={loading}
-      onFormSubmit={async (event: any) => {
-        event.preventDefault();
-        if (amount <= 0) {
-          setAmountError("Can't be zero");
-          return;
-        }
-        if (stripeError) {
-          setStripeError("");
-        }
-        setLoading(true);
-        const { error, paymentMethod }: any = await stripe?.createPaymentMethod(
-          getStripePaymentInfo()
-        );
-        if (error) {
-          setStripeError(error.message);
-          setLoading(false);
-          return;
-        }
-        if (paymentMethod) {
-          console.log('paymentMethod', paymentMethod)
-          // const confirmPayment = await stripePayment('stripe-payment', paymentMethod.id)
-        }
-        onSuccess();
-
-
-      }}
+      onFormSubmit={handleSubmit}
       content={
         <Box pb={2}>
           <Box mb={2}>
