@@ -15,8 +15,9 @@ import FormDialog from "../../../components/common/forms/form-dialog/form-dialog
 import ColoredButton from "../../../components/common/colored-button/colored-button";
 import HighlightedInformation from "../../../components/common/highlighted-information/highlighted-information";
 import ButtonCircularProgress from "../../../components/common/button/button-circular-progress/button-circular-progress";
+import { createPaymentIntent } from "../../../api/stripe";
 
-const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
+const stripePromise = loadStripe("pk_test_51KTrLGFY8Bm4hnHxcxBtLDUKfoZSkOVYhk11rpPKMszokkTKTbbJnyvePpSjKwisx1i79cyQFwWoUOBnxBFqXdXS008D7YmkGp");
 
 const paymentOptions = ["Credit Card", "SEPA Direct Debit"];
 
@@ -116,6 +117,38 @@ const AddBalanceDialog = withTheme(function (props: any) {
     }
   };
 
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    if (amount <= 0) {
+      setAmountError("Can't be zero");
+      return;
+    }
+    if (stripeError) {
+      setStripeError("");
+    }
+    setLoading(true);
+
+    if (!stripe || !elements) {
+      return
+    }
+
+    const result = await createPaymentIntent('/payment-intent', amount)
+
+
+    console.log('clientSecret', result.data)
+    onSuccess();
+
+    // const { error }: any = await stripe?.confirmCardPayment(
+    //   getStripePaymentInfo()
+    // );
+    // if (error) {
+    //   setStripeError(error.message);
+    //   setLoading(false);
+    //   return;
+    // }
+
+  }
+
   return (
     <FormDialog
       open={open}
@@ -123,26 +156,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
       headline="Add Balance"
       hideBackdrop={false}
       loading={loading}
-      onFormSubmit={async (event: any) => {
-        event.preventDefault();
-        if (amount <= 0) {
-          setAmountError("Can't be zero");
-          return;
-        }
-        if (stripeError) {
-          setStripeError("");
-        }
-        setLoading(true);
-        const { error }: any = await stripe?.createPaymentMethod(
-          getStripePaymentInfo()
-        );
-        if (error) {
-          setStripeError(error.message);
-          setLoading(false);
-          return;
-        }
-        onSuccess();
-      }}
+      onFormSubmit={(event: any) => handleSubmit(event)}
       content={
         <Box pb={2}>
           <Box mb={2}>
