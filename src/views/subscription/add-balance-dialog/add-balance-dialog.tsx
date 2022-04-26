@@ -84,7 +84,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
       return
     }
 
-    const result = await createPaymentIntent('payment-intent', amount)
+    const result = await createPaymentIntent('/payment-intent', amount)
 
     console.log('clientSecret', result)
     onSuccess();

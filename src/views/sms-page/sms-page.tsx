@@ -9,6 +9,7 @@ import {
   Input,
   InputButton,
 } from '../../components/common/forms/custom-input/input';
+import Balance from '../../utilities/balance'
 import { sendSMS } from '../../api/sms-service';
 import { Button, Grid, Form } from 'semantic-ui-react';
 import { toast } from 'react-toastify';
@@ -262,6 +263,7 @@ const SmsPage = () => {
           {recipients.length && smsContent ? <Grid.Row className='sms-inputs'>
 
             <InputButton
+              onSubmit={Balance}
               width='85%'
               type='submit'
               value='SEND'
