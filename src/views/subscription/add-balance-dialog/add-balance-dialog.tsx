@@ -16,7 +16,6 @@ import ColoredButton from "../../../components/common/colored-button/colored-but
 import HighlightedInformation from "../../../components/common/highlighted-information/highlighted-information";
 import ButtonCircularProgress from "../../../components/common/button/button-circular-progress/button-circular-progress";
 import { createPaymentIntent } from "../../../api/stripe";
-import { confirmPayment } from "../../../api/payments";
 
 const stripePromise = loadStripe("pk_test_51KTrLGFY8Bm4hnHxcxBtLDUKfoZSkOVYhk11rpPKMszokkTKTbbJnyvePpSjKwisx1i79cyQFwWoUOBnxBFqXdXS008D7YmkGp");
 
@@ -50,19 +49,23 @@ const AddBalanceDialog = withTheme(function (props: any) {
     switch (paymentOption) {
       case "Credit Card": {
         return {
-          type: "card",
-          card: elements?.getElement(CardElement),
-          billing_details: { name: name },
-          customer_balance: {}
-        };
+          payment_method: {
+            card: elements?.getElement(CardElement)!,
+            billing_details: {
+              name: name,
+            },
+          },
+        }
       }
       case "SEPA Direct Debit": {
         return {
-          type: "sepa_debit",
-          sepa_debit: elements?.getElement(IbanElement),
-          billing_details: { email: email, name: name },
-          customer_balance: {}
-        };
+          payment_method: {
+            card: elements?.getElement(CardElement)!,
+            billing_details: {
+              name: name,
+            },
+          },
+        }
       }
       default:
         throw new Error("No case selected in switch statement");
@@ -121,13 +124,12 @@ const AddBalanceDialog = withTheme(function (props: any) {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    console.log('CardElement', CardElement)
     if (amount <= 0) {
       setAmountError("Can't be zero");
       return;
     }
-    if (stripeError) {
-      setStripeError("");
-    }
+
     setLoading(true);
 
     if (!stripe || !elements) {
@@ -140,31 +142,26 @@ const AddBalanceDialog = withTheme(function (props: any) {
     console.log('clientSecret', result?.data)
     onSuccess();
 
-    const { clientSecret } = await fetch('/confirm-payment', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        paymentMethodType: 'card',
-        currency: 'US',
-      }),
-    }).then(r => r.json())
 
-    const nameInput = document.querySelector('#name');
-    const emailInput = document.querySelector('#email');
-    const { paymentIntent } = await stripe.confirmCardPayment(
-      clientSecret, {
-      payment_method: {
-        card: CardElement,
-        billing_details: {
-          name: nameInput?.value,
-          email: emailInput?.value,
-        }
+
+    if (result?.data) {
+      console.log('elements?.getElement(CardElement)!', elements.getElement(CardElement)!)
+
+      const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(
+        result?.data,
+        getStripePaymentInfo()
+      );
+
+      if (stripeError) {
+        setStripeError("");
+        console.log(stripeError)
+        return;
       }
+      console.log(paymentIntent)
+      return paymentIntent;
+
     }
-    )
-    return paymentIntent;
+
 
     // if (() => 0) {
     //   setAmountConfirm("ConfirmPayment");
