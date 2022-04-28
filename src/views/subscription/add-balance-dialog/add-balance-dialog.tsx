@@ -15,8 +15,9 @@ import FormDialog from "../../../components/common/forms/form-dialog/form-dialog
 import ColoredButton from "../../../components/common/colored-button/colored-button";
 import HighlightedInformation from "../../../components/common/highlighted-information/highlighted-information";
 import ButtonCircularProgress from "../../../components/common/button/button-circular-progress/button-circular-progress";
+import { createPaymentIntent } from "../../../api/stripe";
 
-const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
+const stripePromise = loadStripe("pk_test_51KTrLGFY8Bm4hnHxcxBtLDUKfoZSkOVYhk11rpPKMszokkTKTbbJnyvePpSjKwisx1i79cyQFwWoUOBnxBFqXdXS008D7YmkGp");
 
 const paymentOptions = ["Credit Card", "SEPA Direct Debit"];
 
@@ -133,14 +134,36 @@ const AddBalanceDialog = withTheme(function (props: any) {
           setStripeError("");
         }
         setLoading(true);
-        const { error }: any = await stripe?.createPaymentMethod(
-          getStripePaymentInfo()
+        const result = await createPaymentIntent('/payment-intent', amount)
+        console.log('result', result?.data)
+
+        const { error, paymentIntent }: any = await stripe?.confirmCardPayment(
+          result?.data,
+          {
+            payment_method: {
+              card: elements?.getElement(CardElement)!,
+              billing_details: {
+                name: name,
+              },
+            },
+          }
         );
         if (error) {
           setStripeError(error.message);
           setLoading(false);
           return;
         }
+
+        console.log('paymentIntent', paymentIntent)
+
+        // const { error }: any = await stripe?.createPaymentMethod(
+        //   getStripePaymentInfo()
+        // );
+        // if (error) {
+        //   setStripeError(error.message);
+        //   setLoading(false);
+        //   return;
+        // }
         onSuccess();
       }}
       content={
