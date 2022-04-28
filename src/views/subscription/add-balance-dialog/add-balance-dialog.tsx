@@ -6,7 +6,7 @@ import {
   CardElement,
   IbanElement,
   useStripe,
-  useElements
+  useElements,
 } from "@stripe/react-stripe-js";
 import { Grid, Button, Box, withTheme } from "@material-ui/core";
 import StripeCardForm from '../stripe/stripe-card-form'
@@ -16,6 +16,7 @@ import ColoredButton from "../../../components/common/colored-button/colored-but
 import HighlightedInformation from "../../../components/common/highlighted-information/highlighted-information";
 import ButtonCircularProgress from "../../../components/common/button/button-circular-progress/button-circular-progress";
 import { createPaymentIntent } from "../../../api/stripe";
+import { confirmPayment } from "../../../api/payments";
 
 const stripePromise = loadStripe("pk_test_51KTrLGFY8Bm4hnHxcxBtLDUKfoZSkOVYhk11rpPKMszokkTKTbbJnyvePpSjKwisx1i79cyQFwWoUOBnxBFqXdXS008D7YmkGp");
 
@@ -31,6 +32,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState(0);
   const [amountError, setAmountError] = useState("");
+  const [amountConfirm, setAmountConfirm] = useState("");
   const elements = useElements();
   const stripe = useStripe();
 
@@ -135,19 +137,52 @@ const AddBalanceDialog = withTheme(function (props: any) {
     const result = await createPaymentIntent('/payment-intent', amount)
 
 
-    console.log('clientSecret', result.data)
+    console.log('clientSecret', result?.data)
     onSuccess();
 
+    const { clientSecret } = await fetch('/confirm-payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        paymentMethodType: 'card',
+        currency: 'US',
+      }),
+    }).then(r => r.json())
+
+    const nameInput = document.querySelector('#name');
+    const emailInput = document.querySelector('#email');
+    const { paymentIntent } = await stripe.confirmCardPayment(
+      clientSecret, {
+      payment_method: {
+        card: CardElement,
+        billing_details: {
+          name: nameInput?.value,
+          email: emailInput?.value,
+        }
+      }
+    }
+    )
+    return paymentIntent;
+
+    // if (() => 0) {
+    //   setAmountConfirm("ConfirmPayment");
+    //   const result = await confirmPayment('/confirm-payment')
+
+    //   console.log('confirmPayment', result)
+    // }
     // const { error }: any = await stripe?.confirmCardPayment(
-    //   getStripePaymentInfo()
+    //   getStripePaymentInfo() 
     // );
-    // if (error) {
+    // if (error) { 
     //   setStripeError(error.message);
     //   setLoading(false);
     //   return;
     // }
-
   }
+
+
 
   return (
     <FormDialog

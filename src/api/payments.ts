@@ -48,3 +48,14 @@ export const addBalance = async (uId: string, amount: number) => {
     return error;
   }
 };
+
+export const confirmPayment = async (pmId: string) => {
+  const confirmBalance = await DataStore.query(
+    Payment,
+    (p) => p.userID('eq', pmId),
+    {
+      sort: (s) => s.payment_date(SortDirection.ASCENDING),
+    }
+  );
+  return confirmBalance;
+};
