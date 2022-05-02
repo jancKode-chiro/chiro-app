@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -8,6 +8,7 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
+import { toast, ToastContainer } from "react-toastify";
 import { Grid, Button, Box, withTheme } from "@material-ui/core";
 import StripeCardForm from '../stripe/stripe-card-form'
 import StripeIbanForm from "../stripe/stripe-iban-form"
@@ -22,6 +23,19 @@ const stripePromise = loadStripe("pk_test_51KTrLGFY8Bm4hnHxcxBtLDUKfoZSkOVYhk11r
 const paymentOptions = ["Credit Card", "SEPA Direct Debit"];
 
 const AddBalanceDialog = withTheme(function (props: any) {
+  // let promise = () => {
+  //   const resolvePayment = new Promise((resolve, reject) => {
+  //     setTimeout(resolve, 3000)
+  //   });
+  //   toast.promise(resolvePayment, {
+  //     pending: "Payment is processing",
+  //     success: "Payment is successful!",
+  //     error: "Payment Failed"
+  //   })
+  // }
+  // useEffect(() => {
+  //   // toast.success("Payment Successful!"); 
+  // }, [])
   const { open, theme, onClose, onSuccess } = props;
 
   const [loading, setLoading] = useState(false);
@@ -66,6 +80,8 @@ const AddBalanceDialog = withTheme(function (props: any) {
         throw new Error("No case selected in switch statement");
     }
   };
+
+
 
   const renderPaymentComponent = () => {
     switch (paymentOption) {
@@ -124,7 +140,15 @@ const AddBalanceDialog = withTheme(function (props: any) {
       headline="Add Balance"
       hideBackdrop={false}
       loading={loading}
-      onFormSubmit={async (event: any) => {
+      onFormSubmit={async (event: any, stripeId: any) => {
+
+        const myNewToastId = 'stripe';
+        toast.update(stripeId, {
+          render: "Payment Succesful",
+          type: toast.TYPE.INFO,
+          autoClose: 5000,
+          toastId: myNewToastId
+        });
         event.preventDefault();
         if (amount <= 0) {
           setAmountError("Can't be zero");
@@ -194,6 +218,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
       }
       actions={
         <Fragment>
+
           <Button
             fullWidth
             variant="contained"
@@ -203,6 +228,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
             disabled={loading}
           >
             Pay with Stripe {loading && <ButtonCircularProgress />}
+            {<ToastContainer />}
           </Button>
         </Fragment>
       }
