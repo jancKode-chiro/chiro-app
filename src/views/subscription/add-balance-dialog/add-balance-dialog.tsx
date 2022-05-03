@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, Fragment, useRef } from "react";
 import PropTypes from "prop-types";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -37,6 +37,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
   //   // toast.success("Payment Successful!"); 
   // }, [])
   const { open, theme, onClose, onSuccess } = props;
+  const toastId = useRef<any>(null);
 
   const [loading, setLoading] = useState(false);
   const [paymentOption, setPaymentOption] = useState("Credit Card");
@@ -47,6 +48,14 @@ const AddBalanceDialog = withTheme(function (props: any) {
   const [amountError, setAmountError] = useState("");
   const elements = useElements();
   const stripe = useStripe();
+
+
+
+  const notify = () => toastId.current = toast("Processing your payment...", { type: toast.TYPE.INFO, autoClose: false });
+
+  const update = () => toast.update(toastId.current, {
+    render: `Payment successful. `, type: toast.TYPE.INFO, autoClose: 3000
+  });
 
   const onAmountChange = (amount: number) => {
     if (amount < 0) {
@@ -150,6 +159,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
           toastId: myNewToastId
         });
         event.preventDefault();
+        notify();
         if (amount <= 0) {
           setAmountError("Can't be zero");
           return;
@@ -159,7 +169,6 @@ const AddBalanceDialog = withTheme(function (props: any) {
         }
         setLoading(true);
         const result = await createPaymentIntent('/payment-intent', amount)
-        console.log('result', result?.data)
 
         const { error, paymentIntent }: any = await stripe?.confirmCardPayment(
           result?.data,
@@ -178,16 +187,9 @@ const AddBalanceDialog = withTheme(function (props: any) {
           return;
         }
 
-        console.log('paymentIntent', paymentIntent)
-
-        // const { error }: any = await stripe?.createPaymentMethod(
-        //   getStripePaymentInfo()
-        // );
-        // if (error) {
-        //   setStripeError(error.message);
-        //   setLoading(false);
-        //   return;
-        // }
+        if (paymentIntent) {
+          update()
+        }
         onSuccess();
       }}
       content={

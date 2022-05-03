@@ -15,7 +15,7 @@ import {
   CREATE_ACCOUNT_PATH,
   ABOUT_PATH,
   LETS_TALK_PATH,
-  DASHBOARD_PATH,
+  SEND_SMS_PATH,
   PASSWORDFORGOT_PATH,
 } from '../../../constants/paths';
 import {
@@ -68,7 +68,7 @@ const Login = (props: any): JSX.Element => {
         const session = await getCurrentSession();
 
         await setAuthState(session);
-        history.push(DASHBOARD_PATH);
+        history.push(SEND_SMS_PATH);
         toast.success('Welcome back')
 
       })

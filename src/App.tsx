@@ -10,11 +10,7 @@ import {
   CREATE_ACCOUNT_PATH,
   ABOUT_PATH,
   LETS_TALK_PATH,
-  CARD_PATH,
-  DASHBOARD_PATH,
   LOGIN_PATH,
-  SMS_PATH,
-  WALLET_PATH,
   ACTIVATE_ACCOUNT_PATH,
   CONTACTS_PATH,
   PASSWORDFORGOT_PATH,
@@ -22,7 +18,6 @@ import {
   PROFILEINFO_PATH,
   USERS_PATH,
   SUBSCRIPTION_PATH,
-  DASHBOARD_C_PATH
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
@@ -80,20 +75,11 @@ function App() {
                     path={LOGIN_PATH}
                     component={Login}
                   />
-                  <PrivateRoute
-                    exact
-                    path={DASHBOARD_PATH}
-                    component={DashboardData}
-                  />
-                  <PrivateRoute path={CARD_PATH} component={Card} />
-                  <PrivateRoute path={WALLET_PATH} component={Wallet} />
-                  <PrivateRoute path={SMS_PATH} component={Bulk} />
                   <PrivateRoute path={SEND_SMS_PATH} component={SendSms} />
                   <PrivateRoute path={CONTACTS_PATH} component={ContactData} />
                   <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
                   <PrivateRoute path={USERS_PATH} component={Users} />
                   <PrivateRoute path={SUBSCRIPTION_PATH} component={Subscription} />
-                  <PrivateRoute path={DASHBOARD_C_PATH} component={DashboardC} />
                   <Route path={LOGIN_PATH} component={Login} />
                   <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
                   <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
