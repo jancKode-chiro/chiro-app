@@ -182,71 +182,23 @@ const NavBar = (props: any) => {
 
   const menuItems = [
     {
-      link: "dashboard-C-data",
-      name: "Data Chart",
+      link: "send-sms",
+      name: "Messages",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
-          <DataChart
+          <Message
             className={
-              selectedTab === "Data Chart " ? classes.textPrimary : "text-white"
+              selectedTab === "Messages"
+                ? classes.textPrimary
+                : "text-white"
             }
             fontSize="small"
           />
         ),
-        mobile: <DataChart className="text-white" />,
+        mobile: <Message className="text-white" />,
       },
     },
-    {
-      link: "dashboard",
-      name: "Dashboard",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <DashboardIcon
-            className={
-              selectedTab === "Dashboard" ? classes.textPrimary : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <DashboardIcon className="text-white" />,
-      },
-    },
-    // {
-    //   link: "/c/posts",
-    //   name: "Posts",
-    //   onClick: closeMobileDrawer,
-    //   icon: {
-    //     desktop: (
-    //       <ImageIcon
-    //         className={
-    //           selectedTab === "Posts" ? classes.textPrimary : "text-white"
-    //         }
-    //         fontSize="small"
-    //       />
-    //     ),
-    //     mobile: <ImageIcon className="text-white" />,
-    //   },
-    // },
-    // {
-    //   link: "/c/subscription",
-    //   name: "Subscription",
-    //   onClick: closeMobileDrawer,
-    //   icon: {
-    //     desktop: (
-    //       <AccountBalanceIcon
-    //         className={
-    //           selectedTab === "Subscription"
-    //             ? classes.textPrimary
-    //             : "text-white"
-    //         }
-    //         fontSize="small"
-    //       />
-    //     ),
-    //     mobile: <AccountBalanceIcon className="text-white" />,
-    //   },
-    // },
     {
       link: "users",
       name: "Users",
@@ -280,24 +232,6 @@ const NavBar = (props: any) => {
       },
     },
     {
-      link: "send-sms",
-      name: "Messages",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <Message
-            className={
-              selectedTab === "Messages"
-                ? classes.textPrimary
-                : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <Message className="text-white" />,
-      },
-    },
-    {
       link: "profile-info",
       name: "Profile Information ",
       onClick: closeMobileDrawer,
@@ -311,38 +245,6 @@ const NavBar = (props: any) => {
           />
         ),
         mobile: <HelpOutline className="text-white" />,
-      },
-    },
-    {
-      link: "wallet",
-      name: "Payment Method",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <Payment
-            className={
-              selectedTab === "PaymentMethod" ? classes.textPrimary : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <Payment className="text-white" />,
-      },
-    },
-    {
-      link: "card",
-      name: "Card",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <Card
-            className={
-              selectedTab === "Card" ? classes.textPrimary : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <Card className="text-white" />,
       },
     },
     {
