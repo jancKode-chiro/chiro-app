@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useCallback, useState, useEffect } from "react";
+import { Fragment, useRef, useCallback, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 import {
@@ -27,22 +27,16 @@ import MessagePopperButton from "./message-popper-button/messagepopper-button";
 import Contact from "@material-ui/icons/ContactMailOutlined"
 import Message from "@material-ui/icons/Message";
 
-import DataChart from "@material-ui/icons/DataUsageOutlined"
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import ImageIcon from "@material-ui/icons/Image";
-import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import User from "@material-ui/icons/VerifiedUserOutlined"
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MenuIcon from "@material-ui/icons/Menu";
 import HelpOutline from "@material-ui/icons/HelpOutline";
-import Card from "@material-ui/icons/CardMembershipOutlined";
-import Payment from "@material-ui/icons/Payment";
 import NavigationDrawer from "../../../../components/common/navigation-drawer/navigation-drawer";
 import { useAuth } from "../../../../context/auth-context";
 import { useQuery } from "react-query";
 import { getBalance } from "../../../../api/payments";
-import { isEmpty } from "lodash";
+import { usePayment } from "../../../../context/payment-context";
 
 const styles = (theme: any) => ({
   appBar: {
@@ -151,7 +145,7 @@ const NavBar = (props: any) => {
   const links = useRef<any>([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
-  const [balance, setBalance] = useState<number | null | undefined>(0)
+  const { balance, setCurrentBalance } = usePayment()
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);
@@ -171,14 +165,14 @@ const NavBar = (props: any) => {
 
   const { currentUserId } = useAuth();
 
-  const { data } = useQuery(['balance'], () =>
-    getBalance(currentUserId)
+  const { data } = useQuery(['balance', balance], async () =>
+    await getBalance(currentUserId)
   )
 
-  useEffect(() => {
 
-    if (data) setBalance(data)
-  }, [data])
+  useEffect(() => {
+    if (data) setCurrentBalance(data)
+  }, [])
 
   const menuItems = [
     {
@@ -281,7 +275,7 @@ const NavBar = (props: any) => {
                 display="inline"
                 color="primary"
               >
-                Chiropractic
+                Lead
               </Typography>
               <Typography
                 variant="h4"
@@ -289,7 +283,7 @@ const NavBar = (props: any) => {
                 display="inline"
                 color="secondary"
               >
-                Advertising
+                Flo
               </Typography>
             </Hidden>
           </Box>
@@ -301,7 +295,6 @@ const NavBar = (props: any) => {
           >
             {isWidthUp("sm", width) && (
               <Box mr={3}>
-
                 <Balance
                   balance={balance}
                   openAddBalanceDialog={openAddBalanceDialog}

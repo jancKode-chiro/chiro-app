@@ -44,7 +44,7 @@ export declare class Payment {
   readonly payment_type?: string | null;
   readonly payment_date?: string | null;
   readonly balance?: number | null;
-  readonly userID?: string | null;
+  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Payment, PaymentMetaData>);
@@ -75,8 +75,6 @@ export declare class User {
   readonly email?: string | null;
   readonly phone_number?: string | null;
   readonly user_details?: UserDetails | null;
-  readonly contacts?: (Contacts | null)[] | null;
-  readonly payments?: (Payment | null)[] | null;
   readonly role?: UserRole | keyof typeof UserRole | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;

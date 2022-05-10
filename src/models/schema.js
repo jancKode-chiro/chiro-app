@@ -108,7 +108,7 @@ export const schema = {
                     "name": "userID",
                     "isArray": false,
                     "type": "ID",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "createdAt": {
@@ -150,6 +150,15 @@ export const schema = {
                         "rules": [
                             {
                                 "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "private",
                                 "operations": [
                                     "create",
                                     "update",
@@ -333,34 +342,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "contacts": {
-                    "name": "contacts",
-                    "isArray": true,
-                    "type": {
-                        "model": "Contacts"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "userID"
-                    }
-                },
-                "payments": {
-                    "name": "payments",
-                    "isArray": true,
-                    "type": {
-                        "model": "Payment"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "userID"
-                    }
-                },
                 "role": {
                     "name": "role",
                     "isArray": false,
@@ -450,5 +431,5 @@ export const schema = {
             }
         }
     },
-    "version": "f1bddca36f94e8c0116f34fb709c26f1"
+    "version": "0ea4884bf10debcb6225accd55a1b647"
 };
