@@ -75,7 +75,7 @@ const Login = (props: any): JSX.Element => {
       .catch((err) => {
         toast.error(err.message)
         setLoading(false)
-        reset()
+        reset({ password: '' })
       });
 
   };
@@ -97,6 +97,7 @@ const Login = (props: any): JSX.Element => {
         <span className='signin'>Sign in to get started</span>
         <form className='form' onSubmit={handleSubmit(submitHandler)}>
           <Input
+            id='email'
             marginTop='80px'
             placeholder='Email'
             type='email'
@@ -108,6 +109,7 @@ const Login = (props: any): JSX.Element => {
           />
           <div className='password-input'>
             <PasswordInput
+              id='password'
               type={showPassword ? 'text' : 'password'}
               placeholder='Password'
               {...register('password', {
@@ -127,10 +129,11 @@ const Login = (props: any): JSX.Element => {
 
 
           <div className='button'>
+            {console.log('formState.isValid', formState.isDirty)}
             {loading ?
               <ButtonCircularProgress /> :
               <InputButton
-                disabled={formState.isValid}
+                disabled={!formState.isDirty}
                 type='submit'
                 value={`Login `}
                 className={`text-white ${watchFields[0] && watchFields[1] ? 'bg-green' : 'bg-gray'}`}

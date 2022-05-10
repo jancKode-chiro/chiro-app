@@ -10,6 +10,10 @@
     "additionalAuthTypes": [
       {
         "mode": "AWS_IAM"
+      },
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authchiroadv635cfe3c"
       }
     ],
     "conflictResolution": {
@@ -18,6 +22,6 @@
       }
     },
     "apiName": "chiroadv",
-    "gqlSchemaPath": "/tmp/amplify-b6423460-8f3e-4e36-8383-b30344045bc4/amplify/backend/api/chiroadv/schema.graphql"
+    "gqlSchemaPath": "/tmp/amplify-4dc6d883-ac29-4b76-987d-084f74de52d4/amplify/backend/api/chiroadv/schema.graphql"
   }
 }

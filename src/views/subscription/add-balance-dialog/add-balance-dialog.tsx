@@ -1,10 +1,8 @@
-import React, { useState, Fragment, useRef } from "react";
-import PropTypes from "prop-types";
+import { useState, Fragment, useRef } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
   CardElement,
-  IbanElement,
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
@@ -17,28 +15,18 @@ import ColoredButton from "../../../components/common/colored-button/colored-but
 import HighlightedInformation from "../../../components/common/highlighted-information/highlighted-information";
 import ButtonCircularProgress from "../../../components/common/button/button-circular-progress/button-circular-progress";
 import { createPaymentIntent } from "../../../api/stripe";
+import { useAuth } from "../../../context/auth-context";
+import { addBalance } from '../../../api/payments'
+import { usePayment } from "../../../context/payment-context";
 
 const stripePromise = loadStripe("pk_test_51KTrLGFY8Bm4hnHxcxBtLDUKfoZSkOVYhk11rpPKMszokkTKTbbJnyvePpSjKwisx1i79cyQFwWoUOBnxBFqXdXS008D7YmkGp");
 
 const paymentOptions = ["Credit Card", "SEPA Direct Debit"];
 
 const AddBalanceDialog = withTheme(function (props: any) {
-  // let promise = () => {
-  //   const resolvePayment = new Promise((resolve, reject) => {
-  //     setTimeout(resolve, 3000)
-  //   });
-  //   toast.promise(resolvePayment, {
-  //     pending: "Payment is processing",
-  //     success: "Payment is successful!",
-  //     error: "Payment Failed"
-  //   })
-  // }
-  // useEffect(() => {
-  //   // toast.success("Payment Successful!"); 
-  // }, [])
+
   const { open, theme, onClose, onSuccess } = props;
   const toastId = useRef<any>(null);
-
   const [loading, setLoading] = useState(false);
   const [paymentOption, setPaymentOption] = useState("Credit Card");
   const [stripeError, setStripeError] = useState("");
@@ -48,14 +36,17 @@ const AddBalanceDialog = withTheme(function (props: any) {
   const [amountError, setAmountError] = useState("");
   const elements = useElements();
   const stripe = useStripe();
-
-
+  const { currentUserId } = useAuth();
+  const { setCurrentBalance } = usePayment()
 
   const notify = () => toastId.current = toast("Processing your payment...", { type: toast.TYPE.INFO, autoClose: false });
 
-  const update = () => toast.update(toastId.current, {
-    render: `Payment successful. `, type: toast.TYPE.INFO, autoClose: 3000
+  const update = (message: string) => toast.update(toastId.current, {
+    render: message, type: toast.TYPE.INFO, autoClose: 3000
   });
+
+
+  const balanceUpdated = () => toast("Balance has been updated");
 
   const onAmountChange = (amount: number) => {
     if (amount < 0) {
@@ -66,31 +57,6 @@ const AddBalanceDialog = withTheme(function (props: any) {
     }
     setAmount(amount);
   };
-
-  const getStripePaymentInfo = () => {
-    switch (paymentOption) {
-      case "Credit Card": {
-        return {
-          type: "card",
-          card: elements?.getElement(CardElement),
-          billing_details: { name: name },
-          customer_balance: {}
-        };
-      }
-      case "SEPA Direct Debit": {
-        return {
-          type: "sepa_debit",
-          sepa_debit: elements?.getElement(IbanElement),
-          billing_details: { email: email, name: name },
-          customer_balance: {}
-        };
-      }
-      default:
-        throw new Error("No case selected in switch statement");
-    }
-  };
-
-
 
   const renderPaymentComponent = () => {
     switch (paymentOption) {
@@ -161,6 +127,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
         event.preventDefault();
         notify();
         if (amount <= 0) {
+          update(`Amount can't be zero. `)
           setAmountError("Can't be zero");
           return;
         }
@@ -184,11 +151,15 @@ const AddBalanceDialog = withTheme(function (props: any) {
         if (error) {
           setStripeError(error.message);
           setLoading(false);
+          update('Payment failed, please try again.')
           return;
         }
 
         if (paymentIntent) {
-          update()
+          await addBalance(currentUserId, amount)
+          await update('Payment successful, updating your balance...')
+          const newBalance: any = await balanceUpdated()
+          setCurrentBalance(newBalance)
         }
         onSuccess();
       }}

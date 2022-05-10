@@ -13,12 +13,6 @@
     },
     "categories": {
       "auth": {
-        "chiroadv": {
-          "userPoolId": "us-east-2_3WMttyXUq",
-          "userPoolName": "chiro-adv-users",
-          "webClientId": "4dv1rhbqqp8sm4rj0mjretg1k0",
-          "nativeClientId": "4dv1rhbqqp8sm4rj0mjretg1k0"
-        },
         "chiroadv635cfe3c": {
           "userPoolId": "us-east-2_3WMttyXUq",
           "userPoolName": "chiro-adv-users",
