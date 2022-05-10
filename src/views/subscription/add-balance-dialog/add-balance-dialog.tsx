@@ -156,9 +156,9 @@ const AddBalanceDialog = withTheme(function (props: any) {
         }
 
         if (paymentIntent) {
-          await addBalance(currentUserId, amount)
+          const newBalance: any = await addBalance(currentUserId, amount)
           await update('Payment successful, updating your balance...')
-          const newBalance: any = await balanceUpdated()
+          await balanceUpdated()
           setCurrentBalance(newBalance)
         }
         onSuccess();

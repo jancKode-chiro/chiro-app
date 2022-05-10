@@ -6,6 +6,7 @@ import moment from 'moment';
 export const getBalance = async (uID: string) => {
   const balance = await DataStore.query(Payment, (p) => p.userID('eq', uID), {
     sort: (s) => s.payment_date(SortDirection.DESCENDING),
+    limit: 1,
   });
 
   return balance[0].balance;
