@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { List, Divider, Paper, withStyles } from "@material-ui/core";
 import SubscriptionTable from "../subscription-table/subscription.table";
@@ -15,10 +15,7 @@ function Subscription(props: any) {
     transactions,
     classes,
     openAddBalanceDialog,
-    selectSubscription
   } = props;
-
-  // useEffect(selectSubscription, [selectSubscription]);
 
   return (
     <Paper>

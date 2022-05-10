@@ -32,6 +32,7 @@ import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MenuIcon from "@material-ui/icons/Menu";
 import HelpOutline from "@material-ui/icons/HelpOutline";
+import Payment from "@material-ui/icons/Payment";
 import NavigationDrawer from "../../../../components/common/navigation-drawer/navigation-drawer";
 import { useAuth } from "../../../../context/auth-context";
 import { useQuery } from "react-query";
@@ -248,6 +249,22 @@ const NavBar = (props: any) => {
           />
         ),
         mobile: <Contact className="text-white" />,
+      },
+    },
+    {
+      link: "paymenthistory",
+      name: "Payment History",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <Payment
+            className={
+              selectedTab === "Posts" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <Payment className="text-white" />,
       },
     },
     {

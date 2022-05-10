@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useCallback, useEffect } from "react";
+import React, { Fragment, useState, useCallback } from "react";
 import { styles } from "./zoom-image.styles";
 import { Portal, Backdrop, withStyles } from "@material-ui/core";
 import ScrollbarSize from "@material-ui/core/Tabs/index";

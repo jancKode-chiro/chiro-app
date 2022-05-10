@@ -24,10 +24,6 @@ type InputProps = {
   message: string;
 };
 
-type FormInputs = {
-  selectDate: Date;
-}
-
 const SmsPage = () => {
   const [recipients, setRecipients] = useState<string[]>([]);
   const [currentRecipient, setCurrentRecipient] = useState('');

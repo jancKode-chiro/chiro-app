@@ -2,7 +2,6 @@ import React from "react";
 
 import {
   IconButton,
-  DialogTitle,
   Typography,
   Box,
   withTheme
@@ -11,28 +10,11 @@ import CloseIcon from "@material-ui/icons/Close";
 
 function DialogTitleWithCloseIcon(props: any) {
   const {
-    theme,
-    paddingBottom,
     onClose,
     disabled,
     title,
-    disablePadding
   } = props;
   return (
-    // <DialogTitle
-    //   style={{
-    //     paddingBottom: paddingBottom
-    //       ? paddingBottom && disablePadding
-    //         ? 0
-    //         : paddingBottom
-    //   : theme.spacing(3),
-    // paddingLeft: disablePadding ? 0 : null,
-    // paddingRight: disablePadding ? 0 : null,
-    // paddingTop: disablePadding ? 0 : theme.spacing(2),
-    // width: "100%"
-    //   }}
-    //   disableTypography
-    // >
     <Box display="flex" justifyContent="space-between">
       <Typography variant="h5">{title}</Typography>
       <IconButton

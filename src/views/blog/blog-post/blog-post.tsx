@@ -1,7 +1,6 @@
 import React, { useEffect, Fragment } from "react";
 
 import classNames from "classnames";
-import format from "date-fns/format";
 import { Grid, Typography, Card, Box, withStyles } from "@material-ui/core";
 import BlogCard from "../blog-card/blog-card";
 import ShareButton from "../../../components/common/shared-button/share-button";
@@ -176,7 +175,7 @@ const posts = [
 ];
 
 function BlogPost(props: any) {
-  const { classes, Fragment, title, otherArticles } = props;
+  const { classes, title, } = props;
 
   useEffect(() => {
     document.title = `WaVer - ${title}`;
