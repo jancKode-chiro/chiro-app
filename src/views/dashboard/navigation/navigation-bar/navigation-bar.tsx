@@ -146,6 +146,7 @@ const NavBar = (props: any) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
   const { balance, setCurrentBalance } = usePayment()
+  const { currentUserId } = useAuth();
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);
@@ -163,7 +164,6 @@ const NavBar = (props: any) => {
     setIsSideDrawerOpen(false);
   }, [setIsSideDrawerOpen]);
 
-  const { currentUserId } = useAuth();
 
   const { data } = useQuery(['balance', balance], async () =>
     await getBalance(currentUserId)
@@ -171,8 +171,12 @@ const NavBar = (props: any) => {
 
 
   useEffect(() => {
-    if (data) setCurrentBalance(data)
-  }, [])
+
+    if (data) {
+      setCurrentBalance(data)
+    }
+
+  }, [data])
 
   const menuItems = [
     {

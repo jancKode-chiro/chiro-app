@@ -7,18 +7,18 @@ import React, {
 
 
 type PaymentProps = {
-  balance: number | null | undefined
-  setCurrentBalance: (balance: number | null | undefined) => void;
+  balance: number | null | undefined | string;
+  setCurrentBalance: (balance: number | null | undefined | string) => void;
 
 };
 
 const PaymentContext = createContext({});
 
 const PaymentProvider = (props: any): ReactElement => {
-  const [balance, setBalance] = useState<number | null | undefined>(0)
+  const [balance, setBalance] = useState<number | null | undefined | string>(0)
 
 
-  const setCurrentBalance = (balance: number | null | undefined): void => {
+  const setCurrentBalance = (balance: string | number | null | undefined): void => {
     setBalance(balance!);
   };
 
