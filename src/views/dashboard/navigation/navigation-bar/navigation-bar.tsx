@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useCallback, useState, useEffect } from "react";
+import { Fragment, useRef, useCallback, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 import {
@@ -27,22 +27,16 @@ import MessagePopperButton from "./message-popper-button/messagepopper-button";
 import Contact from "@material-ui/icons/ContactMailOutlined"
 import Message from "@material-ui/icons/Message";
 
-import DataChart from "@material-ui/icons/DataUsageOutlined"
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import ImageIcon from "@material-ui/icons/Image";
-import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import User from "@material-ui/icons/VerifiedUserOutlined"
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MenuIcon from "@material-ui/icons/Menu";
 import HelpOutline from "@material-ui/icons/HelpOutline";
-import Card from "@material-ui/icons/CardMembershipOutlined";
-import Payment from "@material-ui/icons/Payment";
 import NavigationDrawer from "../../../../components/common/navigation-drawer/navigation-drawer";
 import { useAuth } from "../../../../context/auth-context";
 import { useQuery } from "react-query";
 import { getBalance } from "../../../../api/payments";
-import { isEmpty } from "lodash";
+import { usePayment } from "../../../../context/payment-context";
 
 const styles = (theme: any) => ({
   appBar: {
@@ -151,7 +145,7 @@ const NavBar = (props: any) => {
   const links = useRef<any>([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
-  const [balance, setBalance] = useState<number | null | undefined>(0)
+  const { balance, setCurrentBalance } = usePayment()
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);
@@ -171,82 +165,34 @@ const NavBar = (props: any) => {
 
   const { currentUserId } = useAuth();
 
-  const { data } = useQuery(['balance'], () =>
-    getBalance(currentUserId)
+  const { data } = useQuery(['balance', balance], async () =>
+    await getBalance(currentUserId)
   )
 
-  useEffect(() => {
 
-    if (data) setBalance(data)
-  }, [data])
+  useEffect(() => {
+    if (data) setCurrentBalance(data)
+  }, [])
 
   const menuItems = [
     {
-      link: "dashboard-C-data",
-      name: "Data Chart",
+      link: "send-sms",
+      name: "Messages",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
-          <DataChart
+          <Message
             className={
-              selectedTab === "Data Chart " ? classes.textPrimary : "text-white"
+              selectedTab === "Messages"
+                ? classes.textPrimary
+                : "text-white"
             }
             fontSize="small"
           />
         ),
-        mobile: <DataChart className="text-white" />,
+        mobile: <Message className="text-white" />,
       },
     },
-    {
-      link: "dashboard",
-      name: "Dashboard",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <DashboardIcon
-            className={
-              selectedTab === "Dashboard" ? classes.textPrimary : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <DashboardIcon className="text-white" />,
-      },
-    },
-    // {
-    //   link: "/c/posts",
-    //   name: "Posts",
-    //   onClick: closeMobileDrawer,
-    //   icon: {
-    //     desktop: (
-    //       <ImageIcon
-    //         className={
-    //           selectedTab === "Posts" ? classes.textPrimary : "text-white"
-    //         }
-    //         fontSize="small"
-    //       />
-    //     ),
-    //     mobile: <ImageIcon className="text-white" />,
-    //   },
-    // },
-    // {
-    //   link: "/c/subscription",
-    //   name: "Subscription",
-    //   onClick: closeMobileDrawer,
-    //   icon: {
-    //     desktop: (
-    //       <AccountBalanceIcon
-    //         className={
-    //           selectedTab === "Subscription"
-    //             ? classes.textPrimary
-    //             : "text-white"
-    //         }
-    //         fontSize="small"
-    //       />
-    //     ),
-    //     mobile: <AccountBalanceIcon className="text-white" />,
-    //   },
-    // },
     {
       link: "users",
       name: "Users",
@@ -280,24 +226,6 @@ const NavBar = (props: any) => {
       },
     },
     {
-      link: "send-sms",
-      name: "Messages",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <Message
-            className={
-              selectedTab === "Messages"
-                ? classes.textPrimary
-                : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <Message className="text-white" />,
-      },
-    },
-    {
       link: "profile-info",
       name: "Profile Information ",
       onClick: closeMobileDrawer,
@@ -311,38 +239,6 @@ const NavBar = (props: any) => {
           />
         ),
         mobile: <HelpOutline className="text-white" />,
-      },
-    },
-    {
-      link: "wallet",
-      name: "Payment Method",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <Payment
-            className={
-              selectedTab === "PaymentMethod" ? classes.textPrimary : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <Payment className="text-white" />,
-      },
-    },
-    {
-      link: "card",
-      name: "Card",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <Card
-            className={
-              selectedTab === "Card" ? classes.textPrimary : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <Card className="text-white" />,
       },
     },
     {
@@ -379,7 +275,7 @@ const NavBar = (props: any) => {
                 display="inline"
                 color="primary"
               >
-                Chiropractic
+                Lead
               </Typography>
               <Typography
                 variant="h4"
@@ -387,7 +283,7 @@ const NavBar = (props: any) => {
                 display="inline"
                 color="secondary"
               >
-                Advertising
+                Flo
               </Typography>
             </Hidden>
           </Box>
@@ -399,7 +295,6 @@ const NavBar = (props: any) => {
           >
             {isWidthUp("sm", width) && (
               <Box mr={3}>
-
                 <Balance
                   balance={balance}
                   openAddBalanceDialog={openAddBalanceDialog}

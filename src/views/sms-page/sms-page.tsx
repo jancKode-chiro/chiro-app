@@ -57,9 +57,6 @@ const SmsPage = () => {
   const onClickHander = (): void => {
     setRecipients((prevState: string[]) => [...prevState, `+${currentRecipient}`]);
     setCurrentRecipient('')
-    // reset({
-    //   smsContent: 'kjhkjhkjh'  
-    // }) 
   };
 
   const notify = () => loadId.current = toast('Sending message...', { type: toast.TYPE.INFO, autoClose: false });
@@ -194,15 +191,6 @@ const SmsPage = () => {
               control={control}
               render={({ field: { onChange, value } }) => (
                 <Grid.Column width='10'>
-                  {/* <CustomTextArea
-                    rows={3}
-
-
-                    {...register('smsContent', {
-                      onChange: (e: any) => setSmsContent(e.target.value),
-                    })}
-                  /> */}
-
                   <textarea {...register('smsContent', {
                     onChange: (e: any) => setSmsContent(e.target.value),
                   })} />
@@ -216,15 +204,6 @@ const SmsPage = () => {
                 control={control}
                 defaultValue={null}
                 render={({ field }) => (
-                  // <input
-                  //   // onChange={(e) => field.onChange(e)}
-                  //   onSelect={field.value}
-                  //   type="datetime-local"
-                  //   {...register('selectDate', { 
-                  //     onChange: (e: any) => setSelectDate(e.target.value),
-                  //   })}
-                  // />
-
                   <DatePicker
                     onChange={(e) => field.onChange((e), onSelectDateHandler)}
                     selected={field.value}
@@ -238,29 +217,12 @@ const SmsPage = () => {
                 )}
               />
               <br />
-              {/* <InputButton
-                disabled={!selectDate}
-                type="button" 
-                width='25%'
-                value='SUBMIT'
-                onClick={() => onSubmitDateHandler(new Date())}
-              // className={`bg-green text-white ${selectDate.length < 1 ? 'bg-gray' : ''}`}
-              /> */}
               <div className='schedule-reminder'>
                 Choose an available day and time for your scheduled message/s!
               </div>
             </Grid.Column>
-
-
-            {/* <Grid.Column width='10'>
-              <CustomTextArea
-                borderColor='#000000'
-                rows={3} {...register('message')}
-              />
-            </Grid.Column> */}
           </Grid.Row>
           {recipients.length && smsContent ? <Grid.Row className='sms-inputs'>
-
             <InputButton
               width='85%'
               type='submit'
@@ -268,7 +230,6 @@ const SmsPage = () => {
               className={`bg-green text-white ${(!isValid && recipients.length === 0) ? 'bg-gray' : ''
                 }`}
             />
-
           </Grid.Row> : null}
         </Grid>
       </Form>

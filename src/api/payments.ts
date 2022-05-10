@@ -7,14 +7,8 @@ export const getBalance = async (uID: string) => {
   const balance = await DataStore.query(Payment, (p) => p.userID('eq', uID), {
     sort: (s) => s.payment_date(SortDirection.DESCENDING),
   });
-  let totalBalance = 0;
 
-  balance.map((addBalance) => {
-    totalBalance = totalBalance + addBalance.balance!;
-    return totalBalance;
-  });
-
-  return totalBalance;
+  return balance[0].balance;
 };
 
 export const addBalance = async (uId: string, amount: number) => {
@@ -24,26 +18,25 @@ export const addBalance = async (uId: string, amount: number) => {
     (user) => user.userID('eq', uId),
     {
       sort: (s) => s.payment_date(SortDirection.DESCENDING),
+      limit: 1,
     }
   );
-  let currentBalance = 0;
-  originalBalance.map((balance) => {
-    currentBalance = currentBalance + balance.balance!;
-    return currentBalance;
-  });
+  // const sum = originalBalance.reduce(
+  //   (partialSum, a) => partialSum + a.balance!,
+  //   0
+  // );
 
   try {
-    const balanceAdded = await DataStore.save(
+    await DataStore.save(
       new Payment({
         userID: uId,
         amount: amount,
-        balance: currentBalance + amount,
+        balance: originalBalance[0].balance! + amount,
         payment_date: currentDate,
         payment_type: 'stripe',
       })
     );
-
-    return balanceAdded;
+    return originalBalance[0].balance! + amount;
   } catch (error) {
     return error;
   }

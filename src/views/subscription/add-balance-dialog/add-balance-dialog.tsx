@@ -1,13 +1,12 @@
-import React, { useState, Fragment } from "react";
-import PropTypes from "prop-types";
+import { useState, Fragment, useRef } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
   CardElement,
-  IbanElement,
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
+import { toast, ToastContainer } from "react-toastify";
 import { Grid, Button, Box, withTheme } from "@material-ui/core";
 import StripeCardForm from '../stripe/stripe-card-form'
 import StripeIbanForm from "../stripe/stripe-iban-form"
@@ -15,14 +14,19 @@ import FormDialog from "../../../components/common/forms/form-dialog/form-dialog
 import ColoredButton from "../../../components/common/colored-button/colored-button";
 import HighlightedInformation from "../../../components/common/highlighted-information/highlighted-information";
 import ButtonCircularProgress from "../../../components/common/button/button-circular-progress/button-circular-progress";
+import { createPaymentIntent } from "../../../api/stripe";
+import { useAuth } from "../../../context/auth-context";
+import { addBalance } from '../../../api/payments'
+import { usePayment } from "../../../context/payment-context";
 
-const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
+const stripePromise = loadStripe("pk_test_51KTrLGFY8Bm4hnHxcxBtLDUKfoZSkOVYhk11rpPKMszokkTKTbbJnyvePpSjKwisx1i79cyQFwWoUOBnxBFqXdXS008D7YmkGp");
 
 const paymentOptions = ["Credit Card", "SEPA Direct Debit"];
 
 const AddBalanceDialog = withTheme(function (props: any) {
-  const { open, theme, onClose, onSuccess } = props;
 
+  const { open, theme, onClose, onSuccess } = props;
+  const toastId = useRef<any>(null);
   const [loading, setLoading] = useState(false);
   const [paymentOption, setPaymentOption] = useState("Credit Card");
   const [stripeError, setStripeError] = useState("");
@@ -32,6 +36,17 @@ const AddBalanceDialog = withTheme(function (props: any) {
   const [amountError, setAmountError] = useState("");
   const elements = useElements();
   const stripe = useStripe();
+  const { currentUserId } = useAuth();
+  const { setCurrentBalance } = usePayment()
+
+  const notify = () => toastId.current = toast("Processing your payment...", { type: toast.TYPE.INFO, autoClose: false });
+
+  const update = (message: string) => toast.update(toastId.current, {
+    render: message, type: toast.TYPE.INFO, autoClose: 3000
+  });
+
+
+  const balanceUpdated = () => toast("Balance has been updated");
 
   const onAmountChange = (amount: number) => {
     if (amount < 0) {
@@ -41,29 +56,6 @@ const AddBalanceDialog = withTheme(function (props: any) {
       setAmountError("");
     }
     setAmount(amount);
-  };
-
-  const getStripePaymentInfo = () => {
-    switch (paymentOption) {
-      case "Credit Card": {
-        return {
-          type: "card",
-          card: elements?.getElement(CardElement),
-          billing_details: { name: name },
-          customer_balance: {}
-        };
-      }
-      case "SEPA Direct Debit": {
-        return {
-          type: "sepa_debit",
-          sepa_debit: elements?.getElement(IbanElement),
-          billing_details: { email: email, name: name },
-          customer_balance: {}
-        };
-      }
-      default:
-        throw new Error("No case selected in switch statement");
-    }
   };
 
   const renderPaymentComponent = () => {
@@ -123,9 +115,19 @@ const AddBalanceDialog = withTheme(function (props: any) {
       headline="Add Balance"
       hideBackdrop={false}
       loading={loading}
-      onFormSubmit={async (event: any) => {
+      onFormSubmit={async (event: any, stripeId: any) => {
+
+        const myNewToastId = 'stripe';
+        toast.update(stripeId, {
+          render: "Payment Succesful",
+          type: toast.TYPE.INFO,
+          autoClose: 5000,
+          toastId: myNewToastId
+        });
         event.preventDefault();
+        notify();
         if (amount <= 0) {
+          update(`Amount can't be zero. `)
           setAmountError("Can't be zero");
           return;
         }
@@ -133,13 +135,31 @@ const AddBalanceDialog = withTheme(function (props: any) {
           setStripeError("");
         }
         setLoading(true);
-        const { error }: any = await stripe?.createPaymentMethod(
-          getStripePaymentInfo()
+        const result = await createPaymentIntent('/payment-intent', amount)
+
+        const { error, paymentIntent }: any = await stripe?.confirmCardPayment(
+          result?.data,
+          {
+            payment_method: {
+              card: elements?.getElement(CardElement)!,
+              billing_details: {
+                name: name,
+              },
+            },
+          }
         );
         if (error) {
           setStripeError(error.message);
           setLoading(false);
+          update('Payment failed, please try again.')
           return;
+        }
+
+        if (paymentIntent) {
+          await addBalance(currentUserId, amount)
+          await update('Payment successful, updating your balance...')
+          const newBalance: any = await balanceUpdated()
+          setCurrentBalance(newBalance)
         }
         onSuccess();
       }}
@@ -171,6 +191,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
       }
       actions={
         <Fragment>
+
           <Button
             fullWidth
             variant="contained"
@@ -180,6 +201,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
             disabled={loading}
           >
             Pay with Stripe {loading && <ButtonCircularProgress />}
+            {<ToastContainer />}
           </Button>
         </Fragment>
       }

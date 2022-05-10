@@ -10,11 +10,7 @@ import {
   CREATE_ACCOUNT_PATH,
   ABOUT_PATH,
   LETS_TALK_PATH,
-  CARD_PATH,
-  DASHBOARD_PATH,
   LOGIN_PATH,
-  SMS_PATH,
-  WALLET_PATH,
   ACTIVATE_ACCOUNT_PATH,
   CONTACTS_PATH,
   PASSWORDFORGOT_PATH,
@@ -22,7 +18,6 @@ import {
   PROFILEINFO_PATH,
   USERS_PATH,
   SUBSCRIPTION_PATH,
-  DASHBOARD_C_PATH
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
@@ -30,6 +25,7 @@ import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
 
 import theme from './styles/theme';
 import GlobalStyles from './styles/global-styles';
+import { PaymentProvider } from './context/payment-context';
 
 const CreateAccount = lazy(
   () => import('./views/authenthication/createaccount/createaccount')
@@ -40,12 +36,12 @@ const ActivateCode = lazy(
 const AboutUs = lazy(() => import('./views/about/about'));
 const Login = lazy(() => import('./views/authenthication/login/login'));
 const LetsTalk = lazy(() => import('./views/letstalk/letstalk'));
-const Card = lazy(() => import('./views/card/card'));
-const DashboardData = lazy(
-  () => import('./views/dashboard/dashboard-data/dashboard-data')
-);
-const Bulk = lazy(() => import('./views/bulk/bulk'));
-const Wallet = lazy(() => import('./views/wallet/wallet'));
+// const Card = lazy(() => import('./views/card/card'));
+// const DashboardData = lazy(
+//   () => import('./views/dashboard/dashboard-data/dashboard-data')
+// );
+// const Bulk = lazy(() => import('./views/bulk/bulk'));
+// const Wallet = lazy(() => import('./views/wallet/wallet'));
 const ContactData = lazy(() => import('./views/contacts/contacts'));
 const PasswordForgot = lazy(
   () => import('./views/forgot-password/forgot-password')
@@ -55,7 +51,7 @@ const ProfileData = lazy(() => import('./views/profile-info/profile-info'));
 const SendSms = lazy(() => import('./views/sms-page/sms-page'))
 // const HomePage = lazy(() => import('./views/home/main/main'))
 const Subscription = lazy(() => import('./views/dashboard/subscription/subscription/subscription'))
-const DashboardC = lazy(() => import('./views/dashboard/dashboard-C-data/dashboard-C/home-dashboard'))
+// const DashboardC = lazy(() => import('./views/dashboard/dashboard-C-data/dashboard-C/home-dashboard'))
 const BlogPost = lazy(() => import('./views/blog/blog-post/blog-post'))
 
 function App() {
@@ -72,39 +68,32 @@ function App() {
           <CssBaseline />
           <GlobalStyles />
           <AuthProvider>
-            <Router>
-              <Suspense fallback={<Loader />}>
-                <Switch>
-                  <Route
-                    exact
-                    path={LOGIN_PATH}
-                    component={Login}
-                  />
-                  <PrivateRoute
-                    exact
-                    path={DASHBOARD_PATH}
-                    component={DashboardData}
-                  />
-                  <PrivateRoute path={CARD_PATH} component={Card} />
-                  <PrivateRoute path={WALLET_PATH} component={Wallet} />
-                  <PrivateRoute path={SMS_PATH} component={Bulk} />
-                  <PrivateRoute path={SEND_SMS_PATH} component={SendSms} />
-                  <PrivateRoute path={CONTACTS_PATH} component={ContactData} />
-                  <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
-                  <PrivateRoute path={USERS_PATH} component={Users} />
-                  <PrivateRoute path={SUBSCRIPTION_PATH} component={Subscription} />
-                  <PrivateRoute path={DASHBOARD_C_PATH} component={DashboardC} />
-                  <Route path={LOGIN_PATH} component={Login} />
-                  <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
-                  <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
-                  <Route path={ABOUT_PATH} component={AboutUs} />
-                  <Route path={LETS_TALK_PATH} component={LetsTalk} />
-                  <Route path={'/blog'} component={BlogPost} />
-                  <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
-                </Switch>
-              </Suspense>
-              <ToastContainer />
-            </Router>
+            <PaymentProvider>
+              <Router>
+                <Suspense fallback={<Loader />}>
+                  <Switch>
+                    <Route
+                      exact
+                      path={LOGIN_PATH}
+                      component={Login}
+                    />
+                    <PrivateRoute path={SEND_SMS_PATH} component={SendSms} />
+                    <PrivateRoute path={CONTACTS_PATH} component={ContactData} />
+                    <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
+                    <PrivateRoute path={USERS_PATH} component={Users} />
+                    <PrivateRoute path={SUBSCRIPTION_PATH} component={Subscription} />
+                    <Route path={LOGIN_PATH} component={Login} />
+                    <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
+                    <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
+                    <Route path={ABOUT_PATH} component={AboutUs} />
+                    <Route path={LETS_TALK_PATH} component={LetsTalk} />
+                    <Route path={'/blog'} component={BlogPost} />
+                    <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
+                  </Switch>
+                </Suspense>
+                <ToastContainer />
+              </Router>
+            </PaymentProvider>
           </AuthProvider>
         </MuiThemeProvider>
       </QueryClientProvider>
