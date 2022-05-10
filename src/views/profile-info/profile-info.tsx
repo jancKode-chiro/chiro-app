@@ -1,27 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useHistory, withRouter } from 'react-router';
 import { VscArrowLeft } from 'react-icons/vsc'
 
 import './profile-info.styles.scss';
 
-import VerticalSpacer from '../../components/common/spacer/vertical-spacer';
 import profile from '../../assets/images/icons/profile.png';
 import Dashboard from '../dashboard/dashboard';
 import { CustomLabel } from './profle-info.styles';
 import { CustomDiv } from '../../components/common/wrapper/custom-wrapper/custom-wrapper';
-import CustomButton from '../../components/common/button/button';
 import { InputButton } from '../../components/common/forms/custom-input/input';
 
 
 
 const ProfileData = () => {
   const history = useHistory();
-
+  const [currentUser, setCurrentUser] = useState<string[] | any>()
   const onClickHander = (): void => {
     history.goBack()
   }
 
+  useEffect(() => {
+    if (!currentUser) {
+      setCurrentUser(localStorage.getItem('user'))
+    }
+  }, [currentUser])
 
   const renderProfileDetails = (title: string, info: string) => {
     return (
@@ -47,17 +50,17 @@ const ProfileData = () => {
         </div>
         <CustomDiv display='flex' flexDirection='column' paddingLeft='25vw'>
           <div className='info-wrapper'>
-            {renderProfileDetails('Username', 'iamSam')}
-            {renderProfileDetails('Email', 'myawesome@email.com')}
+            {renderProfileDetails('Username', currentUser!.user_name)}
+            {renderProfileDetails('Email', currentUser!.email)}
           </div>
           <div className='info-wrapper'>
-            {renderProfileDetails('First name', 'Sam')}
-            {renderProfileDetails('Last name', 'Smith')}
+            {renderProfileDetails('First name', currentUser.first_name)}
+            {renderProfileDetails('Last name', currentUser.last_name)}
           </div>
 
           <div className='info-wrapper'>
-            {renderProfileDetails('Address', '123 Charles Avenue')}
-            {renderProfileDetails('Phone number', '+1229031239')}
+            {renderProfileDetails('Address', currentUser.address)}
+            {renderProfileDetails('Phone number', currentUser.phone_number)}
           </div>
           <div className='button'>
             <InputButton value='UPDATE PROFILE' className='bg-green text-white' />
