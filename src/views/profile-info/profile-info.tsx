@@ -50,8 +50,8 @@ const ProfileData = () => {
         </div>
         <CustomDiv display='flex' flexDirection='column' paddingLeft='25vw'>
           <div className='info-wrapper'>
-            {renderProfileDetails('Username', currentUser!.user_name)}
-            {renderProfileDetails('Email', currentUser!.email)}
+            {renderProfileDetails('Username', currentUser.user_name)}
+            {renderProfileDetails('Email', currentUser.email)}
           </div>
           <div className='info-wrapper'>
             {renderProfileDetails('First name', currentUser.first_name)}
