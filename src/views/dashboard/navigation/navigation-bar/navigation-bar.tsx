@@ -37,6 +37,9 @@ import { useAuth } from "../../../../context/auth-context";
 import { useQuery } from "react-query";
 import { getBalance } from "../../../../api/payments";
 import { usePayment } from "../../../../context/payment-context";
+import { getUser } from "../../../../api/users";
+import userIcon from '../../../../assets/images/icons/user.png'
+
 
 const styles = (theme: any) => ({
   appBar: {
@@ -146,7 +149,7 @@ const NavBar = (props: any) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
   const { balance, setCurrentBalance } = usePayment()
-  const { currentUserId } = useAuth();
+  const { currentUserId, email, setCurrentUserId } = useAuth();
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);
@@ -165,18 +168,26 @@ const NavBar = (props: any) => {
   }, [setIsSideDrawerOpen]);
 
 
-  const { data } = useQuery(['balance', balance], async () =>
-    await getBalance(currentUserId)
+  const { data } = useQuery(['balance', currentUserId], async () =>
+    await getBalance(currentUserId),
   )
 
 
   useEffect(() => {
 
-    if (data) {
+    if (!currentUserId) {
+      getUser(email).then(userId => {
+        setCurrentUserId(userId!)
+      })
+
+    }
+
+
+    if (currentUserId && data) {
       setCurrentBalance(data)
     }
 
-  }, [data])
+  }, [data, email, currentUserId])
 
   const menuItems = [
     {
@@ -312,7 +323,8 @@ const NavBar = (props: any) => {
             >
               <Avatar
                 alt="profile picture"
-                src={`${process.env.PUBLIC_URL}/images/logged_in/profilePicture.jpg`}
+                // src={`${process.env.PUBLIC_URL}/images/icons/user.jpg`}
+                src={userIcon}
                 className={classNames(classes.accountAvatar)}
               />
               {isWidthUp("sm", width) && (
