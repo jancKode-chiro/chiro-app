@@ -10,6 +10,7 @@ import { withRouter } from 'react-router';
 import { useQuery } from 'react-query';
 import { isEmpty } from 'lodash';
 import { Payment } from '../../models';
+import { addBalance } from '../../api/payments';
 import { InputButton } from '../../components/common/forms/custom-input/input';
 
 import Table from '../../components/table/table';
@@ -17,20 +18,20 @@ import Dashboard from '../dashboard/dashboard';
 
 import './payment-history.styles.scss';
 
-type PaymentProps = {
+type PaymentHistoryProps = {
   children?: ReactNode;
 }
 
-const PaymentHistory = ({ children }: PaymentProps) => {
+const PaymentHistory = ({ children }: PaymentHistoryProps) => {
 
-  const [payment, setPayment] = useState<any>([]);
+  const [paymentHistory, setPaymentHistory] = useState<any>([]);
 
   const { data } = useQuery(['payment'], () =>
-    Payment
+    addBalance
   )
 
   useEffect(() => {
-    if (!isEmpty(data)) setPayment(data);
+    if (!isEmpty(data)) setPaymentHistory(data);
   }, [data]);
 
   const columns = useMemo(
@@ -86,7 +87,7 @@ const PaymentHistory = ({ children }: PaymentProps) => {
           />
         </form>
         <div className='payment-data'>
-          <Table columns={columns} data={payment} />
+          <Table columns={columns} data={paymentHistory} />
         </div>
       </div>
     </Dashboard>

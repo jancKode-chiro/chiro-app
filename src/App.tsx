@@ -90,7 +90,7 @@ function App() {
                   <Route path={LETS_TALK_PATH} component={LetsTalk} />
                   <Route path={'/blog'} component={BlogPost} />
                   <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
-
+                  <PrivateRoute path={PAYMENTHISTORY_PATH} component={PaymentHistory} />
                 </Switch>
               </Suspense>
               <ToastContainer />
