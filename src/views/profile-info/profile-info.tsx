@@ -15,16 +15,16 @@ import { InputButton } from '../../components/common/forms/custom-input/input';
 
 const ProfileData = () => {
   const history = useHistory();
-  const [currentUser, setCurrentUser] = useState<string[] | any>()
+  const [currentUsers, setCurrentUser] = useState<string[] | any>()
   const onClickHander = (): void => {
     history.goBack()
   }
 
   useEffect(() => {
-    if (!currentUser) {
+    if (!currentUsers) {
       setCurrentUser(localStorage.getItem('user'))
     }
-  }, [currentUser])
+  }, [currentUsers])
 
   const renderProfileDetails = (title: string, info: string) => {
     return (
@@ -37,6 +37,16 @@ const ProfileData = () => {
       </CustomDiv>
     )
   }
+
+  const currentUser = {
+    user_name: 'user',
+    email: 'email',
+    first_name: 'first name',
+    last_name: 'last name',
+    address: 'address',
+    phone_number: 'phone number'
+  }
+
   return (
     <Dashboard isNavbar={false}>
 
