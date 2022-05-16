@@ -7,6 +7,7 @@ import './profile-info.styles.scss';
 
 import profile from '../../assets/images/icons/profile.png';
 import Dashboard from '../dashboard/dashboard';
+import Button from '../../components/common/button/button'
 import { CustomLabel } from './profle-info.styles';
 import { CustomDiv } from '../../components/common/wrapper/custom-wrapper/custom-wrapper';
 import { InputButton } from '../../components/common/forms/custom-input/input';
@@ -73,7 +74,8 @@ const ProfileData = () => {
             {renderProfileDetails('Phone number', currentUser.phone_number)}
           </div>
           <div className='button'>
-            <InputButton value='UPDATE PROFILE' className='bg-green text-white' />
+            {/* <InputButton value='UPDATE PROFILE' className='bg-green text-white' /> */}
+            <Button className='bg-green text-white'>Update Profile</Button>
           </div>
         </CustomDiv>
 
