@@ -171,6 +171,7 @@ const NavBar = (props: any) => {
   const { data } = useQuery(['balance', currentUserId], async () => {
 
     if (!currentUserId) {
+
       const user = await getUser(email)
 
       const balance = await getBalance(user)

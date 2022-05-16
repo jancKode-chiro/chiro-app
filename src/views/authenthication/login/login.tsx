@@ -63,7 +63,7 @@ const Login = (props: any): JSX.Element => {
     setLoading(true)
     const login = await loginUser(data.email, data.password)
 
-    if (login) {
+    if (login !== 'Incorrect username or password.') {
       const session = await getCurrentSession();
       await setAuthState(session);
       history.push(SEND_SMS_PATH);
