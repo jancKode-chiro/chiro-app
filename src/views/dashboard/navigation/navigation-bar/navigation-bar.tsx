@@ -168,19 +168,28 @@ const NavBar = (props: any) => {
   }, [setIsSideDrawerOpen]);
 
 
-  const { data } = useQuery(['balance', currentUserId], async () =>
-    await getBalance(currentUserId),
+  const { data } = useQuery(['balance', currentUserId], async () => {
+
+    if (!currentUserId) {
+      const user = await getUser(email)
+
+      const balance = await getBalance(user)
+      setCurrentBalance(balance)
+    }
+  }
+
   )
 
 
   useEffect(() => {
 
-    if (!currentUserId) {
-      getUser(email).then(userId => {
-        setCurrentUserId(userId!)
-      })
+    // if (!!currentUserId) {
+    //   console.log('currentUserId', currentUserId)
+    //   getUser(email).then(userId => {
+    //     setCurrentUserId(userId!)
+    //   })
 
-    }
+    // }
 
 
     if (currentUserId && data) {

@@ -95,7 +95,7 @@ export const createUser = async (
 export const getUser = async (email: string) => {
   try {
     const user = await DataStore.query(User, (u) => u.email('eq', email));
-    console.log('user', user);
+
     return user.length ? user[0].id : null;
   } catch (err: any) {
     console.log('error get user', err);
