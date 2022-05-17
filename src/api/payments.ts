@@ -42,3 +42,10 @@ export const addBalance = async (uId: string, amount: number) => {
     return error;
   }
 };
+
+export const getPayments = async (uId: string) => {
+  const result = await DataStore.query(Payment, (payment) =>
+    payment.userID('eq', uId)
+  );
+  return result;
+};

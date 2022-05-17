@@ -28,6 +28,7 @@ import Contact from "@material-ui/icons/ContactMailOutlined"
 import Message from "@material-ui/icons/Message";
 
 import User from "@material-ui/icons/VerifiedUserOutlined"
+import Payment from "@material-ui/icons/PaymentOutlined";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -248,6 +249,22 @@ const NavBar = (props: any) => {
           />
         ),
         mobile: <Contact className="text-white" />,
+      },
+    },
+    {
+      link: "payment history",
+      name: "Payment History",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <Payment
+            className={
+              selectedTab === "Posts" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <Payment className="text-white" />,
       },
     },
     {
