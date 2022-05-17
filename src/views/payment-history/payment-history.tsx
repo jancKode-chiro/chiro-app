@@ -3,9 +3,10 @@ import React, {
   useEffect,
   useState,
   useMemo,
-
+  useRef
 } from 'react';
 
+import { toast } from "react-toastify";
 import { withRouter } from 'react-router';
 import { useQuery } from 'react-query';
 import { isEmpty } from 'lodash';
@@ -22,6 +23,9 @@ type UsersProps = {
 };
 
 const PaymentHistory = ({ children }: UsersProps) => {
+  const toastId = useRef<any>(null);
+
+  const notify = () => toastId.current = toast("Searching...", { type: toast.TYPE.INFO, autoClose: false });
 
   const [payment, setPayment] = useState<any>([]);
 
@@ -84,6 +88,7 @@ const PaymentHistory = ({ children }: UsersProps) => {
             type='submit'
             className='bg-green text-white'
             width='12rem'
+            onSubmit={notify}
           />
         </form>
         <div className='payment-data'>
