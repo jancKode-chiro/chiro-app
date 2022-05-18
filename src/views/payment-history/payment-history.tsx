@@ -29,7 +29,7 @@ const PaymentHistory = ({ children }: UsersProps) => {
 
   const [payment, setPayment] = useState<any>([]);
 
-  const { data } = useQuery(['payment'], () =>
+  const { data } = useQuery(['payments-history'], () =>
     getPayments
   );
 

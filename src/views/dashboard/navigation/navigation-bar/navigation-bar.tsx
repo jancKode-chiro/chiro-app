@@ -252,7 +252,7 @@ const NavBar = (props: any) => {
       },
     },
     {
-      link: "payment history",
+      link: "payment-history",
       name: "Payment History",
       onClick: closeMobileDrawer,
       icon: {
