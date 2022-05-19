@@ -12,6 +12,7 @@ import { useQuery } from 'react-query';
 import { isEmpty } from 'lodash';
 import { InputButton } from '../../components/common/forms/custom-input/input';
 import { getPayments } from '../../api/payments';
+import { useAuth } from '../../context/auth-context'
 
 import Table from '../../components/table/table';
 import Dashboard from '../dashboard/dashboard';
@@ -28,14 +29,17 @@ const PaymentHistory = ({ children }: UsersProps) => {
   const notify = () => toastId.current = toast("Searching...", { type: toast.TYPE.INFO, autoClose: false });
 
   const [payment, setPayment] = useState<any>([]);
+  const { currentUserId } = useAuth()
 
   const { data } = useQuery(['payments-history'], () =>
-    getPayments
+    getPayments(currentUserId)
   );
 
   useEffect(() => {
+    console.log('payment', payment)
     if (!isEmpty(data)) setPayment(data);
-  }, [data]);
+
+  }, [data, payment]);
 
   const columns = useMemo(
     () => [

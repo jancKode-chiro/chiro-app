@@ -44,8 +44,14 @@ export const addBalance = async (uId: string, amount: number) => {
 };
 
 export const getPayments = async (uId: string) => {
-  const result = await DataStore.query(Payment, (payment) =>
-    payment.userID('eq', uId)
+  console.log('uId', uId);
+  const result = await DataStore.query(
+    Payment,
+    (payment) => payment.userID('eq', uId),
+    {
+      sort: (s) => s.payment_date(SortDirection.DESCENDING),
+    }
   );
+  console.log('result', result);
   return result;
 };

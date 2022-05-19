@@ -84,6 +84,7 @@ function App() {
                     <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
                     <PrivateRoute path={USERS_PATH} component={Users} />
                     <PrivateRoute path={SUBSCRIPTION_PATH} component={Subscription} />
+                    <PrivateRoute path={PAYMENTHISTORY_PATH} component={PaymentHistory} />
                     <Route path={LOGIN_PATH} component={Login} />
                     <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
                     <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
@@ -91,7 +92,6 @@ function App() {
                     <Route path={LETS_TALK_PATH} component={LetsTalk} />
                     <Route path={'/blog'} component={BlogPost} />
                     <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
-                    <PrivateRoute path={PAYMENTHISTORY_PATH} component={PaymentHistory} />
                   </Switch>
                 </Suspense>
                 <ToastContainer />

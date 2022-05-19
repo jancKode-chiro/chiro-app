@@ -174,7 +174,7 @@ const NavBar = (props: any) => {
     if (!currentUserId) {
 
       const user = await getUser(email)
-
+      setCurrentUserId(user)
       const balance = await getBalance(user)
       setCurrentBalance(balance)
     }
