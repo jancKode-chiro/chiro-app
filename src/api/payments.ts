@@ -44,6 +44,7 @@ export const addBalance = async (uId: string, amount: number) => {
 };
 
 export const getPayments = async (uId: string) => {
+  // let setDateHistory = moment().format('MM-DD-YYYYThh:mm:ss.sssZ');
   console.log('uId', uId);
   const result = await DataStore.query(
     Payment,
@@ -52,6 +53,13 @@ export const getPayments = async (uId: string) => {
       sort: (s) => s.payment_date(SortDirection.DESCENDING),
     }
   );
+  // try {
+  //   await {
+  //     payment_date: setDateHistory,
+  //   };
+  // } catch (payment_date) {
+  //   return payment_date;
+  // }
   console.log('result', result);
   return result;
 };

@@ -2,18 +2,16 @@ import React, {
   ReactNode,
   useEffect,
   useState,
-  useMemo,
-  useRef
+  useMemo
 } from 'react';
 
-import { toast } from "react-toastify";
 import { withRouter } from 'react-router';
 import { useQuery } from 'react-query';
 import { isEmpty } from 'lodash';
-import { InputButton } from '../../components/common/forms/custom-input/input';
 import { getPayments } from '../../api/payments';
 import { useAuth } from '../../context/auth-context'
 
+import moment from 'moment';
 import Table from '../../components/table/table';
 import Dashboard from '../dashboard/dashboard';
 
@@ -24,15 +22,13 @@ type UsersProps = {
 };
 
 const PaymentHistory = ({ children }: UsersProps) => {
-  const toastId = useRef<any>(null);
-
-  const notify = () => toastId.current = toast("Searching...", { type: toast.TYPE.INFO, autoClose: false });
-
+  let yourDate = new Date()
   const [payment, setPayment] = useState<any>([]);
   const { currentUserId } = useAuth()
 
   const { data } = useQuery(['payments-history'], () =>
     getPayments(currentUserId)
+
   );
 
   useEffect(() => {
@@ -43,6 +39,20 @@ const PaymentHistory = ({ children }: UsersProps) => {
 
   const columns = useMemo(
     () => [
+      {
+        Header: 'Updated At',
+        accessor: 'updatedAt',
+        Cell: ({
+          cell: {
+            row: { original },
+          },
+        }: any) => (
+          <>
+            {(moment(original.updatedAt).format('DD-MMM-YYYY'))}
+
+          </>
+        ),
+      },
       {
         Header: 'ID',
         accessor: 'id',
@@ -56,10 +66,6 @@ const PaymentHistory = ({ children }: UsersProps) => {
         accessor: 'payment_type',
       },
       {
-        Header: 'Payment Date',
-        accessor: 'payment_date',
-      },
-      {
         Header: 'Balance',
         accessor: 'balance',
       },
@@ -70,11 +76,36 @@ const PaymentHistory = ({ children }: UsersProps) => {
       {
         Header: 'Created At',
         accessor: 'createdAt',
+        Cell: ({
+          cell: {
+            row: { original },
+          },
+        }: any) => (
+          <>
+            {(moment(original.createdAt).format('DD-MMM-YYYY'))}
+
+          </>
+        ),
       },
       {
-        Header: 'Updated At',
-        accessor: 'updatedAt',
+        Header: 'Payment Date',
+        accessor: 'payment_Date',
+        Cell: ({
+          cell: {
+            row: { original },
+          },
+        }: any) => (
+          <>
+            {(moment(original.payment_Date).format('DD-MMM-YYYY'))}
+
+          </>
+        ),
       },
+
+      // {
+      //   Header: 'Updated At',
+      //   accessor: 'updatedAt',
+      // },
 
     ],
     []
@@ -87,13 +118,6 @@ const PaymentHistory = ({ children }: UsersProps) => {
       <div className='payment'>
         <form className='paymentform'>
           <label className='paymenttitle'>Payment History</label>
-          <InputButton
-            value='Search'
-            type='submit'
-            className='bg-green text-white'
-            width='12rem'
-            onSubmit={notify}
-          />
         </form>
         <div className='payment-data'>
           <Table columns={columns} data={payment} />
