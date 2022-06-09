@@ -48,3 +48,17 @@ export const addBalance = async (uId: string, amount: number) => {
     return error;
   }
 };
+
+export const walletBalance = async (uId: string) => {
+  require('dotenv').config(uId);
+
+  const client = require('dotenv')(
+    process.env.ACCOUNT_SID,
+    process.env.AUTH_TOKEN
+  );
+  client.balance.fetch().then((data: { balance: number; currency: any }) => {
+    const balance = Math.round(data.balance * 100) / 100;
+    const currency = data.currency;
+    console.log(`Your account balance is ${balance} ${currency}.`);
+  });
+};

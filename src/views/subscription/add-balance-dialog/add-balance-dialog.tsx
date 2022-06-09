@@ -17,6 +17,7 @@ import ColoredButton from "../../../components/common/colored-button/colored-but
 import HighlightedInformation from "../../../components/common/highlighted-information/highlighted-information";
 import ButtonCircularProgress from "../../../components/common/button/button-circular-progress/button-circular-progress";
 import { createPaymentIntent } from "../../../api/stripe";
+import { walletBalance } from "../../../api/payments";
 
 const stripePromise = loadStripe("pk_test_51KTrLGFY8Bm4hnHxcxBtLDUKfoZSkOVYhk11rpPKMszokkTKTbbJnyvePpSjKwisx1i79cyQFwWoUOBnxBFqXdXS008D7YmkGp");
 
@@ -190,7 +191,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
         if (paymentIntent) {
           update()
         }
-        onSuccess();
+        onSuccess(walletBalance);
       }}
       content={
         <Box pb={2}>
