@@ -18,6 +18,7 @@ import {
   PROFILEINFO_PATH,
   USERS_PATH,
   SUBSCRIPTION_PATH,
+  PAYMENTHISTORY_PATH,
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
@@ -53,6 +54,7 @@ const SendSms = lazy(() => import('./views/sms-page/sms-page'))
 const Subscription = lazy(() => import('./views/dashboard/subscription/subscription/subscription'))
 // const DashboardC = lazy(() => import('./views/dashboard/dashboard-C-data/dashboard-C/home-dashboard'))
 const BlogPost = lazy(() => import('./views/blog/blog-post/blog-post'))
+const PaymentHistory = lazy(() => import('./views/payment-history/payment-history'))
 
 function App() {
   Amplify.configure(awsmobile);
@@ -82,6 +84,7 @@ function App() {
                     <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
                     <PrivateRoute path={USERS_PATH} component={Users} />
                     <PrivateRoute path={SUBSCRIPTION_PATH} component={Subscription} />
+                    <PrivateRoute path={PAYMENTHISTORY_PATH} component={PaymentHistory} />
                     <Route path={LOGIN_PATH} component={Login} />
                     <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
                     <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />

@@ -1,0 +1,21 @@
+@import "../../styles/variables.scss";
+
+.payment {
+  .paymentform {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1.1rem;
+  }
+
+  .paymenttitle {
+    font-size: 2.5em;
+    font-family: $font-family-poppins;
+    font-weight: $font-weight-bold;
+    padding-left: 60px;
+  }
+
+  .payment-data {
+    padding-left: 60px;
+  }
+}
