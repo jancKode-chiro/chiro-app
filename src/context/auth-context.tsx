@@ -34,6 +34,7 @@ const AuthProvider = (props: any): ReactElement => {
   const checkAuthentication = async (setAuthState: Function): Promise<void> => {
     try {
       const session: AuthSession = await getCurrentSession();
+      console.log('session', session)
       await setAuthState(session);
     } catch (error: any) {
       console.log(error.message);

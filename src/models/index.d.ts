@@ -75,6 +75,8 @@ export declare class User {
   readonly email?: string | null;
   readonly phone_number?: string | null;
   readonly user_details?: UserDetails | null;
+  readonly contacts?: (Contacts | null)[] | null;
+  readonly payments?: (Payment | null)[] | null;
   readonly role?: UserRole | keyof typeof UserRole | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;

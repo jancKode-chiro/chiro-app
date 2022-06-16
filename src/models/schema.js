@@ -342,6 +342,34 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "contacts": {
+                    "name": "contacts",
+                    "isArray": true,
+                    "type": {
+                        "model": "Contacts"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "userID"
+                    }
+                },
+                "payments": {
+                    "name": "payments",
+                    "isArray": true,
+                    "type": {
+                        "model": "Payment"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "userID"
+                    }
+                },
                 "role": {
                     "name": "role",
                     "isArray": false,
@@ -431,5 +459,5 @@ export const schema = {
             }
         }
     },
-    "version": "0ea4884bf10debcb6225accd55a1b647"
+    "version": "0d75d92e8ce68ae269cb0eac17e3e9c0"
 };
