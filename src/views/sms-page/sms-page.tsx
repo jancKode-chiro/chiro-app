@@ -18,6 +18,11 @@ import CustomModal from '../../components/modal/modal';
 
 import "react-datepicker/dist/react-datepicker.css"
 import './sms-page.styles.scss';
+import { usePayment } from '../../context/payment-context';
+import { toNumber } from 'lodash';
+import currencyPrettyPrint from '../../components/shared/currencyprettyprint';
+import { updateBalance } from '../../api/payments';
+import { useAuth } from '../../context/auth-context';
 
 type InputProps = {
   recipients: string[];
@@ -36,6 +41,8 @@ const SmsPage = () => {
   const { register, handleSubmit, formState, reset, control, } = useForm({
     mode: "onChange"
   });
+  const { balance, setCurrentBalance } = usePayment()
+  const { currentUserId } = useAuth()
 
   const { isValid } = formState;
   const loadId = useRef(null) as any;
@@ -57,6 +64,7 @@ const SmsPage = () => {
   const onClickHander = (): void => {
     setRecipients((prevState: string[]) => [...prevState, `+${currentRecipient}`]);
     setCurrentRecipient('')
+    reset({ currentRecipient: '' });
   };
 
   const notify = () => loadId.current = toast('Sending message...', { type: toast.TYPE.INFO, autoClose: false });
@@ -75,9 +83,13 @@ const SmsPage = () => {
       smsContent
     );
     if (result?.data?.status === 200) {
+      const toDeduct: number = recipients.length * .08;
+      const updatedBaLance = toNumber(balance) - toDeduct
       update()
       setRecipients([]);
       setCurrentRecipient('');
+      setCurrentBalance(updatedBaLance)
+      await updateBalance(currentUserId, updatedBaLance, toDeduct)
       reset({ message: smsContent, recipients: setRecipients });
     } else {
       updateError()

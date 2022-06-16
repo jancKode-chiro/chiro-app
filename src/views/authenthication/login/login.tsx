@@ -27,7 +27,7 @@ import { StyledLink } from '../../../components/link/link';
 import { useAuth } from '../../../context/auth-context';
 import { getCurrentSession } from '../../../helpers/user-helpers';
 // import useNav from '../../../hooks/use-nav';
-import { getUser } from '../../../api/users';
+import { getUser, loginUser } from '../../../api/users';
 import { InlineSingleErrorMessage } from '../../../components/common/notification/inline-notification/inline-notification';
 import HighlightedInformation from '../../../components/common/highlighted-information/highlighted-information';
 import ButtonCircularProgress from '../../../components/common/button/button-circular-progress/button-circular-progress';
@@ -49,7 +49,7 @@ const Login = (props: any): JSX.Element => {
   } = useForm();
 
   const history = useHistory();
-  const { setAuthState, setInputEmail, setCurrentUserId } =
+  const { setAuthState, setInputEmail, currentUserId } =
     useAuth();
   // const { goTo } = useNav();
   // const backToHome = (): void => history.push(LOGIN_PATH);
@@ -60,29 +60,47 @@ const Login = (props: any): JSX.Element => {
   ): Promise<void> => {
 
     setInputEmail(data.email);
-    setCurrentUserId(await getUser(data.email));
     setLoading(true)
+    const login = await loginUser(data.email, data.password)
 
-    await Auth.signIn(data.email, data.password)
-      .then(async () => {
-        const session = await getCurrentSession();
+    if (login !== 'Incorrect username or password.') {
+      const session = await getCurrentSession();
+      await setAuthState(session);
+      history.push(SEND_SMS_PATH);
+      toast.success('Welcome back')
+    } else {
+      toast.error(login)
+      setLoading(false)
+      reset({ password: '' })
+    }
 
-        await setAuthState(session);
-        history.push(SEND_SMS_PATH);
-        toast.success('Welcome back')
+    // await Auth.signIn(data.email, data.password)
+    //   .then(async () => {
+    //     const session = await getCurrentSession();
 
-      })
-      .catch((err) => {
-        toast.error(err.message)
-        setLoading(false)
-        reset({ password: '' })
-      });
+    //     await setAuthState(session);
+    //    
+    //   
+
+    //   })
+    //   .catch((err) => {
+    //     toast.error(err.message)
+    //     setLoading(false)
+    //     reset({ password: '' })
+    //   });
+
 
   };
 
   const showPasswordHandler = () => {
     setShowPassword(!showPassword)
   }
+
+  useEffect(() => {
+    if (currentUserId) {
+
+    }
+  }, [currentUserId])
 
   return (
     <CardWithImage
@@ -129,7 +147,6 @@ const Login = (props: any): JSX.Element => {
 
 
           <div className='button'>
-            {console.log('formState.isValid', formState.isDirty)}
             {loading ?
               <ButtonCircularProgress /> :
               <InputButton

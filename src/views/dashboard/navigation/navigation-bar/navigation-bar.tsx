@@ -28,6 +28,7 @@ import Contact from "@material-ui/icons/ContactMailOutlined"
 import Message from "@material-ui/icons/Message";
 
 import User from "@material-ui/icons/VerifiedUserOutlined"
+import Payment from "@material-ui/icons/PaymentOutlined";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -37,6 +38,10 @@ import { useAuth } from "../../../../context/auth-context";
 import { useQuery } from "react-query";
 import { getBalance } from "../../../../api/payments";
 import { usePayment } from "../../../../context/payment-context";
+import { getUser } from "../../../../api/users";
+import userIcon from '../../../../assets/images/icons/user.png'
+import { isEmpty } from "lodash";
+
 
 const styles = (theme: any) => ({
   appBar: {
@@ -146,6 +151,7 @@ const NavBar = (props: any) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
   const { balance, setCurrentBalance } = usePayment()
+  const { currentUserId, email, setCurrentUserId } = useAuth();
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);
@@ -163,16 +169,37 @@ const NavBar = (props: any) => {
     setIsSideDrawerOpen(false);
   }, [setIsSideDrawerOpen]);
 
-  const { currentUserId } = useAuth();
 
-  const { data } = useQuery(['balance', balance], async () =>
-    await getBalance(currentUserId)
+  const { data } = useQuery(['balance', currentUserId], async () => {
+
+    if (!currentUserId) {
+
+      const user = await getUser(email)
+      setCurrentUserId(user)
+      const balance = await getBalance(user)
+      setCurrentBalance(balance!)
+    }
+  }
+
   )
 
 
   useEffect(() => {
-    if (data) setCurrentBalance(data)
-  }, [])
+
+    // if (!!currentUserId) {
+    //   console.log('currentUserId', currentUserId)
+    //   getUser(email).then(userId => {
+    //     setCurrentUserId(userId!)
+    //   })
+
+    // }
+
+
+    if (currentUserId && data) {
+      setCurrentBalance(data)
+    }
+
+  }, [data, email, currentUserId, balance])
 
   const menuItems = [
     {
@@ -223,6 +250,22 @@ const NavBar = (props: any) => {
           />
         ),
         mobile: <Contact className="text-white" />,
+      },
+    },
+    {
+      link: "payment-history",
+      name: "Payment History",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <Payment
+            className={
+              selectedTab === "Posts" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <Payment className="text-white" />,
       },
     },
     {
@@ -308,7 +351,8 @@ const NavBar = (props: any) => {
             >
               <Avatar
                 alt="profile picture"
-                src={`${process.env.PUBLIC_URL}/images/logged_in/profilePicture.jpg`}
+                // src={`${process.env.PUBLIC_URL}/images/icons/user.jpg`}
+                src={userIcon}
                 className={classNames(classes.accountAvatar)}
               />
               {isWidthUp("sm", width) && (

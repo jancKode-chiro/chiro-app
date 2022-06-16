@@ -9,7 +9,6 @@ import {
   useGlobalFilter,
 } from 'react-table';
 import './table.styles.scss';
-
 import Spinner from '../spinner/spinner';
 import GlobalFilter from '../common/forms/global-filter/global-filter';
 
