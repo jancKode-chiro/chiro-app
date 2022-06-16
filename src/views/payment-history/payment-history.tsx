@@ -89,14 +89,14 @@ const PaymentHistory = ({ children }: UsersProps) => {
       },
       {
         Header: 'Payment Date',
-        accessor: 'payment_Date',
+        accessor: 'payment_date',
         Cell: ({
           cell: {
             row: { original },
           },
         }: any) => (
           <>
-            {(moment(original.payment_Date).format('DD-MMM-YYYY'))}
+            {(moment(original.payment_date).format('DD-MMM-YYYY'))}
 
           </>
         ),
