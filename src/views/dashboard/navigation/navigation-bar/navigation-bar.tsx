@@ -40,6 +40,7 @@ import { getBalance } from "../../../../api/payments";
 import { usePayment } from "../../../../context/payment-context";
 import { getUser } from "../../../../api/users";
 import userIcon from '../../../../assets/images/icons/user.png'
+import { isEmpty } from "lodash";
 
 
 const styles = (theme: any) => ({
@@ -176,7 +177,7 @@ const NavBar = (props: any) => {
       const user = await getUser(email)
       setCurrentUserId(user)
       const balance = await getBalance(user)
-      setCurrentBalance(balance)
+      setCurrentBalance(balance!)
     }
   }
 
@@ -198,7 +199,7 @@ const NavBar = (props: any) => {
       setCurrentBalance(data)
     }
 
-  }, [data, email, currentUserId])
+  }, [data, email, currentUserId, balance])
 
   const menuItems = [
     {

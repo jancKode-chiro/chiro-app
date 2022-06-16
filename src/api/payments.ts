@@ -63,3 +63,25 @@ export const getPayments = async (uId: string) => {
   console.log('result', result);
   return result;
 };
+
+export const updateBalance = async (
+  uId: string,
+  newBalance: number,
+  totalAmountDeducted: number
+) => {
+  let currentDate = moment().format('YYYY-MM-DDThh:mm:ss.sssZ');
+  try {
+    await DataStore.save(
+      new Payment({
+        userID: uId,
+        amount: totalAmountDeducted,
+        balance: newBalance,
+        payment_date: currentDate,
+        payment_type: 'sms payment deduction',
+      })
+    );
+    return newBalance;
+  } catch (error) {
+    return error;
+  }
+};

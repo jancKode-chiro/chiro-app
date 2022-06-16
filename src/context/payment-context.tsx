@@ -1,27 +1,38 @@
+import { isEmpty, toNumber } from 'lodash';
 import React, {
   ReactElement,
   useState,
   useContext,
-  createContext
+  createContext,
+  useEffect
 } from 'react';
 
 
 type PaymentProps = {
-  balance: number | null | undefined | string;
-  setCurrentBalance: (balance: number | null | undefined | string) => void;
+  balance: number;
+  setCurrentBalance: (balance: number) => void;
 
 };
 
 const PaymentContext = createContext({});
 
 const PaymentProvider = (props: any): ReactElement => {
-  const [balance, setBalance] = useState<number | null | undefined | string>(0)
+  const [balance, setBalance] = useState<number>(0)
 
 
-  const setCurrentBalance = (balance: string | number | null | undefined): void => {
+  const setCurrentBalance = (balance: number): void => {
     setBalance(balance!);
+    localStorage.setItem('balance', balance.toString())
   };
 
+
+  useEffect(() => {
+    console.log('context balance', balance)
+    if (isEmpty(balance)) {
+      const getBalanceFromStorage = localStorage.getItem('balance')
+      setBalance(toNumber(getBalanceFromStorage))
+    }
+  }, [balance])
 
 
   const values: PaymentProps = {
