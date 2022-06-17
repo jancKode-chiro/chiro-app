@@ -64,7 +64,7 @@ const SmsPage = () => {
   const onClickHander = (): void => {
     setRecipients((prevState: string[]) => [...prevState, `+${currentRecipient}`]);
     setCurrentRecipient('')
-    reset({ currentRecipient: '' });
+    // reset({ currentRecipient: '' });
   };
 
   const notify = () => loadId.current = toast('Sending message...', { type: toast.TYPE.INFO, autoClose: false });
