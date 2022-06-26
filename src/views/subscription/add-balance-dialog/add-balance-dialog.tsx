@@ -18,8 +18,10 @@ import { createPaymentIntent } from "../../../api/stripe";
 import { useAuth } from "../../../context/auth-context";
 import { addBalance } from '../../../api/payments'
 import { usePayment } from "../../../context/payment-context";
+import { STRIPE_KEY } from "../../../constants/constants";
 
-const stripePromise = loadStripe("pk_test_51KTrLGFY8Bm4hnHxcxBtLDUKfoZSkOVYhk11rpPKMszokkTKTbbJnyvePpSjKwisx1i79cyQFwWoUOBnxBFqXdXS008D7YmkGp");
+
+const stripePromise = loadStripe(STRIPE_KEY!);
 
 const paymentOptions = ["Credit Card", "SEPA Direct Debit"];
 
