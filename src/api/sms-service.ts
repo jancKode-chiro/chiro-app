@@ -27,7 +27,7 @@ export const sendSMS = async (
   };
   try {
     const result = await axios
-      .post(url, data, config)
+      .post(`https://lead-flo-sms-service-2056.twil.io${url}`, data, config)
       .then((result) => {
         return {
           status: 'OK',
