@@ -2,6 +2,7 @@ import axios from 'axios';
 export const createPaymentIntent = async (url: string, amount: number) => {
   const data = {
     amount: amount,
+    env: process.env.NODE_ENV,
   };
 
   const config = {

@@ -1,4 +1,4 @@
-import { useState, Fragment, useRef } from "react";
+import { useState, Fragment, useRef, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
@@ -59,6 +59,10 @@ const AddBalanceDialog = withTheme(function (props: any) {
     }
     setAmount(amount);
   };
+
+  useEffect(() => {
+    console.log('STRIPE_KEY', STRIPE_KEY)
+  }, [])
 
   const renderPaymentComponent = () => {
     switch (paymentOption) {
@@ -150,6 +154,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
             },
           }
         );
+
         if (error) {
           setStripeError(error.message);
           setLoading(false);
