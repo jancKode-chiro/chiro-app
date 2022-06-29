@@ -171,13 +171,19 @@ const NavBar = (props: any) => {
 
 
   const { data } = useQuery(['balance', currentUserId], async () => {
-
+    console.log('currentUserId', currentUserId)
     if (!currentUserId) {
 
       const user = await getUser(email)
+      console.log('user', user)
       setCurrentUserId(user)
       const balance = await getBalance(user)
-      setCurrentBalance(balance!)
+      if (balance === undefined) {
+        setCurrentBalance(0)
+      }
+      else {
+        setCurrentBalance(balance!)
+      }
     }
   }
 
@@ -405,6 +411,12 @@ const NavBar = (props: any) => {
                     divider={index !== menuItems.length - 1}
                     className={classes.permanentDrawerListItem}
                     onClick={() => {
+                      if (element.name === 'Logout') {
+                        console.log('element.name', element.name)
+                        localStorage.clear();
+                        setCurrentUserId('');
+                        setCurrentBalance(0);
+                      }
                       links.current[index].click();
                     }}
                     aria-label={

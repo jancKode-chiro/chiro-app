@@ -79,6 +79,14 @@ function App() {
                       path={LOGIN_PATH}
                       component={Login}
                     />
+
+                    <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
+                    <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
+                    <Route path={ABOUT_PATH} component={AboutUs} />
+                    <Route path={LETS_TALK_PATH} component={LetsTalk} />
+                    <Route path={'/blog'} component={BlogPost} />
+                    <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
+
                     <PrivateRoute path={SEND_SMS_PATH} component={SendSms} />
                     <PrivateRoute path={CONTACTS_PATH} component={ContactData} />
                     <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
@@ -86,12 +94,6 @@ function App() {
                     <PrivateRoute path={SUBSCRIPTION_PATH} component={Subscription} />
                     <PrivateRoute path={PAYMENTHISTORY_PATH} component={PaymentHistory} />
                     <Route path={LOGIN_PATH} component={Login} />
-                    <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
-                    <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
-                    <Route path={ABOUT_PATH} component={AboutUs} />
-                    <Route path={LETS_TALK_PATH} component={LetsTalk} />
-                    <Route path={'/blog'} component={BlogPost} />
-                    <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
                   </Switch>
                 </Suspense>
                 <ToastContainer />
