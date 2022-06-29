@@ -64,7 +64,7 @@ const SmsPage = () => {
   const onClickHander = (): void => {
     setRecipients((prevState: string[]) => [...prevState, `+${currentRecipient}`]);
     setCurrentRecipient('')
-    reset({ currentRecipient: '' });
+    // reset({ currentRecipient: '' });
   };
 
   const notify = () => loadId.current = toast('Sending message...', { type: toast.TYPE.INFO, autoClose: false });
@@ -176,27 +176,9 @@ const SmsPage = () => {
               </label>
             </Grid.Column>
           </Grid.Row>
-          {recipients.length > 0 ? <Grid.Row className='recipients-list-wrapper'>
-            <Grid.Column width='3' >
-              <span className='recipient-label'>Recipient/s:</span>
-            </Grid.Column>
-            <Grid.Column className='recipients-list' width='12'>
-              <span className='recipient-label'>{recipients ? recipients.join(',') : null}</span>
-              <CustomModal
-                headerText='Clear recipients'
-                contentText='Are you sure you want to clear all the recipients?'
-                buttonTriggerText='Clear recipients?'
-                onOpenCallback={() => setRecipients([])}
-                customComponent={<span className='clear-button'>X</span>}
-                onCloseButtonText='No'
-                onOpenButtonText='Yes'
-              />
-            </Grid.Column>
-          </Grid.Row> : null}
           <Grid.Row className='sms-detail-wrapper'>
             <Grid.Column width='3'>
               <span className='text'>SMS text:</span>
-
             </Grid.Column>
             <Controller
               name='message'
