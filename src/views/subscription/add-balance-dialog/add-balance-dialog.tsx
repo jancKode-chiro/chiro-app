@@ -21,7 +21,7 @@ import { usePayment } from "../../../context/payment-context";
 import { STRIPE_KEY } from "../../../constants/constants";
 
 
-const stripePromise = loadStripe(STRIPE_KEY!);
+const stripePromise = loadStripe('pk_live_51KTrLGFY8Bm4hnHxiSaue1e72YmaaKbnjTKeKfvX9dfWHfCUJ3UyvV40YecyjPWNVyri4dKs71YKW9SppNbsRVKH00wLcQccJ4');
 
 const paymentOptions = ["Credit Card", "SEPA Direct Debit"];
 
