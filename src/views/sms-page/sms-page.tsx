@@ -53,7 +53,7 @@ const SmsPage = () => {
   const onSelectDateHandler = async (data: Date): Promise<void> => {
     setSelectDate(selectDate)
     notifyDate();
-    console.log(data)
+
   }
 
   let handleColor = (time: { getHours: () => number; }) => {
