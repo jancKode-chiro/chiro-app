@@ -29,6 +29,7 @@ export const createPaymentIntent = async (url: string, amount: number) => {
           data: error.message,
         };
       });
+    console.log('result on payment, ', result);
     return result;
   } catch (err) {
     console.log('error on send sms', err);
