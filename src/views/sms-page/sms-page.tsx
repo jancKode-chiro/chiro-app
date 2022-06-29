@@ -20,7 +20,6 @@ import "react-datepicker/dist/react-datepicker.css"
 import './sms-page.styles.scss';
 import { usePayment } from '../../context/payment-context';
 import { toNumber } from 'lodash';
-import currencyPrettyPrint from '../../components/shared/currencyprettyprint';
 import { updateBalance } from '../../api/payments';
 import { useAuth } from '../../context/auth-context';
 
