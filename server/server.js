@@ -1,5 +1,3 @@
-import React from 'react';
-
 const express = require('express');
 const next = require('next');
 
@@ -9,24 +7,23 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 app
+  .listen(PORT, () => console.log(`Server is running in port ${PORT}`))
   .prepare()
   .then(() => {
     const server = express();
-    const showRoutes = require('./routes/routes');
 
-    server.use('*', showRoutes);
-
-    server.get('*', (req: any, res: any) => {
+    server.post('/send-sms', (req, res) => {
+      console.log('Server is Ready')
       return handle(req, res);
     });
 
-    server.listen(PORT, (err: any) => {
+    server.listen(PORT, (err) => {
       if (err) throw err;
       console.log(`> Ready on ${PORT}`);
     });
   })
 
-  .catch((ex: { stack: any }) => {
+  .catch(ex => {
     console.error(ex.stack);
     process.exit(1);
   });
