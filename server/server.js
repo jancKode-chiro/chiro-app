@@ -6,24 +6,22 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-app
-  .listen(PORT, () => console.log(`Server is running in port ${PORT}`))
-  .prepare()
-  .then(() => {
-    const server = express();
+const server = express();
 
-    server.post('/send-sms', (req, res) => {
-      console.log('Server is Ready')
-      return handle(req, res);
-    });
+server.get('/testing', (req, res) => {
+  console.log('Hello')
+  res.send("Testing server")
+  return handle(req, res);
+})
 
-    server.listen(PORT, (err) => {
-      if (err) throw err;
-      console.log(`> Ready on ${PORT}`);
-    });
-  })
+// server.post('/send-message', (req, res) => {
+//   console.log('Server is Ready')
+//   return handle(req, res);
+// });
 
-  .catch(ex => {
-    console.error(ex.stack);
-    process.exit(1);
-  });
+server.listen(PORT, (err) => {
+  if (err) throw err;
+  console.log(`> Ready on ${PORT}`);
+});
+
+// server.listen(3000);

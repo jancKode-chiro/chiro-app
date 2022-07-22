@@ -11,6 +11,7 @@
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "@mui/styles": "^5.2.3",
+    "@next/env": "^12.2.2",
     "@reduxjs/toolkit": "^1.8.0",
     "@stripe/react-stripe-js": "^1.7.0",
     "@stripe/stripe-js": "^1.22.0",
@@ -78,7 +79,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "nodemon server/server.js"
+    "server": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
