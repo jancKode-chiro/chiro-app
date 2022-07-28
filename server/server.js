@@ -1,17 +1,50 @@
 const express = require('express');
+require('dotenv').config();
+const cors = require('cors')
 const next = require('next');
+const bodyParser = require('body-parser');
 
-const PORT = process.env.PORT || 3000;
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+
+console.log(' process.env.TWILIO_ACCOUNT_SID', process.env.TWILIO_AUTH_TOKEN)
+
+const PORT = process.env.PORT || 9000;
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
-const handle = app.getRequestHandler();
 
 const server = express();
+server.use(cors({
+  origin: '*'
+}));
+server.use(bodyParser.json())
+server.use(bodyParser.urlencoded({ extended: false }))
 
-server.get('/testing', (req, res) => {
-  console.log('Hello')
-  res.send("Testing server")
-  return handle(req, res);
+const client = require('twilio')(accountSid, authToken);
+
+server.post('/sms-service', async (req, res) => {
+  const { phoneNumbers, message } = req.body;
+
+  const allMessageRequests = await phoneNumbers.map((to) => {
+    return client.messages
+      .create({
+        from: process.env.TWILIO_PHONE_NUMBER,
+        to,
+        body: message,
+      })
+      .then((msg) => {
+
+        // return { success: true, sid: msg.sid };
+        // Return a success response using the callback function
+        return res.send(msg);
+      })
+      .catch((err) => {
+
+        // return { success: false, error: err.message };
+        return res.send(err);
+      });
+  });
+
+  return allMessageRequests;
 })
 
 // server.post('/send-message', (req, res) => {
@@ -24,4 +57,4 @@ server.listen(PORT, (err) => {
   console.log(`> Ready on ${PORT}`);
 });
 
-// server.listen(3000);
+module.exports = server;
