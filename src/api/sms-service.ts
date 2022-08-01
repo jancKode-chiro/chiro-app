@@ -27,11 +27,7 @@ export const sendSMS = async (
   };
   try {
     const result = await axios
-      .post(
-        `https://lead-flows-server-5kghy53ca-janckode.vercel.app/api${url}`,
-        data,
-        config
-      )
+      .post(`${process.env.REACT_APP_API_URL}${url}`, data, config)
       .then((result) => {
         return {
           status: 'OK',
