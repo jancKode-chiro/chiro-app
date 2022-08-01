@@ -46,6 +46,9 @@ const AddBalanceDialog = withTheme(function (props: any) {
   const update = (message: string) => toast.update(toastId.current, {
     render: message, type: toast.TYPE.INFO, autoClose: 3000
   });
+  const updateError = (message: string) => toast.update(toastId.current, {
+    render: message, type: toast.TYPE.ERROR, autoClose: 3000
+  });
 
 
   const balanceUpdated = () => toast("Balance has been updated");
@@ -141,7 +144,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
           setStripeError("");
         }
         setLoading(true);
-        const result = await createPaymentIntent('/create-payment-intent', amount);
+        const result = await createPaymentIntent('/api/create-payment-intent', amount);
 
         if (result?.status === 'OK') {
           const { error, paymentIntent }: any = await stripe?.confirmCardPayment(
@@ -159,7 +162,7 @@ const AddBalanceDialog = withTheme(function (props: any) {
           if (error) {
             setStripeError(error.message);
             setLoading(false);
-            update('Payment failed, please try again.')
+            updateError('Payment failed, please try again.')
             return;
           }
 

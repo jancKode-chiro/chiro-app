@@ -77,7 +77,7 @@ const SmsPage = () => {
     notify();
     const combineRecipients = recipients.join(',');
     const result = await sendSMS(
-      '/sms',
+      '/api/sms',
       combineRecipients,
       smsContent
     );
