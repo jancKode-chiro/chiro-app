@@ -141,34 +141,42 @@ const AddBalanceDialog = withTheme(function (props: any) {
           setStripeError("");
         }
         setLoading(true);
-        const result = await createPaymentIntent('/payment-intent', amount)
-
-        const { error, paymentIntent }: any = await stripe?.confirmCardPayment(
-          result?.data,
-          {
-            payment_method: {
-              card: elements?.getElement(CardElement)!,
-              billing_details: {
-                name: name,
+        const result = await createPaymentIntent('/create-payment-intent', amount)
+        if (result?.data.clientSecret) {
+          const { error, paymentIntent }: any = await stripe?.confirmCardPayment(
+            result?.data.clientSecret,
+            {
+              payment_method: {
+                card: elements?.getElement(CardElement)!,
+                billing_details: {
+                  name: name,
+                },
               },
-            },
+            }
+          );
+
+          if (error) {
+            setStripeError(error.message);
+            setLoading(false);
+            update('Payment failed, please try again.')
+            return;
           }
-        );
 
-        if (error) {
-          setStripeError(error.message);
+          if (paymentIntent) {
+            const newBalance: any = await addBalance(currentUserId, amount)
+            await update('Payment successful, updating your balance...')
+            await balanceUpdated();
+            setLoading(false);
+            setCurrentBalance(newBalance)
+          }
+
+          onSuccess();
+        } else {
           setLoading(false);
-          update('Payment failed, please try again.')
-          return;
         }
 
-        if (paymentIntent) {
-          const newBalance: any = await addBalance(currentUserId, amount)
-          await update('Payment successful, updating your balance...')
-          await balanceUpdated()
-          setCurrentBalance(newBalance)
-        }
-        onSuccess();
+
+
       }}
       content={
         <Box pb={2}>
