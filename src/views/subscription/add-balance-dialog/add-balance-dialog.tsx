@@ -141,8 +141,9 @@ const AddBalanceDialog = withTheme(function (props: any) {
           setStripeError("");
         }
         setLoading(true);
-        const result = await createPaymentIntent('/create-payment-intent', amount)
-        if (result?.data.clientSecret) {
+        const result = await createPaymentIntent('/create-payment-intent', amount);
+
+        if (result?.status === 'OK') {
           const { error, paymentIntent }: any = await stripe?.confirmCardPayment(
             result?.data.clientSecret,
             {
