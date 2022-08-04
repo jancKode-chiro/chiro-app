@@ -24,8 +24,6 @@ function Balance(props: any) {
 
   return (
     <div className={classes.wrapper}>
-      {console.log('balance', balance)}
-      {console.log('pretter', currencyPrettyPrint(balance))}
       <FormDailog
         open={open}
         onClose={onClose}

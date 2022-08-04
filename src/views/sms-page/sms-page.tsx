@@ -233,7 +233,7 @@ const SmsPage = () => {
               </div>
             </Grid.Column>
           </Grid.Row>
-          {recipients.length && smsContent ? <Grid.Row className='sms-inputs'>
+          {recipients.length && smsContent && Boolean(toNumber(balance) > 0) ? <Grid.Row className='sms-inputs'>
             <InputButton
               width='85%'
               type='submit'
