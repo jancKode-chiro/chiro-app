@@ -31,6 +31,7 @@ import { getUser, loginUser } from '../../../api/users';
 import { InlineSingleErrorMessage } from '../../../components/common/notification/inline-notification/inline-notification';
 import HighlightedInformation from '../../../components/common/highlighted-information/highlighted-information';
 import ButtonCircularProgress from '../../../components/common/button/button-circular-progress/button-circular-progress';
+import { Container } from '@material-ui/core';
 
 type InputProps = {
   email: string;
@@ -103,81 +104,83 @@ const Login = (props: any): JSX.Element => {
   }, [currentUserId])
 
   return (
-    <div className='login'>
-      <span className='signin'>Sign in to get started</span>
-      <form className='form' onSubmit={handleSubmit(submitHandler)}>
-        <Input
-          // width='22rem'
-          id='email'
-          marginTop='80px'
-          placeholder='Email'
-          type='email'
-          {...register('email', { required: 'Email is required' })}
-        />
-        <InlineSingleErrorMessage
-          errors={formState.errors}
-          name='email'
-        />
-        <div className='password-input'>
-          <PasswordInput
+    <Container>
+      <div className='login'>
+        <span className='signin'>Sign in to get started</span>
+        <form className='form' onSubmit={handleSubmit(submitHandler)}>
+          <Input
             // width='22rem'
-            id='password'
-            type={showPassword ? 'text' : 'password'}
-            placeholder='Password'
-            {...register('password', {
-              required: 'Passwrord is required', minLength: {
-                value: 8,
-                message: 'The minimum length is 8'
-              },
-            })}
+            id='email'
+            marginTop='80px'
+            placeholder='Email'
+            type='email'
+            {...register('email', { required: 'Email is required' })}
           />
-          {showPassword ? <FaEyeSlash onClick={showPasswordHandler} className='eye-icon' /> : <FaEye onClick={showPasswordHandler} className='eye-icon' />}
-        </div>
-
-        <InlineSingleErrorMessage
-          errors={formState.errors}
-          name='password'
-        />
-
-
-        <div className='button'>
-          {loading ?
-            <ButtonCircularProgress /> :
-            <InputButton
-              disabled={!formState.isDirty}
-              type='submit'
-              value={`Login `}
-              className={`text-white ${watchFields[0] && watchFields[1] ? 'bg-green' : 'bg-gray'}`}
-            />}
-        </div>
-
-        <HighlightedInformation>
-          Demo account:
-          <br />
-          Email: <b>gynnanne@gmail.com</b>
-          <br />
-          password: <b>Chir_1234.</b>
-        </HighlightedInformation>
-
-      </form>
-      <div className='buttomWrapper'>
-        {verticalSpacer('80px')}
-        <div className='account'>
-          <div>
-            <span>Don't have an Account?</span>
-
-            <StyledLink className='create' to={CREATE_ACCOUNT_PATH}>
-              Create one
-            </StyledLink>
+          <InlineSingleErrorMessage
+            errors={formState.errors}
+            name='email'
+          />
+          <div className='password-input'>
+            <PasswordInput
+              // width='22rem'
+              id='password'
+              type={showPassword ? 'text' : 'password'}
+              placeholder='Password'
+              {...register('password', {
+                required: 'Passwrord is required', minLength: {
+                  value: 8,
+                  message: 'The minimum length is 8'
+                },
+              })}
+            />
+            {showPassword ? <FaEyeSlash onClick={showPasswordHandler} className='eye-icon' /> : <FaEye onClick={showPasswordHandler} className='eye-icon' />}
           </div>
-          <div>
-            <StyledLink className='forgot' to={PASSWORDFORGOT_PATH}>
-              Forgot Password
-            </StyledLink>
+
+          <InlineSingleErrorMessage
+            errors={formState.errors}
+            name='password'
+          />
+
+
+          <div className='button'>
+            {loading ?
+              <ButtonCircularProgress /> :
+              <InputButton
+                disabled={!formState.isDirty}
+                type='submit'
+                value={`Login `}
+                className={`text-white ${watchFields[0] && watchFields[1] ? 'bg-green' : 'bg-gray'}`}
+              />}
+          </div>
+
+          <HighlightedInformation>
+            Demo account:
+            <br />
+            Email: <b>gynnanne@gmail.com</b>
+            <br />
+            password: <b>Chir_1234.</b>
+          </HighlightedInformation>
+
+        </form>
+        <div className='buttomWrapper'>
+          {verticalSpacer('80px')}
+          <div className='account'>
+            <div>
+              <span>Don't have an Account?</span>
+
+              <StyledLink className='create' to={CREATE_ACCOUNT_PATH}>
+                Create one
+              </StyledLink>
+            </div>
+            <div>
+              <StyledLink className='forgot' to={PASSWORDFORGOT_PATH}>
+                Forgot Password
+              </StyledLink>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

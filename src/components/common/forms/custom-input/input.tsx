@@ -152,6 +152,8 @@ const PasswordInputStyle = css`
 
 export const PasswordInput = styled.input<StyledPasswordProps>`
 ${PasswordInputStyle}
+  width: 100%;
+  padding: 1rem;
 `;
 
 export const CustomTextArea = styled(TextArea) <InputProps>`
