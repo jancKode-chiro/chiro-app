@@ -45,12 +45,16 @@
       flex-direction: column;
       width: 60%;
 
-      @include media("<tablet") {
-        width: 85%;
-      }
+      // @include media("<tablet") {
+      //   width: 85%;
+      // }
 
-      @include media("<desktop") {
-        width: 84%;
+      // @include media("<desktop") {
+      //   width: 84%;
+      // }
+
+      @media screen and (max-width: 768px) {
+        width: 100%;
       }
 
       .create-button {

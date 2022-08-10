@@ -24,6 +24,7 @@ const inputStyle = css`
   ${space};
   ${typography}
   ${width}
+  /* width: 85%; */
   height: 52px;
   border-radius: 8px;
   background-color: #ffffff;
@@ -131,19 +132,26 @@ export const InputButton = styled.input<InputProps>`
   }
 `;
 
-export const PasswordInput = styled.input<StyledPasswordProps>`
-  width: 90%;
+const PasswordInputStyle = css`
+    ${width}
+  ${typography}
+  ${space}
+   font-size: 16px;
   border: none;
-  padding-left: .5rem;
   border-radius: 8px;
   color: #aca6a6;
-  font-family: ${TypographyStyles.FontFamilyPoppins};
   background-color: #FFFFFF;
 
   :focus {
     outline: none;
   }
-  
+@media screen and (max-width: 768px) {
+  width: 100%
+}
+`
+
+export const PasswordInput = styled.input<StyledPasswordProps>`
+${PasswordInputStyle}
 `;
 
 export const CustomTextArea = styled(TextArea) <InputProps>`

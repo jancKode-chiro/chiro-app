@@ -103,88 +103,81 @@ const Login = (props: any): JSX.Element => {
   }, [currentUserId])
 
   return (
-    <CardWithImage
-      text='Welcome'
-      footerText1='About us'
-      footerText2='Contact us'
-      footerLink1={ABOUT_PATH}
-      footerLink2={LETS_TALK_PATH}
-      className='welcome'
-    >
-      <div className='login'>
-        <span className='signin'>Sign in to get started</span>
-        <form className='form' onSubmit={handleSubmit(submitHandler)}>
-          <Input
-            id='email'
-            marginTop='80px'
-            placeholder='Email'
-            type='email'
-            {...register('email', { required: 'Email is required' })}
+    <div className='login'>
+      <span className='signin'>Sign in to get started</span>
+      <form className='form' onSubmit={handleSubmit(submitHandler)}>
+        <Input
+          // width='22rem'
+          id='email'
+          marginTop='80px'
+          placeholder='Email'
+          type='email'
+          {...register('email', { required: 'Email is required' })}
+        />
+        <InlineSingleErrorMessage
+          errors={formState.errors}
+          name='email'
+        />
+        <div className='password-input'>
+          <PasswordInput
+            // width='22rem'
+            id='password'
+            type={showPassword ? 'text' : 'password'}
+            placeholder='Password'
+            {...register('password', {
+              required: 'Passwrord is required', minLength: {
+                value: 8,
+                message: 'The minimum length is 8'
+              },
+            })}
           />
-          <InlineSingleErrorMessage
-            errors={formState.errors}
-            name='email'
-          />
-          <div className='password-input'>
-            <PasswordInput
-              id='password'
-              type={showPassword ? 'text' : 'password'}
-              placeholder='Password'
-              {...register('password', {
-                required: 'Passwrord is required', minLength: {
-                  value: 8,
-                  message: 'The minimum length is 8'
-                },
-              })}
-            />
-            {showPassword ? <FaEyeSlash onClick={showPasswordHandler} className='eye-icon' /> : <FaEye onClick={showPasswordHandler} className='eye-icon' />}
+          {showPassword ? <FaEyeSlash onClick={showPasswordHandler} className='eye-icon' /> : <FaEye onClick={showPasswordHandler} className='eye-icon' />}
+        </div>
+
+        <InlineSingleErrorMessage
+          errors={formState.errors}
+          name='password'
+        />
+
+
+        <div className='button'>
+          {loading ?
+            <ButtonCircularProgress /> :
+            <InputButton
+              disabled={!formState.isDirty}
+              type='submit'
+              value={`Login `}
+              className={`text-white ${watchFields[0] && watchFields[1] ? 'bg-green' : 'bg-gray'}`}
+            />}
+        </div>
+
+        <HighlightedInformation>
+          Demo account:
+          <br />
+          Email: <b>gynnanne@gmail.com</b>
+          <br />
+          password: <b>Chir_1234.</b>
+        </HighlightedInformation>
+
+      </form>
+      <div className='buttomWrapper'>
+        {verticalSpacer('80px')}
+        <div className='account'>
+          <div>
+            <span>Don't have an Account?</span>
+
+            <StyledLink className='create' to={CREATE_ACCOUNT_PATH}>
+              Create one
+            </StyledLink>
           </div>
-
-          <InlineSingleErrorMessage
-            errors={formState.errors}
-            name='password'
-          />
-
-
-          <div className='button'>
-            {loading ?
-              <ButtonCircularProgress /> :
-              <InputButton
-                disabled={!formState.isDirty}
-                type='submit'
-                value={`Login `}
-                className={`text-white ${watchFields[0] && watchFields[1] ? 'bg-green' : 'bg-gray'}`}
-              />}
-          </div>
-
-          <HighlightedInformation>
-            Demo account:
-            <br />
-            Email: <b>gynnanne@gmail.com</b>
-            <br />
-            password: <b>Chir_1234.</b>
-          </HighlightedInformation>
-
-        </form>
-        <div className='buttomWrapper'>
-          {verticalSpacer('80px')}
-          <div className='account'>
-            <div>
-              <span>Don't have an Account?</span>
-
-              <StyledLink className='create' to={CREATE_ACCOUNT_PATH}>
-                Create one
-              </StyledLink>
-            </div>
-            <div>
-              <StyledLink className='forgot' to={PASSWORDFORGOT_PATH}>
-                Forgot Password
-              </StyledLink>
-            </div>
+          <div>
+            <StyledLink className='forgot' to={PASSWORDFORGOT_PATH}>
+              Forgot Password
+            </StyledLink>
           </div>
         </div>
       </div>
-    </CardWithImage>
+    </div>
   );
 };
 
