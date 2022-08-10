@@ -13,6 +13,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import MessageIcon from "@material-ui/icons/Message";
+import { BsBellFill } from "react-icons/bs";
 import MessageListItem from "../message-list-item/messagelist-item";
 
 const styles = (theme: any) => ({
@@ -38,7 +39,7 @@ const styles = (theme: any) => ({
 });
 
 function MessagePopperButton(props: any) {
-  const { classes, messages } = props;
+  const { classes, notification } = props;
   const anchorEl = useRef();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -60,7 +61,7 @@ function MessagePopperButton(props: any) {
         color="secondary"
         buttonRef={anchorEl}
       >
-        <MessageIcon />
+        <BsBellFill />
       </IconButton>
       <Popover
         disableScrollLock
@@ -79,23 +80,23 @@ function MessagePopperButton(props: any) {
       >
         <AppBar position="static" color="inherit" className={classes.noShadow}>
           <Box pt={1} pl={2} pb={1} pr={1}>
-            <Typography variant="subtitle1">Messages</Typography>
+            <Typography variant="subtitle1">Notifications</Typography>
           </Box>
           <Divider className={classes.divider} />
         </AppBar>
         <List dense className={classes.tabContainer}>
-          {messages?.length <= 0 ? (
+          {notification?.length <= 0 ? (
             <ListItem>
               <ListItemText>
-                You haven&apos;t received any messages yet.
+                You haven&apos;t received any notification yet.
               </ListItemText>
             </ListItem>
           ) : (
-            messages?.map((element: any, index: number) => (
+            notification?.map((element: any, index: number) => (
               <MessageListItem
                 key={index}
                 message={element}
-                divider={index !== messages?.length - 1}
+                divider={index !== notification?.length - 1}
               />
             ))
           )}

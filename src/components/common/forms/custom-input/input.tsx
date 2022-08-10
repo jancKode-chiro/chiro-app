@@ -24,6 +24,7 @@ const inputStyle = css`
   ${space};
   ${typography}
   ${width}
+  /* width: 85%; */
   height: 52px;
   border-radius: 8px;
   background-color: #ffffff;
@@ -32,6 +33,11 @@ const inputStyle = css`
   padding-left: 1rem;
   font-size: 16px;
   color: #aca6a6;
+   input[type=number]::-webkit-inner-spin-button, 
+   input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
   
 @media screen and (max-width: 768px) {
   width: 100%
@@ -39,7 +45,10 @@ const inputStyle = css`
  
   input {
     border: none;
+    
   }
+
+  
 
   &:focus {
     border: 1px solid
@@ -50,13 +59,14 @@ const inputStyle = css`
 
 export const Input = styled.input<InputProps>`
   ${inputStyle};
+
 `;
 
 export const InputButton = styled.input<InputProps>`
   ${width}
   display: flex;
   justify-content: center;
-  min-height: 53px;
+  min-height: 47px;
   border-radius: 8px;
   /* width: 240px; */
   border: 1px solid ${UIColors.primaryGreen};
@@ -66,6 +76,7 @@ export const InputButton = styled.input<InputProps>`
   background-color: transparent;
   cursor: pointer;
   text-align: center;
+  width: 191px;
   &.button:disabled {
     opacity: 0.3;
   }
@@ -131,19 +142,28 @@ export const InputButton = styled.input<InputProps>`
   }
 `;
 
-export const PasswordInput = styled.input<StyledPasswordProps>`
-  width: 90%;
+const PasswordInputStyle = css`
+    ${width}
+  ${typography}
+  ${space}
+   font-size: 16px;
   border: none;
-  padding-left: .5rem;
   border-radius: 8px;
   color: #aca6a6;
-  font-family: ${TypographyStyles.FontFamilyPoppins};
   background-color: #FFFFFF;
 
   :focus {
     outline: none;
   }
-  
+@media screen and (max-width: 768px) {
+  width: 100%
+}
+`
+
+export const PasswordInput = styled.input<StyledPasswordProps>`
+${PasswordInputStyle}
+  width: 100%;
+  padding: 1rem;
 `;
 
 export const CustomTextArea = styled(TextArea) <InputProps>`

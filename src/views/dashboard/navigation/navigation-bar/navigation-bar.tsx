@@ -22,7 +22,7 @@ import {
 
 import SideDrawer from "../side-drawer/sidedrawer";
 import Balance from "./balance/balance";
-import MessagePopperButton from "./message-popper-button/messagepopper-button";
+import NotificationPopperButton from "./message-popper-button/notificationpopper-button";
 
 import Contact from "@material-ui/icons/ContactMailOutlined"
 import Message from "@material-ui/icons/Message";
@@ -350,7 +350,7 @@ const NavBar = (props: any) => {
                 />
               </Box>
             )}
-            <MessagePopperButton messages={messages} />
+            <NotificationPopperButton messages={messages} />
             <ListItem
               disableGutters
               className={classNames(classes.iconListItem, classes.smBordered)}
@@ -371,14 +371,6 @@ const NavBar = (props: any) => {
               )}
             </ListItem>
           </Box>
-          <IconButton
-            onClick={openDrawer}
-            color="primary"
-            aria-label="Open Sidedrawer"
-          >
-            <SupervisorAccountIcon />
-          </IconButton>
-          <SideDrawer open={isSideDrawerOpen} onClose={closeDrawer} />
         </Toolbar>
       </AppBar>
       <Hidden xsDown>
