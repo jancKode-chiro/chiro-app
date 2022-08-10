@@ -75,22 +75,6 @@ const Login = (props: any): JSX.Element => {
       reset({ password: '' })
     }
 
-    // await Auth.signIn(data.email, data.password)
-    //   .then(async () => {
-    //     const session = await getCurrentSession();
-
-    //     await setAuthState(session);
-    //    
-    //   
-
-    //   })
-    //   .catch((err) => {
-    //     toast.error(err.message)
-    //     setLoading(false)
-    //     reset({ password: '' })
-    //   });
-
-
   };
 
   const showPasswordHandler = () => {
@@ -153,17 +137,16 @@ const Login = (props: any): JSX.Element => {
               />}
           </div>
 
-          <HighlightedInformation>
+          {process.env.NODE_ENV === 'development' ? <HighlightedInformation>
             Demo account:
             <br />
             Email: <b>gynnanne@gmail.com</b>
             <br />
             password: <b>Chir_1234.</b>
-          </HighlightedInformation>
+          </HighlightedInformation> : null}
 
         </form>
         <div className='buttomWrapper'>
-          {verticalSpacer('80px')}
           <div className='account'>
             <div>
               <span>Don't have an Account?</span>
