@@ -10,7 +10,7 @@ import {
   InputButton,
 } from '../../components/common/forms/custom-input/input';
 import { sendSMS } from '../../api/sms-service';
-import { Button, Grid, Form } from 'semantic-ui-react';
+import { Button, Grid, Form, Container } from 'semantic-ui-react';
 import { toast } from 'react-toastify';
 
 import DatePicker from 'react-datepicker'
@@ -128,23 +128,30 @@ const SmsPage = () => {
       <Form className='sms-page' onSubmit={handleSubmit(sumbitHanlder)}>
         <Grid columns='equal' relaxed stackable>
           <Grid.Row className='grid-row'>
-            <Grid.Column width='3'>
+            <Grid.Column width='2'>
               <span className='text'>Select Group:</span>
             </Grid.Column>
-            <Grid.Column width='9' >
+            <Grid.Column width='8' >
               <CustomSelect />
             </Grid.Column>
-            <Grid.Column width='3' >
-              <Button>Search</Button>
+            <Grid.Column width='3'>
+              <label className="upload-contacts">
+                UPLOAD CONTACTS
+                <input type="file" onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  readExcelHandler(e.target.files)
+                }} />
+
+              </label>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row className='grid-row'>
-            <Grid.Column width='3'>
+            <Grid.Column width='2'>
               <span className='text'>Add Recipient/s:</span>
             </Grid.Column>
-            <Grid.Column width='4'>
+            <Grid.Column width='8'>
               <Input
                 type='number'
+                inputMode='numeric'
                 className='input-number'
                 borderColor='#000000'
                 width='12rem'
@@ -165,15 +172,7 @@ const SmsPage = () => {
                 onClick={() => onClickHander()}
                 className={`bg-green text-white ${currentRecipient.length < 1 ? 'bg-gray' : ''}`} />
             </Grid.Column>
-            <Grid.Column width='4'>
-              <label className="upload-contacts">
-                UPLOAD CONTACTS
-                <input type="file" onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  readExcelHandler(e.target.files)
-                }} />
 
-              </label>
-            </Grid.Column>
           </Grid.Row>
           {recipients.length > 0 ? <Grid.Row className='recipients-list-wrapper'>
             <Grid.Column width='3' >
@@ -192,24 +191,11 @@ const SmsPage = () => {
               />
             </Grid.Column>
           </Grid.Row> : null}
-          <Grid.Row className='sms-detail-wrapper'>
-            <Grid.Column width='3'>
-              <span className='text'>SMS text:</span>
-
+          <Grid.Row>
+            <Grid.Column width={2}>
+              <span className='text'>Choose a schedule:</span>
             </Grid.Column>
-            <Controller
-              name='message'
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <Grid.Column width='10'>
-                  <textarea {...register('smsContent', {
-                    onChange: (e: any) => setSmsContent(e.target.value),
-                  })} />
-                </Grid.Column>
-              )}
-
-            />
-            <Grid.Column>
+            <Grid.Column width={8}>
               <Controller
                 name=''
                 control={control}
@@ -233,6 +219,26 @@ const SmsPage = () => {
               </div>
             </Grid.Column>
           </Grid.Row>
+
+          <Grid.Row className='sms-detail-wrapper'>
+            <Grid.Column width='2'>
+              <span className='text'>SMS text:</span>
+
+            </Grid.Column>
+            <Controller
+              name='message'
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Grid.Column width='8'>
+                  <textarea {...register('smsContent', {
+                    onChange: (e: any) => setSmsContent(e.target.value),
+                  })} />
+                </Grid.Column>
+              )}
+
+            />
+
+          </Grid.Row>
           {recipients.length && smsContent && Boolean(toNumber(balance) > 0) ? <Grid.Row className='sms-inputs'>
             <InputButton
               width='85%'
@@ -244,6 +250,7 @@ const SmsPage = () => {
           </Grid.Row> : null}
         </Grid>
       </Form>
+
     </Dashboard >
   );
 };

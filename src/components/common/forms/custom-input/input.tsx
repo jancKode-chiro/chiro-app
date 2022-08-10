@@ -33,6 +33,11 @@ const inputStyle = css`
   padding-left: 1rem;
   font-size: 16px;
   color: #aca6a6;
+   input[type=number]::-webkit-inner-spin-button, 
+   input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
   
 @media screen and (max-width: 768px) {
   width: 100%
@@ -40,7 +45,10 @@ const inputStyle = css`
  
   input {
     border: none;
+    
   }
+
+  
 
   &:focus {
     border: 1px solid
@@ -51,13 +59,14 @@ const inputStyle = css`
 
 export const Input = styled.input<InputProps>`
   ${inputStyle};
+
 `;
 
 export const InputButton = styled.input<InputProps>`
   ${width}
   display: flex;
   justify-content: center;
-  min-height: 53px;
+  min-height: 47px;
   border-radius: 8px;
   /* width: 240px; */
   border: 1px solid ${UIColors.primaryGreen};
@@ -67,6 +76,7 @@ export const InputButton = styled.input<InputProps>`
   background-color: transparent;
   cursor: pointer;
   text-align: center;
+  width: 191px;
   &.button:disabled {
     opacity: 0.3;
   }
