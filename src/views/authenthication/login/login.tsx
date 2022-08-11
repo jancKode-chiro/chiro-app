@@ -125,6 +125,11 @@ const Login = (props: any): JSX.Element => {
             name='password'
           />
 
+          <div className='forgot-password'>
+            <StyledLink className='forgot' to={PASSWORDFORGOT_PATH}>
+              Forgot Password
+            </StyledLink>
+          </div>
 
           <div className='button'>
             {loading ?
@@ -153,11 +158,6 @@ const Login = (props: any): JSX.Element => {
 
               <StyledLink className='create' to={CREATE_ACCOUNT_PATH}>
                 Create one
-              </StyledLink>
-            </div>
-            <div>
-              <StyledLink className='forgot' to={PASSWORDFORGOT_PATH}>
-                Forgot Password
               </StyledLink>
             </div>
           </div>

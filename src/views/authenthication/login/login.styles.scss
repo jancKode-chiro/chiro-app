@@ -48,6 +48,35 @@
         }
       }
     }
+    .forgot-password {
+      display: flex;
+      width: 100%;
+
+      font-family: $font-family-poppins;
+      font-size: 1.4em;
+      color: #aca6a6;
+      font-style: normal;
+      font-weight: normal;
+      padding-left: 1em;
+      padding-bottom: 2.25em;
+      padding-top: 30px;
+      justify-content: flex-end;
+      padding-right: 90px;
+
+      .forgot {
+        height: 1.0625em;
+        font-family: $font-poppins;
+        font-style: normal;
+        font-weight: normal;
+        color: #2dcc5a;
+      }
+      @include media("<tablet") {
+        padding-right: 0;
+        .forgot {
+          margin-right: 0;
+        }
+      }
+    }
   }
 
   .button {
@@ -67,12 +96,13 @@
       color: #aca6a6;
       font-style: normal;
       font-weight: normal;
-      padding-left: 1em;
+      padding-left: 90px;
       padding-bottom: 2.25em;
       padding-top: 30px;
 
       @include media("<tablet") {
         flex-direction: column;
+        padding-left: 0;
       }
     }
 

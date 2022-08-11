@@ -131,10 +131,10 @@ const SmsPage = () => {
             <Grid.Column width='2'>
               <span className='text'>Select Group:</span>
             </Grid.Column>
-            <Grid.Column width='8' >
+            <Grid.Column width='8' mobile={4} >
               <CustomSelect />
             </Grid.Column>
-            <Grid.Column width='3'>
+            <Grid.Column width='3' mobile={4}>
               <label className="upload-contacts">
                 UPLOAD CONTACTS
                 <input type="file" onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -144,8 +144,8 @@ const SmsPage = () => {
               </label>
             </Grid.Column>
           </Grid.Row>
-          <Grid.Row className='grid-row'>
-            <Grid.Column width='2'>
+          <Grid.Row className='grid-row' >
+            <Grid.Column width={2}>
               <span className='text'>Add Recipient/s:</span>
             </Grid.Column>
             <Grid.Column width='8'>
@@ -175,10 +175,10 @@ const SmsPage = () => {
 
           </Grid.Row>
           {recipients.length > 0 ? <Grid.Row className='recipients-list-wrapper'>
-            <Grid.Column width='3' >
+            <Grid.Column width={2} >
               <span className='recipient-label'>Recipient/s:</span>
             </Grid.Column>
-            <Grid.Column className='recipients-list' width='12'>
+            <Grid.Column className='recipients-list' width={8}>
               <span className='recipient-label'>{recipients ? recipients.join(',') : null}</span>
               <CustomModal
                 headerText='Clear recipients'
@@ -195,7 +195,7 @@ const SmsPage = () => {
             <Grid.Column width={2}>
               <span className='text'>Choose a schedule:</span>
             </Grid.Column>
-            <Grid.Column width={8}>
+            <Grid.Column width={2}>
               <Controller
                 name=''
                 control={control}
@@ -215,21 +215,20 @@ const SmsPage = () => {
               />
               <br />
               <div className='schedule-reminder'>
-                Choose an available day and time for your scheduled message/s!
+                Choose an available day and time for your scheduled message/s
               </div>
             </Grid.Column>
           </Grid.Row>
 
-          <Grid.Row className='sms-detail-wrapper'>
-            <Grid.Column width='2'>
+          <Grid.Row className='sms-detail-wrapper' >
+            <Grid.Column width={2} >
               <span className='text'>SMS text:</span>
-
             </Grid.Column>
             <Controller
               name='message'
               control={control}
               render={({ field: { onChange, value } }) => (
-                <Grid.Column width='8'>
+                <Grid.Column width={8} mobile={8}>
                   <textarea {...register('smsContent', {
                     onChange: (e: any) => setSmsContent(e.target.value),
                   })} />
