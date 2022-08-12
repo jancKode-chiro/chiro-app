@@ -324,7 +324,7 @@ const NavBar = (props: any) => {
                 display="inline"
                 color="secondary"
               >
-                Flo
+                Flows
               </Typography>
             </Hidden>
           </Box>
