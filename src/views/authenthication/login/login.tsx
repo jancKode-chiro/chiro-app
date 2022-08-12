@@ -27,7 +27,7 @@ import { StyledLink } from '../../../components/link/link';
 import { useAuth } from '../../../context/auth-context';
 import { getCurrentSession } from '../../../helpers/user-helpers';
 // import useNav from '../../../hooks/use-nav';
-import { getUser, loginUser } from '../../../api/users';
+import { loginUser } from '../../../api/users';
 import { InlineSingleErrorMessage } from '../../../components/common/notification/inline-notification/inline-notification';
 import HighlightedInformation from '../../../components/common/highlighted-information/highlighted-information';
 import ButtonCircularProgress from '../../../components/common/button/button-circular-progress/button-circular-progress';
@@ -59,8 +59,9 @@ const Login = (props: any): JSX.Element => {
   const submitHandler: SubmitHandler<InputProps> = async (
     data
   ): Promise<void> => {
-
+    localStorage.setItem('email', data.email)
     setInputEmail(data.email);
+
     setLoading(true)
     const login = await loginUser(data.email, data.password)
 

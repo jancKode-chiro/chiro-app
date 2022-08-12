@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useHistory, withRouter } from 'react-router';
 import { VscArrowLeft } from 'react-icons/vsc'
 
 import './profile-info.styles.scss';
 
-import VerticalSpacer from '../../components/common/spacer/vertical-spacer';
 import profile from '../../assets/images/icons/profile.png';
 import Dashboard from '../dashboard/dashboard';
 import { CustomLabel } from './profle-info.styles';
 import { CustomDiv } from '../../components/common/wrapper/custom-wrapper/custom-wrapper';
-import CustomButton from '../../components/common/button/button';
 import { InputButton } from '../../components/common/forms/custom-input/input';
+import { getUser } from '../../api/users';
+import { useAuth } from '../../context/auth-context';
+
 
 
 
 const ProfileData = () => {
   const history = useHistory();
+  const { currentUserId, email } = useAuth()
+  const [user, setUser] = useState<any>([])
 
   const onClickHander = (): void => {
     history.goBack()
@@ -34,9 +37,16 @@ const ProfileData = () => {
       </CustomDiv>
     )
   }
+
+  useEffect(() => {
+    const getEmailFromStorage = localStorage.getItem('email')!
+    getUser(getEmailFromStorage, 'getCurrentUser').then((result) => (setUser(result)));
+
+
+  }, [currentUserId, email])
+
   return (
     <Dashboard isNavbar={false}>
-
       <div className='profiledata'>
         <VscArrowLeft className='arrow-icon' onClick={onClickHander} />
         <title className='profile-a'>Profile</title>
@@ -47,17 +57,17 @@ const ProfileData = () => {
         </div>
         <CustomDiv display='flex' flexDirection='column' paddingLeft='25vw'>
           <div className='info-wrapper'>
-            {renderProfileDetails('Username', 'iamSam')}
-            {renderProfileDetails('Email', 'myawesome@email.com')}
+            {renderProfileDetails('Username', user?.email)}
+            {renderProfileDetails('Email', user?.email)}
           </div>
           <div className='info-wrapper'>
-            {renderProfileDetails('First name', 'Sam')}
-            {renderProfileDetails('Last name', 'Smith')}
+            {renderProfileDetails('First name', user?.first_name)}
+            {renderProfileDetails('Last name', user?.last_name)}
           </div>
 
           <div className='info-wrapper'>
-            {renderProfileDetails('Address', '123 Charles Avenue')}
-            {renderProfileDetails('Phone number', '+1229031239')}
+            {renderProfileDetails('Address', user?.user_details?.address)}
+            {renderProfileDetails('Phone number', user?.phone_number)}
           </div>
           <div className='button'>
             <InputButton value='UPDATE PROFILE' className='bg-green text-white' />

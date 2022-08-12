@@ -26,6 +26,7 @@ const GlobalFilter = ({ filter, setFilter }: GlobalFilterProps) => {
         width='20rem'
         placeholder='Search'
         marginBottom='1.2rem'
+        value={value}
         {...register('search', {
           onChange: (e: ChangeEvent<HTMLInputElement>) => {
             onChangeHandler(e.target.value);

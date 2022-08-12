@@ -10,7 +10,7 @@ import {
   InputButton,
 } from '../../components/common/forms/custom-input/input';
 import { sendSMS } from '../../api/sms-service';
-import { Button, Grid, Form, Container } from 'semantic-ui-react';
+import { Grid, Form } from 'semantic-ui-react';
 import { toast } from 'react-toastify';
 
 import DatePicker from 'react-datepicker'
@@ -27,10 +27,6 @@ type InputProps = {
   recipients: string[];
   message: string;
 };
-
-type FormInputs = {
-  selectDate: Date;
-}
 
 const SmsPage = () => {
   const [recipients, setRecipients] = useState<string[]>([]);
