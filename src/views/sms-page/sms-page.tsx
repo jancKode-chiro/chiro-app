@@ -130,7 +130,7 @@ const SmsPage = () => {
             <Grid.Column width='8' mobile={4} >
               <CustomSelect />
             </Grid.Column>
-            <Grid.Column width='3' mobile={4}>
+            <Grid.Column width='3' mobile={4} tablet={6}>
               <label className="upload-contacts">
                 UPLOAD CONTACTS
                 <input type="file" onChange={(e: ChangeEvent<HTMLInputElement>) => {
