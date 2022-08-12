@@ -55,7 +55,7 @@ const ProfileData = () => {
         </div>
         <div>
         </div>
-        <CustomDiv display='flex' flexDirection='column' paddingLeft='25vw'>
+        <CustomDiv display='flex' flexDirection='column' textAlign={'center'} >
           <div className='info-wrapper'>
             {renderProfileDetails('Username', user?.email)}
             {renderProfileDetails('Email', user?.email)}
