@@ -191,7 +191,7 @@ const SmsPage = () => {
             <Grid.Column width={2}>
               <span className='text'>Choose a schedule:</span>
             </Grid.Column>
-            <Grid.Column width={2}>
+            <Grid.Column width={2} tablet={8}>
               <Controller
                 name=''
                 control={control}
