@@ -123,7 +123,7 @@ const SmsPage = () => {
     <Dashboard isNavbar={true}>
       <Form className='sms-page' onSubmit={handleSubmit(sumbitHanlder)}>
         <Grid columns='equal' relaxed stackable>
-          {process.env.NODE_ENV === 'development' ? <Grid.Row className='grid-row'>
+          <Grid.Row className='grid-row'>
             <Grid.Column width='2'>
               <span className='text'>Select Group:</span>
             </Grid.Column>
@@ -139,7 +139,7 @@ const SmsPage = () => {
 
               </label>
             </Grid.Column>
-          </Grid.Row> : null}
+          </Grid.Row>
           <Grid.Row className='grid-row' >
             <Grid.Column width={2}>
               <span className='text'>Add Recipient/s:</span>
@@ -187,7 +187,7 @@ const SmsPage = () => {
               />
             </Grid.Column>
           </Grid.Row> : null}
-          {process.env.NODE_ENV === 'development' ? <Grid.Row>
+          <Grid.Row>
             <Grid.Column width={2}>
               <span className='text'>Choose a schedule:</span>
             </Grid.Column>
@@ -206,6 +206,7 @@ const SmsPage = () => {
                     isClearable
                     timeClassName={handleColor}
                     withPortal
+                    disabled
                   />
                 )}
               />
@@ -214,7 +215,7 @@ const SmsPage = () => {
                 Choose an available day and time for your scheduled message/s
               </div>
             </Grid.Column>
-          </Grid.Row> : null}
+          </Grid.Row>
 
           <Grid.Row className='sms-detail-wrapper' >
             <Grid.Column width={2} >

@@ -56,6 +56,7 @@ const CustomSelect = () => {
       isMulti
       options={Options}
       styles={customStyles}
+      isDisabled
     />
   )
 }
