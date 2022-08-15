@@ -27,10 +27,11 @@ import { StyledLink } from '../../../components/link/link';
 import { useAuth } from '../../../context/auth-context';
 import { getCurrentSession } from '../../../helpers/user-helpers';
 // import useNav from '../../../hooks/use-nav';
-import { getUser, loginUser } from '../../../api/users';
+import { loginUser } from '../../../api/users';
 import { InlineSingleErrorMessage } from '../../../components/common/notification/inline-notification/inline-notification';
 import HighlightedInformation from '../../../components/common/highlighted-information/highlighted-information';
 import ButtonCircularProgress from '../../../components/common/button/button-circular-progress/button-circular-progress';
+import { Container } from '@material-ui/core';
 
 type InputProps = {
   email: string;
@@ -58,8 +59,9 @@ const Login = (props: any): JSX.Element => {
   const submitHandler: SubmitHandler<InputProps> = async (
     data
   ): Promise<void> => {
-
+    localStorage.setItem('email', data.email)
     setInputEmail(data.email);
+
     setLoading(true)
     const login = await loginUser(data.email, data.password)
 
@@ -74,22 +76,6 @@ const Login = (props: any): JSX.Element => {
       reset({ password: '' })
     }
 
-    // await Auth.signIn(data.email, data.password)
-    //   .then(async () => {
-    //     const session = await getCurrentSession();
-
-    //     await setAuthState(session);
-    //    
-    //   
-
-    //   })
-    //   .catch((err) => {
-    //     toast.error(err.message)
-    //     setLoading(false)
-    //     reset({ password: '' })
-    //   });
-
-
   };
 
   const showPasswordHandler = () => {
@@ -103,18 +89,12 @@ const Login = (props: any): JSX.Element => {
   }, [currentUserId])
 
   return (
-    <CardWithImage
-      text='Welcome'
-      footerText1='About us'
-      footerText2='Contact us'
-      footerLink1={ABOUT_PATH}
-      footerLink2={LETS_TALK_PATH}
-      className='welcome'
-    >
+    <Container>
       <div className='login'>
         <span className='signin'>Sign in to get started</span>
         <form className='form' onSubmit={handleSubmit(submitHandler)}>
           <Input
+            // width='22rem'
             id='email'
             marginTop='80px'
             placeholder='Email'
@@ -127,6 +107,7 @@ const Login = (props: any): JSX.Element => {
           />
           <div className='password-input'>
             <PasswordInput
+              // width='22rem'
               id='password'
               type={showPassword ? 'text' : 'password'}
               placeholder='Password'
@@ -145,6 +126,11 @@ const Login = (props: any): JSX.Element => {
             name='password'
           />
 
+          <div className='forgot-password'>
+            <StyledLink className='forgot' to={PASSWORDFORGOT_PATH}>
+              Forgot Password
+            </StyledLink>
+          </div>
 
           <div className='button'>
             {loading ?
@@ -157,17 +143,16 @@ const Login = (props: any): JSX.Element => {
               />}
           </div>
 
-          <HighlightedInformation>
+          {process.env.NODE_ENV === 'development' ? <HighlightedInformation>
             Demo account:
             <br />
             Email: <b>gynnanne@gmail.com</b>
             <br />
             password: <b>Chir_1234.</b>
-          </HighlightedInformation>
+          </HighlightedInformation> : null}
 
         </form>
         <div className='buttomWrapper'>
-          {verticalSpacer('80px')}
           <div className='account'>
             <div>
               <span>Don't have an Account?</span>
@@ -176,15 +161,10 @@ const Login = (props: any): JSX.Element => {
                 Create one
               </StyledLink>
             </div>
-            <div>
-              <StyledLink className='forgot' to={PASSWORDFORGOT_PATH}>
-                Forgot Password
-              </StyledLink>
-            </div>
           </div>
         </div>
       </div>
-    </CardWithImage>
+    </Container>
   );
 };
 

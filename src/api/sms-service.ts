@@ -27,7 +27,7 @@ export const sendSMS = async (
   };
   try {
     const result = await axios
-      .post(url, data, config)
+      .post(`${process.env.REACT_APP_API_URL}${url}`, data, config)
       .then((result) => {
         return {
           status: 'OK',

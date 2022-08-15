@@ -34,7 +34,6 @@ const AuthProvider = (props: any): ReactElement => {
   const checkAuthentication = async (setAuthState: Function): Promise<void> => {
     try {
       const session: AuthSession = await getCurrentSession();
-      console.log('session', session)
       await setAuthState(session);
     } catch (error: any) {
       console.log(error.message);
@@ -43,7 +42,7 @@ const AuthProvider = (props: any): ReactElement => {
   };
 
   const setInputEmail = (email: string): void => {
-    setEmail(email!);
+    setEmail(email);
   };
 
   const setCurrentUserId = (userId: string): void => {
@@ -57,8 +56,9 @@ const AuthProvider = (props: any): ReactElement => {
     const auth = checkAuthentication;
     auth(setAuthState);
     setCurrentUserId(localStorage.getItem('userId')!);
+    setEmail(localStorage.getItem('email')!);
 
-  }, []);
+  }, [email, currentUserId]);
 
   const values: UseAuth = {
     authState,

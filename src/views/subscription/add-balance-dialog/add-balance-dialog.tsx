@@ -46,6 +46,9 @@ const AddBalanceDialog = withTheme(function (props: any) {
   const update = (message: string) => toast.update(toastId.current, {
     render: message, type: toast.TYPE.INFO, autoClose: 3000
   });
+  const updateError = (message: string) => toast.update(toastId.current, {
+    render: message, type: toast.TYPE.ERROR, autoClose: 3000
+  });
 
 
   const balanceUpdated = () => toast("Balance has been updated");
@@ -141,34 +144,43 @@ const AddBalanceDialog = withTheme(function (props: any) {
           setStripeError("");
         }
         setLoading(true);
-        const result = await createPaymentIntent('/payment-intent', amount)
+        const result = await createPaymentIntent('/api/create-payment-intent', amount);
 
-        const { error, paymentIntent }: any = await stripe?.confirmCardPayment(
-          result?.data,
-          {
-            payment_method: {
-              card: elements?.getElement(CardElement)!,
-              billing_details: {
-                name: name,
+        if (result?.status === 'OK') {
+          const { error, paymentIntent }: any = await stripe?.confirmCardPayment(
+            result?.data.clientSecret,
+            {
+              payment_method: {
+                card: elements?.getElement(CardElement)!,
+                billing_details: {
+                  name: name,
+                },
               },
-            },
+            }
+          );
+
+          if (error) {
+            setStripeError(error.message);
+            setLoading(false);
+            updateError('Payment failed, please try again.')
+            return;
           }
-        );
 
-        if (error) {
-          setStripeError(error.message);
+          if (paymentIntent) {
+            const newBalance: any = await addBalance(currentUserId, amount)
+            await update('Payment successful, updating your balance...')
+            await balanceUpdated();
+            setLoading(false);
+            setCurrentBalance(newBalance)
+          }
+
+          onSuccess();
+        } else {
           setLoading(false);
-          update('Payment failed, please try again.')
-          return;
         }
 
-        if (paymentIntent) {
-          const newBalance: any = await addBalance(currentUserId, amount)
-          await update('Payment successful, updating your balance...')
-          await balanceUpdated()
-          setCurrentBalance(newBalance)
-        }
-        onSuccess();
+
+
       }}
       content={
         <Box pb={2}>

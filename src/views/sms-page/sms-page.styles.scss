@@ -1,4 +1,5 @@
 @import "../../styles//variables.scss";
+@import "../../styles/lib/include-media.scss";
 
 .sms-page {
   // display: flex;
@@ -6,24 +7,18 @@
   // justify-content: center;
   // flex-direction: column;
   // align-items: flex-end;
+  padding-left: 80px;
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
   .grid-row {
     align-items: center !important;
-    text-align: end;
   }
-  .input-number {
-    /* Chrome, Safari, Edge, Opera */
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
 
-    /* Firefox */
-    input[type="number"] {
-      -moz-appearance: textfield;
-    }
-  }
   .add-recipient-wrapper {
     // display: flex;
     // align-items: center;
@@ -40,8 +35,7 @@
     overflow: hidden;
     word-break: break-word;
     align-items: center;
-    text-align: end;
-    align-items: center !important;
+    padding-left: 30px;
     .recipient-label {
       font-family: $font-family-poppins;
       font-size: 1.3em;
@@ -75,8 +69,6 @@
     align-items: center;
     justify-content: center;
     font-family: $font-family-poppins;
-    font-size: 1.3em;
-    text-align: end;
     padding-bottom: 3.8rem;
     align-items: center !important;
   }
@@ -109,7 +101,6 @@
 
   .upload-contacts {
     align-self: center;
-    margin-left: 2rem;
     border: 1px solid;
     height: 52px;
     font-size: 16px;
@@ -123,6 +114,10 @@
       display: none;
     }
     cursor: pointer;
+
+    @include media("<tablet") {
+      width: 100%;
+    }
   }
 
   .text {
@@ -133,5 +128,9 @@
   .button-a {
     font-size: 12px;
     padding-left: 46px;
+  }
+
+  @include media("<tablet") {
+    padding-left: 0;
   }
 }

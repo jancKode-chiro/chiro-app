@@ -123,10 +123,10 @@ const CreateAccount = () => {
                   <div>
                     <div className='password-input'>
                       <PasswordInput
-                        placeholder='Password (minimum of 8, alphanumeric and symbols)'
+                        placeholder='Password '
                         type={showPassword ? 'text' : 'password'}
                         width='25vw'
-                        {...register('password', { required: 'Password is required' })}
+                        {...register('password', { required: 'Password must minimum of 8, alphanumeric' })}
                       />
                       {showPassword ? <FaEyeSlash onClick={showPasswordHandler} className='eye-icon' />
                         : <FaEye onClick={showPasswordHandler} className='eye-icon' />}

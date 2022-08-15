@@ -4,7 +4,6 @@ import { Auth } from 'aws-amplify';
 
 import moment from 'moment';
 import { toast } from 'react-toastify';
-import { getCurrentSession } from '../helpers/user-helpers';
 
 let systemError: string = '';
 
@@ -92,11 +91,11 @@ export const createUser = async (
   }
 };
 
-export const getUser = async (email: string) => {
+export const getUser = async (email: string, type: string) => {
   try {
     const user = await DataStore.query(User, (u) => u.email('eq', email));
-
-    return user.length ? user[0].id : null;
+    if (type === 'login') return user.length ? user[0].id : null;
+    if (type === 'getCurrentUser') return user.length ? user[0] : null;
   } catch (err: any) {
     console.log('error get user', err);
     return err.message;
@@ -114,8 +113,6 @@ export const loginUser = async (email: string, password: string) => {
 
 export const getUsers = async () => {
   const users = await DataStore.query(User);
-  console.log('users', users);
-
   return users;
 };
 

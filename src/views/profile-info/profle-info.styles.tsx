@@ -1,4 +1,3 @@
-import { OmitProps } from 'antd/lib/transfer/ListBody';
 import styled, { css } from 'styled-components'
 import {
   space,

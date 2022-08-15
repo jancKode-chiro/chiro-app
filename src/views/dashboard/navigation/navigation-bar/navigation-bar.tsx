@@ -20,9 +20,8 @@ import {
   withWidth,
 } from "@material-ui/core";
 
-import SideDrawer from "../side-drawer/sidedrawer";
 import Balance from "./balance/balance";
-import MessagePopperButton from "./message-popper-button/messagepopper-button";
+import NotificationPopperButton from "./message-popper-button/notificationpopper-button";
 
 import Contact from "@material-ui/icons/ContactMailOutlined"
 import Message from "@material-ui/icons/Message";
@@ -30,7 +29,7 @@ import Message from "@material-ui/icons/Message";
 import User from "@material-ui/icons/VerifiedUserOutlined"
 import Payment from "@material-ui/icons/PaymentOutlined";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
-import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
+// import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MenuIcon from "@material-ui/icons/Menu";
 import HelpOutline from "@material-ui/icons/HelpOutline";
 import NavigationDrawer from "../../../../components/common/navigation-drawer/navigation-drawer";
@@ -40,7 +39,7 @@ import { getBalance } from "../../../../api/payments";
 import { usePayment } from "../../../../context/payment-context";
 import { getUser } from "../../../../api/users";
 import userIcon from '../../../../assets/images/icons/user.png'
-import { isEmpty } from "lodash";
+// import { isEmpty } from "lodash";
 
 
 const styles = (theme: any) => ({
@@ -149,9 +148,10 @@ const NavBar = (props: any) => {
     = props;
   const links = useRef<any>([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
+  // const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
   const { balance, setCurrentBalance } = usePayment()
   const { currentUserId, email, setCurrentUserId } = useAuth();
+  const [user, setUser] = useState<any>([])
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);
@@ -161,21 +161,20 @@ const NavBar = (props: any) => {
     setIsMobileOpen(false);
   }, [setIsMobileOpen]);
 
-  const openDrawer = useCallback(() => {
-    setIsSideDrawerOpen(true);
-  }, [setIsSideDrawerOpen]);
+  // const openDrawer = useCallback(() => {
+  //   setIsSideDrawerOpen(true);
+  // }, [setIsSideDrawerOpen]);
 
-  const closeDrawer = useCallback(() => {
-    setIsSideDrawerOpen(false);
-  }, [setIsSideDrawerOpen]);
+  // const closeDrawer = useCallback(() => {
+  //   setIsSideDrawerOpen(false);
+  // }, [setIsSideDrawerOpen]);
 
 
   const { data } = useQuery(['balance', currentUserId], async () => {
 
     if (!currentUserId) {
 
-      const user = await getUser(email)
-      console.log('user', user)
+      const user = await getUser(email, 'login')
       setCurrentUserId(user)
       const balance = await getBalance(user)
       if (balance === undefined) {
@@ -192,20 +191,13 @@ const NavBar = (props: any) => {
 
   useEffect(() => {
 
-    // if (!!currentUserId) {
-    //   console.log('currentUserId', currentUserId)
-    //   getUser(email).then(userId => {
-    //     setCurrentUserId(userId!)
-    //   })
-
-    // }
-
-
     if (currentUserId && data) {
       setCurrentBalance(data)
     }
+    getUser(email, 'getCurrentUser').then((result) =>
+      setUser(result))
 
-  }, [data, email, currentUserId, balance])
+  }, [data, email, currentUserId, balance, setCurrentBalance])
 
   const menuItems = [
     {
@@ -332,7 +324,7 @@ const NavBar = (props: any) => {
                 display="inline"
                 color="secondary"
               >
-                Flo
+                Flows
               </Typography>
             </Hidden>
           </Box>
@@ -350,7 +342,7 @@ const NavBar = (props: any) => {
                 />
               </Box>
             )}
-            <MessagePopperButton messages={messages} />
+            <NotificationPopperButton messages={messages} />
             <ListItem
               disableGutters
               className={classNames(classes.iconListItem, classes.smBordered)}
@@ -365,20 +357,12 @@ const NavBar = (props: any) => {
                 <ListItemText
                   className={classes.username}
                   primary={
-                    <Typography color="textPrimary">Username</Typography>
+                    <Typography color="textPrimary">{user?.email}</Typography>
                   }
                 />
               )}
             </ListItem>
           </Box>
-          <IconButton
-            onClick={openDrawer}
-            color="primary"
-            aria-label="Open Sidedrawer"
-          >
-            <SupervisorAccountIcon />
-          </IconButton>
-          <SideDrawer open={isSideDrawerOpen} onClose={closeDrawer} />
         </Toolbar>
       </AppBar>
       <Hidden xsDown>
@@ -412,7 +396,6 @@ const NavBar = (props: any) => {
                     className={classes.permanentDrawerListItem}
                     onClick={() => {
                       if (element.name === 'Logout') {
-                        console.log('element.name', element.name)
                         localStorage.clear();
                         setCurrentUserId('');
                         setCurrentBalance(0);

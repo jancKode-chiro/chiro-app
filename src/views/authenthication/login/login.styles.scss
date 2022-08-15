@@ -5,14 +5,15 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  height: 100vh;
 
   .signin {
     padding-top: 7.75em;
-    font-size: 1.5625em;
+    font-size: 2.5625em;
     font-weight: $font-weight-bold;
 
     @include media("<tablet") {
-      padding-top: 0;
+      padding-top: 1rem;
     }
   }
 
@@ -26,7 +27,8 @@
     .password-input {
       display: flex;
       align-items: center;
-      justify-content: space-evenly;
+      background-color: white;
+      // justify-content: space-evenly;
       width: 85%;
       border: 1px solid #2dcc5a;
       border-radius: 8px;
@@ -34,11 +36,44 @@
       margin-top: 2rem;
       color: #aca6a6;
 
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+
       .eye-icon {
         height: 1.6rem;
         width: 1.6rem;
         :hover {
           cursor: pointer;
+        }
+      }
+    }
+    .forgot-password {
+      display: flex;
+      width: 100%;
+
+      font-family: $font-family-poppins;
+      font-size: 1.4em;
+      color: #aca6a6;
+      font-style: normal;
+      font-weight: normal;
+      padding-left: 1em;
+      padding-bottom: 2.25em;
+      padding-top: 30px;
+      justify-content: flex-end;
+      padding-right: 90px;
+
+      .forgot {
+        height: 1.0625em;
+        font-family: $font-poppins;
+        font-style: normal;
+        font-weight: normal;
+        color: #2dcc5a;
+      }
+      @include media("<tablet") {
+        padding-right: 0;
+        .forgot {
+          margin-right: 0;
         }
       }
     }
@@ -57,19 +92,24 @@
       width: 100%;
       height: 1.0625em;
       font-family: $font-family-poppins;
-      font-size: 0.6875em;
+      font-size: 1.4em;
       color: #aca6a6;
       font-style: normal;
       font-weight: normal;
-      padding-left: 1em;
+      padding-left: 90px;
       padding-bottom: 2.25em;
+      padding-top: 30px;
+
+      @include media("<tablet") {
+        flex-direction: column;
+        padding-left: 0;
+      }
     }
 
     .create {
       width: 3.875em;
       height: 1.0625em;
       font-family: $font-family-poppins;
-      font-size: 1.2em;
       color: #2dcc5a;
       font-weight: 1em;
       font-style: normal;
@@ -82,7 +122,6 @@
       font-family: $font-poppins;
       font-style: normal;
       font-weight: normal;
-      font-size: 1.2em;
       color: #aca6a6;
       margin-right: 2em;
     }

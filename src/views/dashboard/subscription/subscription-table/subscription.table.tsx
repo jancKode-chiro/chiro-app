@@ -1,16 +1,13 @@
-import React, { useCallback, useState } from "react";
-
 import {
   Table,
   TableBody,
   TableCell,
-  TablePagination,
   TableRow,
   withStyles
 } from "@material-ui/core";
 import EnhancedTableHead from '../../../../components/common/enhanced-tablehead/enhance-tablehead'
 import ColorfulChip from "../../../../components/common/colorful-chip/colorful-chip";
-import unixToDateString from "../../../../components/common/unix-to-date-string/unix-to-date-string";
+// import unixToDateString from "../../../../components/common/unix-to-date-string/unix-to-date-string";
 import HighlightedInformation from "../../../../components/common/highlighted-information/highlighted-information";
 import currencyPrettyPrint from "../../../../components/shared/currencyprettyprint";
 
@@ -63,18 +60,18 @@ const rows = [
   }
 ];
 
-const rowsPerPage = 25;
+// const rowsPerPage = 25;
 
 function SubscriptionTable(props: any) {
   const { transactions, theme, classes } = props;
-  const [page, setPage] = useState(0);
+  // const [page, setPage] = useState(0);
 
-  const handleChangePage = useCallback(
-    (_, page) => {
-      setPage(page);
-    },
-    [setPage]
-  );
+  // const handleChangePage = useCallback(
+  //   (_, page) => {
+  //     setPage(page);
+  //   },
+  //   [setPage]
+  // );
 
   if (transactions > 0) {
     return (

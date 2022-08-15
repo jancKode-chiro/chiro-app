@@ -10,7 +10,7 @@ import {
   InputButton,
 } from '../../components/common/forms/custom-input/input';
 import { sendSMS } from '../../api/sms-service';
-import { Button, Grid, Form } from 'semantic-ui-react';
+import { Grid, Form } from 'semantic-ui-react';
 import { toast } from 'react-toastify';
 
 import DatePicker from 'react-datepicker'
@@ -27,10 +27,6 @@ type InputProps = {
   recipients: string[];
   message: string;
 };
-
-type FormInputs = {
-  selectDate: Date;
-}
 
 const SmsPage = () => {
   const [recipients, setRecipients] = useState<string[]>([]);
@@ -77,7 +73,7 @@ const SmsPage = () => {
     notify();
     const combineRecipients = recipients.join(',');
     const result = await sendSMS(
-      '/sms-notification',
+      '/api/sms',
       combineRecipients,
       smsContent
     );
@@ -128,23 +124,30 @@ const SmsPage = () => {
       <Form className='sms-page' onSubmit={handleSubmit(sumbitHanlder)}>
         <Grid columns='equal' relaxed stackable>
           <Grid.Row className='grid-row'>
-            <Grid.Column width='3'>
+            <Grid.Column width='2'>
               <span className='text'>Select Group:</span>
             </Grid.Column>
-            <Grid.Column width='9' >
+            <Grid.Column width='8' mobile={4} >
               <CustomSelect />
             </Grid.Column>
-            <Grid.Column width='3' >
-              <Button>Search</Button>
+            <Grid.Column width='3' mobile={4} tablet={6}>
+              <label className="upload-contacts">
+                UPLOAD CONTACTS
+                <input type="file" onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  readExcelHandler(e.target.files)
+                }} />
+
+              </label>
             </Grid.Column>
           </Grid.Row>
-          <Grid.Row className='grid-row'>
-            <Grid.Column width='3'>
+          <Grid.Row className='grid-row' >
+            <Grid.Column width={2}>
               <span className='text'>Add Recipient/s:</span>
             </Grid.Column>
-            <Grid.Column width='4'>
+            <Grid.Column width='8'>
               <Input
                 type='number'
+                inputMode='numeric'
                 className='input-number'
                 borderColor='#000000'
                 width='12rem'
@@ -165,21 +168,13 @@ const SmsPage = () => {
                 onClick={() => onClickHander()}
                 className={`bg-green text-white ${currentRecipient.length < 1 ? 'bg-gray' : ''}`} />
             </Grid.Column>
-            <Grid.Column width='4'>
-              <label className="upload-contacts">
-                UPLOAD CONTACTS
-                <input type="file" onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  readExcelHandler(e.target.files)
-                }} />
 
-              </label>
-            </Grid.Column>
           </Grid.Row>
           {recipients.length > 0 ? <Grid.Row className='recipients-list-wrapper'>
-            <Grid.Column width='3' >
+            <Grid.Column width={2} >
               <span className='recipient-label'>Recipient/s:</span>
             </Grid.Column>
-            <Grid.Column className='recipients-list' width='12'>
+            <Grid.Column className='recipients-list' width={8}>
               <span className='recipient-label'>{recipients ? recipients.join(',') : null}</span>
               <CustomModal
                 headerText='Clear recipients'
@@ -192,24 +187,11 @@ const SmsPage = () => {
               />
             </Grid.Column>
           </Grid.Row> : null}
-          <Grid.Row className='sms-detail-wrapper'>
-            <Grid.Column width='3'>
-              <span className='text'>SMS text:</span>
-
+          <Grid.Row>
+            <Grid.Column width={2}>
+              <span className='text'>Choose a schedule:</span>
             </Grid.Column>
-            <Controller
-              name='message'
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <Grid.Column width='10'>
-                  <textarea {...register('smsContent', {
-                    onChange: (e: any) => setSmsContent(e.target.value),
-                  })} />
-                </Grid.Column>
-              )}
-
-            />
-            <Grid.Column>
+            <Grid.Column width={2} tablet={8}>
               <Controller
                 name=''
                 control={control}
@@ -229,11 +211,30 @@ const SmsPage = () => {
               />
               <br />
               <div className='schedule-reminder'>
-                Choose an available day and time for your scheduled message/s!
+                Choose an available day and time for your scheduled message/s
               </div>
             </Grid.Column>
           </Grid.Row>
-          {recipients.length && smsContent ? <Grid.Row className='sms-inputs'>
+
+          <Grid.Row className='sms-detail-wrapper' >
+            <Grid.Column width={2} >
+              <span className='text'>SMS text:</span>
+            </Grid.Column>
+            <Controller
+              name='message'
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Grid.Column width={8} mobile={8}>
+                  <textarea {...register('smsContent', {
+                    onChange: (e: any) => setSmsContent(e.target.value),
+                  })} />
+                </Grid.Column>
+              )}
+
+            />
+
+          </Grid.Row>
+          {recipients.length && smsContent && Boolean(toNumber(balance) > 0) ? <Grid.Row className='sms-inputs'>
             <InputButton
               width='85%'
               type='submit'
@@ -244,6 +245,7 @@ const SmsPage = () => {
           </Grid.Row> : null}
         </Grid>
       </Form>
+
     </Dashboard >
   );
 };

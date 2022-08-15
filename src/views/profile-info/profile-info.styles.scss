@@ -1,6 +1,8 @@
 @import "../../styles/variables.scss";
+@import "../../styles/lib/include-media.scss";
 
 .profiledata {
+  padding-left: 80px;
   .arrow-icon {
     height: 2rem;
     width: 2rem;
@@ -19,16 +21,34 @@
     font-weight: normal;
     font-style: normal;
     font-family: $font-family-poppins;
+
+    @include media("<tablet") {
+      margin-left: 0;
+    }
   }
 
   .info-wrapper {
     justify-content: space-around;
     display: flex;
+    width: 100%;
+
+    @include media("<tablet") {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   .button {
     align-self: center;
-    padding-left: 14rem;
+    // padding-left: 14rem;
     padding-top: 2rem;
+
+    @include media("<tablet") {
+      padding-left: 0;
+    }
+  }
+
+  @include media("<tablet") {
+    padding-left: 0;
   }
 }

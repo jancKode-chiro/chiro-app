@@ -22,7 +22,6 @@ type UsersProps = {
 };
 
 const PaymentHistory = ({ children }: UsersProps) => {
-  let yourDate = new Date()
   const [payment, setPayment] = useState<any>([]);
   const { currentUserId } = useAuth()
 
