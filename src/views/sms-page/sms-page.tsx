@@ -123,7 +123,7 @@ const SmsPage = () => {
     <Dashboard isNavbar={true}>
       <Form className='sms-page' onSubmit={handleSubmit(sumbitHanlder)}>
         <Grid columns='equal' relaxed stackable>
-          <Grid.Row className='grid-row'>
+          {process.env.NODE_ENV === 'development' ? <Grid.Row className='grid-row'>
             <Grid.Column width='2'>
               <span className='text'>Select Group:</span>
             </Grid.Column>
@@ -139,7 +139,7 @@ const SmsPage = () => {
 
               </label>
             </Grid.Column>
-          </Grid.Row>
+          </Grid.Row> : null}
           <Grid.Row className='grid-row' >
             <Grid.Column width={2}>
               <span className='text'>Add Recipient/s:</span>
