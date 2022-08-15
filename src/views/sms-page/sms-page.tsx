@@ -59,7 +59,7 @@ const SmsPage = () => {
   const onClickHander = (): void => {
     setRecipients((prevState: string[]) => [...prevState, `+${currentRecipient}`]);
     setCurrentRecipient('')
-    reset({ currentRecipient: '' });
+    reset({ currentRecipient: '', smsContent: smsContent });
   };
 
   const notify = () => loadId.current = toast('Sending message...', { type: toast.TYPE.INFO, autoClose: false });
@@ -174,7 +174,7 @@ const SmsPage = () => {
             <Grid.Column width={2} >
               <span className='recipient-label'>Recipient/s:</span>
             </Grid.Column>
-            <Grid.Column className='recipients-list' width={8}>
+            <Grid.Column className='recipients-list' width={6}>
               <span className='recipient-label'>{recipients ? recipients.join(',') : null}</span>
               <CustomModal
                 headerText='Clear recipients'
@@ -233,17 +233,17 @@ const SmsPage = () => {
               )}
 
             />
-
+            {(recipients.length && smsContent && Boolean(toNumber(balance) > 0)) ? <Grid.Column className='sms-inputs'>
+              <InputButton
+                width='85%'
+                type='submit'
+                value='SEND'
+                className={`bg-green text-white ${(!isValid && recipients.length === 0) ? 'bg-gray' : ''
+                  }`}
+              />
+            </Grid.Column> : null}
           </Grid.Row>
-          {recipients.length && smsContent && Boolean(toNumber(balance) > 0) ? <Grid.Row className='sms-inputs'>
-            <InputButton
-              width='85%'
-              type='submit'
-              value='SEND'
-              className={`bg-green text-white ${(!isValid && recipients.length === 0) ? 'bg-gray' : ''
-                }`}
-            />
-          </Grid.Row> : null}
+
         </Grid>
       </Form>
 
