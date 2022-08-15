@@ -59,7 +59,7 @@ const SmsPage = () => {
   const onClickHander = (): void => {
     setRecipients((prevState: string[]) => [...prevState, `+${currentRecipient}`]);
     setCurrentRecipient('')
-    reset({ currentRecipient: '' });
+    reset({ currentRecipient: '', smsContent: smsContent });
   };
 
   const notify = () => loadId.current = toast('Sending message...', { type: toast.TYPE.INFO, autoClose: false });
@@ -123,7 +123,7 @@ const SmsPage = () => {
     <Dashboard isNavbar={true}>
       <Form className='sms-page' onSubmit={handleSubmit(sumbitHanlder)}>
         <Grid columns='equal' relaxed stackable>
-          {process.env.NODE_ENV === 'development' ? <Grid.Row className='grid-row'>
+          <Grid.Row className='grid-row'>
             <Grid.Column width='2'>
               <span className='text'>Select Group:</span>
             </Grid.Column>
@@ -139,7 +139,7 @@ const SmsPage = () => {
 
               </label>
             </Grid.Column>
-          </Grid.Row> : null}
+          </Grid.Row>
           <Grid.Row className='grid-row' >
             <Grid.Column width={2}>
               <span className='text'>Add Recipient/s:</span>
@@ -174,7 +174,7 @@ const SmsPage = () => {
             <Grid.Column width={2} >
               <span className='recipient-label'>Recipient/s:</span>
             </Grid.Column>
-            <Grid.Column className='recipients-list' width={8}>
+            <Grid.Column className='recipients-list' width={6}>
               <span className='recipient-label'>{recipients ? recipients.join(',') : null}</span>
               <CustomModal
                 headerText='Clear recipients'
@@ -187,7 +187,7 @@ const SmsPage = () => {
               />
             </Grid.Column>
           </Grid.Row> : null}
-          {process.env.NODE_ENV === 'development' ? <Grid.Row>
+          <Grid.Row>
             <Grid.Column width={2}>
               <span className='text'>Choose a schedule:</span>
             </Grid.Column>
@@ -206,6 +206,7 @@ const SmsPage = () => {
                     isClearable
                     timeClassName={handleColor}
                     withPortal
+                    disabled
                   />
                 )}
               />
@@ -214,7 +215,7 @@ const SmsPage = () => {
                 Choose an available day and time for your scheduled message/s
               </div>
             </Grid.Column>
-          </Grid.Row> : null}
+          </Grid.Row>
 
           <Grid.Row className='sms-detail-wrapper' >
             <Grid.Column width={2} >
@@ -232,17 +233,17 @@ const SmsPage = () => {
               )}
 
             />
-
+            {(recipients.length && smsContent && Boolean(toNumber(balance) > 0)) ? <Grid.Column className='sms-inputs'>
+              <InputButton
+                width='85%'
+                type='submit'
+                value='SEND'
+                className={`bg-green text-white ${(!isValid && recipients.length === 0) ? 'bg-gray' : ''
+                  }`}
+              />
+            </Grid.Column> : null}
           </Grid.Row>
-          {recipients.length && smsContent && Boolean(toNumber(balance) > 0) ? <Grid.Row className='sms-inputs'>
-            <InputButton
-              width='85%'
-              type='submit'
-              value='SEND'
-              className={`bg-green text-white ${(!isValid && recipients.length === 0) ? 'bg-gray' : ''
-                }`}
-            />
-          </Grid.Row> : null}
+
         </Grid>
       </Form>
 
