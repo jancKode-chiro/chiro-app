@@ -187,7 +187,7 @@ const SmsPage = () => {
               />
             </Grid.Column>
           </Grid.Row> : null}
-          <Grid.Row>
+          {process.env.NODE_ENV === 'development' ? <Grid.Row>
             <Grid.Column width={2}>
               <span className='text'>Choose a schedule:</span>
             </Grid.Column>
@@ -214,7 +214,7 @@ const SmsPage = () => {
                 Choose an available day and time for your scheduled message/s
               </div>
             </Grid.Column>
-          </Grid.Row>
+          </Grid.Row> : null}
 
           <Grid.Row className='sms-detail-wrapper' >
             <Grid.Column width={2} >
