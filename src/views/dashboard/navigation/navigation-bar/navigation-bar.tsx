@@ -39,6 +39,7 @@ import { getBalance } from "../../../../api/payments";
 import { usePayment } from "../../../../context/payment-context";
 import { getUser } from "../../../../api/users";
 import userIcon from '../../../../assets/images/icons/user.png'
+import { isEmpty } from "lodash";
 // import { isEmpty } from "lodash";
 
 
@@ -171,9 +172,9 @@ const NavBar = (props: any) => {
 
 
   const { data } = useQuery(['balance', currentUserId], async () => {
-
-    if (!currentUserId) {
-
+    console.log('currentUserId outside',)
+    if (!isEmpty(currentUserId)) {
+      console.log('currentUserId', currentUserId)
       const user = await getUser(email, 'login')
       setCurrentUserId(user)
       const balance = await getBalance(user)
