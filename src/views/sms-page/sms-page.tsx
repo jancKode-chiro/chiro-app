@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ChangeEvent, useRef } from 'react';
 import { withRouter } from 'react-router';
 import { useForm, Controller } from 'react-hook-form';
+import { useQuery } from 'react-query';
 import * as XLSX from 'xlsx'
 
 import CustomSelect from '../../components/select/select';
@@ -19,9 +20,10 @@ import CustomModal from '../../components/modal/modal';
 import "react-datepicker/dist/react-datepicker.css"
 import './sms-page.styles.scss';
 import { usePayment } from '../../context/payment-context';
-import { toNumber } from 'lodash';
+import { isEmpty, toNumber } from 'lodash';
 import { updateBalance } from '../../api/payments';
 import { useAuth } from '../../context/auth-context';
+import { getTemplates } from '../../api/template';
 
 type InputProps = {
   recipients: string[];
@@ -29,10 +31,14 @@ type InputProps = {
 };
 
 const SmsPage = () => {
+  const { data } = useQuery(['templates'], () =>
+    getTemplates());
+
   const [recipients, setRecipients] = useState<string[]>([]);
   const [currentRecipient, setCurrentRecipient] = useState('');
   const [smsContent, setSmsContent] = useState('')
   const [selectDate, setSelectDate] = useState(new Date())
+  const [templates, setTemplates] = useState<any>([])
   const { register, handleSubmit, formState, reset, control, } = useForm({
     mode: "onChange"
   });
@@ -41,7 +47,8 @@ const SmsPage = () => {
 
   const { isValid } = formState;
   const loadId = useRef(null) as any;
-  const loadDate = useRef(new Date() as any)
+  const loadDate = useRef(new Date() as any);
+
 
   const notifyDate = () => toast.update(loadDate.current, { render: 'Schedule has been set', type: toast.TYPE.SUCCESS, autoClose: 10000 })
 
@@ -92,8 +99,16 @@ const SmsPage = () => {
   };
 
   useEffect(() => {
-
-  }, [recipients]);
+    if (!isEmpty(data)) {
+      let template = data?.map((template) => {
+        return {
+          value: template.content,
+          label: template.title
+        }
+      })
+      setTemplates(template);
+    }
+  }, [recipients, data]);
 
 
   const readExcelHandler = async (file: any) => {
@@ -118,6 +133,13 @@ const SmsPage = () => {
     };
   }
 
+  const handleChange = (value: any) => {
+
+    if (!isEmpty(value)) {
+      setSmsContent(value[0]?.value)
+    }
+  }
+
   return (
 
     <Dashboard isNavbar={true}>
@@ -128,7 +150,7 @@ const SmsPage = () => {
               <span className='text'>Select Group:</span>
             </Grid.Column>
             <Grid.Column width='8' mobile={4} >
-              <CustomSelect />
+              <CustomSelect isDisabled={true} />
             </Grid.Column>
             <Grid.Column width='3' mobile={4} tablet={6}>
               <label className="upload-contacts">
@@ -216,7 +238,15 @@ const SmsPage = () => {
               </div>
             </Grid.Column>
           </Grid.Row>
+          <Grid.Row className='grid-row'>
+            <Grid.Column width='2'>
+              <span className='text'>Select a Template:</span>
+            </Grid.Column>
 
+            <Grid.Column width='8' mobile={4} >
+              <CustomSelect options={templates} onChange={handleChange} />
+            </Grid.Column>
+          </Grid.Row>
           <Grid.Row className='sms-detail-wrapper' >
             <Grid.Column width={2} >
               <span className='text'>SMS text:</span>
@@ -228,7 +258,7 @@ const SmsPage = () => {
                 <Grid.Column width={8} mobile={8}>
                   <textarea {...register('smsContent', {
                     onChange: (e: any) => setSmsContent(e.target.value),
-                  })} />
+                  })} value={smsContent} />
                 </Grid.Column>
               )}
 

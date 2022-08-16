@@ -26,7 +26,7 @@ type DashboardProps = {
 
 const ContactData = ({ children }: DashboardProps) => {
 
-  const { currentUserId, setCurrentUserId } = useAuth();
+  const { currentUserId } = useAuth();
   const [contacts, setContacts] = useState<any>([]);
 
 

@@ -7,7 +7,7 @@ import './select.styles.scss'
 
 const animatedComponents = makeAnimated();
 
-const Options = [
+const defaultOptions = [
   { value: 'Solo', label: 'Solo' },
   { value: 'Solo(1)', label: 'Solo(1)' },
   { value: 'Test', label: 'Test' },
@@ -48,15 +48,17 @@ const customStyles: StylesConfig = {
 
 
 
-const CustomSelect = () => {
+const CustomSelect = ({ options = defaultOptions, onChange, isDisabled }: any) => {
   return (
     <Select
       closeMenuOnSelect
       components={animatedComponents}
       isMulti
-      options={Options}
+      options={options}
       styles={customStyles}
-      isDisabled
+      onChange={onChange}
+      isDisabled={isDisabled}
+
     />
   )
 }
