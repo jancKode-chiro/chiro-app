@@ -5,7 +5,7 @@ import * as AiIcons from 'react-icons/ai';
 import * as RiIcons from 'react-icons/ri';
 import * as BsIcons from 'react-icons/bs';
 import * as BiIcons from 'react-icons/bi';
-import { PROFILEINFO_PATH } from '../../constants/paths';
+import { PROFILEINFO_PATH, TEMPLATES_PATH } from '../../constants/paths';
 
 export const SidebarDataProfile = [
   {
@@ -20,6 +20,14 @@ export const SidebarDataProfile = [
   {
     title: 'Card Info',
     path: '/card',
+    icon: <AiIcons.AiOutlineIdcard />,
+    cName: 'nav-profile',
+    callback: false
+  },
+
+  {
+    title: 'Tempaltes',
+    path: TEMPLATES_PATH,
     icon: <AiIcons.AiOutlineIdcard />,
     cName: 'nav-profile',
     callback: false

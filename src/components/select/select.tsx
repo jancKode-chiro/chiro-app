@@ -48,12 +48,12 @@ const customStyles: StylesConfig = {
 
 
 
-const CustomSelect = ({ options = defaultOptions, onChange, isDisabled }: any) => {
+const CustomSelect = ({ options = defaultOptions, onChange, isDisabled, isMultiple = true }: any) => {
   return (
     <Select
       closeMenuOnSelect
       components={animatedComponents}
-      isMulti
+      isMulti={isMultiple}
       options={options}
       styles={customStyles}
       onChange={onChange}

@@ -16,3 +16,4 @@ export const PROFILEINFO_PATH = '/profile-info';
 export const USERS_PATH = '/users';
 export const SUBSCRIPTION_PATH = '/subscription';
 export const PAYMENTHISTORY_PATH = '/payment-history';
+export const TEMPLATES_PATH = '/templates';

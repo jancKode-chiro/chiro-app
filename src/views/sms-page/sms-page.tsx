@@ -134,9 +134,9 @@ const SmsPage = () => {
   }
 
   const handleChange = (value: any) => {
-
+    console.log('value', value)
     if (!isEmpty(value)) {
-      setSmsContent(value[0]?.value)
+      setSmsContent(value?.value)
     }
   }
 
@@ -207,6 +207,7 @@ const SmsPage = () => {
                 onCloseButtonText='No'
                 onOpenButtonText='Yes'
               />
+
             </Grid.Column>
           </Grid.Row> : null}
           <Grid.Row>
@@ -244,7 +245,7 @@ const SmsPage = () => {
             </Grid.Column>
 
             <Grid.Column width='8' mobile={4} >
-              <CustomSelect options={templates} onChange={handleChange} />
+              <CustomSelect options={templates} onChange={handleChange} isMultiple={false} />
             </Grid.Column>
           </Grid.Row>
           <Grid.Row className='sms-detail-wrapper' >
