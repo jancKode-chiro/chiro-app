@@ -8,21 +8,14 @@ import React, {
 import { withRouter } from 'react-router';
 import { useQuery } from 'react-query';
 import { isEmpty } from 'lodash';
-
-
-import { useAuth } from '../../context/auth-context';
 import { getUsers } from '../../api/users';
 
 import { InputButton } from '../../components/common/forms/custom-input/input';
 
 import Table from '../../components/table/table';
-import { Input } from '../../components/common/forms/custom-input/input';
-import searchdata from '../../assets/images/searchdata.png';
 import Dashboard from '../dashboard/dashboard';
 
 import './users.styles.scss';
-// import { getContacts } from '../../api/contacts';
-
 
 type UsersProps = {
   children?: ReactNode;

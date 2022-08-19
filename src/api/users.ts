@@ -4,7 +4,6 @@ import { Auth } from 'aws-amplify';
 
 import moment from 'moment';
 import { toast } from 'react-toastify';
-import { getCurrentSession } from '../helpers/user-helpers';
 
 let systemError: string = '';
 

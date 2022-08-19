@@ -20,7 +20,6 @@ import {
   withWidth,
 } from "@material-ui/core";
 
-import SideDrawer from "../side-drawer/sidedrawer";
 import Balance from "./balance/balance";
 import NotificationPopperButton from "./message-popper-button/notificationpopper-button";
 
@@ -30,7 +29,6 @@ import Message from "@material-ui/icons/Message";
 import User from "@material-ui/icons/VerifiedUserOutlined"
 import Payment from "@material-ui/icons/PaymentOutlined";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
-import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MenuIcon from "@material-ui/icons/Menu";
 import HelpOutline from "@material-ui/icons/HelpOutline";
 import NavigationDrawer from "../../../../components/common/navigation-drawer/navigation-drawer";
@@ -40,7 +38,7 @@ import { getBalance } from "../../../../api/payments";
 import { usePayment } from "../../../../context/payment-context";
 import { getUser } from "../../../../api/users";
 import userIcon from '../../../../assets/images/icons/user.png'
-import { isEmpty } from "lodash";
+
 
 
 const styles = (theme: any) => ({

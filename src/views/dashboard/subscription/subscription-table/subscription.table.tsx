@@ -1,16 +1,14 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 
 import {
   Table,
   TableBody,
   TableCell,
-  TablePagination,
   TableRow,
   withStyles
 } from "@material-ui/core";
 import EnhancedTableHead from '../../../../components/common/enhanced-tablehead/enhance-tablehead'
 import ColorfulChip from "../../../../components/common/colorful-chip/colorful-chip";
-import unixToDateString from "../../../../components/common/unix-to-date-string/unix-to-date-string";
 import HighlightedInformation from "../../../../components/common/highlighted-information/highlighted-information";
 import currencyPrettyPrint from "../../../../components/shared/currencyprettyprint";
 
@@ -63,18 +61,9 @@ const rows = [
   }
 ];
 
-const rowsPerPage = 25;
 
 function SubscriptionTable(props: any) {
   const { transactions, theme, classes } = props;
-  const [page, setPage] = useState(0);
-
-  const handleChangePage = useCallback(
-    (_, page) => {
-      setPage(page);
-    },
-    [setPage]
-  );
 
   if (transactions > 0) {
     return (
@@ -82,9 +71,6 @@ function SubscriptionTable(props: any) {
         <Table aria-labelledby="tableTitle">
           <EnhancedTableHead rowCount={transactions} rows={rows} />
           <TableBody>
-            {/* {transactions
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((transaction, index) => ( */}
             <TableRow hover tabIndex={-1}>
               <TableCell
                 component="th"
@@ -111,31 +97,8 @@ function SubscriptionTable(props: any) {
 
               </TableCell>
             </TableRow>
-            {/* ))} */}
           </TableBody>
         </Table>
-
-
-        {/* <TablePagination
-          component="div"
-          count={transactions.length}
-          rowsPerPage={rowsPerPage}
-          page={page}       
-          backIconButtonProps={{
-            "aria-label": "Previous Page"
-          }}
-          nextIconButtonProps={{
-            "aria-label": "Next Page"
-          }}
-          onChangePage={handleChangePage}
-          classes={{
-            select: classes.dNone,
-            selectIcon: classes.dNone,
-            actions: transactions.length > 0 ? classes.dBlock : classes.dNone,
-            caption: transactions.length > 0 ? classes.dBlock : classes.dNone
-          }}
-          labelRowsPerPage=""
-        /> */}
       </div>
     );
   }

@@ -12,7 +12,6 @@ import {
   Box,
   withStyles,
 } from "@material-ui/core";
-import MessageIcon from "@material-ui/icons/Message";
 import { BsBellFill } from "react-icons/bs";
 import MessageListItem from "../message-list-item/messagelist-item";
 
@@ -51,7 +50,6 @@ function MessagePopperButton(props: any) {
     setIsOpen(false);
   }, [setIsOpen]);
 
-  // const id = isOpen ? "scroll-playground" : null;
   return (
     <Fragment>
       <IconButton

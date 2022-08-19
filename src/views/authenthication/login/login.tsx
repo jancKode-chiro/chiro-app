@@ -2,19 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Auth } from 'aws-amplify';
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 
-
-import CardWithImage from '../../../components/common/wrapper/card-with-image';
-import verticalSpacer from '../../../components/common/spacer/vertical-spacer';
 import { toast } from 'react-toastify';
 import './login.styles.scss';
 
 import {
   CREATE_ACCOUNT_PATH,
-  ABOUT_PATH,
-  LETS_TALK_PATH,
   SEND_SMS_PATH,
   PASSWORDFORGOT_PATH,
 } from '../../../constants/paths';
@@ -26,8 +20,7 @@ import {
 import { StyledLink } from '../../../components/link/link';
 import { useAuth } from '../../../context/auth-context';
 import { getCurrentSession } from '../../../helpers/user-helpers';
-// import useNav from '../../../hooks/use-nav';
-import { getUser, loginUser } from '../../../api/users';
+import { loginUser } from '../../../api/users';
 import { InlineSingleErrorMessage } from '../../../components/common/notification/inline-notification/inline-notification';
 import HighlightedInformation from '../../../components/common/highlighted-information/highlighted-information';
 import ButtonCircularProgress from '../../../components/common/button/button-circular-progress/button-circular-progress';
@@ -52,8 +45,6 @@ const Login = (props: any): JSX.Element => {
   const history = useHistory();
   const { setAuthState, setInputEmail, currentUserId } =
     useAuth();
-  // const { goTo } = useNav();
-  // const backToHome = (): void => history.push(LOGIN_PATH);
   const watchFields = watch(['email', 'password'])
 
   const submitHandler: SubmitHandler<InputProps> = async (
@@ -106,7 +97,6 @@ const Login = (props: any): JSX.Element => {
           />
           <div className='password-input'>
             <PasswordInput
-              // width='22rem'
               id='password'
               type={showPassword ? 'text' : 'password'}
               placeholder='Password'

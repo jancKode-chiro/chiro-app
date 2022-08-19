@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import { TextField, Grid, InputAdornment } from "@material-ui/core";
 import { CardElement } from "@stripe/react-stripe-js";
 import StripeTextField from "./stripe-text-field";

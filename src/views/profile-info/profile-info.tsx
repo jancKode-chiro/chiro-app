@@ -5,12 +5,10 @@ import { VscArrowLeft } from 'react-icons/vsc'
 
 import './profile-info.styles.scss';
 
-import VerticalSpacer from '../../components/common/spacer/vertical-spacer';
 import profile from '../../assets/images/icons/profile.png';
 import Dashboard from '../dashboard/dashboard';
 import { CustomLabel } from './profle-info.styles';
 import { CustomDiv } from '../../components/common/wrapper/custom-wrapper/custom-wrapper';
-import CustomButton from '../../components/common/button/button';
 import { InputButton } from '../../components/common/forms/custom-input/input';
 
 
