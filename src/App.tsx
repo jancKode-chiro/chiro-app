@@ -19,6 +19,7 @@ import {
   USERS_PATH,
   SUBSCRIPTION_PATH,
   PAYMENTHISTORY_PATH,
+  TEMPLATES_PATH,
 } from './constants/paths';
 import PrivateRoute from './routes/private-route';
 import Loader from './components/loader/loader';
@@ -27,6 +28,7 @@ import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
 import theme from './styles/theme';
 import GlobalStyles from './styles/global-styles';
 import { PaymentProvider } from './context/payment-context';
+import { TemplateProvider } from './context/template-context';
 
 const CreateAccount = lazy(
   () => import('./views/authenthication/createaccount/createaccount')
@@ -55,6 +57,7 @@ const Subscription = lazy(() => import('./views/dashboard/subscription/subscript
 // const DashboardC = lazy(() => import('./views/dashboard/dashboard-C-data/dashboard-C/home-dashboard'))
 const BlogPost = lazy(() => import('./views/blog/blog-post/blog-post'))
 const PaymentHistory = lazy(() => import('./views/payment-history/payment-history'))
+const Tempaltes = lazy(() => import('./views/templates/templates'))
 
 function App() {
   Amplify.configure(awsmobile);
@@ -71,33 +74,35 @@ function App() {
           <GlobalStyles />
           <AuthProvider>
             <PaymentProvider>
-              <Router>
-                <Suspense fallback={<Loader />}>
-                  <Switch>
-                    <Route
-                      exact
-                      path={LOGIN_PATH}
-                      component={Login}
-                    />
+              <TemplateProvider>
+                <Router>
+                  <Suspense fallback={<Loader />}>
+                    <Switch>
+                      <Route
+                        exact
+                        path={LOGIN_PATH}
+                        component={Login}
+                      />
 
-                    <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
-                    <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
-                    <Route path={ABOUT_PATH} component={AboutUs} />
-                    <Route path={LETS_TALK_PATH} component={LetsTalk} />
-                    <Route path={'/blog'} component={BlogPost} />
-                    <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
-
-                    <PrivateRoute path={SEND_SMS_PATH} component={SendSms} />
-                    <PrivateRoute path={CONTACTS_PATH} component={ContactData} />
-                    <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
-                    <PrivateRoute path={USERS_PATH} component={Users} />
-                    <PrivateRoute path={SUBSCRIPTION_PATH} component={Subscription} />
-                    <PrivateRoute path={PAYMENTHISTORY_PATH} component={PaymentHistory} />
-                    <Route path={LOGIN_PATH} component={Login} />
-                  </Switch>
-                </Suspense>
-                <ToastContainer />
-              </Router>
+                      <Route path={ACTIVATE_ACCOUNT_PATH} component={ActivateCode} />
+                      <Route path={CREATE_ACCOUNT_PATH} component={CreateAccount} />
+                      <Route path={ABOUT_PATH} component={AboutUs} />
+                      <Route path={LETS_TALK_PATH} component={LetsTalk} />
+                      <Route path={'/blog'} component={BlogPost} />
+                      <Route path={PASSWORDFORGOT_PATH} component={PasswordForgot} />
+                      <PrivateRoute path={SEND_SMS_PATH} component={SendSms} />
+                      <PrivateRoute path={CONTACTS_PATH} component={ContactData} />
+                      <PrivateRoute path={PROFILEINFO_PATH} component={ProfileData} />
+                      <PrivateRoute path={USERS_PATH} component={Users} />
+                      <PrivateRoute path={TEMPLATES_PATH} component={Tempaltes} />
+                      <PrivateRoute path={SUBSCRIPTION_PATH} component={Subscription} />
+                      <PrivateRoute path={PAYMENTHISTORY_PATH} component={PaymentHistory} />
+                      <Route path={LOGIN_PATH} component={Login} />
+                    </Switch>
+                  </Suspense>
+                  <ToastContainer />
+                </Router>
+              </TemplateProvider>
             </PaymentProvider>
           </AuthProvider>
         </MuiThemeProvider>

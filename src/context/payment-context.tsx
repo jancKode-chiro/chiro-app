@@ -27,7 +27,6 @@ const PaymentProvider = (props: any): ReactElement => {
 
 
   useEffect(() => {
-    console.log('context balance', balance)
     if (isEmpty(balance)) {
       const getBalanceFromStorage = localStorage.getItem('balance')
       setBalance(toNumber(getBalanceFromStorage))

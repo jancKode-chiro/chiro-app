@@ -29,6 +29,7 @@ import Message from "@material-ui/icons/Message";
 import User from "@material-ui/icons/VerifiedUserOutlined"
 import Payment from "@material-ui/icons/PaymentOutlined";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
+import FormatSizeIcon from '@material-ui/icons/FormatSize';
 // import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MenuIcon from "@material-ui/icons/Menu";
 import HelpOutline from "@material-ui/icons/HelpOutline";
@@ -172,9 +173,7 @@ const NavBar = (props: any) => {
 
 
   const { data } = useQuery(['balance', currentUserId], async () => {
-    console.log('currentUserId outside',)
     if (!isEmpty(currentUserId)) {
-      console.log('currentUserId', currentUserId)
       const user = await getUser(email, 'login')
       setCurrentUserId(user)
       const balance = await getBalance(user)
@@ -201,6 +200,22 @@ const NavBar = (props: any) => {
   }, [data, email, currentUserId, balance, setCurrentBalance])
 
   const menuItems = [
+    {
+      link: 'templates',
+      name: 'Tempaltes',
+      onclick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <FormatSizeIcon
+            className={
+              selectedTab === 'Teamplates' ? classes.textPrimary : 'text-white'
+            }
+            fontSize='small'
+          />
+        ),
+        mobile: <FormatSizeIcon className="text-white" />
+      }
+    },
     {
       link: "send-sms",
       name: "Messages",

@@ -10,10 +10,10 @@ const styles = (theme: any) => ({
 function ButtonCircularProgress(props: any) {
   const { size, classes } = props;
   return (
-    <Box color="secondary.main" pl={1.5} display="flex">
+    <Box color="secondary.main" pl={1.5} display="flex" alignItems={'center'} justifyContent='center'>
       <CircularProgress
         size={size ? size : 24}
-        thickness={size ? (size / 5) * 24 : 5}
+        thickness={size ? (size / 5) * 25 : 8}
         className={classes.circularProgress}
       />
     </Box>

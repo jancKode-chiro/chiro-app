@@ -6,15 +6,10 @@ import * as RiIcons from 'react-icons/ri';
 import * as TiIcons from 'react-icons/ti';
 import * as BsIcons from 'react-icons/bs';
 import * as BiIcons from 'react-icons/bi';
-import { CONTACTS_PATH, SEND_SMS_PATH, PROFILEINFO_PATH } from '../constants/paths'
+import { CONTACTS_PATH, SEND_SMS_PATH, PROFILEINFO_PATH, TEMPLATES_PATH } from '../constants/paths'
 
 export const SidebarData = [
-  {
-    title: 'Dashboard',
-    path: '/Dashboard',
-    icon: <GoIcons.GoDashboard />,
-    cName: 'nav-text',
-  },
+
 
   {
     title: 'Campaigns',
@@ -60,6 +55,14 @@ export const SidebarDataProfile = [
     title: 'Change Password',
     path: '/forgot-password',
     icon: <RiIcons.RiLockPasswordLine />,
+    cName: 'nav-profile',
+    callback: false
+  },
+
+  {
+    title: 'Tempaltes',
+    path: TEMPLATES_PATH,
+    icon: <AiIcons.AiOutlineIdcard />,
     cName: 'nav-profile',
     callback: false
   },
