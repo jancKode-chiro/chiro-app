@@ -31,8 +31,7 @@ const TemplateProvider = (props: any): ReactElement => {
   }
 
   useEffect(() => {
-    console.log('context template', title)
-    console.log('context template', content)
+
   }, [title, content])
 
 

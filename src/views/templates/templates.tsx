@@ -8,7 +8,7 @@ import React, {
 import { withRouter } from 'react-router';
 import { useQuery } from 'react-query';
 import { isEmpty } from 'lodash';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -47,7 +47,9 @@ const Templates = ({ children }: DashboardProps) => {
   );
 
   useEffect(() => {
+    console.log('data', data)
     if (!isEmpty(data)) setTemplates(data);
+
   }, [data]);
 
   const onCloseEditModal = () => {
@@ -89,11 +91,11 @@ const Templates = ({ children }: DashboardProps) => {
               buttonTriggerText='Edit this template?'
               onOpenCallback={() => onConfirmEdit(original.id)}
               customComponent={
-                <IconButton aria-label="delete" color='info' >
+                <IconButton aria-label="delete" color='info' onClick={() => { setTemplateTitle(original.title); setTemplateContent(original.content) }} >
                   <EditIcon />
                 </IconButton>}
-              onCloseButtonText='No'
-              onOpenButtonText='Yes'
+              onCloseButtonText='Cancel'
+              onOpenButtonText='Save'
               children={<>
                 <Typography gutterBottom variant='h5' component={'div'}>Current title: {original.title}</Typography>
                 <Input

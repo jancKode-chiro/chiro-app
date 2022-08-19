@@ -1,9 +1,11 @@
 import { isUndefined } from 'lodash';
-import React, { useReducer } from 'react'
-import { Button, Grid, Modal } from 'semantic-ui-react'
-import styled from 'styled-components';
+import React, { useEffect, useReducer, useState } from 'react'
+import { Grid, Modal } from 'semantic-ui-react'
+import { Button } from '@mui/material';
+
 import { updateTemplate } from '../../api/template';
 import { useTemplate } from '../../context/template-context';
+import ButtonCircularProgress from '../common/button/button-circular-progress/button-circular-progress';
 
 type CutomModalProps = {
   buttonTriggerText: string;
@@ -46,16 +48,29 @@ const CustomModal = ({
   })
   const { open } = state;
   const { title, content, setTemplateContent, setTemplateTitle } = useTemplate()
+  const [loading, setLoading] = useState(false);
+
   const openCallbackHandler = () => {
 
     if (!isUndefined(type)) {
       const id = onOpenCallback();
-      console.log('idididid', id)
       updateTemplate(id as string, title, content);
       setTemplateContent('')
       setTemplateTitle('')
+    } else {
+      onOpenCallback();
     }
-    onOpenCallback();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      dispatch({ type: 'CLOSE_MODAL' })
+    }, 2000)
+
+  }
+
+  const onClickHandler = () => {
+    dispatch({ type: 'CLOSE_MODAL' });
+    onCloseCallback && onCloseCallback();
   }
 
   return (
@@ -72,24 +87,18 @@ const CustomModal = ({
           <Modal.Content>
             {children ? children : <p>{contentText}</p>}
           </Modal.Content>
-          <Modal.Actions>
-            <Button onClick={() => { dispatch({ type: 'CLOSE_MODAL' }); onCloseCallback && onCloseCallback() }} negative>
+          <Modal.Actions >
+            <Button size='large' onClick={() => onClickHandler()} color='error'>
               {onCloseButtonText}
             </Button>
-
-            <Button onClick={() => { openCallbackHandler(); dispatch({ type: 'CLOSE_MODAL' }) }} positive>
-              {onOpenButtonText}
+            <Button size='large' onClick={() => openCallbackHandler()} color='success' >
+              {loading ? <ButtonCircularProgress /> : onOpenButtonText}
             </Button>
           </Modal.Actions>
         </Modal>
       </Grid.Column>
-    </Grid>
+    </Grid >
   )
 }
 
 export default CustomModal
-
-
-const StyledGrid = styled(Grid)`
-  margin-top: 0 ;
-`
