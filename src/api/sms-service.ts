@@ -28,8 +28,17 @@ export const sendSMS = async (
     },
   };
   try {
-    const result = await axios
-      .post(`${process.env.REACT_APP_API_URL}${url}`, data, config)
+    const result = axios({
+      method: 'post',
+      url: `${process.env.REACT_APP_API_URL}${url}`,
+      data: data,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Content-Type': 'application/json',
+      },
+    })
       .then((result) => {
         return {
           status: 'OK',
@@ -42,6 +51,20 @@ export const sendSMS = async (
           data: error.message,
         };
       });
+    // const result = await axios
+    //   .post(`${process.env.REACT_APP_API_URL}${url}`, data, config)
+    //   .then((result) => {
+    //     return {
+    //       status: 'OK',
+    //       data: result,
+    //     };
+    //   })
+    //   .catch((error) => {
+    //     return {
+    //       status: 'Error',
+    //       data: error.message,
+    //     };
+    //   });
     return result;
   } catch (err) {
     console.log('error on send sms', err);
