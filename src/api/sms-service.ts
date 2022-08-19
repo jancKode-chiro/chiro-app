@@ -9,12 +9,14 @@ export const sendSMS = async (
   url: string,
   recipient: string,
   message: string,
-  passcode = '0101'
+  passcode = '0101',
+  isScheduled: Date
 ) => {
   const data = {
     message,
     recipients: recipient,
     passcode,
+    isScheduled,
   };
 
   const config = {

@@ -50,7 +50,14 @@ const CustomModal = ({
   const { title, content, setTemplateContent, setTemplateTitle } = useTemplate()
   const [loading, setLoading] = useState(false);
 
-  const openCallbackHandler = () => {
+  useEffect(() => { }, [loading])
+
+  const confirmCallbackHandler = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      dispatch({ type: 'CLOSE_MODAL' })
+    }, 2000)
 
     if (!isUndefined(type)) {
       const id = onOpenCallback();
@@ -60,17 +67,20 @@ const CustomModal = ({
     } else {
       onOpenCallback();
     }
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      dispatch({ type: 'CLOSE_MODAL' })
-    }, 2000)
 
   }
 
   const onClickHandler = () => {
     dispatch({ type: 'CLOSE_MODAL' });
     onCloseCallback && onCloseCallback();
+  }
+
+  const onCloseHandler = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      dispatch({ type: 'CLOSE_MODAL' })
+    }, 2000)
   }
 
   return (
@@ -80,7 +90,7 @@ const CustomModal = ({
           closeOnDimmerClick={false}
           open={open}
           onOpen={() => dispatch({ type: 'OPEN_MODAL' })}
-          onClose={() => dispatch({ type: 'CLOSE_MODAL' })}
+          onClose={() => onCloseHandler()}
           trigger={customComponent}
         >
           <Modal.Header>{headerText}</Modal.Header>
@@ -91,7 +101,7 @@ const CustomModal = ({
             <Button size='large' onClick={() => onClickHandler()} color='error'>
               {onCloseButtonText}
             </Button>
-            <Button size='large' onClick={() => openCallbackHandler()} color='success' >
+            <Button size='large' onClick={() => confirmCallbackHandler()} color='success' >
               {loading ? <ButtonCircularProgress /> : onOpenButtonText}
             </Button>
           </Modal.Actions>

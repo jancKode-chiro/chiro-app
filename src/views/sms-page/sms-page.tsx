@@ -37,7 +37,7 @@ const SmsPage = () => {
   const [recipients, setRecipients] = useState<string[]>([]);
   const [currentRecipient, setCurrentRecipient] = useState('');
   const [smsContent, setSmsContent] = useState('')
-  const [selectDate, setSelectDate] = useState(new Date())
+  const [selectedDate, setSelectedDate] = useState<Date>()
   const [templates, setTemplates] = useState<any>([])
   const { register, handleSubmit, formState, reset, control, } = useForm({
     mode: "onChange"
@@ -52,11 +52,6 @@ const SmsPage = () => {
 
   const notifyDate = () => toast.update(loadDate.current, { render: 'Schedule has been set', type: toast.TYPE.SUCCESS, autoClose: 10000 })
 
-  const onSelectDateHandler = async (data: Date): Promise<void> => {
-    setSelectDate(selectDate)
-    notifyDate();
-
-  }
 
   let handleColor = (time: { getHours: () => number; }) => {
     return time.getHours() > 12 ? "text-success" : "text-error";
@@ -82,7 +77,9 @@ const SmsPage = () => {
     const result = await sendSMS(
       '/api/sms',
       combineRecipients,
-      smsContent
+      smsContent,
+      '0101',
+      selectedDate!
     );
     if (result?.data?.status === 200) {
       const toDeduct: number = recipients.length * .08;
@@ -134,7 +131,6 @@ const SmsPage = () => {
   }
 
   const handleChange = (value: any) => {
-    console.log('value', value)
     if (!isEmpty(value)) {
       setSmsContent(value?.value)
     }
@@ -221,22 +217,19 @@ const SmsPage = () => {
                 defaultValue={null}
                 render={({ field }) => (
                   <DatePicker
-                    onChange={(e) => field.onChange((e), onSelectDateHandler)}
-                    selected={field.value}
+                    onChange={(date: Date) => setSelectedDate(date)}
+                    selected={selectedDate}
                     placeholderText="Select date and time"
                     showTimeSelect={true}
                     dateFormat="Pp"
                     isClearable
                     timeClassName={handleColor}
                     withPortal
-                    disabled
+                  // disabled
                   />
                 )}
               />
-              <br />
-              <div className='schedule-reminder'>
-                Choose an available day and time for your scheduled message/s
-              </div>
+
             </Grid.Column>
           </Grid.Row>
           <Grid.Row className='grid-row'>

@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { withRouter } from 'react-router';
 import { useQuery } from 'react-query';
-import { isEmpty } from 'lodash';
+import { isEmpty, template } from 'lodash';
 import { useForm } from 'react-hook-form';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -42,12 +42,11 @@ const Templates = ({ children }: DashboardProps) => {
   useEffect(() => { }, [title, content])
 
 
-  const { data } = useQuery(['templates'], () =>
+  const { data } = useQuery(['templates', templates], () =>
     getTemplates()
   );
 
   useEffect(() => {
-    console.log('data', data)
     if (!isEmpty(data)) setTemplates(data);
 
   }, [data]);
@@ -133,8 +132,8 @@ const Templates = ({ children }: DashboardProps) => {
                   marginTop: -30
                 }} />
               </IconButton>}
-              onCloseButtonText='No'
-              onOpenButtonText='Yes'
+              onCloseButtonText='Cancel'
+              onOpenButtonText='Delete'
             />
           </Stack>
         ),
