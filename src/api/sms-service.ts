@@ -14,19 +14,11 @@ export const sendSMS = async (
 ) => {
   const data = {
     message,
-    recipients: recipient,
+    phoneNumbers: recipient,
     passcode,
     isScheduled,
   };
 
-  const config = {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Content-Type': 'application/json',
-    },
-  };
   try {
     const result = axios({
       method: 'post',
@@ -66,7 +58,11 @@ export const sendSMS = async (
     //     };
     //   });
     return result;
-  } catch (err) {
+  } catch (err: any) {
+    return {
+      status: 'Error',
+      data: err.message,
+    };
     console.log('error on send sms', err);
   }
 };
