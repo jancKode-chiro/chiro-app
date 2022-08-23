@@ -1,6 +1,6 @@
-import { Fragment, useRef, useCallback, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import classNames from "classnames";
+import { Fragment, useRef, useCallback, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import {
   AppBar,
   Toolbar,
@@ -18,59 +18,60 @@ import {
   withStyles,
   isWidthUp,
   withWidth,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
-import Balance from "./balance/balance";
-import NotificationPopperButton from "./message-popper-button/notificationpopper-button";
+import Balance from './balance/balance';
+import NotificationPopperButton from './message-popper-button/notificationpopper-button';
 
-import Contact from "@material-ui/icons/ContactMailOutlined"
-import Message from "@material-ui/icons/Message";
+import Contact from '@material-ui/icons/ContactMailOutlined';
+import Message from '@material-ui/icons/Message';
 
-import User from "@material-ui/icons/VerifiedUserOutlined"
-import Payment from "@material-ui/icons/PaymentOutlined";
-import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
+import User from '@material-ui/icons/VerifiedUserOutlined';
+import Payment from '@material-ui/icons/PaymentOutlined';
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import FormatSizeIcon from '@material-ui/icons/FormatSize';
 // import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
-import MenuIcon from "@material-ui/icons/Menu";
-import HelpOutline from "@material-ui/icons/HelpOutline";
-import NavigationDrawer from "../../../../components/common/navigation-drawer/navigation-drawer";
-import { useAuth } from "../../../../context/auth-context";
-import { useQuery } from "react-query";
-import { getBalance } from "../../../../api/payments";
-import { usePayment } from "../../../../context/payment-context";
-import { getUser } from "../../../../api/users";
-import userIcon from '../../../../assets/images/icons/user.png'
-import { isEmpty } from "lodash";
+import MenuIcon from '@material-ui/icons/Menu';
+import HelpOutline from '@material-ui/icons/HelpOutline';
+import NavigationDrawer from '../../../../components/common/navigation-drawer/navigation-drawer';
+import { useAuth } from '../../../../context/auth-context';
+import { useQuery } from 'react-query';
+import { getBalance } from '../../../../api/payments';
+import { usePayment } from '../../../../context/payment-context';
+import { getUser } from '../../../../api/users';
+import userIcon from '../../../../assets/images/icons/user.png';
+import { isEmpty } from 'lodash';
+import { Image } from 'antd';
+import LeadFlowsLogo from '../../../../assets/images/LeadflowsLogo.png';
 // import { isEmpty } from "lodash";
-
 
 const styles = (theme: any) => ({
   appBar: {
     boxShadow: theme.shadows[6],
     backgroundColor: theme.palette.common.white,
-    transition: theme.transitions.create(["width", "margin"], {
+    transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    [theme.breakpoints.down("xs")]: {
-      width: "100%",
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
       marginLeft: 0,
     },
   },
   appBarToolbar: {
-    display: "flex",
-    justifyContent: "space-between",
+    display: 'flex',
+    justifyContent: 'space-between',
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up('sm')]: {
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2),
     },
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up('md')]: {
       paddingLeft: theme.spacing(3),
       paddingRight: theme.spacing(3),
     },
-    [theme.breakpoints.up("lg")]: {
+    [theme.breakpoints.up('lg')]: {
       paddingLeft: theme.spacing(4),
       paddingRight: theme.spacing(4),
     },
@@ -81,34 +82,34 @@ const styles = (theme: any) => ({
     width: 24,
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down('xs')]: {
       marginLeft: theme.spacing(1.5),
       marginRight: theme.spacing(1.5),
     },
   },
   drawerPaper: {
-    height: "100%vh",
-    whiteSpace: "nowrap",
+    height: '100%vh',
+    whiteSpace: 'nowrap',
     border: 0,
     width: theme.spacing(7),
-    overflowX: "hidden",
+    overflowX: 'hidden',
     marginTop: theme.spacing(8),
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up('sm')]: {
       width: theme.spacing(9),
     },
     backgroundColor: theme.palette.common.black,
   },
   smBordered: {
-    [theme.breakpoints.down("xs")]: {
-      borderRadius: "50% !important",
+    [theme.breakpoints.down('xs')]: {
+      borderRadius: '50% !important',
     },
   },
   menuLink: {
-    textDecoration: "none",
+    textDecoration: 'none',
     color: theme.palette.text.primary,
   },
   iconListItem: {
-    width: "auto",
+    width: 'auto',
     borderRadius: theme.shape.borderRadius,
     paddingTop: 11,
     paddingBottom: 11,
@@ -130,30 +131,23 @@ const styles = (theme: any) => ({
     paddingRight: theme.spacing(2),
   },
   justifyCenter: {
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   permanentDrawerListItem: {
-    justifyContent: "center",
+    justifyContent: 'center',
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
   },
 });
 
 const NavBar = (props: any) => {
-  const {
-    selectedTab,
-    messages,
-    classes,
-    width,
-    openAddBalanceDialog
-  }
-    = props;
+  const { selectedTab, messages, classes, width, openAddBalanceDialog } = props;
   const links = useRef<any>([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   // const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
-  const { balance, setCurrentBalance } = usePayment()
+  const { balance, setCurrentBalance } = usePayment();
   const { currentUserId, email, setCurrentUserId } = useAuth();
-  const [user, setUser] = useState<any>([])
+  const [user, setUser] = useState<any>([]);
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);
@@ -171,33 +165,25 @@ const NavBar = (props: any) => {
   //   setIsSideDrawerOpen(false);
   // }, [setIsSideDrawerOpen]);
 
-
   const { data } = useQuery(['balance', currentUserId], async () => {
     if (!isEmpty(currentUserId)) {
-      const user = await getUser(email, 'login')
-      setCurrentUserId(user)
-      const balance = await getBalance(user)
+      const user = await getUser(email, 'login');
+      setCurrentUserId(user);
+      const balance = await getBalance(user);
       if (balance === undefined) {
-        setCurrentBalance(0)
-      }
-      else {
-        setCurrentBalance(balance!)
+        setCurrentBalance(0);
+      } else {
+        setCurrentBalance(balance!);
       }
     }
-  }
-
-  )
-
+  });
 
   useEffect(() => {
-
     if (currentUserId && data) {
-      setCurrentBalance(data)
+      setCurrentBalance(data);
     }
-    getUser(email, 'getCurrentUser').then((result) =>
-      setUser(result))
-
-  }, [data, email, currentUserId, balance, setCurrentBalance])
+    getUser(email, 'getCurrentUser').then((result) => setUser(result));
+  }, [data, email, currentUserId, balance, setCurrentBalance]);
 
   const menuItems = [
     {
@@ -213,144 +199,150 @@ const NavBar = (props: any) => {
             fontSize='small'
           />
         ),
-        mobile: <FormatSizeIcon className="text-white" />
-      }
+        mobile: <FormatSizeIcon className='text-white' />,
+      },
     },
     {
-      link: "send-sms",
-      name: "Messages",
+      link: 'send-sms',
+      name: 'Messages',
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
           <Message
             className={
-              selectedTab === "Messages"
-                ? classes.textPrimary
-                : "text-white"
+              selectedTab === 'Messages' ? classes.textPrimary : 'text-white'
             }
-            fontSize="small"
+            fontSize='small'
           />
         ),
-        mobile: <Message className="text-white" />,
+        mobile: <Message className='text-white' />,
       },
     },
     {
-      link: "users",
-      name: "Users",
+      link: 'users',
+      name: 'Users',
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
           <User
             className={
-              selectedTab === "Users" ? classes.textPrimary : "text-white"
+              selectedTab === 'Users' ? classes.textPrimary : 'text-white'
             }
-            fontSize="small"
+            fontSize='small'
           />
         ),
-        mobile: <User className="text-white" />,
+        mobile: <User className='text-white' />,
       },
     },
     {
-      link: "contacts",
-      name: "Contact",
+      link: 'contacts',
+      name: 'Contact',
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
           <Contact
             className={
-              selectedTab === "Posts" ? classes.textPrimary : "text-white"
+              selectedTab === 'Posts' ? classes.textPrimary : 'text-white'
             }
-            fontSize="small"
+            fontSize='small'
           />
         ),
-        mobile: <Contact className="text-white" />,
+        mobile: <Contact className='text-white' />,
       },
     },
     {
-      link: "payment-history",
-      name: "Payment History",
+      link: 'payment-history',
+      name: 'Payment History',
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
           <Payment
             className={
-              selectedTab === "Posts" ? classes.textPrimary : "text-white"
+              selectedTab === 'Posts' ? classes.textPrimary : 'text-white'
             }
-            fontSize="small"
+            fontSize='small'
           />
         ),
-        mobile: <Payment className="text-white" />,
+        mobile: <Payment className='text-white' />,
       },
     },
     {
-      link: "profile-info",
-      name: "Profile Information ",
+      link: 'profile-info',
+      name: 'Profile Information ',
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
           <HelpOutline
             className={
-              selectedTab === "Profile Information " ? classes.textPrimary : "text-white"
+              selectedTab === 'Profile Information '
+                ? classes.textPrimary
+                : 'text-white'
             }
-            fontSize="small"
+            fontSize='small'
           />
         ),
-        mobile: <HelpOutline className="text-white" />,
+        mobile: <HelpOutline className='text-white' />,
       },
     },
     {
-      link: "/",
-      name: "Logout",
+      link: '/',
+      name: 'Logout',
       icon: {
         desktop: (
-          <PowerSettingsNewIcon className="text-white" fontSize="small" />
+          <PowerSettingsNewIcon className='text-white' fontSize='small' />
         ),
-        mobile: <PowerSettingsNewIcon className="text-white" />,
+        mobile: <PowerSettingsNewIcon className='text-white' />,
       },
     },
   ];
   return (
     <Fragment>
-      <AppBar position="sticky" className={classes.appBar}>
+      <AppBar position='sticky' className={classes.appBar}>
         <Toolbar className={classes.appBarToolbar}>
-          <Box display="flex" alignItems="center">
+          <Box display='flex' alignItems='center'>
             <Hidden smUp>
               <Box mr={1}>
                 <IconButton
-                  aria-label="Open Navigation"
+                  aria-label='Open Navigation'
                   onClick={openMobileDrawer}
-                  color="primary"
+                  color='primary'
                 >
                   <MenuIcon />
                 </IconButton>
               </Box>
             </Hidden>
             <Hidden xsDown>
-              <Typography
-                variant="h4"
+              <Image
+                src={LeadFlowsLogo}
+                width={200}
+                height={40}
+                preview={false}
+              />
+              {/* <Typography
+                variant='h4'
                 className={classes.brandText}
-                display="inline"
-                color="primary"
+                display='inline'
+                color='primary'
               >
                 Lead
               </Typography>
               <Typography
-                variant="h4"
+                variant='h4'
                 className={classes.brandText}
-                display="inline"
-                color="secondary"
+                display='inline'
+                color='secondary'
               >
                 Flows
-              </Typography>
+              </Typography> */}
             </Hidden>
           </Box>
           <Box
-            display="flex"
-            justifyContent="flex-end"
-            alignItems="center"
-            width="100%"
+            display='flex'
+            justifyContent='flex-end'
+            alignItems='center'
+            width='100%'
           >
-            {isWidthUp("sm", width) && (
+            {isWidthUp('sm', width) && (
               <Box mr={3}>
                 <Balance
                   balance={balance}
@@ -364,16 +356,16 @@ const NavBar = (props: any) => {
               className={classNames(classes.iconListItem, classes.smBordered)}
             >
               <Avatar
-                alt="profile picture"
+                alt='profile picture'
                 // src={`${process.env.PUBLIC_URL}/images/icons/user.jpg`}
                 src={userIcon}
                 className={classNames(classes.accountAvatar)}
               />
-              {isWidthUp("sm", width) && (
+              {isWidthUp('sm', width) && (
                 <ListItemText
                   className={classes.username}
                   primary={
-                    <Typography color="textPrimary">{user?.email}</Typography>
+                    <Typography color='textPrimary'>{user?.email}</Typography>
                   }
                 />
               )}
@@ -383,7 +375,7 @@ const NavBar = (props: any) => {
       </AppBar>
       <Hidden xsDown>
         <Drawer
-          variant="permanent"
+          variant='permanent'
           classes={{
             paper: classes.drawerPaper,
           }}
@@ -402,7 +394,7 @@ const NavBar = (props: any) => {
               >
                 <Tooltip
                   title={element.name}
-                  placement="right"
+                  placement='right'
                   key={element.name}
                 >
                   <ListItem
@@ -419,8 +411,8 @@ const NavBar = (props: any) => {
                       links.current[index].click();
                     }}
                     aria-label={
-                      element.name === "Logout"
-                        ? "Logout"
+                      element.name === 'Logout'
+                        ? 'Logout'
                         : `Go to ${element.name}`
                     }
                   >
@@ -441,13 +433,15 @@ const NavBar = (props: any) => {
           icon: element.icon.mobile,
           onClick: element.onClick,
         }))}
-        anchor="left"
+        anchor='left'
         open={isMobileOpen}
         selectedItem={selectedTab}
         onClose={closeMobileDrawer}
       />
     </Fragment>
   );
-}
+};
 
-export default withWidth()(withStyles(styles as {}, { withTheme: true })(NavBar));
+export default withWidth()(
+  withStyles(styles as {}, { withTheme: true })(NavBar)
+);
